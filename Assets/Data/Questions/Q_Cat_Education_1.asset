@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_Cat_Education_1
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: q_cat_education_1
+  questionText: Tell me about your time at university.
+  hrEmotion: 0
+  linkedChoice: {fileID: 0}
+  linkedCategory: {fileID: 11400000, guid: ff3548d03552c8c4fae133410f98e830, type: 2}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a1
+    text: I mostly studied alone.
+    playerReaction:
+    - speaker: Player
+      text: It was a lonely four years.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Self-motivated, then.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+  - id: a2
+    text: I joined every club I could.
+    playerReaction:
+    - speaker: Player
+      text: And finished none of them.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Involved. Good.
+      emotion: 1
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+  - id: a3
+    text: I'd rather talk about the future.
+    playerReaction:
+    - speaker: Player
+      text: Please change the subject.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Avoiding the question.
+      emotion: 2
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}

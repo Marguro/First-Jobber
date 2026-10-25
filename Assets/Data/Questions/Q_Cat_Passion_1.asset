@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_Cat_Passion_1
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: q_cat_passion_1
+  questionText: What do you do when you're not working?
+  hrEmotion: 0
+  linkedChoice: {fileID: 0}
+  linkedCategory: {fileID: 11400000, guid: cf73391a2a50b914cbf59b137d6260c3, type: 2}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a1
+    text: I work on my passion projects.
+    playerReaction:
+    - speaker: Player
+      text: That's all I do.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: No work-life balance, then.
+      emotion: 3
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+  - id: a2
+    text: I rest.
+    playerReaction:
+    - speaker: Player
+      text: I stare at the ceiling.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Rest is important.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+  - id: a3
+    text: I look for jobs.
+    playerReaction:
+    - speaker: Player
+      text: True. Painfully true.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: ...I see.
+      emotion: 3
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}

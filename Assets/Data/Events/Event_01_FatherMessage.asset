@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780d7809f66105a4ca9bbf36c63022bc, type: 3}
+  m_Name: Event_01_FatherMessage
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.DailyEventData
+  id: event_father_message
+  trigger: 0
+  exactDay: 2
+  minDay: 0
+  repeatable: 0
+  priority: 10
+  requiredFlag: 
+  forbiddenFlag: 
+  setFlags: []
+  caption: Day 2
+  background: {fileID: 0}
+  lines:
+  - speaker: Narrator
+    text: Another morning. Another message on my phone.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Father
+    text: '"How is the job search going? Call me when you can."'
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Player
+    text: I'll call him back later. Maybe.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}

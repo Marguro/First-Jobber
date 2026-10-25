@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_Passion_GameDesign
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: q_passion_game_design
+  questionText: Game design is a hobby for most people. Why is it more for you?
+  hrEmotion: 0
+  linkedChoice: {fileID: 11400000, guid: d7532bb462bbc724b970d59aac0a8a92, type: 2}
+  linkedCategory: {fileID: 0}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a1
+    text: I've finished three prototypes.
+    playerReaction:
+    - speaker: Player
+      text: None of them are good. But they exist.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Prototypes. On your own time.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+  - id: a2
+    text: It's how I understand people.
+    playerReaction:
+    - speaker: Player
+      text: That's the truest thing I've said today.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Interesting. Unusual.
+      emotion: 1
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+  - id: a3
+    text: I don't know.
+    playerReaction:
+    - speaker: Player
+      text: I really don't.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Then why list it?
+      emotion: 2
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}

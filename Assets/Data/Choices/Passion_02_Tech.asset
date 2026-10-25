@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6218ca4452496448f05499db78f784, type: 3}
+  m_Name: Passion_02_Tech
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ResumeChoiceData
+  id: passion_technology
+  category: {fileID: 11400000, guid: cf73391a2a50b914cbf59b137d6260c3, type: 2}
+  displayText: Technology
+  description: New tools, new ideas
+  tags: []
+  playerReaction:
+  - speaker: Player
+    text: I like knowing how things work.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  hrReactions:
+  - speaker: HR
+    text: Technology. Very broad.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}

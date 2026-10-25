@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_Passion_Music
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: q_passion_music
+  questionText: Music is on your resume. How does it help you here?
+  hrEmotion: 0
+  linkedChoice: {fileID: 11400000, guid: b4b8b2d9690d6d840bce88da3a21c70d, type: 2}
+  linkedCategory: {fileID: 0}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a1
+    text: It taught me discipline.
+    playerReaction:
+    - speaker: Player
+      text: Hours of scales, nobody listening.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Discipline. We value that.
+      emotion: 1
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+  - id: a2
+    text: It doesn't, really.
+    playerReaction:
+    - speaker: Player
+      text: I should have lied.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: Then why is it here?
+      emotion: 2
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+  - id: a3
+    text: I can keep a team in rhythm.
+    playerReaction:
+    - speaker: Player
+      text: That's a stretch.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+    hrResponse:
+    - speaker: HR
+      text: That is a stretch.
+      emotion: 3
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}

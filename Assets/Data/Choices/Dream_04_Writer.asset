@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6218ca4452496448f05499db78f784, type: 3}
+  m_Name: Dream_04_Writer
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ResumeChoiceData
+  id: dream_writer
+  category: {fileID: 11400000, guid: 5e1992377126f9a4e9e0a8d40946349d, type: 2}
+  displayText: Writer
+  description: Tell stories
+  tags: []
+  playerReaction:
+  - speaker: Player
+    text: Nobody pays you to write, they say.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  hrReactions:
+  - speaker: HR
+    text: A writer? Do you have anything published?
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}

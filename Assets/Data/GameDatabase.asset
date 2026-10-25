@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008f9df6dce40f44dac679cd64be634b, type: 3}
+  m_Name: GameDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.GameDatabase
+  categories:
+  - {fileID: 11400000, guid: ff3548d03552c8c4fae133410f98e830, type: 2}
+  - {fileID: 11400000, guid: 5e1992377126f9a4e9e0a8d40946349d, type: 2}
+  - {fileID: 11400000, guid: cf73391a2a50b914cbf59b137d6260c3, type: 2}
+  choices:
+  - {fileID: 11400000, guid: 256acfdc3444f3b45a526b1e228361ef, type: 2}
+  - {fileID: 11400000, guid: d2d3e4d0e5cdaef4da892e0b6d3980e7, type: 2}
+  - {fileID: 11400000, guid: 081fc3a9ec47640479a1f815e04b469a, type: 2}
+  - {fileID: 11400000, guid: d4eeb1eeb4ac4434b9b090df141af2cf, type: 2}
+  - {fileID: 11400000, guid: 1779a68d7736d104c81e5aa0d52c0165, type: 2}
+  - {fileID: 11400000, guid: bd7e952ce5bdeb94da82376987b3ed97, type: 2}
+  - {fileID: 11400000, guid: a146f2417208d7b499d56c551d1216cd, type: 2}
+  - {fileID: 11400000, guid: 00e0494961e37f944a9de4eed4c81a57, type: 2}
+  - {fileID: 11400000, guid: d7532bb462bbc724b970d59aac0a8a92, type: 2}
+  - {fileID: 11400000, guid: 4a554e5710eb8404b89bd5bf7f760207, type: 2}
+  - {fileID: 11400000, guid: b4b8b2d9690d6d840bce88da3a21c70d, type: 2}
+  - {fileID: 11400000, guid: dbe8e9346347daf46b8248b31f7a64ab, type: 2}
+  companies:
+  - {fileID: 11400000, guid: 9166c41823fbd2f4788d894d1d315ccb, type: 2}
+  - {fileID: 11400000, guid: 130b36bfcb04069469d92f004f0ac48c, type: 2}
+  - {fileID: 11400000, guid: 13d525d1e39f8a04fa28935970b229a6, type: 2}
+  - {fileID: 11400000, guid: 34969ca36625bc345a5ce5bfb7352c23, type: 2}
+  questions:
+  - {fileID: 11400000, guid: 5d43a2b0ad5c7454b8254cd2a6d50eb5, type: 2}
+  - {fileID: 11400000, guid: 0bdbe5485132e6542b2edec9820ff922, type: 2}
+  - {fileID: 11400000, guid: c369b2dcabba5764f86e66cfdca81153, type: 2}
+  - {fileID: 11400000, guid: 23c2a20c132716045849265ea7fb21b6, type: 2}
+  - {fileID: 11400000, guid: 931b50277bf5e3a42901fb6537e15b06, type: 2}
+  - {fileID: 11400000, guid: 1d69d745a8c4ec748b0e2bfd6945ec48, type: 2}
+  - {fileID: 11400000, guid: d27df688d4afda541bbd687440f8b5d6, type: 2}
+  - {fileID: 11400000, guid: c4de9ae25ce69f3458b9a5987e987c3d, type: 2}
+  - {fileID: 11400000, guid: b7d65dc1fb23fab428dd563fe6dc4f8f, type: 2}
+  - {fileID: 11400000, guid: 8cbd96c24bd21cb4686006bf278c83cb, type: 2}
+  - {fileID: 11400000, guid: 2e9192717e528d34da54fb680cefab2d, type: 2}
+  - {fileID: 11400000, guid: 01b77ce6b53d9ec4482e76b282fb052e, type: 2}
+  - {fileID: 11400000, guid: 4634d2f4e846b754d94f31b4848a08b5, type: 2}
+  - {fileID: 11400000, guid: 48b179d8468409747b5dbe3290ae7e17, type: 2}
+  - {fileID: 11400000, guid: 6f87584652903c24597f8940e8d36970, type: 2}
+  events:
+  - {fileID: 11400000, guid: 0bb27cc7649a7c94e8e430fd45e7d4fa, type: 2}
+  - {fileID: 11400000, guid: 7d71e283ce6638649afbeebd5b77578b, type: 2}
+  - {fileID: 11400000, guid: 8e8d0b7117a55dd43a8345336c528375, type: 2}
+  endings:
+  - {fileID: 11400000, guid: 4a0c87e0421daf94693bd35feca52ec7, type: 2}
+  - {fileID: 11400000, guid: ab342f493c61c29468e9851682b3dbe0, type: 2}
+  - {fileID: 11400000, guid: abe100e8586be6f448b5766f86e4ded8, type: 2}
+  questionsPerInterview: 2
+  showConsumedChoices: 0
+  showRejectedCompanies: 1
+  minAge: 18
+  maxAge: 99
+  maxNameLength: 24
+  resumeIntroLines:
+  - speaker: Player
+    text: This is me, on paper.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Player
+    text: Let's make it better.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  defaultHrIntro:
+  - speaker: HR
+    text: Good morning, {name}. Please have a seat.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  hrReviewLines:
+  - speaker: HR
+    text: Let me look at your resume.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: HR
+    text: '{name}, {age} years old. A recent graduate.'
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  rejectionHR:
+  - speaker: HR
+    text: Thank you for your time, {name}.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: HR
+    text: We've decided to move forward with other candidates.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  rejectionPlayer:
+  - speaker: Player
+    text: ...Again.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Player
+    text: Time to go home.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  fatherOfferLines:
+  - speaker: Narrator
+    text: The phone is ringing. It's Dad.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Father
+    text: '{name}, I''ve been thinking. There''s an opening at my friend''s company.'
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Father
+    text: Steady pay. Regular hours. You don't have to keep doing this.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Player
+    text: I... I don't have anything left to apply to.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Father
+    text: Then take it. What do you say?
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
