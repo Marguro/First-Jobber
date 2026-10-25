@@ -33,18 +33,29 @@ namespace FirstJobber
             if (submitButton != null) submitButton.interactable = true;
         }
 
+        /// <summary>Shared name / age rules (also used by the main menu resume).</summary>
+        public static bool Validate(GameDatabase db, string nameText, string ageText, out string playerName, out int age, out string error)
+        {
+            playerName = (nameText ?? "").Trim();
+            age = 0;
+            error = null;
+            if (string.IsNullOrEmpty(playerName)) { error = "Please enter a name."; return false; }
+            if (playerName.Length > db.maxNameLength) { error = "Name is too long (max " + db.maxNameLength + ")."; return false; }
+            if (!int.TryParse((ageText ?? "").Trim(), out age) || age < db.minAge || age > db.maxAge)
+            {
+                error = "Please enter an age between " + db.minAge + " and " + db.maxAge + ".";
+                return false;
+            }
+            return true;
+        }
+
         void OnSubmit()
         {
             if (submitted || db == null) return;
-
-            string playerName = nameInput != null ? nameInput.text.Trim() : "";
-            if (string.IsNullOrEmpty(playerName)) { ShowError("Please enter a name."); return; }
-            if (playerName.Length > db.maxNameLength) { ShowError("Name is too long (max " + db.maxNameLength + ")."); return; }
-
-            int age = 0;
-            if (ageInput == null || !int.TryParse(ageInput.text.Trim(), out age) || age < db.minAge || age > db.maxAge)
+            if (!Validate(db, nameInput != null ? nameInput.text : "", ageInput != null ? ageInput.text : "",
+                    out string playerName, out int age, out string error))
             {
-                ShowError("Please enter an age between " + db.minAge + " and " + db.maxAge + ".");
+                ShowError(error);
                 return;
             }
 

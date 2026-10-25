@@ -77,6 +77,7 @@ namespace FirstJobber.EditorTools
             var mainMenuPanel = BuildMainMenu(canvasRt, out var mainMenu);
             var createPanel = BuildCreateApplicant(canvasRt, out var createApplicant);
             var resumePanel = BuildResumeEditor(canvasRt, choicePrefab, out var resumeEditor);
+            Set(resumeEditor, "introStartFrom", mainMenu.PaperRect); // the editor zooms out from the menu paper
             var companyPanel = BuildCompany(canvasRt, choicePrefab, out var companyController);
             var interviewPanel = BuildInterview(canvasRt, choicePrefab, out var interview, out var hr);
             var eventPanel = BuildDailyEvent(canvasRt, out var eventPanelUI);
@@ -137,17 +138,40 @@ namespace FirstJobber.EditorTools
         static CanvasGroup BuildMainMenu(RectTransform canvas, out MainMenuController controller)
         {
             var panel = NewPanel(canvas, "MainMenuPanel");
-            NewText(panel, "Title", "FIRST JOBBER", 120, Accent, TextAlignmentOptions.Center, FontStyles.Bold, 0.1f, 0.6f, 0.9f, 0.85f);
-            NewText(panel, "Subtitle", "Every rejection takes something with it.", 34, Color.gray, TextAlignmentOptions.Center, FontStyles.Italic, 0.2f, 0.52f, 0.8f, 0.6f);
-            var start = NewButton(panel, "StartButton", "Start Game", ButtonGreen, 0.38f, 0.38f, 0.62f, 0.48f);
-            var cont = NewButton(panel, "ContinueButton", "Continue", ButtonGrey, 0.38f, 0.26f, 0.62f, 0.36f);
-            var quit = NewButton(panel, "QuitButton", "Quit", ButtonGrey, 0.38f, 0.14f, 0.62f, 0.24f);
-
             controller = panel.gameObject.AddComponent<MainMenuController>();
-            Set(controller, "startButton", start);
-            Set(controller, "continueButton", cont);
-            Set(controller, "quitButton", quit);
+            PopulateMainMenu(panel, controller);
             return panel.GetComponent<CanvasGroup>();
+        }
+
+        /// <summary>
+        /// Main menu drawn as a big resume paper (name + age + one Submit button). Also used by
+        /// Tools > First Jobber > 9. Convert Main Menu To Resume Style to rebuild the menu of an existing scene.
+        /// </summary>
+        internal static void PopulateMainMenu(RectTransform panel, MainMenuController controller)
+        {
+            var paper = NewRect("MenuPaper", panel);
+            paper.anchorMin = paper.anchorMax = new Vector2(0.5f, 0.53f);
+            paper.pivot = new Vector2(0.5f, 0.5f);
+            paper.sizeDelta = new Vector2(950f, 860f);
+            paper.anchoredPosition = Vector2.zero;
+            paper.gameObject.AddComponent<Image>().color = Paper;
+
+            NewText(paper, "Title", "FIRST JOBBER", 92, Ink, TextAlignmentOptions.Center, FontStyles.Bold, 0.05f, 0.8f, 0.95f, 0.95f);
+            NewText(paper, "Subtitle", "Every rejection takes something with it.", 30, new Color(0.35f, 0.35f, 0.35f),
+                TextAlignmentOptions.Center, FontStyles.Italic, 0.05f, 0.72f, 0.95f, 0.8f);
+            NewText(paper, "NameLabel", "Name", 32, new Color(0.3f, 0.3f, 0.3f), TextAlignmentOptions.BottomLeft, FontStyles.Normal, 0.12f, 0.63f, 0.88f, 0.69f);
+            var nameInput = NewInput(paper, "NameInput", "Enter your name...", 0.12f, 0.53f, 0.88f, 0.63f);
+            NewText(paper, "AgeLabel", "Age", 32, new Color(0.3f, 0.3f, 0.3f), TextAlignmentOptions.BottomLeft, FontStyles.Normal, 0.12f, 0.46f, 0.88f, 0.52f);
+            var ageInput = NewInput(paper, "AgeInput", "Enter your age...", 0.12f, 0.36f, 0.88f, 0.46f);
+            ageInput.contentType = TMP_InputField.ContentType.IntegerNumber;
+            var error = NewText(paper, "ErrorText", "", 28, new Color(0.75f, 0.15f, 0.15f), TextAlignmentOptions.Center, FontStyles.Normal, 0.1f, 0.27f, 0.9f, 0.34f);
+            var submit = NewButton(paper, "SubmitButton", "Submit", ButtonGreen, 0.3f, 0.1f, 0.7f, 0.24f, 44);
+
+            Set(controller, "paperRect", paper);
+            Set(controller, "nameInput", nameInput);
+            Set(controller, "ageInput", ageInput);
+            Set(controller, "errorText", error);
+            Set(controller, "submitButton", submit);
         }
 
         static CanvasGroup BuildCreateApplicant(RectTransform canvas, out CreateApplicantController controller)

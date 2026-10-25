@@ -64,24 +64,24 @@ namespace FirstJobber
 
         void OnEnable()
         {
-            if (mainMenu != null) { mainMenu.StartRequested += NewGame; mainMenu.ContinueRequested += ContinueGame; }
+            if (mainMenu != null) { mainMenu.SubmitRequested += NewGame; mainMenu.ContinueRequested += ContinueGame; }
             if (createApplicant != null) createApplicant.Submitted += OnApplicantSubmitted;
             if (resumeEditor != null) resumeEditor.Confirmed += OnResumeConfirmed;
             if (companySelection != null) { companySelection.CompanyConfirmed += OnCompanyConfirmed; companySelection.BackRequested += OnCompanyBack; }
             if (interview != null) { interview.PhaseRequested += OnInterviewPhase; interview.Finished += OnInterviewFinished; }
             if (finalDecision != null) finalDecision.EndingChosen += OnEndingChosen;
-            if (ending != null) { ending.RestartRequested += NewGame; ending.MenuRequested += OnEndingMenu; }
+            if (ending != null) { ending.RestartRequested += OnEndingMenu; ending.MenuRequested += OnEndingMenu; }
         }
 
         void OnDisable()
         {
-            if (mainMenu != null) { mainMenu.StartRequested -= NewGame; mainMenu.ContinueRequested -= ContinueGame; }
+            if (mainMenu != null) { mainMenu.SubmitRequested -= NewGame; mainMenu.ContinueRequested -= ContinueGame; }
             if (createApplicant != null) createApplicant.Submitted -= OnApplicantSubmitted;
             if (resumeEditor != null) resumeEditor.Confirmed -= OnResumeConfirmed;
             if (companySelection != null) { companySelection.CompanyConfirmed -= OnCompanyConfirmed; companySelection.BackRequested -= OnCompanyBack; }
             if (interview != null) { interview.PhaseRequested -= OnInterviewPhase; interview.Finished -= OnInterviewFinished; }
             if (finalDecision != null) finalDecision.EndingChosen -= OnEndingChosen;
-            if (ending != null) { ending.RestartRequested -= NewGame; ending.MenuRequested -= OnEndingMenu; }
+            if (ending != null) { ending.RestartRequested -= OnEndingMenu; ending.MenuRequested -= OnEndingMenu; }
         }
 
         void Start()
@@ -99,7 +99,7 @@ namespace FirstJobber
             ApplyAtmosphere(true);
             Phase = GamePhase.MainMenu;
             ui.ShowPanelFor(GamePhase.MainMenu, true);
-            mainMenu.Open();
+            mainMenu.Open(database);
         }
 
         bool CheckReferences()
@@ -148,21 +148,20 @@ namespace FirstJobber
 
         // ------------------------------------------------------------ start of game
 
-        void NewGame()
+        /// <summary>Submit on the main-menu resume: the applicant is created right there, then the paper zooms out into the editor.</summary>
+        void NewGame(string playerName, int age)
         {
-            if (!referencesOk) return;
-            if (Phase != GamePhase.MainMenu && Phase != GamePhase.Ending) return;
-            session = new GameSession();
+            if (!referencesOk || Phase != GamePhase.MainMenu) return;
+            session = new GameSession { applicantName = playerName, applicantAge = age };
             ctx = new GameContext(database, session, dialogue);
             ApplyAtmosphere(true);
-            if (!ChangePhase(GamePhase.CreateApplicant)) return;
-            createApplicant.Open(database);
+            if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(true);
         }
 
         void ContinueGame()
         {
             if (!referencesOk || Phase != GamePhase.MainMenu) return;
-            if (!GameSession.TryLoad(out var loaded)) { mainMenu.Open(); return; }
+            if (!GameSession.TryLoad(out var loaded)) { mainMenu.Open(database); return; }
             session = loaded;
             ctx = new GameContext(database, session, dialogue);
             ApplyAtmosphere(true);
@@ -359,7 +358,7 @@ namespace FirstJobber
         void OnEndingMenu()
         {
             if (!ChangePhase(GamePhase.MainMenu)) return;
-            mainMenu.Open();
+            mainMenu.Open(database);
         }
     }
 }

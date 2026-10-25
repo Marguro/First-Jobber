@@ -30,6 +30,10 @@ namespace FirstJobber
         [Tooltip("Show each category's choices in a random order instead of database order. The order is re-rolled once per day and stays fixed while you edit, so buttons never jump around.")]
         [SerializeField] bool shuffleChoices = true;
         [Header("Intro animation")]
+        [Tooltip("Optional. The first-day intro starts exactly on this rectangle (the main-menu resume paper) and zooms out to the editor. Empty = start centred and enlarged.")]
+        [SerializeField] RectTransform introStartFrom;
+        [Tooltip("Hold time before zooming out when starting from the menu paper.")]
+        [SerializeField] float introHoldFromMenu = 0.4f;
         [SerializeField] float introHold = 1.2f;
         [SerializeField] float introDuration = 0.9f;
         [SerializeField] float introStartScale = 1.35f;
@@ -134,14 +138,29 @@ namespace FirstJobber
         {
             // Start centred and enlarged; the editor side is hidden.
             var parent = previewRect.parent as RectTransform;
-            float centerX = (previewRect.anchorMin.x + previewRect.anchorMax.x) * 0.5f * parent.rect.width;
-            Vector2 startPos = restPosition + new Vector2(parent.rect.width * 0.5f - centerX, 0f);
-            Vector3 startScale = restScale * introStartScale;
+            float hold = introHold;
+            Vector2 startPos;
+            Vector3 startScale;
+            if (introStartFrom != null && introStartFrom.rect.width > 1f && previewRect.rect.width > 1f)
+            {
+                ResetLayout(); // measure from the resting position
+                Vector3 target = parent.InverseTransformPoint(introStartFrom.TransformPoint(introStartFrom.rect.center));
+                Vector3 now = parent.InverseTransformPoint(previewRect.TransformPoint(previewRect.rect.center));
+                startPos = restPosition + new Vector2(target.x - now.x, target.y - now.y);
+                startScale = restScale * (introStartFrom.rect.width / previewRect.rect.width);
+                hold = introHoldFromMenu;
+            }
+            else
+            {
+                float centerX = (previewRect.anchorMin.x + previewRect.anchorMax.x) * 0.5f * parent.rect.width;
+                startPos = restPosition + new Vector2(parent.rect.width * 0.5f - centerX, 0f);
+                startScale = restScale * introStartScale;
+            }
             previewRect.anchoredPosition = startPos;
             previewRect.localScale = startScale;
             SetEditorAlpha(0f);
 
-            yield return new WaitForSecondsRealtime(introHold);
+            yield return new WaitForSecondsRealtime(hold);
 
             for (float t = 0f; t < 1f; t += Time.unscaledDeltaTime / introDuration)
             {

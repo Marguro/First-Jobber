@@ -302,3 +302,16 @@ Assets/Data/Atmosphere/       Phase_01_Normal (วัน 1), Phase_02_Deteriorat
 4. เลื่อนรายการ choice: แถบต้องไม่ขยับ
 5. Confirm → เล่นจนถูกปฏิเสธ → วันถัดไปแถบกลับเป็น 0% และ choice เดิมใช้ไม่ได้
 6. แก้ Confidence Percentage ของ asset แล้ว Play ใหม่: ตัวเลขเปลี่ยนตาม
+
+---
+
+## 12. เมนูหลักแบบใบสมัคร (Resume Menu)
+
+เมนูหลักเปลี่ยนเป็นกระดาษ Resume ใบใหญ่กลางจอ มีช่อง Name, Age และปุ่ม **Submit** ปุ่มเดียว (ไม่มี Continue / Quit) กด Submit แล้วกระดาษจะซูมออกไปเป็นหน้า Resume Editor เต็ม ๆ (ใช้แอนิเมชัน intro เดิมของ Resume Editor) ขั้นตอน Create Applicant แยกต่างหากจึงไม่ถูกใช้แล้ว
+
+- สคริปต์: `UI/MainMenuController.cs` (เขียนใหม่), `UI/CreateApplicantController.cs` (เพิ่ม `Validate` ที่ใช้ร่วมกัน), `Core/GameFlowManager.cs` (`NewGame(name, age)` ไปหน้า Resume Editor ตรง ๆ), `Resume/ResumeEditorController.cs` (ช่อง `Intro Start From`)
+- Scene ใหม่ (Build Game Scene): ได้เมนูแบบใหม่ทันที
+- Scene เดิม: รัน `Tools → First Jobber → 9. Convert Main Menu To Resume Style` (ลบของเดิมใน MainMenuPanel แล้วสร้างใหม่ + ต่อ `Intro Start From` ให้) แล้วกด Ctrl+S
+- ปรับขนาด/ตำแหน่งกระดาษ: เลือก `MainMenuPanel/MenuPaper` (Size Delta 950×860) — ตอนซูมออก ระบบอ่านตำแหน่งและความกว้างจากกระดาษนี้เองโดยอัตโนมัติ
+- ปุ่ม Restart ในหน้า Ending จะกลับมาที่เมนู Resume นี้ (ให้ใส่ชื่อใหม่)
+- Continue / Quit ยังรองรับแบบเลือกได้: ถ้าลากปุ่มใส่ช่อง `Continue Button` / `Quit Button` ของ MainMenuController ปุ่มจะทำงาน
