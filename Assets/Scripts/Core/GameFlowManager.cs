@@ -328,6 +328,34 @@ namespace FirstJobber
             ending.Show(ctx, data);
         }
 
+        public GameDatabase Database => database;
+
+        /// <summary>
+        /// Debug only: jumps straight to an ending from any phase, bypassing the state machine.
+        /// Leaves the save file alone (a real ending deletes it).
+        /// </summary>
+        public bool DebugTriggerEnding(string endingId)
+        {
+            if (!referencesOk || database == null) return false;
+            var data = database.FindEnding(endingId);
+            if (data == null) { Debug.LogError("[Debug] Unknown ending id '" + endingId + "'."); return false; }
+
+            StopAllCoroutines(); // drop a running rejection / sleep sequence so it cannot change phase afterwards
+            dialogue.Stop();
+            if (session == null || ctx == null)
+            {
+                session = new GameSession();
+                ctx = new GameContext(database, session, dialogue);
+            }
+            Phase = GamePhase.Ending;
+            session.phase = GamePhase.Ending;
+            session.endingId = endingId;
+            ui.ShowPanelFor(GamePhase.Ending, true);
+            ending.Show(ctx, data);
+            Debug.Log("[Debug] Triggered ending '" + endingId + "'.");
+            return true;
+        }
+
         void OnEndingMenu()
         {
             if (!ChangePhase(GamePhase.MainMenu)) return;

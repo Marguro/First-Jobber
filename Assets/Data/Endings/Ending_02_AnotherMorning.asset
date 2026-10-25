@@ -51,3 +51,7 @@ MonoBehaviour:
 
     The cycle begins again.'
   sound: {fileID: 0}
+  cutscenePrefab: {fileID: 7702332524378445598, guid: e92d664376b03c64cb5f2fe045333d81, type: 3}
+  timeline: {fileID: 11400000, guid: 0ef1198db99bacd48be6c0ef3fcc8928, type: 2}
+  timelineMode: 3
+  timelineSkippable: 1

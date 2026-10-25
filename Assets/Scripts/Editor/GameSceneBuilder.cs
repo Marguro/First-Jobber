@@ -344,6 +344,9 @@ namespace FirstJobber.EditorTools
             var menu = NewButton(buttons, "MenuButton", "Main Menu", ButtonGrey, 0.52f, 0f, 1f, 1f);
 
             controller = panel.gameObject.AddComponent<EndingController>();
+            var director = panel.gameObject.AddComponent<UnityEngine.Playables.PlayableDirector>();
+            director.playOnAwake = false;
+            Set(controller, "director", director);
             var audio = panel.gameObject.AddComponent<AudioSource>();
             audio.playOnAwake = false;
             Set(controller, "background", bgImg);

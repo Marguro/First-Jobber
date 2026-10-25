@@ -45,9 +45,13 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
-  background: {fileID: 0}
+  background: {fileID: 4922145649491599510, guid: ecca1d4d25e43364db69ad6f2d601c29, type: 3}
   backgroundColor: {r: 0.12, g: 0.14, b: 0.18, a: 1}
   finalText: 'ENDING 1 - A JOB IS A JOB
 
     No more interviews. The mornings just look the same.'
   sound: {fileID: 0}
+  cutscenePrefab: {fileID: 8057347664958140945, guid: 4fd6f73861b6cce408d94eb4116497eb, type: 3}
+  timeline: {fileID: 11400000, guid: ba55e47f69ad22a48958eb8f20cb1f43, type: 2}
+  timelineMode: 2
+  timelineSkippable: 1

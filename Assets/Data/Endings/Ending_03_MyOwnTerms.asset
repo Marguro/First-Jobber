@@ -51,3 +51,7 @@ MonoBehaviour:
 
     Nothing is guaranteed. But the choice is mine.'
   sound: {fileID: 0}
+  cutscenePrefab: {fileID: 1940189446242222986, guid: 97c6b2b10ed85674799bf3659a8d1076, type: 3}
+  timeline: {fileID: 11400000, guid: 9ca15672bf355854fade3c45dc54add5, type: 2}
+  timelineMode: 1
+  timelineSkippable: 0

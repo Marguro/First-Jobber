@@ -167,6 +167,19 @@ namespace FirstJobber.EditorTools
             Debug.Log("[Scroll] Added. Assign a sprite to the Background's Image, then tune Speed / Axis on ScrollingBackground.");
         }
 
+        [MenuItem("Tools/First Jobber/6. Add Ending Timeline Support To Open Scene")]
+        public static void AddEndingTimeline()
+        {
+            var ending = Object.FindFirstObjectByType<EndingController>();
+            if (ending == null) { Debug.LogError("[Ending] No EndingController in the open scene."); return; }
+            var director = ending.GetComponent<UnityEngine.Playables.PlayableDirector>();
+            if (director == null) director = Undo.AddComponent<UnityEngine.Playables.PlayableDirector>(ending.gameObject);
+            director.playOnAwake = false;
+            SetRef(ending, "director", director);
+            EditorSceneManager.MarkSceneDirty(ending.gameObject.scene);
+            Debug.Log("[Ending] PlayableDirector assigned on EndingPanel. Save the scene (Ctrl+S).");
+        }
+
         static void Bind(RectTransform root, string path, string targetId)
         {
             var t = root.Find(path);
