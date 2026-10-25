@@ -315,3 +315,17 @@ Assets/Data/Atmosphere/       Phase_01_Normal (วัน 1), Phase_02_Deteriorat
 - ปรับขนาด/ตำแหน่งกระดาษ: เลือก `MainMenuPanel/MenuPaper` (Size Delta 950×860) — ตอนซูมออก ระบบอ่านตำแหน่งและความกว้างจากกระดาษนี้เองโดยอัตโนมัติ
 - ปุ่ม Restart ในหน้า Ending จะกลับมาที่เมนู Resume นี้ (ให้ใส่ชื่อใหม่)
 - Continue / Quit ยังรองรับแบบเลือกได้: ถ้าลากปุ่มใส่ช่อง `Continue Button` / `Quit Button` ของ MainMenuController ปุ่มจะทำงาน
+
+---
+
+## 13. เปลี่ยนสไปรต์ UI ตาม Phase (Atmosphere)
+
+ใช้ระบบ Atmosphere เดิม: ใน Phase asset ช่อง **Sprite Overrides** ใส่สไปรต์ตาม Target Id ส่วนปุ่ม/พาเนลใน scene ต้องมี `AtmosphereSpriteBinding` ที่ Target Id ตรงกัน
+
+1. รัน `Tools → First Jobber → 10. Bind Common UI To Atmosphere` (ใส่ Binding ให้ MenuPaper, SubmitButton, ChoiceList, ConfirmButton และ prefab ChoiceButton ซึ่งทุกปุ่มรายการใช้ร่วมกัน) แล้ว Ctrl+S
+2. เปิด Phase asset (เช่น `Phase_02_Deterioration`) กดปุ่ม **Add Missing UI Slots** จะได้ช่องครบทุก Target Id
+3. ลากสไปรต์ใส่ช่องที่ต้องการเปลี่ยนใน Phase นั้น ช่องที่ว่างจะใช้สไปรต์เดิม
+4. UI อื่นที่อยากให้เปลี่ยนด้วย: เลือก GameObject ที่มี Image แล้วรัน `11. Bind Selected UI To Atmosphere` (ใช้ชื่อ object เป็น Target Id) จากนั้นใส่ Sprite Override ที่ชื่อเดียวกัน
+
+- **Sprite Only** บน Binding: สลับแค่สไปรต์ ไม่แตะสี ใช้กับปุ่มและ ChoiceButton (สี Available/Selected/Consumed ยังควบคุมโดย ChoiceButtonUI) ถ้าใช้สไปรต์จริง ให้ตั้งสีเหล่านั้นเป็นสีขาวเพื่อไม่ให้ภาพคล้ำ
+- แถบ Confidence ใช้ id `ConfidenceBackground/Fill/Frame/Decoration` อยู่แล้ว

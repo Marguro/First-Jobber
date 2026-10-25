@@ -126,6 +126,7 @@ namespace FirstJobber.EditorTools
             Set(flow, "ending", endingController);
 
             AtmosphereTools.AddToOpenScene();
+            UiPhaseTools.BindCommon(canvasRt);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, ScenePath);

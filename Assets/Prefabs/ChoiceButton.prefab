@@ -376,6 +376,7 @@ GameObject:
   - component: {fileID: 5017982193662469446}
   - component: {fileID: 358968367170934732}
   - component: {fileID: 2598443313786929471}
+  - component: {fileID: 7783337574798386231}
   m_Layer: 0
   m_Name: ChoiceButton
   m_TagString: Untagged
@@ -556,6 +557,23 @@ MonoBehaviour:
   availableColor: {r: 0.88, g: 0.88, b: 0.84, a: 1}
   selectedColor: {r: 0.98, g: 0.82, b: 0.35, a: 1}
   consumedColor: {r: 0.35, g: 0.35, b: 0.35, a: 1}
+--- !u!114 &7783337574798386231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690180372980020888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab3878f7a0eded4688f4d38542ca900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.AtmosphereSpriteBinding
+  targetId: ChoiceButton
+  image: {fileID: 5205809760930852328}
+  spriteRenderer: {fileID: 0}
+  applyUiTint: 1
+  spriteOnly: 1
 --- !u!1 &7032675189612888603
 GameObject:
   m_ObjectHideFlags: 0

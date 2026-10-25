@@ -91,7 +91,7 @@ namespace FirstJobber.EditorTools
             p.id = id; p.displayName = display; p.startDay = startDay;
             setup(p);
             // Empty slots so artists can see which targets exist; null sprites fall back to the original look.
-            foreach (var t in new[] { "MainBackground", "ResumeBackground", "CompanyPanelBackground", "InterviewBackground", "UIDecoration" })
+            foreach (var t in AtmosphereTargets.Known)
                 p.spriteOverrides.Add(new AtmosphereSpriteOverride { targetId = t });
             foreach (HREmotion e in System.Enum.GetValues(typeof(HREmotion)))
                 p.hrSprites.Add(new AtmosphereHrSpriteOverride { emotion = e });

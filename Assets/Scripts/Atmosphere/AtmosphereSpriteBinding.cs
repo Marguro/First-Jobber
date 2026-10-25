@@ -16,6 +16,8 @@ namespace FirstJobber
         [SerializeField] SpriteRenderer spriteRenderer;
         [Tooltip("Multiply the original colour by the phase's UI Tint.")]
         [SerializeField] bool applyUiTint = true;
+        [Tooltip("Only swap the sprite; never touch the Image colour. Use on buttons and anything whose colour is driven by another script.")]
+        [SerializeField] bool spriteOnly;
 
         public string TargetId => targetId;
 
@@ -75,6 +77,12 @@ namespace FirstJobber
 
             if (routine != null) StopCoroutine(routine);
             routine = null;
+
+            if (spriteOnly)
+            {
+                SetVisual(targetSprite, CurrentColor, true);
+                return;
+            }
 
             bool spriteChanges = CurrentSprite != targetSprite;
             if (fade <= 0f || !isActiveAndEnabled)

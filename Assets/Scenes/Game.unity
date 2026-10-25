@@ -432,6 +432,7 @@ GameObject:
   - component: {fileID: 36650488}
   - component: {fileID: 36650490}
   - component: {fileID: 36650489}
+  - component: {fileID: 36650491}
   m_Layer: 0
   m_Name: MenuPaper
   m_TagString: Untagged
@@ -504,6 +505,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36650487}
   m_CullTransparentMesh: 1
+--- !u!114 &36650491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36650487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab3878f7a0eded4688f4d38542ca900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.AtmosphereSpriteBinding
+  targetId: MenuPaper
+  image: {fileID: 36650489}
+  spriteRenderer: {fileID: 0}
+  applyUiTint: 1
+  spriteOnly: 0
 --- !u!114 &56233140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +909,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4280228378
   m_fontColor: {r: 0.1, g: 0.1, b: 0.12, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5741,6 +5759,7 @@ MonoBehaviour:
   image: {fileID: 796213113}
   spriteRenderer: {fileID: 0}
   applyUiTint: 1
+  spriteOnly: 0
 --- !u!1 &828410906
 GameObject:
   m_ObjectHideFlags: 0
@@ -6116,6 +6135,7 @@ GameObject:
   - component: {fileID: 880101468}
   - component: {fileID: 880101467}
   - component: {fileID: 880101466}
+  - component: {fileID: 880101469}
   m_Layer: 0
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -6225,6 +6245,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880101464}
   m_CullTransparentMesh: 1
+--- !u!114 &880101469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880101464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab3878f7a0eded4688f4d38542ca900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.AtmosphereSpriteBinding
+  targetId: ConfirmButton
+  image: {fileID: 880101467}
+  spriteRenderer: {fileID: 0}
+  applyUiTint: 1
+  spriteOnly: 1
 --- !u!1 &901422121
 GameObject:
   m_ObjectHideFlags: 0
@@ -6822,6 +6859,7 @@ MonoBehaviour:
   image: {fileID: 977193197}
   spriteRenderer: {fileID: 0}
   applyUiTint: 1
+  spriteOnly: 0
 --- !u!1 &998523051
 GameObject:
   m_ObjectHideFlags: 0
@@ -9356,6 +9394,7 @@ GameObject:
   - component: {fileID: 1292910476}
   - component: {fileID: 1292910475}
   - component: {fileID: 1292910474}
+  - component: {fileID: 1292910477}
   m_Layer: 0
   m_Name: SubmitButton
   m_TagString: Untagged
@@ -9465,6 +9504,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292910472}
   m_CullTransparentMesh: 1
+--- !u!114 &1292910477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292910472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab3878f7a0eded4688f4d38542ca900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.AtmosphereSpriteBinding
+  targetId: SubmitButton
+  image: {fileID: 1292910475}
+  spriteRenderer: {fileID: 0}
+  applyUiTint: 1
+  spriteOnly: 1
 --- !u!114 &1328399302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10957,7 +11013,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4280228378
   m_fontColor: {r: 0.1, g: 0.1, b: 0.12, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -11606,6 +11662,7 @@ MonoBehaviour:
   image: {fileID: 1617775026}
   spriteRenderer: {fileID: 0}
   applyUiTint: 1
+  spriteOnly: 0
 --- !u!1 &1623757145
 GameObject:
   m_ObjectHideFlags: 0
@@ -12007,6 +12064,7 @@ MonoBehaviour:
   image: {fileID: 1661852272}
   spriteRenderer: {fileID: 0}
   applyUiTint: 1
+  spriteOnly: 0
 --- !u!1 &1664623487
 GameObject:
   m_ObjectHideFlags: 0
@@ -12885,6 +12943,7 @@ MonoBehaviour:
   image: {fileID: 1773278459}
   spriteRenderer: {fileID: 0}
   applyUiTint: 1
+  spriteOnly: 0
 --- !u!114 &1777907819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15481,6 +15540,7 @@ GameObject:
   - component: {fileID: 2107588839}
   - component: {fileID: 2107588838}
   - component: {fileID: 2107588837}
+  - component: {fileID: 2107588842}
   m_Layer: 0
   m_Name: ChoiceList
   m_TagString: Untagged
@@ -15608,6 +15668,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107588835}
   m_CullTransparentMesh: 1
+--- !u!114 &2107588842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107588835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab3878f7a0eded4688f4d38542ca900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.AtmosphereSpriteBinding
+  targetId: ChoiceListBackground
+  image: {fileID: 2107588840}
+  spriteRenderer: {fileID: 0}
+  applyUiTint: 1
+  spriteOnly: 0
 --- !u!1 &2108387065
 GameObject:
   m_ObjectHideFlags: 0
