@@ -24,6 +24,7 @@ MonoBehaviour:
   - resume_distorted
   caption: 
   background: {fileID: 0}
+  flickerSeconds: 0
   lines:
   - speaker: Player
     text: The words on my resume... they look wrong.

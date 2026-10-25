@@ -154,6 +154,19 @@ namespace FirstJobber.EditorTools
             Debug.Log("[Atmosphere] Added to the open scene. Save the scene (Ctrl+S).");
         }
 
+        [MenuItem("Tools/First Jobber/5. Add Scrolling Background To Open Scene")]
+        public static void AddScrollingBackground()
+        {
+            var canvas = Object.FindFirstObjectByType<Canvas>();
+            var bg = canvas != null ? canvas.transform.Find("Background") : null;
+            if (bg == null) { Debug.LogError("[Scroll] No 'Background' object under the Canvas."); return; }
+            if (bg.GetComponent<ScrollingBackground>() != null) { Debug.LogWarning("[Scroll] Background already scrolls."); return; }
+            Undo.AddComponent<ScrollingBackground>(bg.gameObject);
+            Selection.activeGameObject = bg.gameObject;
+            EditorSceneManager.MarkSceneDirty(bg.gameObject.scene);
+            Debug.Log("[Scroll] Added. Assign a sprite to the Background's Image, then tune Speed / Axis on ScrollingBackground.");
+        }
+
         static void Bind(RectTransform root, string path, string targetId)
         {
             var t = root.Find(path);

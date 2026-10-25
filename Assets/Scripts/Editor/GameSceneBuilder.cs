@@ -71,6 +71,7 @@ namespace FirstJobber.EditorTools
             Stretch(backdrop);
             backdrop.gameObject.AddComponent<Image>().color = Bg;
             backdrop.GetComponent<Image>().raycastTarget = false;
+            backdrop.gameObject.AddComponent<ScrollingBackground>();
 
             // ---------- panels ----------
             var mainMenuPanel = BuildMainMenu(canvasRt, out var mainMenu);

@@ -18,7 +18,7 @@ MonoBehaviour:
   salary: $2,400 / month
   industry: Game Studio
   description: A small studio with big plans and no budget.
-  logo: {fileID: 0}
+  logo: {fileID: 7376286362715105337, guid: 2d88cdf3d2772224ea229e549224eb3a, type: 3}
   tags: []
   playerReaction:
   - speaker: Player
