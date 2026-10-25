@@ -207,6 +207,8 @@ namespace FirstJobber.EditorTools
                 };
             }
 
+            AtmosphereTools.GenerateSampleAssets();
+
             // Fill database lists from everything in Assets/Data (names define the order)
             CollectInto(db);
             EditorUtility.SetDirty(db);

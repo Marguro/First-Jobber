@@ -123,6 +123,8 @@ namespace FirstJobber.EditorTools
             Set(flow, "finalDecision", finalDecision);
             Set(flow, "ending", endingController);
 
+            AtmosphereTools.AddToOpenScene();
+
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, ScenePath);
             AddToBuildSettings();

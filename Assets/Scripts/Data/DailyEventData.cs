@@ -26,6 +26,8 @@ namespace FirstJobber
         [Header("Presentation (caption/background are used for OnDayStart events)")]
         public string caption;
         public Sprite background;
+        [Tooltip("Optional temporary screen flicker (seconds). Does not change the atmosphere phase.")]
+        public float flickerSeconds;
         public DialogueLine[] lines;
     }
 }

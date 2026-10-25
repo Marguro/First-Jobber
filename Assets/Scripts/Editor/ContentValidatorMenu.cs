@@ -17,6 +17,8 @@ namespace FirstJobber.EditorTools
             if (db == null) { Debug.LogError("[Content] No GameDatabase found."); return; }
 
             var problems = db.Validate();
+            var atmosphere = AssetDatabase.LoadAssetAtPath<AtmosphereConfiguration>(AtmosphereTools.ConfigPath);
+            if (atmosphere != null) problems.AddRange(atmosphere.Validate());
             if (problems.Count == 0)
             {
                 Debug.Log("[Content] OK - no problems found.", db);

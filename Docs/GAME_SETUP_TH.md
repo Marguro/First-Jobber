@@ -142,3 +142,78 @@ GameCanvas (1920x1080, Scale With Screen Size)
 - ไม่ได้ใช้ DOTween (ใช้ coroutine ตามที่กำหนด)
 - Event ประเภท OnDayStart ไม่ถูกเรียกในวันที่ 1 (เริ่มเกมเข้า Resume Editor ตรง ๆ)
 - ถ้า Choice ถูกลบ/เปลี่ยน id หลังมี Save เก่า จะถูกตัดออกอัตโนมัติ (`PruneInvalidSelections`) แต่ consumed id เก่าจะค้างในไฟล์ Save
+
+---
+
+# 10. Atmosphere Progression System (บรรยากาศเปลี่ยนตามวัน)
+
+ระบบนี้เปลี่ยนสี มืด/สว่าง ภาพ เสียง และเอฟเฟกต์ ตาม "วันปัจจุบัน" โดยไม่แตะข้อมูลเกม (Resume, บทสนทนา, ความคืบหน้า ไม่ถูกรีเซ็ต)
+
+## ไฟล์
+```
+Assets/Scripts/Atmosphere/
+  AtmospherePhaseData.cs      ข้อมูล 1 เฟส (ScriptableObject)
+  AtmosphereConfiguration.cs  รายการเฟสทั้งหมด + ตรวจความถูกต้อง
+  AtmosphereManager.cs        ตัวใช้เฟส: สีกล้อง, overlay, เสียง, flicker, สั่ง Binding
+  AtmosphereSpriteBinding.cs  แปะบน Image / SpriteRenderer เพื่อสลับสไปรต์ตาม Target Id
+Assets/Data/Atmosphere/       Phase_01_Normal (วัน 1), Phase_02_Deterioration (วัน 3), Phase_03_Despair (วัน 4), AtmosphereConfiguration
+```
+
+## ติดตั้งลง Scene
+- `Tools > First Jobber > 1. Generate Sample Data` จะสร้าง asset ตัวอย่างให้ (ไม่ทับของเดิม)
+- Scene ใหม่จาก `2. Build Game Scene` มีระบบนี้อยู่แล้ว
+- Scene เดิม (เช่น GameLogic.unity): เปิด Scene แล้วเลือก `Tools > First Jobber > 4. Add Atmosphere To Open Scene` แล้วกด Save
+  จะเพิ่ม AtmosphereOverlay (อยู่เหนือ Panel แต่ใต้กล่องบทพูด, ไม่บล็อกการคลิก), AtmosphereManager (บน GameSystems), AudioSource 2 ตัว และ Binding ให้พื้นหลังหลัก/Resume/บริษัท/สัมภาษณ์/กล่องบทพูด พร้อมต่อ `GameFlowManager.atmosphere`
+
+## 1) สร้าง Atmosphere Phase
+คลิกขวา `Create > First Jobber > Atmosphere Phase` แล้วกรอก
+- **id** (ห้ามซ้ำ), **displayName**, **startDay**, **enabled**
+- **Visuals**: `useCameraColor/cameraColor`, `overlayColor` + `overlayOpacity` (ความมืด), `uiTint` (คูณสี UI ที่มี Binding), `hrTint` (คูณสีตัว HR — ใช้ได้แม้ยังไม่มีสไปรต์), `fadeDuration`
+- **Flicker**: `flickerEnabled`, `flickerInterval`, `flickerIntensity`
+- **Audio**: `ambientClip`, `ambientVolume`, `audioCrossfade`
+ทุกช่องเป็น optional ปล่อยว่างได้โดยไม่เกิด error
+
+## 2) เลือกว่าวันไหนเปลี่ยนเฟส
+ตั้ง `startDay` ของแต่ละเฟส ระบบใช้เฟสที่ **startDay มากที่สุดที่ ≤ วันปัจจุบัน** (ไม่ต้องเรียงใน List เอง)
+ตัวอย่าง: Normal=1, Deterioration=3, Despair=4 → วัน 1–2 Normal, วัน 3 Deterioration, วัน 4+ Despair
+แก้ Deterioration เป็น 2 ได้ทันที (Test E) ไม่ต้องแก้โค้ด
+
+## 3) เพิ่ม/ลบเฟส
+สร้าง Phase asset ใหม่ → ลากใส่ `AtmosphereConfiguration.phases` (เพิ่มเฟสที่ 4 ได้เลย) ลบ = เอาออกจาก List หรือติ๊ก `enabled` ออก
+เมนู `3. Validate Content` จะเตือน: id ซ้ำ, startDay ซ้ำ, ไม่มีเฟสที่เริ่มวัน 1, Target Id ซ้ำในเฟสเดียวกัน
+
+## 4) สไปรต์เฉพาะเฟส (Environment / UI / Props)
+1. เลือก GameObject ที่เป็น Image (หรือ SpriteRenderer) → Add Component → **Atmosphere Sprite Binding**
+2. ตั้ง **Target Id** (เช่น `BedroomBackground`, `Window`, `Computer`, `ResumeBackground`, `CompanyPanelBackground`, `InterviewBackground`, `UIDecoration`)
+3. ใน Phase asset → `spriteOverrides` เพิ่มแถว: targetId = ชื่อเดียวกัน, sprite = รูปของเฟสนั้น
+- เฟสที่ไม่ใส่ sprite จะใช้ **สไปรต์ดั้งเดิม** ของ Image
+- `Apply Ui Tint` บน Binding: ติ๊กเพื่อให้สีถูกคูณด้วย `uiTint` ของเฟส
+- สไปรต์เปลี่ยนด้วยการ fade ผ่านโปร่งใส (ใช้ `fadeDuration`)
+
+## 5) สไปรต์ HR ตามเฟส + อารมณ์
+- อารมณ์ (Neutral/Interested/Disappointed/Uncomfortable) ยังควบคุมโดย HR Reaction System ตามเดิม
+- ระบบ Atmosphere เลือก **แบบ (variant)** ของภาพ: ใน Phase asset → `hrSprites` เพิ่มแถว emotion + sprite (เช่น Phase Despair: Neutral_Distorted ฯลฯ)
+- ลำดับ fallback: สไปรต์ของ (เฟส + อารมณ์) → สไปรต์ใน `HRReactionController.visuals` → placeholder (สี + ข้อความ)
+- เมื่อเฟสเปลี่ยนกลางเกม HR จะสลับ variant ทันทีโดยคงอารมณ์ปัจจุบัน ไม่ถูกเขียนทับ
+
+## 6) สี และเสียง
+แก้ใน Phase asset: `overlayColor/overlayOpacity` (ความมืด), `cameraColor`, `uiTint`, `hrTint`, `ambientClip/ambientVolume/audioCrossfade`
+เสียงใช้ AudioSource 2 ตัวทำ crossfade; ถ้าเฟสใหม่ใช้คลิปเดิม จะแค่ปรับ volume (ไม่เริ่มเสียงใหม่)
+ถ้าเฟสไม่เปลี่ยน ระบบจะไม่เริ่ม transition/เสียงซ้ำ
+
+## 7) ทดสอบโดยไม่ต้องเล่นทั้งเกม
+- Play Mode → เลือก `GameSystems` → ที่ AtmosphereManager มีปุ่ม **Preview: <ชื่อเฟส>** และ **Clear preview**
+- Preview ไม่แก้วัน/ความคืบหน้า และจะถูกยกเลิกเองเมื่อวันถัดไปเริ่มคำนวณเฟสใหม่
+- ดู Console: `[Atmosphere] Phase -> ...` ทุกครั้งที่เฟสเปลี่ยน
+
+## การเชื่อมกับ Flow
+`GameFlowManager` เรียก `AtmosphereManager.Apply(day)` เมื่อ: เริ่มเกม/Main Menu, New Game (วัน 1, instant), Continue (วันที่โหลด), และหลัง `LoopManager.AdvanceDay()` ตอนนอน → เฟสคงอยู่ข้าม Resume/Company/Interview โดยไม่รีเซ็ต
+เริ่มเกมใหม่ (Restart) จะกลับไปเฟสของวัน 1
+
+## Atmosphere vs Daily Event
+- Atmosphere = การเปลี่ยนถาวรตามวัน, Daily Event = เหตุการณ์ครั้งเดียว
+- Daily Event มีช่อง `flickerSeconds` เพื่อกะพริบจอ **ชั่วคราว** (ไม่เปลี่ยนเฟส)
+
+## สถานะการทดสอบ
+โค้ด runtime + Editor คอมไพล์ผ่าน (ตรวจด้วย Roslyn ของ Unity) แต่ **ยังไม่ได้ทดสอบ Test A–J ใน Play Mode**
+ข้อจำกัด: ยังไม่มี Post-processing (Volume) — ใช้ overlay/tint แทน; ไม่มีสไปรต์จริง (ใช้ placeholder ตามสี)

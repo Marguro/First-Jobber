@@ -47,8 +47,16 @@ namespace FirstJobber
             SetEmotion(HREmotion.Neutral);
         }
 
-        void OnEnable() { if (dialogue != null) dialogue.LineShown += OnLine; }
-        void OnDisable() { if (dialogue != null) dialogue.LineShown -= OnLine; }
+        void OnEnable()
+        {
+            if (dialogue != null) dialogue.LineShown += OnLine;
+            AtmosphereManager.PhaseChanged += OnAtmosphereChanged;
+        }
+        void OnDisable()
+        {
+            if (dialogue != null) dialogue.LineShown -= OnLine;
+            AtmosphereManager.PhaseChanged -= OnAtmosphereChanged;
+        }
 
         void OnLine(DialogueLine line)
         {
@@ -63,18 +71,28 @@ namespace FirstJobber
             {
                 if (visuals[i] != null && visuals[i].emotion == emotion) { visual = visuals[i]; break; }
             }
+            if (visual == null) Debug.LogWarning("[HR] No visual configured for emotion " + emotion, this);
+
+            // The emotion decides WHICH expression; the atmosphere phase decides which VARIANT of it is shown.
+            Sprite sprite = visual != null ? visual.sprite : null;
+            Color tint = visual != null ? visual.tint : Color.white;
+            var atmosphere = AtmosphereManager.Instance;
+            if (atmosphere != null)
+            {
+                var variant = atmosphere.ResolveHrSprite(emotion);
+                if (variant != null) sprite = variant;
+                tint *= atmosphere.HrTint;
+            }
+
             if (portrait != null)
             {
-                if (visual != null)
-                {
-                    portrait.sprite = visual.sprite;
-                    portrait.color = visual.tint;
-                }
-                else Debug.LogWarning("[HR] No visual configured for emotion " + emotion, this);
+                portrait.sprite = sprite;
+                portrait.color = tint;
             }
-            if (placeholderLabel != null)
-                placeholderLabel.text = (visual != null && visual.sprite != null) ? "" : emotion.ToString();
+            if (placeholderLabel != null) placeholderLabel.text = sprite != null ? "" : emotion.ToString();
         }
+
+        void OnAtmosphereChanged(AtmospherePhaseData phase) { SetEmotion(Current); }
 
         public void ResetToNeutral() { SetEmotion(HREmotion.Neutral); }
 

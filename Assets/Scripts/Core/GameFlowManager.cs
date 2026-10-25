@@ -19,6 +19,8 @@ namespace FirstJobber
         [SerializeField] DialogueManager dialogue;
         [SerializeField] UIManager ui;
         [SerializeField] DailyEventManager dailyEvents;
+        [Tooltip("Optional. Applies the atmosphere phase that matches the current day.")]
+        [SerializeField] AtmosphereManager atmosphere;
 
         [Header("Controllers")]
         [SerializeField] MainMenuController mainMenu;
@@ -94,6 +96,7 @@ namespace FirstJobber
 
             session = new GameSession();
             ctx = new GameContext(database, session, dialogue);
+            ApplyAtmosphere(true);
             Phase = GamePhase.MainMenu;
             ui.ShowPanelFor(GamePhase.MainMenu, true);
             mainMenu.Open();
@@ -151,6 +154,7 @@ namespace FirstJobber
             if (Phase != GamePhase.MainMenu && Phase != GamePhase.Ending) return;
             session = new GameSession();
             ctx = new GameContext(database, session, dialogue);
+            ApplyAtmosphere(true);
             if (!ChangePhase(GamePhase.CreateApplicant)) return;
             createApplicant.Open(database);
         }
@@ -161,6 +165,7 @@ namespace FirstJobber
             if (!GameSession.TryLoad(out var loaded)) { mainMenu.Open(); return; }
             session = loaded;
             ctx = new GameContext(database, session, dialogue);
+            ApplyAtmosphere(true);
 
             if (ctx.Loop.IsFinalDay())
             {
@@ -272,6 +277,7 @@ namespace FirstJobber
             yield return ui.Blackout("Day " + session.day + " is over...", sleepHold, () =>
             {
                 ctx.Loop.AdvanceDay();
+                ApplyAtmosphere(false);
                 ChangePhase(GamePhase.DayTransition);
 
                 if (ctx.Loop.IsFinalDay()) next = GamePhase.FinalDecision;
@@ -298,6 +304,11 @@ namespace FirstJobber
                     BeginDay(false);
                     break;
             }
+        }
+
+        void ApplyAtmosphere(bool instant)
+        {
+            if (atmosphere != null) atmosphere.Apply(session.day, instant);
         }
 
         // ------------------------------------------------------------ ending
