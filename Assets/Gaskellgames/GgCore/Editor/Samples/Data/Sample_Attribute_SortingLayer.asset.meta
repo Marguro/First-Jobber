@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fb030b6b8478aaf45b4fbd50d63ccf73
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 304325
+  packageName: GgCore - Gaskellgames
+  packageVersion: 1.11.0
+  assetPath: Assets/Gaskellgames/GgCore/Editor/Samples/Data/Sample_Attribute_SortingLayer.asset
+  uploadId: 1006872

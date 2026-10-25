@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 90b568026a037bf4b8d82614245e30f6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 304325
+  packageName: GgCore - Gaskellgames
+  packageVersion: 1.11.0
+  assetPath: Assets/Gaskellgames/GgCore/Editor/Samples/Data/Sample_Attribute_Preview.asset
+  uploadId: 1006872
