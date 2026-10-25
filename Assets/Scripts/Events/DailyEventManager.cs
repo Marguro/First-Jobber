@@ -41,7 +41,7 @@ namespace FirstJobber
             if (ev.setFlags != null)
                 for (int i = 0; i < ev.setFlags.Length; i++) session.SetFlag(ev.setFlags[i]);
 
-            if (ev.trigger == EventTrigger.OnDayStart && eventPanel != null) eventPanel.Show(ev.caption, ev.background);
+            if (ev.trigger == EventTrigger.OnDayStart && eventPanel != null) eventPanel.Show(LocalizationManager.Get(ev, "caption", ev.caption), ev.background);
             if (ev.flickerSeconds > 0f && AtmosphereManager.Instance != null) AtmosphereManager.Instance.PulseFlicker(ev.flickerSeconds);
             dialogue.Play(ev.lines, () => RunFrom(queue, index + 1, session, onDone));
         }

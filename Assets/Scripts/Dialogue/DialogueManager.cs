@@ -89,7 +89,7 @@ namespace FirstJobber
                 LineShown?.Invoke(line);
                 if (!string.IsNullOrEmpty(line.eventId)) LineEvent?.Invoke(line.eventId);
 
-                string text = Format(line.text);
+                string text = Format(LocalizationManager.Get(line.locKey, line.text));
                 if (string.IsNullOrEmpty(text)) continue;
 
                 int total = ui != null ? ui.SetLine(ResolveSpeaker(line.speaker), text, line.portrait) : 0;
@@ -138,7 +138,7 @@ namespace FirstJobber
                 string n = PlayerNameProvider();
                 if (!string.IsNullOrEmpty(n)) return n;
             }
-            return Format(speaker);
+            return Format(LocalizationManager.Get(LocalizationKeys.SpeakerKey(speaker), speaker));
         }
 
         public string Format(string text)

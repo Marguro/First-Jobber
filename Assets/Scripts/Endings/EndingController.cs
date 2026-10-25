@@ -64,7 +64,7 @@ namespace FirstJobber
                 background.sprite = ending.background;
                 background.color = ending.background != null ? Color.white : ending.backgroundColor;
             }
-            if (titleText != null) titleText.text = ending.title;
+            if (titleText != null) titleText.text = LocalizationManager.Get(ending, "title", ending.title);
             if (finalText != null) finalText.text = "";
             if (buttonsRoot != null) buttonsRoot.SetActive(false);
             if (audioSource != null && ending.sound != null) audioSource.PlayOneShot(ending.sound);
@@ -100,7 +100,7 @@ namespace FirstJobber
             }
 
             StopTimeline();
-            if (finalText != null) finalText.text = ending.finalText;
+            if (finalText != null) finalText.text = LocalizationManager.Get(ending, "finalText", ending.finalText);
             if (buttonsRoot != null) buttonsRoot.SetActive(true);
             runner = null;
         }

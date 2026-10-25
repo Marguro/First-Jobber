@@ -28,6 +28,9 @@ namespace FirstJobber
         public string eventId;
         public Sprite portrait;
 
+        /// <summary>Runtime only: localization key, set by LocalizationKeys.Visit. Empty = always show the English text.</summary>
+        [NonSerialized] public string locKey;
+
         public DialogueLine() { }
 
         public DialogueLine(string speaker, string text, HREmotion emotion = HREmotion.Neutral, float autoAdvance = 0f)

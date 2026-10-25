@@ -44,11 +44,17 @@ namespace FirstJobber
             foreach (var e in ctx.Database.endings)
             {
                 if (e == null) continue;
-                items.Add(new ChoiceItem { id = e.id, title = e.optionLabel, subtitle = e.optionDescription, state = ChoiceState.Available });
+                items.Add(new ChoiceItem
+                {
+                    id = e.id,
+                    title = LocalizationManager.Get(e, "optionLabel", e.optionLabel),
+                    subtitle = LocalizationManager.Get(e, "optionDescription", e.optionDescription),
+                    state = ChoiceState.Available
+                });
             }
-            if (titleText != null) titleText.text = "What will you do?";
+            if (titleText != null) titleText.text = UiText.WhatWillYouDo.Text;
             endingList.gameObject.SetActive(true);
-            endingList.SetItems(items, "No endings configured.", true);
+            endingList.SetItems(items, UiText.NoEndings.Text, true);
             endingList.SetInteractable(true);
         }
 

@@ -73,7 +73,7 @@ namespace FirstJobber
             return true;
         }
 
-        static InterviewQuestionData GetEmergencyQuestion()
+        public static InterviewQuestionData GetEmergencyQuestion()
         {
             if (emergencyQuestion != null) return emergencyQuestion;
             emergencyQuestion = ScriptableObject.CreateInstance<InterviewQuestionData>();
@@ -90,6 +90,7 @@ namespace FirstJobber
                     hrResponse = new[] { new DialogueLine(Speakers.HR, "I see.", HREmotion.Neutral) }
                 }
             };
+            LocalizationKeys.VisitAsset(emergencyQuestion, null); // stamps the dialogue line keys
             return emergencyQuestion;
         }
     }

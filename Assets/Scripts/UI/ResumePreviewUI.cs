@@ -22,7 +22,7 @@ namespace FirstJobber
         public void SetApplicant(string applicantName, int age)
         {
             realName = applicantName ?? "";
-            realAge = "Age: " + age;
+            realAge = UiText.Age.Format(age);
             if (!distorted)
             {
                 if (nameText != null) nameText.text = realName;

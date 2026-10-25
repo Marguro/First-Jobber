@@ -123,7 +123,9 @@ namespace FirstJobber
             // Texts always show the real target value, even while the bar is still animating.
             if (percentText != null) percentText.text = ResumeConfidenceCalculator.FormatPercent(TargetPercent, decimals);
             if (categoriesText != null)
-                categoriesText.text = selected <= 0 ? emptyMessage : string.Format(categoriesFormat, selected, Mathf.Max(required, selected));
+                categoriesText.text = selected <= 0
+                    ? LocalizationManager.Get(UiText.ConfidenceEmpty.key, emptyMessage)
+                    : UiText.Format(LocalizationManager.Get(UiText.ConfidenceCategories.key, categoriesFormat), categoriesFormat, selected, Mathf.Max(required, selected));
 
             Color targetColor = selected <= 0 ? ColorFor(0f) : ColorFor(TargetPercent);
             if (animation != null) { StopCoroutine(animation); animation = null; }

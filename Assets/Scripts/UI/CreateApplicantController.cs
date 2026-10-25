@@ -39,11 +39,11 @@ namespace FirstJobber
             playerName = (nameText ?? "").Trim();
             age = 0;
             error = null;
-            if (string.IsNullOrEmpty(playerName)) { error = "Please enter a name."; return false; }
-            if (playerName.Length > db.maxNameLength) { error = "Name is too long (max " + db.maxNameLength + ")."; return false; }
+            if (string.IsNullOrEmpty(playerName)) { error = UiText.NameRequired.Text; return false; }
+            if (playerName.Length > db.maxNameLength) { error = UiText.NameTooLong.Format(db.maxNameLength); return false; }
             if (!int.TryParse((ageText ?? "").Trim(), out age) || age < db.minAge || age > db.maxAge)
             {
-                error = "Please enter an age between " + db.minAge + " and " + db.maxAge + ".";
+                error = UiText.AgeRange.Format(db.minAge, db.maxAge);
                 return false;
             }
             return true;
