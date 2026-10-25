@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Online Degree Program
   description: Self-paced, remote
   tags: []
+  confidencePercentage: 35
   playerReaction:
   - speaker: Player
     text: Studied at night. It counts, right?

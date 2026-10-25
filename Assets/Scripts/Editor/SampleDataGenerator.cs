@@ -291,6 +291,7 @@ namespace FirstJobber.EditorTools
             {
                 a.id = id; a.category = cat; a.displayText = text; a.description = desc;
                 a.playerReaction = player; a.hrReactions = hr;
+                if (ConfidenceTools.SampleValues.TryGetValue(id, out float confidence)) a.confidencePercentage = confidence;
                 EditorUtility.SetDirty(a);
             }
             return a;

@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Storytelling
   description: Characters and worlds
   tags: []
+  confidencePercentage: 30
   playerReaction:
   - speaker: Player
     text: Everyone has a story. I just like telling them.

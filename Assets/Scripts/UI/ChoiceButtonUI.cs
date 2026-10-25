@@ -15,6 +15,8 @@ namespace FirstJobber
         public string subtitle;
         public Sprite icon;
         public ChoiceState state;
+        [Tooltip("Optional small label on the right (e.g. confidence '85%'). Empty = hidden.")]
+        public string badge;
     }
 
     /// <summary>Reusable list entry. The click listener is added once in Awake, so refreshing never duplicates it.</summary>
@@ -25,6 +27,7 @@ namespace FirstJobber
         [SerializeField] TMP_Text titleText;
         [SerializeField] TMP_Text subtitleText;
         [SerializeField] Image iconImage;
+        [SerializeField] TMP_Text badgeText;
         [SerializeField] Color availableColor = new Color(0.88f, 0.88f, 0.84f);
         [SerializeField] Color selectedColor = new Color(0.98f, 0.82f, 0.35f);
         [SerializeField] Color consumedColor = new Color(0.35f, 0.35f, 0.35f);
@@ -61,6 +64,12 @@ namespace FirstJobber
                 bool has = !string.IsNullOrEmpty(item.subtitle);
                 subtitleText.gameObject.SetActive(has);
                 if (has) subtitleText.text = item.subtitle;
+            }
+            if (badgeText != null)
+            {
+                bool has = !string.IsNullOrEmpty(item.badge);
+                badgeText.gameObject.SetActive(has);
+                if (has) badgeText.text = item.badge;
             }
             if (iconImage != null)
             {

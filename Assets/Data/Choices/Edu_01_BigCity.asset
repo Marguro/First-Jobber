@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Big City University
   description: B.Sc. Computer Science
   tags: []
+  confidencePercentage: 85
   playerReaction:
   - speaker: Player
     text: The name looks good on paper. I hope it's enough.

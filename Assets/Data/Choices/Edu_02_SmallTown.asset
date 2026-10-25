@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Small Town University
   description: B.A. Liberal Arts
   tags: []
+  confidencePercentage: 60
   playerReaction:
   - speaker: Player
     text: It's not famous, but I worked hard there.

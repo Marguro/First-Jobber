@@ -19,6 +19,8 @@ namespace FirstJobber
         public string companyId;
         public List<string> choiceIds = new List<string>();
         public string result;
+        [Tooltip("Overall confidence that was confirmed for this application.")]
+        public float confidence;
     }
 
     /// <summary>
@@ -39,6 +41,8 @@ namespace FirstJobber
         public bool applicationOpen;
         public List<string> interviewQuestionIds = new List<string>();
         public int interviewIndex;
+        /// <summary>Overall resume confidence (0-100) locked in when today's resume was confirmed. Cleared when the application is consumed.</summary>
+        public float confirmedConfidence;
 
         // Permanent state for this playthrough
         public List<string> consumedChoiceIds = new List<string>();

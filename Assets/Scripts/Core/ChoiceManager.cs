@@ -99,6 +99,15 @@ namespace FirstJobber
             return true;
         }
 
+        readonly List<ResumeChoiceData> confidenceBuffer = new List<ResumeChoiceData>();
+
+        /// <summary>Live overall confidence (0-100) of the currently selected, still-available choices. Does not modify anything.</summary>
+        public float GetOverallConfidence(out int selectedCount)
+        {
+            GetSelectedChoices(confidenceBuffer);
+            return ResumeConfidenceCalculator.Calculate(confidenceBuffer, out selectedCount);
+        }
+
         /// <summary>Selected choices in category order (only categories with a valid selection).</summary>
         public void GetSelectedChoices(List<ResumeChoiceData> result)
         {
@@ -135,7 +144,7 @@ namespace FirstJobber
         /// <summary>Marks today's choices + company consumed, writes history, clears temporary state.</summary>
         public void ConsumeApplication(string result)
         {
-            var entry = new HistoryEntry { day = session.day, companyId = session.selectedCompanyId, result = result };
+            var entry = new HistoryEntry { day = session.day, companyId = session.selectedCompanyId, result = result, confidence = session.confirmedConfidence };
             for (int i = 0; i < session.selections.Count; i++)
             {
                 string id = session.selections[i].choiceId;
@@ -148,6 +157,7 @@ namespace FirstJobber
 
             session.history.Add(entry);
             session.selections.Clear();
+            session.confirmedConfidence = 0f;
             session.selectedCompanyId = null;
             session.interviewQuestionIds.Clear();
             session.interviewIndex = 0;

@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Game Design
   description: Systems, rules, play
   tags: []
+  confidencePercentage: 80
   playerReaction:
   - speaker: Player
     text: I could talk about game design for hours.

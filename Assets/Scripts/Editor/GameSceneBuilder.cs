@@ -191,14 +191,17 @@ namespace FirstJobber.EditorTools
 
             // RIGHT: editor
             var editorRt = NewRect("EditorGroup", panel);
-            Anchor(editorRt, 0.5f, 0.28f, 0.97f, 0.97f);
+            Anchor(editorRt, 0.5f, 0.28f, 0.86f, 0.97f); // right of this column: the confidence bar
             var editorGroup = editorRt.gameObject.AddComponent<CanvasGroup>();
             var dayText = NewText(editorRt, "DayText", "Day 1", 36, Color.gray, TextAlignmentOptions.MidlineLeft, FontStyles.Normal, 0f, 0.93f, 0.4f, 1f);
             var title = NewText(editorRt, "CategoryTitle", "Category", 46, Accent, TextAlignmentOptions.MidlineLeft, FontStyles.Bold, 0f, 0.84f, 1f, 0.93f);
             var choiceList = NewChoiceList(editorRt, "ChoiceList", prefab, Card, 0f, 0.12f, 1f, 0.83f);
             var confirm = NewButton(editorRt, "ConfirmButton", "Confirm Resume", ButtonGreen, 0.55f, 0f, 1f, 0.1f);
 
+            var confidenceUI = ConfidenceTools.BuildConfidencePanel(panel);
+
             controller = panel.gameObject.AddComponent<ResumeEditorController>();
+            Set(controller, "confidenceUI", confidenceUI);
             Set(controller, "preview", previewUI);
             Set(controller, "previewRect", previewRt);
             Set(controller, "editorGroup", editorGroup);
@@ -434,7 +437,10 @@ namespace FirstJobber.EditorTools
             var title = NewTextFlow(texts, "Title", 32, Ink, FontStyles.Bold);
             var subtitle = NewTextFlow(texts, "Subtitle", 24, new Color(0.3f, 0.3f, 0.3f), FontStyles.Normal);
 
+            var badge = ConfidenceTools.AddBadge((RectTransform)root.transform);
+
             var comp = root.GetComponent<ChoiceButtonUI>();
+            Set(comp, "badgeText", badge);
             Set(comp, "button", root.GetComponent<Button>());
             Set(comp, "background", bg);
             Set(comp, "titleText", title);
@@ -576,14 +582,14 @@ namespace FirstJobber.EditorTools
 
         // ============================================================ tiny UI toolkit
 
-        static RectTransform NewRect(string name, Transform parent)
+        internal static RectTransform NewRect(string name, Transform parent)
         {
             var go = new GameObject(name, typeof(RectTransform));
             go.transform.SetParent(parent, false);
             return (RectTransform)go.transform;
         }
 
-        static void Stretch(RectTransform rt)
+        internal static void Stretch(RectTransform rt)
         {
             rt.anchorMin = Vector2.zero;
             rt.anchorMax = Vector2.one;
@@ -591,7 +597,7 @@ namespace FirstJobber.EditorTools
             rt.offsetMax = Vector2.zero;
         }
 
-        static void Anchor(RectTransform rt, float x0, float y0, float x1, float y1)
+        internal static void Anchor(RectTransform rt, float x0, float y0, float x1, float y1)
         {
             rt.anchorMin = new Vector2(x0, y0);
             rt.anchorMax = new Vector2(x1, y1);
@@ -607,7 +613,7 @@ namespace FirstJobber.EditorTools
             return rt;
         }
 
-        static TextMeshProUGUI NewTextFlow(RectTransform parent, string name, float size, Color color, FontStyles style)
+        internal static TextMeshProUGUI NewTextFlow(RectTransform parent, string name, float size, Color color, FontStyles style)
         {
             var rt = NewRect(name, parent);
             var t = rt.gameObject.AddComponent<TextMeshProUGUI>();
@@ -620,7 +626,7 @@ namespace FirstJobber.EditorTools
             return t;
         }
 
-        static TextMeshProUGUI NewText(RectTransform parent, string name, string text, float size, Color color,
+        internal static TextMeshProUGUI NewText(RectTransform parent, string name, string text, float size, Color color,
             TextAlignmentOptions align, FontStyles style, float x0, float y0, float x1, float y1)
         {
             var t = NewTextFlow(parent, name, size, color, style);
@@ -667,7 +673,7 @@ namespace FirstJobber.EditorTools
         }
 
         /// <summary>Assigns a private [SerializeField] field by name.</summary>
-        static void Set(Object target, string field, Object value)
+        internal static void Set(Object target, string field, Object value)
         {
             var so = new SerializedObject(target);
             var prop = so.FindProperty(field);

@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Technology
   description: New tools, new ideas
   tags: []
+  confidencePercentage: 65
   playerReaction:
   - speaker: Player
     text: I like knowing how things work.

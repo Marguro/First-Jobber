@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Writer
   description: Tell stories
   tags: []
+  confidencePercentage: 40
   playerReaction:
   - speaker: Player
     text: Nobody pays you to write, they say.

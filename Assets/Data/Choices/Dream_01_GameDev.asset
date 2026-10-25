@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Game Developer
   description: Build worlds people can play
   tags: []
+  confidencePercentage: 90
   playerReaction:
   - speaker: Player
     text: I've wanted this since I was a kid.

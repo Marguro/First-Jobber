@@ -11,11 +11,20 @@ namespace FirstJobber
         public string displayText;
         [TextArea] public string description;
         public string[] tags;
+        [Header("Confidence")]
+        [Tooltip("The applicant's own confidence in this choice (0-100, decimals allowed). Fixed content: the same choice always contributes the same value. It does NOT affect hiring, rejection or endings.")]
+        [Range(0f, 100f)] public float confidencePercentage = 50f;
+
         [Header("Dialogue")]
         [Tooltip("Player's thoughts when this choice is clicked.")]
         public DialogueLine[] playerReaction;
         [Tooltip("What HR says about this choice when reviewing the resume (speaker = HR, plus an emotion).")]
         public DialogueLine[] hrReactions;
+
+        /// <summary>Confidence clamped to 0-100 (NaN counts as 0).</summary>
+        public float Confidence => ResumeConfidenceCalculator.Clamp(confidencePercentage);
+
+        void OnValidate() { confidencePercentage = ResumeConfidenceCalculator.Clamp(confidencePercentage); }
 
         public bool HasTag(string tag)
         {

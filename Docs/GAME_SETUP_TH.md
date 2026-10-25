@@ -217,3 +217,88 @@ Assets/Data/Atmosphere/       Phase_01_Normal (วัน 1), Phase_02_Deteriorat
 ## สถานะการทดสอบ
 โค้ด runtime + Editor คอมไพล์ผ่าน (ตรวจด้วย Roslyn ของ Unity) แต่ **ยังไม่ได้ทดสอบ Test A–J ใน Play Mode**
 ข้อจำกัด: ยังไม่มี Post-processing (Volume) — ใช้ overlay/tint แทน; ไม่มีสไปรต์จริง (ใช้ placeholder ตามสี)
+
+---
+
+## 11. ระบบ Resume Confidence (แถบความมั่นใจแนวตั้ง)
+
+ระบบนี้เป็นกลไก "เสริม" ของหน้า Resume Editor เท่านั้น **ไม่มีผลต่อการสัมภาษณ์ การถูกปฏิเสธ พ่อเสนอ หรือ Ending** (ค่าถูกเก็บไว้ใน GameSession เพื่อให้ dialogue/event ในอนาคตเรียกใช้ได้)
+
+### 11.1 สคริปต์ที่สร้างใหม่ / แก้ไข
+
+| ไฟล์ | สถานะ | หน้าที่ |
+|---|---|---|
+| `Scripts/Core/ResumeConfidenceCalculator.cs` | ใหม่ | คำนวณล้วน ๆ (ไม่พึ่ง UI, ไม่สุ่ม): ค่าเฉลี่ยเลขคณิตของ choice ที่เลือกอยู่ + ฟังก์ชันแสดงผล `76.7%` |
+| `Scripts/UI/ResumeConfidenceUI.cs` | ใหม่ | แถบแนวตั้ง (เติมจากล่างขึ้นบน) + ข้อความ % + สี + แอนิเมชันนุ่ม ๆ (coroutine ไม่ใช้ DOTween) |
+| `Scripts/Editor/ConfidenceTools.cs` | ใหม่ | สร้าง hierarchy ของแถบ, เมนูเพิ่มแถบลง scene เดิม, เมนูใส่ค่าตัวอย่าง |
+| `Scripts/Data/ResumeChoiceData.cs` | แก้ | เพิ่ม `confidencePercentage` (0–100, ทศนิยมได้, clamp อัตโนมัติ) |
+| `Scripts/Core/ChoiceManager.cs` | แก้ | `GetOverallConfidence()`; เก็บ confidence ลง History ตอน consume และล้างค่า |
+| `Scripts/Core/GameSession.cs` | แก้ | `confirmedConfidence` (ค่าที่ยืนยันของใบสมัครวันนี้) และ `HistoryEntry.confidence` |
+| `Scripts/Resume/ResumeEditorController.cs` | แก้ | อัปเดตแถบแบบ event-driven เมื่อเลือก/เปลี่ยนหมวด/เปิด Editor, บันทึกค่าตอนกด Confirm |
+| `Scripts/UI/ChoiceButtonUI.cs` | แก้ | ป้าย % ทางขวาของปุ่ม (ซ่อนเองถ้าไม่มีข้อความ) |
+| `Scripts/Editor/GameSceneBuilder.cs`, `SampleDataGenerator.cs` | แก้ | สร้างแถบ + ต่อ reference ให้, ใส่ค่าตัวอย่าง |
+
+### 11.2 ตั้งค่า Confidence ของแต่ละ Choice
+
+เปิด asset ใน `Assets/Data/Choices/` → ช่อง **Confidence Percentage** (สไลเดอร์ 0–100 พิมพ์ทศนิยมได้) แก้แล้วมีผลทันทีโดยไม่ต้องแก้โค้ด ค่านี้เป็นค่าคงที่ ไม่สุ่ม และโค้ดไม่เขียนทับ asset ตอนเล่น
+
+ค่าตัวอย่างที่ใส่ให้: Big City 85, Small Town 60, Art College 45, Online 35 / Game Dev 90, Artist 75, Programmer 55, Writer 40 / Game Design 80, Technology 65, Music 50, Storytelling 30
+
+- asset ที่สร้างใหม่จะได้ค่าตัวอย่างเอง
+- asset เดิมที่ยังเป็นค่าเริ่มต้น 50: ใช้เมนู `Tools → First Jobber → 8. Apply Sample Confidence Values` (ไม่เขียนทับค่าที่คุณแก้ไปแล้ว)
+
+### 11.3 วิธีคำนวณ
+
+`Overall = ผลรวม confidence ของ choice ที่เลือกอยู่ ÷ จำนวน choice ที่เลือกอยู่`
+
+- นับเฉพาะหมวดที่ "มี choice ถูกเลือกอยู่และยังไม่ถูก consume" (หมวดที่ไม่ได้เลือก/หมวดที่ choice หมดแล้ว ไม่ถูกนับเป็น 0%)
+- ไม่ได้เลือกอะไรเลย = 0% และขึ้นข้อความ "No choices selected"
+- เปลี่ยน choice ในหมวดเดิม = แทนค่าเดิม ไม่บวกซ้ำ (เพราะ 1 หมวดมี 1 การเลือก)
+- จำนวนหมวดไม่ถูก hardcode (เพิ่มหมวดที่ 4 ได้เลย)
+- ผลลัพธ์ถูกจำกัด 0–100 เสมอ ไม่มีการหารด้วยศูนย์
+
+### 11.4 วางแถบไว้ขวาสุดของ Resume Editor
+
+เลือก `Canvas/ResumeEditorPanel/ConfidencePanel` แล้วปรับ **Anchor Min/Max** (ค่าเริ่มต้น x 0.88–0.97, y 0.28–0.97) หรือปรับ `VerticalConfidenceBar` ข้างในเพื่อเปลี่ยนความกว้าง/สูงของแถบ แถบอยู่นอก ScrollRect ของรายการ choice จึงไม่เลื่อนไปตาม scroll และไม่บังการคลิก (ทุก Image ปิด Raycast Target และ CanvasGroup ปิด Blocks Raycasts)
+
+**ใช้กับ scene เดิม (ไม่ต้อง Build ใหม่ ไม่ทับ UI ที่คุณแก้ไว้):** รัน `Tools → First Jobber → 7. Add Confidence Bar To Open Scene` เมนูนี้จะสร้างแถบ, ต่อ reference, บีบคอลัมน์ editor ให้แคบลง (ถึง x 0.86) และเพิ่มป้าย % ให้ ChoiceButton prefab จากนั้นกด Ctrl+S
+
+### 11.5 Image ที่ศิลปินจะใส่สไปรต์จริง
+
+ใน `ConfidencePanel → VerticalConfidenceBar` (ลากสไปรต์ใส่ช่อง **Source Image** ได้เลย ไม่ต้องแก้โค้ด):
+
+| Image | หน้าที่ | หมายเหตุ |
+|---|---|---|
+| `BarBackground` | พื้นหลังแถบ (นิ่ง) | |
+| `BarFillMask/BarFill` | ส่วนที่เติม (ขยับ) | สีเปลี่ยนตามช่วงอัตโนมัติ จึงควรใช้สไปรต์สีขาว/เทา |
+| `BarFrame` | กรอบทับด้านบน | ไม่มีสไปรต์ = ใช้เส้นกรอบชั่วคราว (`PlaceholderFrameEdges`) แทน |
+| `OptionalDecoration` | ของตกแต่ง | ไม่มีสไปรต์ = ซ่อน |
+
+- ไม่มีสไปรต์ที่ `BarFill` ก็ใช้งานได้ (ระบบใช้สี่เหลี่ยมขาวแทน)
+- สไปรต์ Sliced/ซับซ้อนที่ Filled แสดงไม่ดี: ที่ `ConfidencePanel → ResumeConfidenceUI` ตั้ง **Fill Mode = RectMask** (ใช้ `BarFillMask` ตัดแทน) ตัวเลขไม่เปลี่ยน
+- Atmosphere: ใน Phase asset เพิ่ม Sprite Override ด้วย Target Id `ConfidenceBackground`, `ConfidenceFill`, `ConfidenceFrame`, `ConfidenceDecoration` เพื่อเปลี่ยนสไปรต์ตามช่วงเวลา (ไม่กระทบตัวเลข) ถ้าไม่ตั้ง จะใช้สไปรต์ที่ใส่ไว้ตามปกติ
+
+### 11.6 Inspector ที่ต้องมี
+
+**ResumeEditorController**: `Confidence UI` (ลาก `ConfidencePanel`), `Show Choice Confidence` (เปิด/ปิดป้าย % บนปุ่ม), `Choice Confidence Decimals`
+
+**ResumeConfidenceUI** (ต่อให้อัตโนมัติเมื่อใช้ Builder / เมนู 7): `Bar Background`, `Bar Fill`, `Bar Frame`, `Decoration`, `Placeholder Frame Edges`, `Fill Mask`, `Title Text`, `Percent Text`, `Categories Text`
+
+**ChoiceButton prefab → ChoiceButtonUI**: `Badge Text`
+
+ปรับแต่งสี: `Bands` (ค่าเริ่มต้น 0 แดง, 40 เหลือง, 70 เขียว — แก้ตัวเลข "From Percent" และสีได้) / ความเร็วแอนิเมชัน: `Animation Duration` (0 = ไม่มีแอนิเมชัน) / จำนวนทศนิยม: `Decimals`
+
+### 11.7 การเชื่อมกับ Loop
+
+- กด Confirm: เก็บค่า Overall ลง `GameSession.confirmedConfidence` (ยังไม่ consume ตามเดิม)
+- หลังถูกปฏิเสธ: `ConsumeApplication` เก็บค่านี้ลง History ของวันนั้น แล้วล้างค่าและล้างการเลือก
+- วันถัดไป: แถบถูกคำนวณใหม่จากการเลือกใหม่เท่านั้น (ไม่ยกค่าวันก่อนมา)
+
+### 11.8 วิธีทดสอบ
+
+1. รัน `Tools → First Jobber → 8. Apply Sample Confidence Values` และ `7. Add Confidence Bar To Open Scene` (หรือ Build Game Scene ใหม่) แล้วกด Play
+2. เข้า Resume Editor: แถบต้องว่าง 0% ข้อความ "No choices selected"
+3. เลือก Education 60 + Dream 90 → 75% แล้วเลือก Passion 30 → 60% เปลี่ยนเป็น Passion 80 → 76.7% (แถบเติมจากล่างขึ้นบน)
+4. เลื่อนรายการ choice: แถบต้องไม่ขยับ
+5. Confirm → เล่นจนถูกปฏิเสธ → วันถัดไปแถบกลับเป็น 0% และ choice เดิมใช้ไม่ได้
+6. แก้ Confidence Percentage ของ asset แล้ว Play ใหม่: ตัวเลขเปลี่ยนตาม

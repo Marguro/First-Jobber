@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Artist
   description: Make things people feel
   tags: []
+  confidencePercentage: 75
   playerReaction:
   - speaker: Player
     text: Drawing is the only time I stop thinking.

@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Riverside Art College
   description: B.F.A. Digital Media
   tags: []
+  confidencePercentage: 45
   playerReaction:
   - speaker: Player
     text: I learned more there than anywhere else.

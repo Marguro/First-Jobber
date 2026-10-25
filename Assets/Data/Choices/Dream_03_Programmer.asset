@@ -17,6 +17,7 @@ MonoBehaviour:
   displayText: Programmer
   description: Solve problems with code
   tags: []
+  confidencePercentage: 55
   playerReaction:
   - speaker: Player
     text: Practical. Safe. Maybe too safe.

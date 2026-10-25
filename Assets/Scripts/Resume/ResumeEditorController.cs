@@ -20,6 +20,12 @@ namespace FirstJobber
         [SerializeField] TMP_Text categoryTitleText;
         [SerializeField] ChoiceListUI choiceList;
         [SerializeField] Button confirmButton;
+        [Header("Confidence")]
+        [Tooltip("The vertical overall-confidence bar. Optional - the editor works without it.")]
+        [SerializeField] ResumeConfidenceUI confidenceUI;
+        [Tooltip("Show each choice's own confidence percentage on its button.")]
+        [SerializeField] bool showChoiceConfidence = true;
+        [SerializeField, Range(0, 3)] int choiceConfidenceDecimals = 0;
         [Header("Intro animation")]
         [SerializeField] float introHold = 1.2f;
         [SerializeField] float introDuration = 0.9f;
@@ -38,6 +44,7 @@ namespace FirstJobber
 
         readonly List<ResumeChoiceData> choiceBuffer = new List<ResumeChoiceData>();
         readonly List<ChoiceItem> itemBuffer = new List<ChoiceItem>();
+        readonly List<ResumeCategoryData> requiredBuffer = new List<ResumeCategoryData>();
 
         void Awake()
         {
@@ -73,7 +80,17 @@ namespace FirstJobber
 
             RefreshCategories();
             RefreshChoices(true);
+            RefreshConfidence(false);
             SetLocked(true);
+        }
+
+        /// <summary>Recalculates from the current selections (never from a stored value) and updates the bar.</summary>
+        void RefreshConfidence(bool animate)
+        {
+            if (confidenceUI == null || ctx == null) return;
+            float percent = ctx.Choices.GetOverallConfidence(out int selected);
+            ctx.Choices.GetRequiredCategories(requiredBuffer);
+            confidenceUI.SetConfidence(percent, selected, requiredBuffer.Count, animate);
         }
 
         /// <summary>Shows the editor. onReady is called when the player may start (after the optional intro animation).</summary>
@@ -91,6 +108,13 @@ namespace FirstJobber
 
         public void Unlock() { SetLocked(false); }
 
+        // The confidence bar sits outside EditorGroup (far right), so it follows the same fade-in.
+        void SetEditorAlpha(float alpha)
+        {
+            if (editorGroup != null) editorGroup.alpha = alpha;
+            if (confidenceUI != null) confidenceUI.SetAlpha(alpha);
+        }
+
         void ResetLayout()
         {
             if (previewRect != null)
@@ -98,7 +122,7 @@ namespace FirstJobber
                 previewRect.anchoredPosition = restPosition;
                 previewRect.localScale = restScale;
             }
-            if (editorGroup != null) editorGroup.alpha = 1f;
+            SetEditorAlpha(1f);
         }
 
         IEnumerator IntroRoutine(Action onReady)
@@ -110,7 +134,7 @@ namespace FirstJobber
             Vector3 startScale = restScale * introStartScale;
             previewRect.anchoredPosition = startPos;
             previewRect.localScale = startScale;
-            if (editorGroup != null) editorGroup.alpha = 0f;
+            SetEditorAlpha(0f);
 
             yield return new WaitForSecondsRealtime(introHold);
 
@@ -119,7 +143,7 @@ namespace FirstJobber
                 float e = Mathf.SmoothStep(0f, 1f, t);
                 previewRect.anchoredPosition = Vector2.Lerp(startPos, restPosition, e);
                 previewRect.localScale = Vector3.Lerp(startScale, restScale, e);
-                if (editorGroup != null) editorGroup.alpha = e;
+                SetEditorAlpha(e);
                 yield return null;
             }
             ResetLayout();
@@ -194,6 +218,7 @@ namespace FirstJobber
                         id = c.id,
                         title = c.displayText,
                         subtitle = c.description,
+                        badge = showChoiceConfidence ? ResumeConfidenceCalculator.FormatPercent(c.Confidence, choiceConfidenceDecimals) : null,
                         state = ctx.Choices.IsConsumed(c) ? ChoiceState.Consumed
                               : c.id == selectedId ? ChoiceState.Selected : ChoiceState.Available
                     });
@@ -211,6 +236,7 @@ namespace FirstJobber
             current = cat;
             RefreshCategories();
             RefreshChoices(true);
+            RefreshConfidence(false);
         }
 
         void OnChoiceChosen(string choiceId)
@@ -221,6 +247,7 @@ namespace FirstJobber
 
             RefreshCategories();
             RefreshChoices(false);
+            RefreshConfidence(true);
             UpdateConfirm();
             // Replaces any reaction still playing, so rapid clicks never stack.
             ctx.Dialogue.Play(choice.playerReaction, null, reactionAutoAdvance);
@@ -230,6 +257,7 @@ namespace FirstJobber
         {
             if (locked || confirmed || ctx == null || !ctx.Choices.CanConfirm()) return;
             confirmed = true;
+            ctx.Session.confirmedConfidence = ctx.Choices.GetOverallConfidence(out _); // kept for this application only
             SetLocked(true);
             Confirmed?.Invoke();
         }
