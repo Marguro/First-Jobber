@@ -26,6 +26,9 @@ namespace FirstJobber
         [Tooltip("Show each choice's own confidence percentage on its button.")]
         [SerializeField] bool showChoiceConfidence = true;
         [SerializeField, Range(0, 3)] int choiceConfidenceDecimals = 0;
+        [Header("Choice order")]
+        [Tooltip("Show each category's choices in a random order instead of database order. The order is re-rolled once per day and stays fixed while you edit, so buttons never jump around.")]
+        [SerializeField] bool shuffleChoices = true;
         [Header("Intro animation")]
         [SerializeField] float introHold = 1.2f;
         [SerializeField] float introDuration = 0.9f;
@@ -44,6 +47,8 @@ namespace FirstJobber
 
         readonly List<ResumeChoiceData> choiceBuffer = new List<ResumeChoiceData>();
         readonly List<ChoiceItem> itemBuffer = new List<ChoiceItem>();
+        class ShuffledOrder { public int day; public List<string> ids = new List<string>(); }
+        readonly Dictionary<string, ShuffledOrder> orders = new Dictionary<string, ShuffledOrder>();
         readonly List<ResumeCategoryData> requiredBuffer = new List<ResumeCategoryData>();
 
         void Awake()
@@ -210,6 +215,7 @@ namespace FirstJobber
                 message = current.emptyMessage;
                 string selectedId = ctx.Session.GetSelectedChoiceId(current.id);
                 ctx.Choices.GetVisibleChoices(current, choiceBuffer);
+                if (shuffleChoices) ApplyShuffledOrder(current, choiceBuffer);
                 for (int i = 0; i < choiceBuffer.Count; i++)
                 {
                     var c = choiceBuffer[i];
@@ -226,6 +232,28 @@ namespace FirstJobber
             }
             else if (categoryTitleText != null) categoryTitleText.text = "";
             choiceList.SetItems(itemBuffer, message, resetScroll);
+        }
+
+        /// <summary>Reorders the buffer by a per-category random order that is re-rolled only when the day or the set of choices changes.</summary>
+        void ApplyShuffledOrder(ResumeCategoryData category, List<ResumeChoiceData> list)
+        {
+            if (list.Count < 2) return;
+            if (!orders.TryGetValue(category.id, out var order)) { order = new ShuffledOrder(); orders[category.id] = order; }
+
+            bool same = order.day == ctx.Session.day && order.ids.Count == list.Count;
+            for (int i = 0; same && i < list.Count; i++) if (!order.ids.Contains(list[i].id)) same = false;
+            if (!same)
+            {
+                order.day = ctx.Session.day;
+                order.ids.Clear();
+                for (int i = 0; i < list.Count; i++) order.ids.Add(list[i].id);
+                for (int i = order.ids.Count - 1; i > 0; i--) // Fisher-Yates
+                {
+                    int j = UnityEngine.Random.Range(0, i + 1);
+                    (order.ids[i], order.ids[j]) = (order.ids[j], order.ids[i]);
+                }
+            }
+            list.Sort((a, b) => order.ids.IndexOf(a.id).CompareTo(order.ids.IndexOf(b.id)));
         }
 
         void OnCategoryChosen(string categoryId)
