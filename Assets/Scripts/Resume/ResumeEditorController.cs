@@ -173,7 +173,7 @@ namespace FirstJobber
             ResetLayout();
 
             bool done = false;
-            ctx.Dialogue.Play(ctx.Database.resumeIntroLines, () => done = true);
+            ctx.Dialogue.Play(ctx.Database.resumeIntroLines, () => done = true, 0f, ctx.Database.resumeIntroMode);
             while (!done) yield return null;
 
             onReady?.Invoke();

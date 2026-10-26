@@ -329,3 +329,42 @@ Assets/Data/Atmosphere/       Phase_01_Normal (วัน 1), Phase_02_Deteriorat
 
 - **Sprite Only** บน Binding: สลับแค่สไปรต์ ไม่แตะสี ใช้กับปุ่มและ ChoiceButton (สี Available/Selected/Consumed ยังควบคุมโดย ChoiceButtonUI) ถ้าใช้สไปรต์จริง ให้ตั้งสีเหล่านั้นเป็นสีขาวเพื่อไม่ให้ภาพคล้ำ
 - แถบ Confidence ใช้ id `ConfidenceBackground/Fill/Frame/Decoration` อยู่แล้ว
+
+
+## ระบบบทพูด: หลายบรรทัด และสุ่ม 1 Chunk
+
+### Dialogue Block (Chunk) และหลายบรรทัด
+- 1 element ใน Dialogue = 1 Chunk มี Speaker / Emotion / Portrait / Auto Advance / Delay Before / Event ID ร่วมกัน
+- กาง **Dialogue Lines** แล้วกด **+ Add Line** เพื่อเพิ่มบรรทัด (ปุ่ม ↑ ↓ X ใช้เลื่อนและลบ)
+- ผู้เล่นคลิก 1 ครั้ง = ไปหน้าถัดไป (คลิกตอนกำลังพิมพ์ = แสดงข้อความเต็มก่อน) Event ID ทำงานครั้งเดียวต่อ Chunk
+- ถ้า Dialogue Lines ว่าง ระบบใช้ช่อง Text เดิม (Legacy) จึงไม่ทำให้ข้อมูลเก่าเสีย
+
+### Playback Mode (Sequential / RandomOne)
+แต่ละชุดบทพูดใน `GameDatabase` มีช่อง **Mode** อยู่เหนือรายการของมันเอง:
+
+| ชุดบทพูด | ช่อง Mode |
+|---|---|
+| Resume Intro Lines | Resume Intro Mode |
+| Resume Confirmed Lines | Resume Confirmed Mode |
+| Company Confirmed Lines | Company Confirmed Mode |
+| Default Hr Intro | Default Hr Intro Mode |
+| Hr Review Lines | Hr Review Mode |
+| Rejection HR / Rejection Player | Rejection HR Mode / Rejection Player Mode |
+| Father Offer Lines | Father Offer Mode |
+
+- **เปิดสุ่ม:** เลือก Mode = `RandomOne`
+- **กลับเป็นเล่นตามลำดับ:** เลือก Mode = `Sequential` (ค่าเริ่มต้นของข้อมูลเดิมทุกชุด)
+- Event ใน Daily Event, Ending และบทพูดของ Choice/Company/คำถามสัมภาษณ์ ยังเป็น Sequential เสมอ (ยังไม่มีช่อง Mode)
+- บทพูด Rejection / HR Intro ที่ระบุไว้ใน Company เอง จะเล่นตามลำดับเสมอ ส่วนชุด fallback ของ Database ใช้ Mode ที่ตั้งไว้
+
+### การสุ่ม
+1. ตอนเริ่มเล่นชุดนั้น 1 ครั้ง ระบบคัดเฉพาะ Chunk ที่ไม่ว่าง (มี Dialogue Lines หรือ Legacy Text)
+2. สุ่ม 1 Chunk ด้วย `UnityEngine.Random.Range` ทุก Chunk โอกาสเท่ากัน (ซ้ำได้)
+3. เล่นเฉพาะ Chunk นั้น บรรทัดข้างในเรียงตามเดิม ไม่สุ่มซ้ำระหว่างบรรทัด
+4. จบ Chunk แล้วเรียก callback ครั้งเดียว ถ้าไม่มี Chunk ที่ใช้ได้เลยจะจบทันทีโดยไม่ error
+5. เรียกชุดเดิมอีกครั้ง (วันถัดไป/รอบใหม่) จะสุ่มใหม่
+
+### สคริปต์ที่แก้
+`Data/DialogueData.cs` (enum `DialoguePlaybackMode`, `HasContent`), `Dialogue/DialogueManager.cs` (`Play`/`PlayAndWait` รับ mode และสุ่ม), `Data/GameDatabase.cs` (ช่อง Mode), และจุดเรียกใน `GameFlowManager.cs`, `ResumeEditorController.cs`, `InterviewController.cs`, `FinalDecisionController.cs`
+
+> หมายเหตุ: เก็บ Mode เป็นช่องแยกข้างอาร์เรย์เดิม (ไม่ห่ออาร์เรย์ด้วย class ใหม่) เพื่อไม่ให้ Asset ที่ serialize ไว้เสียหาย

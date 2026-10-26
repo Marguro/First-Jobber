@@ -206,7 +206,7 @@ namespace FirstJobber
         void OnResumeConfirmed()
         {
             if (Phase != GamePhase.ResumeEditor) return;
-            dialogue.Play(database.resumeConfirmedLines, () =>
+            dialogue.Play(database.resumeConfirmedLines, mode: database.resumeConfirmedMode, onComplete: () =>
                 dailyEvents.Run(EventTrigger.AfterResumeConfirmed, session, () =>
                 {
                     if (ChangePhase(GamePhase.CompanySelection)) companySelection.Open(ctx);
@@ -224,7 +224,7 @@ namespace FirstJobber
             if (Phase != GamePhase.CompanySelection) return;
             session.selectedCompanyId = companyId;
             ctx.Loop.BeginApplication();
-            dialogue.Play(database.companyConfirmedLines, () =>
+            dialogue.Play(database.companyConfirmedLines, mode: database.companyConfirmedMode, onComplete: () =>
                 dailyEvents.Run(EventTrigger.AfterCompanySelected, session, () =>
                     dailyEvents.Run(EventTrigger.BeforeInterview, session, StartInterview)));
         }
@@ -250,10 +250,11 @@ namespace FirstJobber
         IEnumerator RejectionRoutine()
         {
             var company = ctx.SelectedCompany;
-            var hrLines = company != null && company.rejection != null && company.rejection.Length > 0
-                ? company.rejection : database.rejectionHR;
-            yield return dialogue.PlayAndWait(hrLines);
-            yield return dialogue.PlayAndWait(database.rejectionPlayer);
+            bool ownRejection = company != null && company.rejection != null && company.rejection.Length > 0;
+            var hrLines = ownRejection ? company.rejection : database.rejectionHR;
+            // A company's own rejection is authored as a fixed scene; only the shared fallback honours the mode.
+            yield return dialogue.PlayAndWait(hrLines, 0f, ownRejection ? DialoguePlaybackMode.Sequential : database.rejectionHRMode);
+            yield return dialogue.PlayAndWait(database.rejectionPlayer, 0f, database.rejectionPlayerMode);
 
             // Consequences: runs exactly once per application (LoopManager guards against repeats).
             ctx.Loop.ApplyRejection();

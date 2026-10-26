@@ -31,8 +31,10 @@ namespace FirstJobber
 
         [Header("Shared dialogue")]
         [Tooltip("Played when the resume first slides into the editor.")]
+        public DialoguePlaybackMode resumeIntroMode;
         public DialogueLine[] resumeIntroLines;
         [Tooltip("Played when the player confirms the resume, before the company list opens.")]
+        public DialoguePlaybackMode resumeConfirmedMode;
         public DialogueLine[] resumeConfirmedLines =
         {
             new DialogueLine
@@ -47,13 +49,19 @@ namespace FirstJobber
             }
         };
         [Tooltip("Played after a company is chosen, before the interview starts. Supports {company} and {job}.")]
+        public DialoguePlaybackMode companyConfirmedMode;
         public DialogueLine[] companyConfirmedLines = { new DialogueLine(Speakers.Player, "{company}... {job}. Please let this be the one.") };
+        public DialoguePlaybackMode defaultHrIntroMode;
         public DialogueLine[] defaultHrIntro;
         [Tooltip("HR says this before reacting to each resume choice.")]
+        public DialoguePlaybackMode hrReviewMode;
         public DialogueLine[] hrReviewLines;
+        public DialoguePlaybackMode rejectionHRMode;
         public DialogueLine[] rejectionHR;
+        public DialoguePlaybackMode rejectionPlayerMode;
         public DialogueLine[] rejectionPlayer;
         [Tooltip("The father's phone call before the final decision.")]
+        public DialoguePlaybackMode fatherOfferMode;
         public DialogueLine[] fatherOfferLines;
 
         [NonSerialized] Dictionary<string, ResumeCategoryData> categoryLookup;

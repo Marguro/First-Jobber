@@ -37,9 +37,15 @@ namespace FirstJobber
 
         void OnClicked() { clicked = true; }
 
-        public void Play(IList<DialogueLine> lines, Action onComplete = null, float defaultAutoAdvance = 0f)
+        /// <summary>
+        /// Plays a collection. Sequential plays every block; RandomOne picks one valid block (once, here, before
+        /// playback starts - so advancing lines or clicking never rerolls) and plays only that block.
+        /// </summary>
+        public void Play(IList<DialogueLine> lines, Action onComplete = null, float defaultAutoAdvance = 0f,
+            DialoguePlaybackMode mode = DialoguePlaybackMode.Sequential)
         {
             Cancel();
+            if (mode == DialoguePlaybackMode.RandomOne) lines = PickOne(lines);
             if (lines == null || lines.Count == 0)
             {
                 if (ui != null) ui.Hide();
@@ -51,12 +57,27 @@ namespace FirstJobber
         }
 
         /// <summary>Coroutine helper: yield return dialogue.PlayAndWait(lines). Empty lines finish immediately.</summary>
-        public IEnumerator PlayAndWait(IList<DialogueLine> lines, float defaultAutoAdvance = 0f)
+        public IEnumerator PlayAndWait(IList<DialogueLine> lines, float defaultAutoAdvance = 0f,
+            DialoguePlaybackMode mode = DialoguePlaybackMode.Sequential)
         {
             if (lines == null || lines.Count == 0) yield break;
             bool done = false;
-            Play(lines, () => done = true, defaultAutoAdvance);
+            Play(lines, () => done = true, defaultAutoAdvance, mode);
             while (!done) yield return null;
+        }
+
+        // Equal chance for every non-null block that has something to show. Returns null when there is none.
+        static readonly List<DialogueLine> validBuffer = new List<DialogueLine>();
+        static IList<DialogueLine> PickOne(IList<DialogueLine> lines)
+        {
+            if (lines == null) return null;
+            validBuffer.Clear();
+            for (int i = 0; i < lines.Count; i++)
+                if (lines[i] != null && lines[i].HasContent) validBuffer.Add(lines[i]);
+            if (validBuffer.Count == 0) return null;
+            var picked = validBuffer[UnityEngine.Random.Range(0, validBuffer.Count)];
+            validBuffer.Clear();
+            return new[] { picked };
         }
 
         /// <summary>Cancels the current sequence (no callback) and hides the box.</summary>

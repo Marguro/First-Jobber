@@ -68,12 +68,13 @@ namespace FirstJobber
 
             // 1. HR introduction
             PhaseRequested?.Invoke(GamePhase.InterviewIntroduction);
-            yield return PlayAndWait(company != null && company.hrIntro != null && company.hrIntro.Length > 0
-                ? company.hrIntro : ctx.Database.defaultHrIntro);
+            bool ownIntro = company != null && company.hrIntro != null && company.hrIntro.Length > 0;
+            yield return PlayAndWait(ownIntro ? company.hrIntro : ctx.Database.defaultHrIntro,
+                ownIntro ? DialoguePlaybackMode.Sequential : ctx.Database.defaultHrIntroMode);
 
             // 2. HR reviews the resume and reacts to each selected choice
             PhaseRequested?.Invoke(GamePhase.InterviewResumeReview);
-            yield return PlayAndWait(ctx.Database.hrReviewLines);
+            yield return PlayAndWait(ctx.Database.hrReviewLines, ctx.Database.hrReviewMode);
             ctx.Choices.GetSelectedChoices(selectedBuffer);
             for (int i = 0; i < selectedBuffer.Count; i++)
                 yield return PlayAndWait(selectedBuffer[i].hrReactions);
@@ -151,11 +152,11 @@ namespace FirstJobber
             answerList.SetInteractable(false);
         }
 
-        IEnumerator PlayAndWait(IList<DialogueLine> lines)
+        IEnumerator PlayAndWait(IList<DialogueLine> lines, DialoguePlaybackMode mode = DialoguePlaybackMode.Sequential)
         {
             if (lines == null || lines.Count == 0) yield break;
             bool done = false;
-            ctx.Dialogue.Play(lines, () => done = true);
+            ctx.Dialogue.Play(lines, () => done = true, 0f, mode);
             while (!done) yield return null;
         }
     }

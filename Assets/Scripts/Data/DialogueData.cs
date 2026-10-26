@@ -4,6 +4,15 @@ using UnityEngine;
 
 namespace FirstJobber
 {
+    /// <summary>How a collection of dialogue blocks is played.</summary>
+    public enum DialoguePlaybackMode
+    {
+        /// <summary>Play every block in order.</summary>
+        Sequential,
+        /// <summary>Pick ONE block at random each time the collection is triggered and play only it.</summary>
+        RandomOne
+    }
+
     public enum HREmotion { Neutral, Interested, Disappointed, Uncomfortable }
 
     public static class Speakers
@@ -48,6 +57,9 @@ namespace FirstJobber
                 return false;
             }
         }
+
+        /// <summary>True if this block would show at least one non-empty page.</summary>
+        public bool HasContent => HasLines || !string.IsNullOrWhiteSpace(text);
 
         /// <summary>Number of pages in this block (legacy text counts as one).</summary>
         public int PageCount => HasLines ? dialogueLines.Count : 1;

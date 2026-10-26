@@ -35,7 +35,7 @@ namespace FirstJobber
             endingList.gameObject.SetActive(false);
             if (titleText != null) titleText.text = "";
 
-            ctx.Dialogue.Play(ctx.Database.fatherOfferLines, ShowOptions);
+            ctx.Dialogue.Play(ctx.Database.fatherOfferLines, ShowOptions, 0f, ctx.Database.fatherOfferMode);
         }
 
         void ShowOptions()
