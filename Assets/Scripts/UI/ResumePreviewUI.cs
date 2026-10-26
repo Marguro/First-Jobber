@@ -23,7 +23,7 @@ namespace FirstJobber
         public void SetApplicant(string applicantName, string genderDisplay)
         {
             realName = applicantName ?? "";
-            realGender = string.IsNullOrEmpty(genderDisplay) ? "" : "Gender: " + genderDisplay;
+            realGender = string.IsNullOrEmpty(genderDisplay) ? "" : UiText.Gender.Format(genderDisplay);
             if (!distorted)
             {
                 if (nameText != null) nameText.text = realName;

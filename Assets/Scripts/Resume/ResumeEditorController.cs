@@ -82,7 +82,7 @@ namespace FirstJobber
             ctx.Choices.PruneInvalidSelections();
             preview.SetApplicant(ctx.Session.applicantName, ctx.Database.GenderDisplay(ctx.Session.applicantGender));
             preview.SetDistorted(ctx.Session.HasFlag("resume_distorted"));
-            if (dayText != null) dayText.text = "Day " + ctx.Session.day;
+            if (dayText != null) dayText.text = UiText.Day.Format(ctx.Session.day);
 
             if (current == null || !ctx.Database.categories.Contains(current) || ctx.Choices.CountAvailable(current) == 0)
                 current = FirstCategoryWithChoices();
@@ -91,6 +91,17 @@ namespace FirstJobber
             RefreshChoices(true);
             RefreshConfidence(false);
             SetLocked(true);
+        }
+
+        /// <summary>Re-renders all texts in the current language without touching state (selection, lock, scroll).</summary>
+        public void RefreshLanguage()
+        {
+            if (ctx == null) return;
+            preview.SetApplicant(ctx.Session.applicantName, ctx.Database.GenderDisplay(ctx.Session.applicantGender));
+            if (dayText != null) dayText.text = UiText.Day.Format(ctx.Session.day);
+            RefreshCategories();
+            RefreshChoices(false);
+            RefreshConfidence(false);
         }
 
         /// <summary>Recalculates from the current selections (never from a stored value) and updates the bar.</summary>
@@ -216,8 +227,8 @@ namespace FirstJobber
                 itemBuffer.Add(new ChoiceItem
                 {
                     id = cat.id,
-                    title = cat.displayName,
-                    subtitle = selected != null ? selected.displayText : (exhausted ? "(nothing left)" : "-"),
+                    title = LocalizationManager.Get(cat, "displayName", cat.displayName),
+                    subtitle = selected != null ? LocalizationManager.Get(selected, "displayText", selected.displayText) : (exhausted ? UiText.NothingLeft.Text : "-"),
                     state = cat == current ? ChoiceState.Selected : ChoiceState.Available
                 });
             }
@@ -227,11 +238,11 @@ namespace FirstJobber
         void RefreshChoices(bool resetScroll)
         {
             itemBuffer.Clear();
-            string message = "Nothing to choose.";
+            string message = UiText.NothingToChoose.Text;
             if (current != null)
             {
-                if (categoryTitleText != null) categoryTitleText.text = current.displayName;
-                message = current.emptyMessage;
+                if (categoryTitleText != null) categoryTitleText.text = LocalizationManager.Get(current, "displayName", current.displayName);
+                message = LocalizationManager.Get(current, "emptyMessage", current.emptyMessage);
                 string selectedId = ctx.Session.GetSelectedChoiceId(current.id);
                 ctx.Choices.GetVisibleChoices(current, choiceBuffer);
                 if (shuffleChoices) ApplyShuffledOrder(current, choiceBuffer);
@@ -241,8 +252,8 @@ namespace FirstJobber
                     itemBuffer.Add(new ChoiceItem
                     {
                         id = c.id,
-                        title = c.displayText,
-                        subtitle = c.description,
+                        title = LocalizationManager.Get(c, "displayText", c.displayText),
+                        subtitle = LocalizationManager.Get(c, "description", c.description),
                         badge = showChoiceConfidence ? ResumeConfidenceCalculator.FormatPercent(c.Confidence, choiceConfidenceDecimals) : null,
                         state = ctx.Choices.IsConsumed(c) ? ChoiceState.Consumed
                               : c.id == selectedId ? ChoiceState.Selected : ChoiceState.Available

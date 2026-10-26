@@ -71,10 +71,12 @@ namespace FirstJobber
             if (interview != null) { interview.PhaseRequested += OnInterviewPhase; interview.Finished += OnInterviewFinished; }
             if (finalDecision != null) finalDecision.EndingChosen += OnEndingChosen;
             if (ending != null) { ending.RestartRequested += OnEndingMenu; ending.MenuRequested += OnEndingMenu; }
+            LocalizationManager.LanguageChanged += OnLanguageChanged;
         }
 
         void OnDisable()
         {
+            LocalizationManager.LanguageChanged -= OnLanguageChanged;
             if (mainMenu != null) { mainMenu.SubmitRequested -= NewGame; mainMenu.ContinueRequested -= ContinueGame; }
             if (createApplicant != null) createApplicant.Submitted -= OnApplicantSubmitted;
             if (resumeEditor != null) resumeEditor.Confirmed -= OnResumeConfirmed;
@@ -90,6 +92,7 @@ namespace FirstJobber
             if (!referencesOk) return;
 
             foreach (var problem in database.Validate()) Debug.LogWarning("[Content] " + problem, database);
+            LocalizationKeys.Visit(database, null); // gives every DialogueLine its localization key
 
             dialogue.TokenResolver = ResolveToken;
             dialogue.PlayerNameProvider = () => session != null ? session.applicantName : null;
@@ -127,10 +130,18 @@ namespace FirstJobber
                 case "gender": return database.GenderDisplay(session.applicantGender);
                 case "hr": { var h = ctx != null ? ctx.SelectedHr : null; return h != null ? h.hrName : "HR"; }
                 case "day": return session.day.ToString();
-                case "company": { var c = ctx != null ? ctx.SelectedCompany : null; return c != null ? c.companyName : "the company"; }
-                case "job": { var c = ctx != null ? ctx.SelectedCompany : null; return c != null ? c.jobTitle : "the position"; }
+                case "company": { var c = ctx != null ? ctx.SelectedCompany : null; return c != null ? LocalizationManager.Get(c, "companyName", c.companyName) : UiText.TokenCompany.Text; }
+                case "job": { var c = ctx != null ? ctx.SelectedCompany : null; return c != null ? LocalizationManager.Get(c, "jobTitle", c.jobTitle) : UiText.TokenJob.Text; }
                 default: return null;
             }
+        }
+
+        /// <summary>Re-renders the panel that is on screen. Dialogue / interview text already shown keeps its language until the next line.</summary>
+        void OnLanguageChanged()
+        {
+            if (!referencesOk || ctx == null) return;
+            if (Phase == GamePhase.ResumeEditor) resumeEditor.RefreshLanguage();
+            else if (Phase == GamePhase.CompanySelection) companySelection.RefreshLanguage();
         }
 
         // ------------------------------------------------------------ state machine
@@ -286,7 +297,7 @@ namespace FirstJobber
             if (!ChangePhase(GamePhase.Sleep)) yield break;
 
             var next = GamePhase.ResumeEditor;
-            yield return ui.Blackout("Day " + session.day + " is over...", sleepHold, () =>
+            yield return ui.Blackout(UiText.DayOver.Format(session.day), sleepHold, () =>
             {
                 ctx.Loop.AdvanceDay();
                 ApplyAtmosphere(false);

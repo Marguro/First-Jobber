@@ -59,23 +59,38 @@ namespace FirstJobber
                 itemBuffer.Add(new ChoiceItem
                 {
                     id = c.id,
-                    title = c.companyName,
-                    subtitle = consumed ? "REJECTED" : c.jobTitle + "\n" + c.salary + "  |  " + c.industry,
+                    title = LocalizationManager.Get(c, "companyName", c.companyName),
+                    subtitle = consumed ? UiText.Rejected.Text : Summary(c),
                     icon = c.logo,
                     state = consumed ? ChoiceState.Consumed : c.id == pendingId ? ChoiceState.Selected : ChoiceState.Available
                 });
             }
-            companyList.SetItems(itemBuffer, "No companies left.", pendingId == null);
+            companyList.SetItems(itemBuffer, UiText.NoCompaniesLeft.Text, pendingId == null);
 
             var pending = ctx.Database.FindCompany(pendingId);
             if (detailsText != null)
             {
+                string description = pending != null ? LocalizationManager.Get(pending, "description", pending.description) : null;
                 detailsText.text = pending == null
-                    ? "Select a company to see its details."
-                    : pending.companyName + "\n" + pending.jobTitle + "\n" + pending.salary + "  |  " + pending.industry
-                      + (string.IsNullOrEmpty(pending.description) ? "" : "\n\n" + pending.description);
+                    ? UiText.SelectCompany.Text
+                    : LocalizationManager.Get(pending, "companyName", pending.companyName) + "\n" + Summary(pending)
+                      + (string.IsNullOrEmpty(description) ? "" : "\n\n" + description);
             }
             if (applyButton != null) applyButton.interactable = !locked && pending != null && !ctx.Choices.IsConsumed(pending);
+        }
+
+        /// <summary>Re-renders the list and details in the current language (selection and lock are kept).</summary>
+        public void RefreshLanguage()
+        {
+            if (ctx != null) Refresh();
+        }
+
+        /// <summary>"job title \n salary | industry", localized.</summary>
+        static string Summary(CompanyData c)
+        {
+            return LocalizationManager.Get(c, "jobTitle", c.jobTitle) + "\n"
+                + LocalizationManager.Get(c, "salary", c.salary) + "  |  "
+                + LocalizationManager.Get(c, "industry", c.industry);
         }
 
         void OnCompanyChosen(string id)

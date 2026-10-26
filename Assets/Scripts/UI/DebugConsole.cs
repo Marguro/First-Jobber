@@ -51,6 +51,9 @@ namespace FirstJobber
             }
 
             GUILayout.Label("Phase: " + flow.Phase);
+            var language = LocalizationManager.Current;
+            if (GUILayout.Button("Language: " + language + "  (click for " + (language == Language.English ? Language.Thai : Language.English) + ")"))
+                SetLanguage(language == Language.English ? Language.Thai : Language.English);
             GUILayout.Space(4);
             GUILayout.Label("Trigger ending:");
             scroll = GUILayout.BeginScrollView(scroll, GUILayout.Height(240));
@@ -104,7 +107,21 @@ namespace FirstJobber
                 if (message.StartsWith("Triggered")) open = false;
                 return;
             }
-            message = "Commands: ending <number|id>, endings";
+            if (verb == "lang")
+            {
+                string code = arg.ToLowerInvariant();
+                if (code == "th") SetLanguage(Language.Thai);
+                else if (code == "en") SetLanguage(Language.English);
+                else message = "Usage: lang th | lang en  (current: " + LocalizationManager.Current + ")";
+                return;
+            }
+            message = "Commands: ending <number|id>, endings, lang <th|en>";
+        }
+
+        void SetLanguage(Language language)
+        {
+            LocalizationManager.SetLanguage(language);
+            message = "Language: " + LocalizationManager.Current;
         }
     }
 }

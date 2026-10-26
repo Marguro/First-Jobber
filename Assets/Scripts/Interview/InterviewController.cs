@@ -106,7 +106,7 @@ namespace FirstJobber
                 ctx.Session.interviewIndex = i;
 
                 PhaseRequested?.Invoke(GamePhase.InterviewQuestion);
-                string formatted = ctx.Dialogue.Format(question.questionText);
+                string formatted = ctx.Dialogue.Format(LocalizationManager.Get(question, "questionText", question.questionText));
                 if (HasLines(question.questionDialogue))
                 {
                     string shown = ctx.Dialogue.FirstText(question.questionDialogue);
@@ -155,7 +155,12 @@ namespace FirstJobber
             {
                 var a = question.answers[i];
                 if (a == null) continue;
-                itemBuffer.Add(new ChoiceItem { id = a.id, title = a.text, state = ChoiceState.Available });
+                itemBuffer.Add(new ChoiceItem
+                {
+                    id = a.id,
+                    title = LocalizationManager.Get(LocalizationKeys.Answer(question, a, i, "text"), a.text),
+                    state = ChoiceState.Available
+                });
             }
         }
 

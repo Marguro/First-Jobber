@@ -58,8 +58,8 @@ namespace FirstJobber
             playerName = (nameText ?? "").Trim();
             genderId = Genders.Unspecified;
             error = null;
-            if (string.IsNullOrEmpty(playerName)) { error = "Please enter a name."; return false; }
-            if (playerName.Length > db.maxNameLength) { error = "Name is too long (max " + db.maxNameLength + ")."; return false; }
+            if (string.IsNullOrEmpty(playerName)) { error = UiText.NameRequired.Text; return false; }
+            if (playerName.Length > db.maxNameLength) { error = UiText.NameTooLong.Format(db.maxNameLength); return false; }
 
             if (dropdown == null)
             {
@@ -76,7 +76,7 @@ namespace FirstJobber
                 seen++;
                 if (seen == wanted) { genderId = g.id; return true; }
             }
-            error = "Please select a gender.";
+            error = UiText.GenderRequired.Text;
             return false;
         }
 

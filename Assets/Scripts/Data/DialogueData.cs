@@ -51,6 +51,9 @@ namespace FirstJobber
         [Tooltip("Blocks that share a group are alternatives for ONE spot: the block whose Gender IDs match is played; a block with no Gender IDs is the fallback. Leave empty for ordinary blocks.")]
         public string variantGroup;
 
+        /// <summary>Runtime only: localization key, set by LocalizationKeys.Visit. Empty = always show the English text.</summary>
+        [NonSerialized] public string locKey;
+
         public DialogueLine() { }
 
         public bool IsGenderSpecific => genderIds != null && genderIds.Length > 0;
@@ -82,6 +85,20 @@ namespace FirstJobber
         public int PageCount => HasLines ? dialogueLines.Count : 1;
 
         public string GetPage(int index) => HasLines ? dialogueLines[index] : text;
+
+        /// <summary>
+        /// Localization key of one page. A legacy single-text block keeps its original key (locKey), so existing
+        /// translations still apply; a multi-page block gets one key per page (".../lines/&lt;page&gt;").
+        /// Null when no key was stamped (then the English text is shown).
+        /// </summary>
+        public string GetPageKey(int index)
+        {
+            if (string.IsNullOrEmpty(locKey)) return null;
+            if (!HasLines) return locKey;
+            const string suffix = "/text";
+            string root = locKey.EndsWith(suffix, StringComparison.Ordinal) ? locKey.Substring(0, locKey.Length - suffix.Length) : locKey;
+            return root + "/lines/" + index;
+        }
 
         public DialogueLine(string speaker, string text, HREmotion emotion = HREmotion.Neutral, float autoAdvance = 0f)
         {

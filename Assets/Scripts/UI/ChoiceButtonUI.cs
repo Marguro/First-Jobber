@@ -40,6 +40,10 @@ namespace FirstJobber
         {
             if (button == null) button = GetComponent<Button>();
             if (button != null) button.onClick.AddListener(HandleClick);
+            // Pooled buttons are created at runtime: give them the current language's font right away.
+            ThaiTextApplier.Register(titleText);
+            ThaiTextApplier.Register(subtitleText);
+            ThaiTextApplier.Register(badgeText);
         }
 
         void OnDestroy()

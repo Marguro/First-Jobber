@@ -90,6 +90,7 @@ namespace FirstJobber
                     hrResponse = new[] { new DialogueLine(Speakers.HR, "I see.", HREmotion.Neutral) }
                 }
             };
+            LocalizationKeys.VisitAsset(emergencyQuestion, null); // stamps the dialogue line keys
             return emergencyQuestion;
         }
     }

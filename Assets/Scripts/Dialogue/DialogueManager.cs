@@ -121,7 +121,7 @@ namespace FirstJobber
                 for (int p = 0; p < resolved[i].PageCount; p++)
                 {
                     string t = resolved[i].GetPage(p);
-                    if (!string.IsNullOrWhiteSpace(t)) return Format(t);
+                    if (!string.IsNullOrWhiteSpace(t)) return Format(LocalizationManager.Get(resolved[i].GetPageKey(p), t));
                 }
             }
             return null;
@@ -174,7 +174,7 @@ namespace FirstJobber
 
                 for (int p = 0; p < line.PageCount; p++)
                 {
-                    string text = Format(line.GetPage(p));
+                    string text = Format(LocalizationManager.Get(line.GetPageKey(p), line.GetPage(p)));
                     if (string.IsNullOrEmpty(text)) continue;
 
                     int total = ui != null ? ui.SetLine(ResolveSpeaker(line.speaker), text, line.portrait) : 0;
@@ -229,7 +229,7 @@ namespace FirstJobber
                 string n = HrNameProvider();
                 if (!string.IsNullOrEmpty(n)) return n;
             }
-            return Format(speaker);
+            return Format(LocalizationManager.Get(LocalizationKeys.SpeakerKey(speaker), speaker));
         }
 
         public string Format(string text)
