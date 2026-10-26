@@ -54,6 +54,8 @@ namespace FirstJobber
         public List<string> triggeredEvents = new List<string>();
         public List<string> flags = new List<string>();
         public List<string> askedQuestionIds = new List<string>();
+        /// <summary>Ids of resume choices whose Player Reaction has already played. Lives for the whole playthrough (saved).</summary>
+        public List<string> playedChoiceReactions = new List<string>();
         public string endingId;
 
         // ---- selections ----
@@ -79,6 +81,14 @@ namespace FirstJobber
         {
             for (int i = selections.Count - 1; i >= 0; i--)
                 if (selections[i].categoryId == categoryId) selections.RemoveAt(i);
+        }
+
+        // ---- choice reactions ----
+        public bool HasPlayedChoiceReaction(string choiceId) => !string.IsNullOrEmpty(choiceId) && playedChoiceReactions.Contains(choiceId);
+
+        public void MarkChoiceReactionPlayed(string choiceId)
+        {
+            if (!string.IsNullOrEmpty(choiceId) && !playedChoiceReactions.Contains(choiceId)) playedChoiceReactions.Add(choiceId);
         }
 
         // ---- flags ----

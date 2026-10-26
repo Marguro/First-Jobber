@@ -476,3 +476,14 @@ list **Sequence** ของ HR: แต่ละ slot เลือก Type = `Fix
 - `Data/GameDatabase.cs` : ช่อง `resumeConfirmedThreshold`, `highConfidenceConfirmedLines`, `lowConfidenceConfirmedLines`, เมธอด `ResolveResumeConfirmedLines` และการตรวจใน Validate
 - `Core/GameFlowManager.cs` : `OnResumeConfirmed` เรียกเมธอดข้างบนด้วย `session.confirmedConfidence` แล้วเล่นผ่าน `DialogueManager` เดิม (RandomOne)
 - ไม่ได้แก้ `ResumeConfidenceCalculator`, `ResumeEditorController` หรือ Scene
+
+
+## Player Reaction ของ Choice เล่นครั้งเดียวต่อ Playthrough
+
+- เมื่อผู้เล่นเลือก Choice ใน Resume Editor ปฏิกิริยา (Player Reaction) ของ Choice นั้นจะเล่น **ครั้งเดียว** ต่อการเล่น 1 รอบ เลือก Choice เดิมซ้ำยังเลือกได้ตามปกติ Resume Preview และ Confidence อัปเดตเหมือนเดิม แค่ไม่เล่นบทพูดซ้ำ
+- เก็บประวัติเป็นรายการ Id ของ Choice ที่ `GameSession.playedChoiceReactions` (บันทึกไปกับเซฟ ไม่เก็บใน ScriptableObject) คงอยู่ข้ามหมวด ข้ามวัน และเมื่อ UI ถูกสร้างใหม่
+- รีเซ็ตเมื่อเริ่ม New Game (สร้าง Session ใหม่) ส่วน Continue ใช้ประวัติจากเซฟเดิม เซฟเก่าที่ไม่มีข้อมูลนี้จะเริ่มจากว่าง
+- จะบันทึกว่า "เล่นแล้ว" ก่อนเริ่มเล่นบทพูด จึงกันการกดรัว และจะไม่บันทึกถ้า Choice นั้นไม่มีบทพูดให้เล่น (ภายหลังเติมบทพูดแล้วยังเล่นได้)
+- ถ้า Player Reaction ใช้ Block หลายอัน การสุ่ม/เลือกเกิดครั้งเดียวตอนเล่นครั้งแรก
+- มีผลเฉพาะ Player Reaction ของ Choice ใน Resume Editor บทพูดอื่นไม่เปลี่ยน
+- ไฟล์ที่แก้: `Core/GameSession.cs`, `Resume/ResumeEditorController.cs` ไม่ต้องตั้งค่าใน Inspector เพิ่ม

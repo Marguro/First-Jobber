@@ -296,8 +296,20 @@ namespace FirstJobber
             RefreshChoices(false);
             RefreshConfidence(true);
             UpdateConfirm();
+            // Each choice reacts only once per playthrough (keyed by the stable choice id, saved in the session).
+            // Marked before playing, so rapid clicks cannot queue it twice. Nothing is marked when there is nothing to say.
+            if (ctx.Session.HasPlayedChoiceReaction(choice.id)) return;
+            if (!HasReaction(choice.playerReaction)) return;
+            ctx.Session.MarkChoiceReactionPlayed(choice.id);
             // Replaces any reaction still playing, so rapid clicks never stack.
             ctx.Dialogue.Play(choice.playerReaction, null, reactionAutoAdvance);
+        }
+
+        static bool HasReaction(DialogueLine[] lines)
+        {
+            if (lines == null) return false;
+            for (int i = 0; i < lines.Length; i++) if (lines[i] != null && lines[i].HasContent) return true;
+            return false;
         }
 
         void OnConfirmClicked()
