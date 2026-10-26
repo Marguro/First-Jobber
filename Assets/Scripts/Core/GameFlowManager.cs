@@ -206,10 +206,11 @@ namespace FirstJobber
         void OnResumeConfirmed()
         {
             if (Phase != GamePhase.ResumeEditor) return;
-            dailyEvents.Run(EventTrigger.AfterResumeConfirmed, session, () =>
-            {
-                if (ChangePhase(GamePhase.CompanySelection)) companySelection.Open(ctx);
-            });
+            dialogue.Play(database.resumeConfirmedLines, () =>
+                dailyEvents.Run(EventTrigger.AfterResumeConfirmed, session, () =>
+                {
+                    if (ChangePhase(GamePhase.CompanySelection)) companySelection.Open(ctx);
+                }));
         }
 
         void OnCompanyBack()
@@ -223,8 +224,9 @@ namespace FirstJobber
             if (Phase != GamePhase.CompanySelection) return;
             session.selectedCompanyId = companyId;
             ctx.Loop.BeginApplication();
-            dailyEvents.Run(EventTrigger.AfterCompanySelected, session, () =>
-                dailyEvents.Run(EventTrigger.BeforeInterview, session, StartInterview));
+            dialogue.Play(database.companyConfirmedLines, () =>
+                dailyEvents.Run(EventTrigger.AfterCompanySelected, session, () =>
+                    dailyEvents.Run(EventTrigger.BeforeInterview, session, StartInterview)));
         }
 
         // ------------------------------------------------------------ interview & rejection

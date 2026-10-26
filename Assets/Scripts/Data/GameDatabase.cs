@@ -32,6 +32,10 @@ namespace FirstJobber
         [Header("Shared dialogue")]
         [Tooltip("Played when the resume first slides into the editor.")]
         public DialogueLine[] resumeIntroLines;
+        [Tooltip("Played when the player confirms the resume, before the company list opens.")]
+        public DialogueLine[] resumeConfirmedLines = { new DialogueLine(Speakers.Player, "That's the best I can make it. Now, who will take me?") };
+        [Tooltip("Played after a company is chosen, before the interview starts. Supports {company} and {job}.")]
+        public DialogueLine[] companyConfirmedLines = { new DialogueLine(Speakers.Player, "{company}... {job}. Please let this be the one.") };
         public DialogueLine[] defaultHrIntro;
         [Tooltip("HR says this before reacting to each resume choice.")]
         public DialogueLine[] hrReviewLines;

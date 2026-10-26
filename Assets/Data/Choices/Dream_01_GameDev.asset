@@ -26,6 +26,20 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+  - speaker: Player
+    text: I've wanted this since I was a kid.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  - speaker: Player
+    text: I've wanted this since I was a kid.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
   hrReactions:
   - speaker: HR
     text: So you want to make games for a living?
