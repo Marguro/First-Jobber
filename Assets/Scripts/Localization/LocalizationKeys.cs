@@ -67,6 +67,10 @@ namespace FirstJobber
             switch (asset)
             {
                 case GameDatabase d:
+                    Emit(GameDatabase.GenderPromptKey, d.genderPrompt, add);
+                    if (d.genders != null)
+                        foreach (var g in d.genders)
+                            if (g != null && !string.IsNullOrWhiteSpace(g.id)) Emit(GameDatabase.GenderKey(g.id), g.displayName, add);
                     Lines(d, "resumeIntroLines", d.resumeIntroLines, add);
                     Lines(d, "defaultHrIntro", d.defaultHrIntro, add);
                     Lines(d, "hrReviewLines", d.hrReviewLines, add);

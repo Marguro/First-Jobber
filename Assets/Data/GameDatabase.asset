@@ -103,10 +103,6 @@ MonoBehaviour:
     displayName: Male
   - id: female
     displayName: Female
-  - id: non_binary
-    displayName: Non-binary
-  - id: unspecified
-    displayName: Prefer Not to Say
   genderPrompt: Select gender...
   questionsPerInterview: 5
   showConsumedChoices: 1
@@ -132,6 +128,59 @@ MonoBehaviour:
   - speaker: Player
     text: Let's make it better.
     dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  resumeConfirmedThreshold: 50
+  highConfidenceConfirmedLines:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - I think this looks good.
+    - I've prepared everything.
+    - This time will be different.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - That's the best I can make it.
+    - Now, who will take me?
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  lowConfidenceConfirmedLines:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - I don't think this is enough.
+    - Maybe I should try anyway.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - There's barely anything left.
+    - Why does this keep happening?
+    - I guess I'll submit it.
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0

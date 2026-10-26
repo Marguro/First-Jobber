@@ -53,11 +53,13 @@ namespace FirstJobber
         }
 
         /// <summary>The table of the active language, or null for English / when no table asset exists.</summary>
-        public static LocalizationTable Table
+        public static LocalizationTable Table => Current == Language.Thai ? ThaiTable : null;
+
+        /// <summary>The Thai table whatever the current language is (its font is used for every language).</summary>
+        public static LocalizationTable ThaiTable
         {
             get
             {
-                if (Current != Language.Thai) return null;
                 if (!thaiTableLoaded)
                 {
                     thaiTableLoaded = true;

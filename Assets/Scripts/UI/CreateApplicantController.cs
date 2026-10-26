@@ -40,10 +40,10 @@ namespace FirstJobber
             dropdown.ClearOptions();
             var options = new System.Collections.Generic.List<TMP_Dropdown.OptionData>
             {
-                new TMP_Dropdown.OptionData(string.IsNullOrEmpty(db.genderPrompt) ? "Select gender..." : db.genderPrompt)
+                new TMP_Dropdown.OptionData(LocalizationManager.Get(GameDatabase.GenderPromptKey, string.IsNullOrEmpty(db.genderPrompt) ? "Select gender..." : db.genderPrompt))
             };
             foreach (var g in db.genders)
-                if (g != null && !string.IsNullOrWhiteSpace(g.id)) options.Add(new TMP_Dropdown.OptionData(g.displayName));
+                if (g != null && !string.IsNullOrWhiteSpace(g.id)) options.Add(new TMP_Dropdown.OptionData(LocalizationManager.Get(GameDatabase.GenderKey(g.id), g.displayName)));
             dropdown.AddOptions(options);
             dropdown.SetValueWithoutNotify(0);
             dropdown.RefreshShownValue();

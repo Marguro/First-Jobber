@@ -172,6 +172,24 @@ namespace FirstJobber.EditorTools
             Set(controller, "genderDropdown", genderDropdown);
             Set(controller, "errorText", error);
             Set(controller, "submitButton", submit);
+            AddLanguageSelector(panel);
+        }
+
+        /// <summary>
+        /// English / Thai selector in the top-right corner of the main menu panel. Only forwards to LocalizationManager
+        /// (see LanguageDropdown). Safe to call twice: nothing is added when the panel already has one.
+        /// </summary>
+        internal static LanguageDropdown AddLanguageSelector(RectTransform panel)
+        {
+            var existing = panel.GetComponentInChildren<LanguageDropdown>(true);
+            if (existing != null) return existing;
+            var dropdown = NewDropdown(panel, "LanguageDropdown", 0.80f, 0.925f, 0.97f, 0.985f);
+            dropdown.ClearOptions();
+            dropdown.captionText.fontSize = 30;
+            dropdown.itemText.fontSize = 28;
+            var lang = dropdown.gameObject.AddComponent<LanguageDropdown>();
+            Set(lang, "dropdown", dropdown);
+            return lang;
         }
 
         static CanvasGroup BuildCreateApplicant(RectTransform canvas, out CreateApplicantController controller)
@@ -672,7 +690,7 @@ namespace FirstJobber.EditorTools
         }
 
         /// <summary>TMP dropdown with built-in Unity UI sprites. Options are filled at runtime from GameDatabase.genders.</summary>
-        static TMP_Dropdown NewDropdown(RectTransform parent, string name, float x0, float y0, float x1, float y1)
+        internal static TMP_Dropdown NewDropdown(RectTransform parent, string name, float x0, float y0, float x1, float y1)
         {
             Sprite Builtin(string path) => AssetDatabase.GetBuiltinExtraResource<Sprite>(path);
             var resources = new TMP_DefaultControls.Resources

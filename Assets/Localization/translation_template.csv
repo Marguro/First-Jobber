@@ -1,0 +1,890 @@
+﻿key,english,thai
+database/genderPrompt,Select gender...,เลือกเพศ...
+database/genders/male,Male,ชาย
+database/genders/female,Female,หญิง
+database/genders/non_binary,Non-binary,นอนไบนารี
+database/genders/unspecified,Prefer Not to Say,ไม่ขอระบุ
+database/resumeIntroLines/0/lines/0,"This is me, on paper.",นี่คือฉัน บนกระดาษ
+database/resumeIntroLines/0/lines/1,What this shit,นี่มันอะไรกันเนี่ย
+database/resumeIntroLines/0/lines/2,What,อะไรนะ
+database/resumeIntroLines/1/text,Let's make it better.,ทำให้มันดีขึ้นกันเถอะ
+database/defaultHrIntro/0/text,"Good morning, {name}. Please have a seat.",สวัสดีตอนเช้าค่ะ/ครับ คุณ{name} เชิญนั่งก่อน
+speaker/HR,HR,HR
+database/hrReviewLines/0/text,Let me look at your resume.,ขอดูเรซูเม่ของคุณหน่อยนะ
+database/hrReviewLines/1/text,{name}. A recent graduate.,{name} เด็กจบใหม่สินะ
+database/rejectionHR/0/text,"Thank you for your time, {name}.",ขอบคุณที่สละเวลามานะ คุณ{name}
+database/rejectionHR/1/text,We've decided to move forward with other candidates.,เราตัดสินใจเดินหน้ากับผู้สมัครท่านอื่น
+database/rejectionPlayer/0/text,...Again.,...อีกแล้ว
+database/rejectionPlayer/1/text,Time to go home.,กลับบ้านกันเถอะ
+database/fatherOfferLines/0/text,The phone is ringing. It's Dad.,โทรศัพท์ดังขึ้น พ่อโทรมา
+speaker/Narrator,Narrator,ผู้บรรยาย
+database/fatherOfferLines/1/text,"{name}, I've been thinking. There's an opening at my friend's company.",{name} พ่อคิดมาสักพักแล้วนะ ที่บริษัทเพื่อนพ่อมีตำแหน่งว่างอยู่
+speaker/Father,Father,พ่อ
+database/fatherOfferLines/2/text,Steady pay. Regular hours. You don't have to keep doing this.,เงินเดือนมั่นคง เวลาทำงานแน่นอน ลูกไม่ต้องทนทำแบบนี้ต่อไปแล้ว
+database/fatherOfferLines/3/text,I... I don't have anything left to apply to.,หนู... ไม่เหลือที่ให้สมัครแล้วค่ะ/ครับ
+database/fatherOfferLines/4/text,Then take it. What do you say?,งั้นก็รับงานนี้เถอะ ว่าไงลูก?
+category/education/displayName,Education / University,
+category/education/emptyMessage,No universities left to list.,
+category/dream/displayName,Dream,
+category/dream/emptyMessage,There are no dreams left to write down.,
+category/passion/displayName,Passion,
+category/passion/emptyMessage,I can't think of anything I still love.,
+choice/dream_game_dev/displayText,Game Developer,
+choice/dream_game_dev/description,Build worlds people can play,
+choice/dream_game_dev/playerReaction/0/text,I've wanted this since I was a kid.,
+choice/dream_game_dev/playerReaction/1/text,I've wanted this since I was a kid.,
+choice/dream_game_dev/playerReaction/2/text,I've wanted this since I was a kid.,
+choice/dream_game_dev/hrReactions/0/text,So you want to make games for a living?,
+choice/dream_artist/displayText,Artist,
+choice/dream_artist/description,Make things people feel,
+choice/dream_artist/playerReaction/0/text,Drawing is the only time I stop thinking.,
+choice/dream_artist/hrReactions/0/text,Artist. And you're applying here because...?,
+choice/dream_programmer/displayText,Programmer,
+choice/dream_programmer/description,Solve problems with code,
+choice/dream_programmer/playerReaction/0/text,Practical. Safe. Maybe too safe.,
+choice/dream_programmer/hrReactions/0/text,A programmer. That's a good answer. A common one.,
+choice/dream_writer/displayText,Writer,
+choice/dream_writer/description,Tell stories,
+choice/dream_writer/playerReaction/0/text,"Nobody pays you to write, they say.",
+choice/dream_writer/hrReactions/0/text,A writer? Do you have anything published?,
+choice/dearm_nerd/displayText,Nerd,
+choice/dearm_nerd/description,Nigger,
+choice/dearm_nerd/playerReaction/0/text,I'm a nerd,
+choice/dearm_nerd/hrReactions/0/text,fucking nerd,
+choice/edu_big_city/displayText,Big City University,
+choice/edu_big_city/description,B.Sc. Computer Science,
+choice/edu_big_city/playerReaction/0/text,The name looks good on paper. I hope it's enough.,
+choice/edu_big_city/hrReactions/0/text,Big City University. Everyone has that on their resume.,
+choice/edu_small_town/displayText,Small Town University,
+choice/edu_small_town/description,B.A. Liberal Arts,
+choice/edu_small_town/playerReaction/0/text,"It's not famous, but I worked hard there.",
+choice/edu_small_town/hrReactions/0/text,I see you graduated from Small Town University.,
+choice/edu_art_college/displayText,Riverside Art College,
+choice/edu_art_college/description,B.F.A. Digital Media,
+choice/edu_art_college/playerReaction/0/text,I learned more there than anywhere else.,
+choice/edu_art_college/hrReactions/0/text,An art college... that's an unusual path for this position.,
+choice/edu_online/displayText,Online Degree Program,
+choice/edu_online/description,"Self-paced, remote",
+choice/edu_online/playerReaction/0/text,"Studied at night. It counts, right?",
+choice/edu_online/hrReactions/0/text,An online degree. Hm.,
+choice/passion_game_design/displayText,Game Design,
+choice/passion_game_design/description,"Systems, rules, play",
+choice/passion_game_design/playerReaction/0/text,I could talk about game design for hours.,
+choice/passion_game_design/hrReactions/0/text,"Game design. That's a hobby, isn't it?",
+choice/passion_technology/displayText,Technology,
+choice/passion_technology/description,"New tools, new ideas",
+choice/passion_technology/playerReaction/0/text,I like knowing how things work.,
+choice/passion_technology/hrReactions/0/text,Technology. Very broad.,
+choice/passion_music/displayText,Music,
+choice/passion_music/description,Playing and composing,
+choice/passion_music/playerReaction/0/text,It's what I do when I can't sleep.,
+choice/passion_music/hrReactions/0/text,Music. Do you play professionally?,
+choice/passion_storytelling/displayText,Storytelling,
+choice/passion_storytelling/description,Characters and worlds,
+choice/passion_storytelling/playerReaction/0/text,Everyone has a story. I just like telling them.,
+choice/passion_storytelling/hrReactions/0/text,Storytelling... I'm not sure how that applies here.,
+company/company_pixel_pioneers/companyName,Pixel Pioneers,Pixel Pioneers
+company/company_pixel_pioneers/jobTitle,Junior Game Designer,นักออกแบบเกมจูเนียร์
+company/company_pixel_pioneers/salary,"$2,400 / month","$2,400 / เดือน"
+company/company_pixel_pioneers/industry,Game Studio,สตูดิโอเกม
+company/company_pixel_pioneers/description,A small studio with big plans and no budget.,สตูดิโอเล็ก ๆ ที่มีแผนใหญ่แต่ไม่มีงบ
+company/company_pixel_pioneers/playerReaction/0/text,A game studio... this could actually be it.,สตูดิโอเกม... นี่อาจเป็นที่นี่จริง ๆ ก็ได้
+company/company_pixel_pioneers/hrIntro/0/text,Welcome to Pixel Pioneers. Please sit.,ยินดีต้อนรับสู่ Pixel Pioneers เชิญนั่งค่ะ/ครับ
+company/company_brightline/companyName,Brightline Corp,Brightline Corp
+company/company_brightline/jobTitle,Assistant Account Executive,ผู้ช่วยผู้จัดการฝ่ายลูกค้า
+company/company_brightline/salary,"$3,100 / month","$3,100 / เดือน"
+company/company_brightline/industry,Marketing,การตลาด
+company/company_brightline/description,Fast-paced. Lots of meetings.,จังหวะเร็ว ประชุมเยอะ
+company/company_brightline/playerReaction/0/text,Marketing. I don't know anything about marketing.,การตลาดเหรอ... เราไม่รู้เรื่องการตลาดเลย
+company/company_brightline/hrIntro/0/text,Thank you for coming to Brightline. Let's begin.,ขอบคุณที่มาที่ Brightline เริ่มกันเลยนะ
+company/company_gray_tower/companyName,Gray Tower Bank,Gray Tower Bank
+company/company_gray_tower/jobTitle,Data Entry Clerk,พนักงานคีย์ข้อมูล
+company/company_gray_tower/salary,"$2,800 / month","$2,800 / เดือน"
+company/company_gray_tower/industry,Finance,การเงิน
+company/company_gray_tower/description,Stable hours. Stable everything.,เวลางานมั่นคง ทุกอย่างมั่นคง
+company/company_gray_tower/playerReaction/0/text,A bank. The building looks like it never sleeps.,ธนาคาร... ตึกนี้ดูเหมือนไม่เคยหลับเลย
+company/company_gray_tower/hrIntro/0/text,Gray Tower Bank. You're late by two minutes.,Gray Tower Bank คุณมาสายไปสองนาทีนะ
+company/company_nova_soft/companyName,Nova Soft,Nova Soft
+company/company_nova_soft/jobTitle,QA Tester,QA Tester
+company/company_nova_soft/salary,"$2,600 / month","$2,600 / เดือน"
+company/company_nova_soft/industry,Software,ซอฟต์แวร์
+company/company_nova_soft/description,Find bugs before the customers do.,หาบั๊กให้เจอก่อนลูกค้า
+company/company_nova_soft/playerReaction/0/text,"Testing games is basically playing them, right?",เทสต์เกมก็คือเล่นเกมใช่ไหมนะ?
+company/company_nova_soft/hrIntro/0/text,Nova Soft. Let's get this over with.,Nova Soft ทำให้เสร็จ ๆ ไปเถอะ
+question/q_cat_dream_1/questionText,Where do you see yourself in five years?,
+question/q_cat_dream_1/answers/a1/text,Doing what I dreamed of.,
+question/q_cat_dream_1/answers/a1/playerReaction/0/text,If only it were that simple.,
+question/q_cat_dream_1/answers/a1/hrResponse/0/text,Dreams are not a plan.,
+question/q_cat_dream_1/answers/a2/text,In a position of responsibility.,
+question/q_cat_dream_1/answers/a2/playerReaction/0/text,I have no idea.,
+question/q_cat_dream_1/answers/a2/hrResponse/0/text,Ambitious. Good.,
+question/q_cat_dream_1/answers/a3/text,Somewhere stable.,
+question/q_cat_dream_1/answers/a3/playerReaction/0/text,Somewhere. Anywhere.,
+question/q_cat_dream_1/answers/a3/hrResponse/0/text,Stable. Sure.,
+question/q_cat_dream_2/questionText,Would you give up your dream for this job?,
+question/q_cat_dream_2/answers/a1/text,"Yes, if I had to.",
+question/q_cat_dream_2/answers/a1/playerReaction/0/text,Did I just say that?,
+question/q_cat_dream_2/answers/a1/hrResponse/0/text,A realistic answer.,
+question/q_cat_dream_2/answers/a2/text,No.,
+question/q_cat_dream_2/answers/a2/playerReaction/0/text,It's the only thing I have.,
+question/q_cat_dream_2/answers/a2/hrResponse/0/text,Then why are you here?,
+question/q_cat_dream_2/answers/a3/text,I'd find a way to do both.,
+question/q_cat_dream_2/answers/a3/playerReaction/0/text,Both is exhausting.,
+question/q_cat_dream_2/answers/a3/hrResponse/0/text,Everyone says that.,
+question/q_cat_education_1/questionText,Tell me about your time at university.,
+question/q_cat_education_1/answers/a1/text,I mostly studied alone.,
+question/q_cat_education_1/answers/a1/playerReaction/0/text,It was a lonely four years.,
+question/q_cat_education_1/answers/a1/hrResponse/0/text,"Self-motivated, then.",
+question/q_cat_education_1/answers/a2/text,I joined every club I could.,
+question/q_cat_education_1/answers/a2/playerReaction/0/text,And finished none of them.,
+question/q_cat_education_1/answers/a2/hrResponse/0/text,Involved. Good.,
+question/q_cat_education_1/answers/a3/text,I'd rather talk about the future.,
+question/q_cat_education_1/answers/a3/playerReaction/0/text,Please change the subject.,
+question/q_cat_education_1/answers/a3/hrResponse/0/text,Avoiding the question.,
+question/q_cat_education_2/questionText,What was your biggest academic failure?,
+question/q_cat_education_2/answers/a1/text,A group project that fell apart.,
+question/q_cat_education_2/answers/a1/playerReaction/0/text,I carried that team. For nothing.,
+question/q_cat_education_2/answers/a1/hrResponse/0/text,Teamwork matters here.,
+question/q_cat_education_2/answers/a2/text,I haven't failed.,
+question/q_cat_education_2/answers/a2/playerReaction/0/text,A lie. A confident one.,
+question/q_cat_education_2/answers/a2/hrResponse/0/text,Everyone has failed.,
+question/q_cat_education_2/answers/a3/text,I failed an exam and learned from it.,
+question/q_cat_education_2/answers/a3/playerReaction/0/text,A rehearsed answer.,
+question/q_cat_education_2/answers/a3/hrResponse/0/text,A standard answer.,
+question/q_cat_passion_1/questionText,What do you do when you're not working?,
+question/q_cat_passion_1/answers/a1/text,I work on my passion projects.,
+question/q_cat_passion_1/answers/a1/playerReaction/0/text,That's all I do.,
+question/q_cat_passion_1/answers/a1/hrResponse/0/text,"No work-life balance, then.",
+question/q_cat_passion_1/answers/a2/text,I rest.,
+question/q_cat_passion_1/answers/a2/playerReaction/0/text,I stare at the ceiling.,
+question/q_cat_passion_1/answers/a2/hrResponse/0/text,Rest is important.,
+question/q_cat_passion_1/answers/a3/text,I look for jobs.,
+question/q_cat_passion_1/answers/a3/playerReaction/0/text,True. Painfully true.,
+question/q_cat_passion_1/answers/a3/hrResponse/0/text,...I see.,
+question/q_cat_passion_2/questionText,Would your passion ever get in the way of your work?,
+question/q_cat_passion_2/answers/a1/text,Never.,
+question/q_cat_passion_2/answers/a1/playerReaction/0/text,Liar.,
+question/q_cat_passion_2/answers/a1/hrResponse/0/text,That's what they all say.,
+question/q_cat_passion_2/answers/a2/text,It would make my work better.,
+question/q_cat_passion_2/answers/a2/playerReaction/0/text,Please let that be true.,
+question/q_cat_passion_2/answers/a2/hrResponse/0/text,We prefer focus.,
+question/q_cat_passion_2/answers/a3/text,I can keep them separate.,
+question/q_cat_passion_2/answers/a3/playerReaction/0/text,I've been separating them for years.,
+question/q_cat_passion_2/answers/a3/hrResponse/0/text,Good.,
+question/q_dream_artist/questionText,Artists rarely last in this industry. Why should we invest in you?,
+question/q_dream_artist/answers/a1/text,I never stop practicing.,
+question/q_dream_artist/answers/a1/playerReaction/0/text,I practice every night.,
+question/q_dream_artist/answers/a1/hrResponse/0/text,Practice isn't a deliverable.,
+question/q_dream_artist/answers/a2/text,I can learn other skills.,
+question/q_dream_artist/answers/a2/playerReaction/0/text,Another thing to give up.,
+question/q_dream_artist/answers/a2/hrResponse/0/text,Flexible. Good.,
+question/q_dream_artist/answers/a3/text,Maybe you shouldn't.,
+question/q_dream_artist/answers/a3/playerReaction/0/text,I can't believe I said that.,
+question/q_dream_artist/answers/a3/hrResponse/0/text,...,
+question/q_dream_game_dev/questionText,Why do you want to become a game developer?,
+question/q_dream_game_dev/answers/a1/text,I love creating experiences.,
+question/q_dream_game_dev/answers/a1/playerReaction/0/text,Games have always meant something to me.,
+question/q_dream_game_dev/answers/a1/hrResponse/0/text,Passion alone doesn't make you qualified.,
+question/q_dream_game_dev/answers/a2/text,I want to make people feel something.,
+question/q_dream_game_dev/answers/a2/playerReaction/0/text,That sounded better in my head.,
+question/q_dream_game_dev/answers/a2/hrResponse/0/text,"This is a business, not an art project.",
+question/q_dream_game_dev/answers/a3/text,It's stable enough these days.,
+question/q_dream_game_dev/answers/a3/playerReaction/0/text,That's not even true.,
+question/q_dream_game_dev/answers/a3/hrResponse/0/text,That is... not true at all.,
+question/q_edu_big_city/questionText,Many applicants come from Big City University. What makes you different?,
+question/q_edu_big_city/answers/a1/text,I worked on projects outside class.,
+question/q_edu_big_city/answers/a1/playerReaction/0/text,I hope that counts for something.,
+question/q_edu_big_city/answers/a1/hrResponse/0/text,Projects. Everyone says that.,
+question/q_edu_big_city/answers/a2/text,"Honestly, nothing yet.",
+question/q_edu_big_city/answers/a2/playerReaction/0/text,That came out wrong.,
+question/q_edu_big_city/answers/a2/hrResponse/0/text,At least you're honest.,
+question/q_edu_big_city/answers/a3/text,I learn fast.,
+question/q_edu_big_city/answers/a3/playerReaction/0/text,Please believe me.,
+question/q_edu_big_city/answers/a3/hrResponse/0/text,We'll see.,
+question/q_edu_small_town/questionText,Why did you choose Small Town University?,
+question/q_edu_small_town/answers/a1/text,It was close to home.,
+question/q_edu_small_town/answers/a1/playerReaction/0/text,Not the most inspiring answer.,
+question/q_edu_small_town/answers/a1/hrResponse/0/text,Convenient. I suppose.,
+question/q_edu_small_town/answers/a2/text,It taught me to work with what I have.,
+question/q_edu_small_town/answers/a2/playerReaction/0/text,I almost believe that myself.,
+question/q_edu_small_town/answers/a2/hrResponse/0/text,That's a nice way to say it.,
+question/q_edu_small_town/answers/a3/text,I couldn't afford anywhere else.,
+question/q_edu_small_town/answers/a3/playerReaction/0/text,Why did I say that out loud?,
+question/q_edu_small_town/answers/a3/hrResponse/0/text,Oh. I see.,
+question/q_gen_weakness/questionText,What is your greatest weakness?,
+question/q_gen_weakness/answers/a1/text,I care too much.,
+question/q_gen_weakness/answers/a1/playerReaction/0/text,Everyone says that.,
+question/q_gen_weakness/answers/a1/hrResponse/0/text,A cliche.,
+question/q_gen_weakness/answers/a2/text,I overthink everything.,
+question/q_gen_weakness/answers/a2/playerReaction/0/text,Like this answer.,
+question/q_gen_weakness/answers/a2/hrResponse/0/text,At least that's real.,
+question/q_gen_weakness/answers/a3/text,I don't know when to stop.,
+question/q_gen_weakness/answers/a3/playerReaction/0/text,I should stop.,
+question/q_gen_weakness/answers/a3/hrResponse/0/text,Noted.,
+question/q_gen_why/questionText,Why should we hire you?,
+question/q_gen_why/answers/a1/text,Because I'm motivated.,
+question/q_gen_why/answers/a1/playerReaction/0/text,Because I need to eat.,
+question/q_gen_why/answers/a1/hrResponse/0/text,So are the others.,
+question/q_gen_why/answers/a2/text,I'm not sure you should.,
+question/q_gen_why/answers/a2/playerReaction/0/text,Why did I say that?,
+question/q_gen_why/answers/a2/hrResponse/0/text,Interesting.,
+question/q_gen_why/answers/a3/text,Because I won't give up.,
+question/q_gen_why/answers/a3/playerReaction/0/text,I won't. I can't.,
+question/q_gen_why/answers/a3/hrResponse/0/text,We'll be in touch.,
+question/q_gen_yourself/questionText,Tell me about yourself.,
+question/q_gen_yourself/answers/a1/text,I'm a recent graduate who works hard.,
+question/q_gen_yourself/answers/a1/playerReaction/0/text,Same words as yesterday.,
+question/q_gen_yourself/answers/a1/hrResponse/0/text,Hm.,
+question/q_gen_yourself/answers/a2/text,I'm still figuring that out.,
+question/q_gen_yourself/answers/a2/playerReaction/0/text,Too honest again.,
+question/q_gen_yourself/answers/a2/hrResponse/0/text,Not exactly confidence-inspiring.,
+question/q_gen_yourself/answers/a3/text,I'm persistent.,
+question/q_gen_yourself/answers/a3/playerReaction/0/text,That's the word. Persistent.,
+question/q_gen_yourself/answers/a3/hrResponse/0/text,Persistence is good.,
+question/q_passion_game_design/questionText,Game design is a hobby for most people. Why is it more for you?,
+question/q_passion_game_design/answers/a1/text,I've finished three prototypes.,
+question/q_passion_game_design/answers/a1/playerReaction/0/text,None of them are good. But they exist.,
+question/q_passion_game_design/answers/a1/hrResponse/0/text,Prototypes. On your own time.,
+question/q_passion_game_design/answers/a2/text,It's how I understand people.,
+question/q_passion_game_design/answers/a2/playerReaction/0/text,That's the truest thing I've said today.,
+question/q_passion_game_design/answers/a2/hrResponse/0/text,Interesting. Unusual.,
+question/q_passion_game_design/answers/a3/text,I don't know.,
+question/q_passion_game_design/answers/a3/playerReaction/0/text,I really don't.,
+question/q_passion_game_design/answers/a3/hrResponse/0/text,Then why list it?,
+question/q_passion_music/questionText,Music is on your resume. How does it help you here?,
+question/q_passion_music/answers/a1/text,It taught me discipline.,
+question/q_passion_music/answers/a1/playerReaction/0/text,"Hours of scales, nobody listening.",
+question/q_passion_music/answers/a1/hrResponse/0/text,Discipline. We value that.,
+question/q_passion_music/answers/a2/text,"It doesn't, really.",
+question/q_passion_music/answers/a2/playerReaction/0/text,I should have lied.,
+question/q_passion_music/answers/a2/hrResponse/0/text,Then why is it here?,
+question/q_passion_music/answers/a3/text,I can keep a team in rhythm.,
+question/q_passion_music/answers/a3/playerReaction/0/text,That's a stretch.,
+question/q_passion_music/answers/a3/hrResponse/0/text,That is a stretch.,
+question/Q_Passion_Nerd/questionText,You are just fucking nerd,
+question/Q_Passion_Nerd/answers/a1/text,"No, i'm not",
+question/Q_Passion_Nerd/answers/a1/playerReaction/0/text,Fuck,
+question/Q_Passion_Nerd/answers/a1/hrResponse/0/text,HaHAHAHA,
+question/q_gregor_dream/questionText,Dreams don't pay invoices. Convince me.,
+question/q_gregor_dream/answers/a1/text,I'll be honest with you.,
+question/q_gregor_dream/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_gregor_dream/answers/a1/hrResponse/0/lines/0,Noted.,
+question/q_gregor_dream/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_dream/answers/a2/text,I've prepared for exactly this.,
+question/q_gregor_dream/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_gregor_dream/answers/a2/hrResponse/0/lines/0,Acceptable. Concise.,
+question/q_gregor_dream/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_dream/answers/a3/text,I'm not sure what to say.,
+question/q_gregor_dream/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_gregor_dream/answers/a3/hrResponse/0/lines/0,That was a waste of my time.,
+question/q_gregor_dream/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_dream_gamedev/questionText,Games are a luxury market. Why should we care?,
+question/q_gregor_dream_gamedev/answers/a1/text,I'll be honest with you.,
+question/q_gregor_dream_gamedev/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_gregor_dream_gamedev/answers/a1/hrResponse/0/lines/0,Noted.,
+question/q_gregor_dream_gamedev/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_dream_gamedev/answers/a2/text,I've prepared for exactly this.,
+question/q_gregor_dream_gamedev/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_gregor_dream_gamedev/answers/a2/hrResponse/0/lines/0,Acceptable. Concise.,
+question/q_gregor_dream_gamedev/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_dream_gamedev/answers/a3/text,I'm not sure what to say.,
+question/q_gregor_dream_gamedev/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_gregor_dream_gamedev/answers/a3/hrResponse/0/lines/0,That was a waste of my time.,
+question/q_gregor_dream_gamedev/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_edu/questionText,"Walk me through your degree, quickly.",
+question/q_gregor_edu/answers/a1/text,I'll be honest with you.,
+question/q_gregor_edu/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_gregor_edu/answers/a1/hrResponse/0/lines/0,Noted.,
+question/q_gregor_edu/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_edu/answers/a2/text,I've prepared for exactly this.,
+question/q_gregor_edu/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_gregor_edu/answers/a2/hrResponse/0/lines/0,Acceptable. Concise.,
+question/q_gregor_edu/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_edu/answers/a3/text,I'm not sure what to say.,
+question/q_gregor_edu/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_gregor_edu/answers/a3/hrResponse/0/lines/0,That was a waste of my time.,
+question/q_gregor_edu/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fallback/questionText,Give me one concrete result you produced.,
+question/q_gregor_fallback/answers/a1/text,I'll be honest with you.,
+question/q_gregor_fallback/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_gregor_fallback/answers/a1/hrResponse/0/lines/0,Noted.,
+question/q_gregor_fallback/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fallback/answers/a2/text,I've prepared for exactly this.,
+question/q_gregor_fallback/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_gregor_fallback/answers/a2/hrResponse/0/lines/0,Acceptable. Concise.,
+question/q_gregor_fallback/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fallback/answers/a3/text,I'm not sure what to say.,
+question/q_gregor_fallback/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_gregor_fallback/answers/a3/hrResponse/0/lines/0,That was a waste of my time.,
+question/q_gregor_fallback/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_1/questionText,Summarize your career in one sentence.,
+question/q_gregor_fixed_1/answers/a1/text,I'll be honest with you.,
+question/q_gregor_fixed_1/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_gregor_fixed_1/answers/a1/hrResponse/0/lines/0,Noted.,
+question/q_gregor_fixed_1/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_1/answers/a2/text,I've prepared for exactly this.,
+question/q_gregor_fixed_1/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_gregor_fixed_1/answers/a2/hrResponse/0/lines/0,Acceptable. Concise.,
+question/q_gregor_fixed_1/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_1/answers/a3/text,I'm not sure what to say.,
+question/q_gregor_fixed_1/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_gregor_fixed_1/answers/a3/hrResponse/0/lines/0,That was a waste of my time.,
+question/q_gregor_fixed_1/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_2/questionText,What is your biggest weakness?,
+question/q_gregor_fixed_2/answers/a1/text,I'll be honest with you.,
+question/q_gregor_fixed_2/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_gregor_fixed_2/answers/a1/hrResponse/0/lines/0,Noted.,
+question/q_gregor_fixed_2/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_2/answers/a2/text,I've prepared for exactly this.,
+question/q_gregor_fixed_2/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_gregor_fixed_2/answers/a2/hrResponse/0/lines/0,Acceptable. Concise.,
+question/q_gregor_fixed_2/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_2/answers/a3/text,I'm not sure what to say.,
+question/q_gregor_fixed_2/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_gregor_fixed_2/answers/a3/hrResponse/0/lines/0,That was a waste of my time.,
+question/q_gregor_fixed_2/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_3/questionText,Where are you in five years?,
+question/q_gregor_fixed_3/answers/a1/text,I'll be honest with you.,
+question/q_gregor_fixed_3/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_gregor_fixed_3/answers/a1/hrResponse/0/lines/0,Noted.,
+question/q_gregor_fixed_3/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_3/answers/a2/text,I've prepared for exactly this.,
+question/q_gregor_fixed_3/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_gregor_fixed_3/answers/a2/hrResponse/0/lines/0,Acceptable. Concise.,
+question/q_gregor_fixed_3/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_fixed_3/answers/a3/text,I'm not sure what to say.,
+question/q_gregor_fixed_3/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_gregor_fixed_3/answers/a3/hrResponse/0/lines/0,That was a waste of my time.,
+question/q_gregor_fixed_3/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_passion/questionText,A passion is not a qualification. Explain.,
+question/q_gregor_passion/answers/a1/text,I'll be honest with you.,
+question/q_gregor_passion/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_gregor_passion/answers/a1/hrResponse/0/lines/0,Noted.,
+question/q_gregor_passion/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_passion/answers/a2/text,I've prepared for exactly this.,
+question/q_gregor_passion/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_gregor_passion/answers/a2/hrResponse/0/lines/0,Acceptable. Concise.,
+question/q_gregor_passion/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_gregor_passion/answers/a3/text,I'm not sure what to say.,
+question/q_gregor_passion/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_gregor_passion/answers/a3/hrResponse/0/lines/0,That was a waste of my time.,
+question/q_gregor_passion/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_dream/questionText,This dream does not match our culture.,
+question/q_helena_dream/answers/a1/text,I'll be honest with you.,
+question/q_helena_dream/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_helena_dream/answers/a1/hrResponse/0/lines/0,I see.,
+question/q_helena_dream/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_dream/answers/a2/text,I've prepared for exactly this.,
+question/q_helena_dream/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_helena_dream/answers/a2/hrResponse/0/lines/0,That is a reasonable position.,
+question/q_helena_dream/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_dream/answers/a3/text,I'm not sure what to say.,
+question/q_helena_dream/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_helena_dream/answers/a3/hrResponse/0/lines/0,That is not what we are looking for.,
+question/q_helena_dream/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_dream_gamedev/questionText,Games. In a bank. Help me understand.,
+question/q_helena_dream_gamedev/answers/a1/text,I'll be honest with you.,
+question/q_helena_dream_gamedev/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_helena_dream_gamedev/answers/a1/hrResponse/0/lines/0,I see.,
+question/q_helena_dream_gamedev/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_dream_gamedev/answers/a2/text,I've prepared for exactly this.,
+question/q_helena_dream_gamedev/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_helena_dream_gamedev/answers/a2/hrResponse/0/lines/0,That is a reasonable position.,
+question/q_helena_dream_gamedev/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_dream_gamedev/answers/a3/text,I'm not sure what to say.,
+question/q_helena_dream_gamedev/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_helena_dream_gamedev/answers/a3/hrResponse/0/lines/0,That is not what we are looking for.,
+question/q_helena_dream_gamedev/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_edu/questionText,Your academic history is unconventional.,
+question/q_helena_edu/answers/a1/text,I'll be honest with you.,
+question/q_helena_edu/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_helena_edu/answers/a1/hrResponse/0/lines/0,I see.,
+question/q_helena_edu/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_edu/answers/a2/text,I've prepared for exactly this.,
+question/q_helena_edu/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_helena_edu/answers/a2/hrResponse/0/lines/0,That is a reasonable position.,
+question/q_helena_edu/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_edu/answers/a3/text,I'm not sure what to say.,
+question/q_helena_edu/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_helena_edu/answers/a3/hrResponse/0/lines/0,That is not what we are looking for.,
+question/q_helena_edu/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fallback/questionText,What do you think we do here?,
+question/q_helena_fallback/answers/a1/text,I'll be honest with you.,
+question/q_helena_fallback/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_helena_fallback/answers/a1/hrResponse/0/lines/0,I see.,
+question/q_helena_fallback/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fallback/answers/a2/text,I've prepared for exactly this.,
+question/q_helena_fallback/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_helena_fallback/answers/a2/hrResponse/0/lines/0,That is a reasonable position.,
+question/q_helena_fallback/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fallback/answers/a3/text,I'm not sure what to say.,
+question/q_helena_fallback/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_helena_fallback/answers/a3/hrResponse/0/lines/0,That is not what we are looking for.,
+question/q_helena_fallback/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_1/questionText,Why a bank?,
+question/q_helena_fixed_1/answers/a1/text,I'll be honest with you.,
+question/q_helena_fixed_1/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_helena_fixed_1/answers/a1/hrResponse/0/lines/0,I see.,
+question/q_helena_fixed_1/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_1/answers/a2/text,I've prepared for exactly this.,
+question/q_helena_fixed_1/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_helena_fixed_1/answers/a2/hrResponse/0/lines/0,That is a reasonable position.,
+question/q_helena_fixed_1/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_1/answers/a3/text,I'm not sure what to say.,
+question/q_helena_fixed_1/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_helena_fixed_1/answers/a3/hrResponse/0/lines/0,That is not what we are looking for.,
+question/q_helena_fixed_1/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_2/questionText,How do you handle pressure?,
+question/q_helena_fixed_2/answers/a1/text,I'll be honest with you.,
+question/q_helena_fixed_2/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_helena_fixed_2/answers/a1/hrResponse/0/lines/0,I see.,
+question/q_helena_fixed_2/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_2/answers/a2/text,I've prepared for exactly this.,
+question/q_helena_fixed_2/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_helena_fixed_2/answers/a2/hrResponse/0/lines/0,That is a reasonable position.,
+question/q_helena_fixed_2/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_2/answers/a3/text,I'm not sure what to say.,
+question/q_helena_fixed_2/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_helena_fixed_2/answers/a3/hrResponse/0/lines/0,That is not what we are looking for.,
+question/q_helena_fixed_2/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_3/questionText,Describe a time you followed a rule you disagreed with.,
+question/q_helena_fixed_3/answers/a1/text,I'll be honest with you.,
+question/q_helena_fixed_3/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_helena_fixed_3/answers/a1/hrResponse/0/lines/0,I see.,
+question/q_helena_fixed_3/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_3/answers/a2/text,I've prepared for exactly this.,
+question/q_helena_fixed_3/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_helena_fixed_3/answers/a2/hrResponse/0/lines/0,That is a reasonable position.,
+question/q_helena_fixed_3/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_fixed_3/answers/a3/text,I'm not sure what to say.,
+question/q_helena_fixed_3/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_helena_fixed_3/answers/a3/hrResponse/0/lines/0,That is not what we are looking for.,
+question/q_helena_fixed_3/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_passion/questionText,Is this passion compatible with a career in finance?,
+question/q_helena_passion/answers/a1/text,I'll be honest with you.,
+question/q_helena_passion/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_helena_passion/answers/a1/hrResponse/0/lines/0,I see.,
+question/q_helena_passion/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_passion/answers/a2/text,I've prepared for exactly this.,
+question/q_helena_passion/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_helena_passion/answers/a2/hrResponse/0/lines/0,That is a reasonable position.,
+question/q_helena_passion/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_helena_passion/answers/a3/text,I'm not sure what to say.,
+question/q_helena_passion/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_helena_passion/answers/a3/hrResponse/0/lines/0,That is not what we are looking for.,
+question/q_helena_passion/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_dream/questionText,"Is this dream a plan, or a wish?",
+question/q_iris_dream/answers/a1/text,I'll be honest with you.,
+question/q_iris_dream/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_iris_dream/answers/a1/hrResponse/0/lines/0,Hm. Fair enough.,
+question/q_iris_dream/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_dream/answers/a2/text,I've prepared for exactly this.,
+question/q_iris_dream/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_iris_dream/answers/a2/hrResponse/0/lines/0,That's the kind of answer we like to hear.,
+question/q_iris_dream/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_dream/answers/a3/text,I'm not sure what to say.,
+question/q_iris_dream/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_iris_dream/answers/a3/hrResponse/0/lines/0,We can't work with that.,
+question/q_iris_dream/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_dream_gamedev/questionText,You want to make games. Show me you understand the cost.,
+question/q_iris_dream_gamedev/answers/a1/text,I'll be honest with you.,
+question/q_iris_dream_gamedev/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_iris_dream_gamedev/answers/a1/hrResponse/0/lines/0,Hm. Fair enough.,
+question/q_iris_dream_gamedev/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_dream_gamedev/answers/a2/text,I've prepared for exactly this.,
+question/q_iris_dream_gamedev/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_iris_dream_gamedev/answers/a2/hrResponse/0/lines/0,That's the kind of answer we like to hear.,
+question/q_iris_dream_gamedev/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_dream_gamedev/answers/a3/text,I'm not sure what to say.,
+question/q_iris_dream_gamedev/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_iris_dream_gamedev/answers/a3/hrResponse/0/lines/0,We can't work with that.,
+question/q_iris_dream_gamedev/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_edu/questionText,Your education stands out. What did you actually build there?,
+question/q_iris_edu/answers/a1/text,I'll be honest with you.,
+question/q_iris_edu/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_iris_edu/answers/a1/hrResponse/0/lines/0,Hm. Fair enough.,
+question/q_iris_edu/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_edu/answers/a2/text,I've prepared for exactly this.,
+question/q_iris_edu/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_iris_edu/answers/a2/hrResponse/0/lines/0,That's the kind of answer we like to hear.,
+question/q_iris_edu/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_edu/answers/a3/text,I'm not sure what to say.,
+question/q_iris_edu/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_iris_edu/answers/a3/hrResponse/0/lines/0,We can't work with that.,
+question/q_iris_edu/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fallback/questionText,Is there anything on your resume you want to explain?,
+question/q_iris_fallback/answers/a1/text,I'll be honest with you.,
+question/q_iris_fallback/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_iris_fallback/answers/a1/hrResponse/0/lines/0,Hm. Fair enough.,
+question/q_iris_fallback/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fallback/answers/a2/text,I've prepared for exactly this.,
+question/q_iris_fallback/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_iris_fallback/answers/a2/hrResponse/0/lines/0,That's the kind of answer we like to hear.,
+question/q_iris_fallback/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fallback/answers/a3/text,I'm not sure what to say.,
+question/q_iris_fallback/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_iris_fallback/answers/a3/hrResponse/0/lines/0,We can't work with that.,
+question/q_iris_fallback/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_1/questionText,Tell me about yourself.,
+question/q_iris_fixed_1/answers/a1/text,I'll be honest with you.,
+question/q_iris_fixed_1/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_iris_fixed_1/answers/a1/hrResponse/0/lines/0,Hm. Fair enough.,
+question/q_iris_fixed_1/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_1/answers/a2/text,I've prepared for exactly this.,
+question/q_iris_fixed_1/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_iris_fixed_1/answers/a2/hrResponse/0/lines/0,That's the kind of answer we like to hear.,
+question/q_iris_fixed_1/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_1/answers/a3/text,I'm not sure what to say.,
+question/q_iris_fixed_1/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_iris_fixed_1/answers/a3/hrResponse/0/lines/0,We can't work with that.,
+question/q_iris_fixed_1/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_2/questionText,Why Pixel Pioneers?,
+question/q_iris_fixed_2/answers/a1/text,I'll be honest with you.,
+question/q_iris_fixed_2/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_iris_fixed_2/answers/a1/hrResponse/0/lines/0,Hm. Fair enough.,
+question/q_iris_fixed_2/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_2/answers/a2/text,I've prepared for exactly this.,
+question/q_iris_fixed_2/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_iris_fixed_2/answers/a2/hrResponse/0/lines/0,That's the kind of answer we like to hear.,
+question/q_iris_fixed_2/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_2/answers/a3/text,I'm not sure what to say.,
+question/q_iris_fixed_2/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_iris_fixed_2/answers/a3/hrResponse/0/lines/0,We can't work with that.,
+question/q_iris_fixed_2/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_3/questionText,What can you ship in three months?,
+question/q_iris_fixed_3/answers/a1/text,I'll be honest with you.,
+question/q_iris_fixed_3/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_iris_fixed_3/answers/a1/hrResponse/0/lines/0,Hm. Fair enough.,
+question/q_iris_fixed_3/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_3/answers/a2/text,I've prepared for exactly this.,
+question/q_iris_fixed_3/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_iris_fixed_3/answers/a2/hrResponse/0/lines/0,That's the kind of answer we like to hear.,
+question/q_iris_fixed_3/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_fixed_3/answers/a3/text,I'm not sure what to say.,
+question/q_iris_fixed_3/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_iris_fixed_3/answers/a3/hrResponse/0/lines/0,We can't work with that.,
+question/q_iris_fixed_3/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_passion/questionText,Everybody has a passion. What have you finished?,
+question/q_iris_passion/answers/a1/text,I'll be honest with you.,
+question/q_iris_passion/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_iris_passion/answers/a1/hrResponse/0/lines/0,Hm. Fair enough.,
+question/q_iris_passion/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_passion/answers/a2/text,I've prepared for exactly this.,
+question/q_iris_passion/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_iris_passion/answers/a2/hrResponse/0/lines/0,That's the kind of answer we like to hear.,
+question/q_iris_passion/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_iris_passion/answers/a3/text,I'm not sure what to say.,
+question/q_iris_passion/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_iris_passion/answers/a3/hrResponse/0/lines/0,We can't work with that.,
+question/q_iris_passion/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_dream/questionText,Love a big dream. How big are we talking?,
+question/q_noel_dream/answers/a1/text,I'll be honest with you.,
+question/q_noel_dream/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_noel_dream/answers/a1/hrResponse/0/lines/0,"Yeah, okay.",
+question/q_noel_dream/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_dream/answers/a2/text,I've prepared for exactly this.,
+question/q_noel_dream/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_noel_dream/answers/a2/hrResponse/0/lines/0,Love that!,
+question/q_noel_dream/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_dream/answers/a3/text,I'm not sure what to say.,
+question/q_noel_dream/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_noel_dream/answers/a3/hrResponse/0/lines/0,Hmm. That's not really landing.,
+question/q_noel_dream/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_dream_gamedev/questionText,"Making games, huh? What's your favorite one?",
+question/q_noel_dream_gamedev/answers/a1/text,I'll be honest with you.,
+question/q_noel_dream_gamedev/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_noel_dream_gamedev/answers/a1/hrResponse/0/lines/0,"Yeah, okay.",
+question/q_noel_dream_gamedev/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_dream_gamedev/answers/a2/text,I've prepared for exactly this.,
+question/q_noel_dream_gamedev/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_noel_dream_gamedev/answers/a2/hrResponse/0/lines/0,Love that!,
+question/q_noel_dream_gamedev/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_dream_gamedev/answers/a3/text,I'm not sure what to say.,
+question/q_noel_dream_gamedev/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_noel_dream_gamedev/answers/a3/hrResponse/0/lines/0,Hmm. That's not really landing.,
+question/q_noel_dream_gamedev/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_edu/questionText,Tell me about school. Any good stories?,
+question/q_noel_edu/answers/a1/text,I'll be honest with you.,
+question/q_noel_edu/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_noel_edu/answers/a1/hrResponse/0/lines/0,"Yeah, okay.",
+question/q_noel_edu/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_edu/answers/a2/text,I've prepared for exactly this.,
+question/q_noel_edu/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_noel_edu/answers/a2/hrResponse/0/lines/0,Love that!,
+question/q_noel_edu/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_edu/answers/a3/text,I'm not sure what to say.,
+question/q_noel_edu/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_noel_edu/answers/a3/hrResponse/0/lines/0,Hmm. That's not really landing.,
+question/q_noel_edu/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fallback/questionText,Anything you want to add that isn't on the page?,
+question/q_noel_fallback/answers/a1/text,I'll be honest with you.,
+question/q_noel_fallback/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_noel_fallback/answers/a1/hrResponse/0/lines/0,"Yeah, okay.",
+question/q_noel_fallback/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fallback/answers/a2/text,I've prepared for exactly this.,
+question/q_noel_fallback/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_noel_fallback/answers/a2/hrResponse/0/lines/0,Love that!,
+question/q_noel_fallback/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fallback/answers/a3/text,I'm not sure what to say.,
+question/q_noel_fallback/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_noel_fallback/answers/a3/hrResponse/0/lines/0,Hmm. That's not really landing.,
+question/q_noel_fallback/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_1/questionText,"So, who are you?",
+question/q_noel_fixed_1/answers/a1/text,I'll be honest with you.,
+question/q_noel_fixed_1/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_noel_fixed_1/answers/a1/hrResponse/0/lines/0,"Yeah, okay.",
+question/q_noel_fixed_1/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_1/answers/a2/text,I've prepared for exactly this.,
+question/q_noel_fixed_1/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_noel_fixed_1/answers/a2/hrResponse/0/lines/0,Love that!,
+question/q_noel_fixed_1/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_1/answers/a3/text,I'm not sure what to say.,
+question/q_noel_fixed_1/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_noel_fixed_1/answers/a3/hrResponse/0/lines/0,Hmm. That's not really landing.,
+question/q_noel_fixed_1/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_2/questionText,What do you do for fun?,
+question/q_noel_fixed_2/answers/a1/text,I'll be honest with you.,
+question/q_noel_fixed_2/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_noel_fixed_2/answers/a1/hrResponse/0/lines/0,"Yeah, okay.",
+question/q_noel_fixed_2/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_2/answers/a2/text,I've prepared for exactly this.,
+question/q_noel_fixed_2/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_noel_fixed_2/answers/a2/hrResponse/0/lines/0,Love that!,
+question/q_noel_fixed_2/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_2/answers/a3/text,I'm not sure what to say.,
+question/q_noel_fixed_2/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_noel_fixed_2/answers/a3/hrResponse/0/lines/0,Hmm. That's not really landing.,
+question/q_noel_fixed_2/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_3/questionText,What would your friends say about you?,
+question/q_noel_fixed_3/answers/a1/text,I'll be honest with you.,
+question/q_noel_fixed_3/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_noel_fixed_3/answers/a1/hrResponse/0/lines/0,"Yeah, okay.",
+question/q_noel_fixed_3/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_3/answers/a2/text,I've prepared for exactly this.,
+question/q_noel_fixed_3/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_noel_fixed_3/answers/a2/hrResponse/0/lines/0,Love that!,
+question/q_noel_fixed_3/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_fixed_3/answers/a3/text,I'm not sure what to say.,
+question/q_noel_fixed_3/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_noel_fixed_3/answers/a3/hrResponse/0/lines/0,Hmm. That's not really landing.,
+question/q_noel_fixed_3/answers/a3/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_passion/questionText,What's the thing you could talk about all night?,
+question/q_noel_passion/answers/a1/text,I'll be honest with you.,
+question/q_noel_passion/answers/a1/playerReaction/0/text,Honesty is all I have left.,
+question/q_noel_passion/answers/a1/hrResponse/0/lines/0,"Yeah, okay.",
+question/q_noel_passion/answers/a1/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_passion/answers/a2/text,I've prepared for exactly this.,
+question/q_noel_passion/answers/a2/playerReaction/0/text,"Rehearsed, but it should hold.",
+question/q_noel_passion/answers/a2/hrResponse/0/lines/0,Love that!,
+question/q_noel_passion/answers/a2/hrResponse/0/lines/1,Let's move on.,
+question/q_noel_passion/answers/a3/text,I'm not sure what to say.,
+question/q_noel_passion/answers/a3/playerReaction/0/text,My mind went blank.,
+question/q_noel_passion/answers/a3/hrResponse/0/lines/0,Hmm. That's not really landing.,
+question/q_noel_passion/answers/a3/hrResponse/0/lines/1,Let's move on.,
+event/event_father_message/caption,Day 2,วันที่ 2
+event/event_father_message/lines/0/text,Another morning. Another message on my phone.,เช้าอีกวัน ข้อความอีกข้อความในโทรศัพท์
+event/event_father_message/lines/1/text,"""How is the job search going? Call me when you can.""","""หางานเป็นยังไงบ้าง ว่างเมื่อไหร่โทรหาพ่อด้วยนะ"""
+event/event_father_message/lines/2/text,I'll call him back later. Maybe.,เดี๋ยวค่อยโทรกลับ... มั้ง
+event/event_resume_distorted/lines/0/text,The words on my resume... they look wrong.,ตัวอักษรในเรซูเม่... ดูแปลกไป
+event/event_resume_distorted/lines/1/text,Did I write it like this? I can't remember.,เราเขียนไว้แบบนี้เหรอ? จำไม่ได้เลย
+event/event_hr_strange/lines/0/text,The room feels smaller than yesterday.,ห้องนี้ดูเล็กลงกว่าเมื่อวาน
+event/event_hr_strange/lines/1/text,Why does the fan sound so loud?,ทำไมพัดลมถึงเสียงดังขนาดนี้
+ending/ending_job_is_a_job/title,A Job Is a Job,งานก็คืองาน
+ending/ending_job_is_a_job/optionLabel,Accept father's offer,รับข้อเสนอของพ่อ
+ending/ending_job_is_a_job/optionDescription,Take the office job. No more rejections.,รับงานออฟฟิศ ไม่ต้องถูกปฏิเสธอีกต่อไป
+ending/ending_job_is_a_job/lines/0/text,Monday. The office smells like old coffee.,วันจันทร์ ออฟฟิศมีกลิ่นกาแฟเก่า
+ending/ending_job_is_a_job/lines/1/text,I escaped the interviews. I didn't escape the routine.,หนีการสัมภาษณ์มาได้ แต่หนีกิจวัตรเดิม ๆ ไม่พ้น
+ending/ending_job_is_a_job/lines/2/text,Every desk looks the same. So does every day.,ทุกโต๊ะหน้าตาเหมือนกัน ทุกวันก็เหมือนกัน
+ending/ending_job_is_a_job/lines/3/text,It's a job. A job is a job.,มันก็คืองาน งานก็คืองาน
+ending/ending_job_is_a_job/finalText,"ENDING 1 - A JOB IS A JOB
+No more interviews. The mornings just look the same.","ตอนจบที่ 1 - งานก็คืองาน
+ไม่ต้องสัมภาษณ์อีกแล้ว แต่ทุกเช้าก็เหมือนเดิม"
+ending/ending_another_morning/title,Another Morning,เช้าอีกวัน
+ending/ending_another_morning/optionLabel,Refuse father's offer,ปฏิเสธข้อเสนอของพ่อ
+ending/ending_another_morning/optionDescription,Go back to applying. Maybe tomorrow.,กลับไปสมัครงานต่อ บางทีพรุ่งนี้อาจต่างออกไป
+ending/ending_another_morning/lines/0/text,The alarm goes off. The laptop is still open.,นาฬิกาปลุกดังขึ้น แล็ปท็อปยังเปิดค้างอยู่
+ending/ending_another_morning/lines/1/text,I told him no. I'll find something on my own.,บอกพ่อไปแล้วว่าไม่ จะหาเองให้ได้
+ending/ending_another_morning/lines/2/text,A new resume. A new list of companies.,เรซูเม่ฉบับใหม่ รายชื่อบริษัทชุดใหม่
+ending/ending_another_morning/lines/3/text,Maybe today is different.,บางทีวันนี้อาจต่างออกไป
+ending/ending_another_morning/finalText,"ENDING 2 - ANOTHER MORNING
+The cycle begins again.","ตอนจบที่ 2 - เช้าอีกวัน
+วัฏจักรเริ่มต้นขึ้นอีกครั้ง"
+ending/ending_my_own_terms/title,My Own Terms,ในแบบของฉัน
+ending/ending_my_own_terms/optionLabel,Follow your own interests,ทำตามสิ่งที่สนใจ
+ending/ending_my_own_terms/optionDescription,Reject the expected path. Open that old project.,ปฏิเสธเส้นทางที่ถูกคาดหวัง แล้วเปิดโปรเจกต์เก่านั้นขึ้นมา
+ending/ending_my_own_terms/lines/0/text,An old folder. An unfinished project.,โฟลเดอร์เก่า โปรเจกต์ที่ยังไม่เสร็จ
+ending/ending_my_own_terms/lines/1/text,I forgot I made this.,ลืมไปเลยว่าเคยทำอันนี้ไว้
+ending/ending_my_own_terms/lines/2/text,The cursor blinks. The first line is typed.,เคอร์เซอร์กะพริบ บรรทัดแรกถูกพิมพ์ลงไป
+ending/ending_my_own_terms/lines/3/text,It won't be perfect. It will be mine.,มันคงไม่สมบูรณ์แบบ แต่มันจะเป็นของฉัน
+ending/ending_my_own_terms/finalText,"ENDING 3 - MY OWN TERMS
+Nothing is guaranteed. But the choice is mine.","ตอนจบที่ 3 - ในแบบของฉัน
+ไม่มีอะไรรับประกัน แต่ทางเลือกนี้เป็นของฉัน"
+question/q_faculty_accounting/questionText,You studied accounting. Do you really think you can work in this field?,เรียนบัญชีแล้วคิดว่าจะมาทำงานตรงนี้ได้เหรอ?
+question/q_faculty_accounting/answers/a_faculty_accounting_1/text,I'm sure I can!,ฉันมั่นใจว่าได้!
+question/q_faculty_accounting/answers/a_faculty_accounting_2/text,"Uh... well, I think I can.",อะ... เออ ฉันว่าได้นะ
+question/q_faculty_accounting/answers/a_faculty_accounting_3/text,Of course I can.,ได้อยู่แล้ว
+question/q_faculty_digital_art/questionText,You graduated in digital art. How confident are you that you can handle real-world work?,จบศิลปะดิจิทัลมา แล้วมั่นใจแค่ไหนว่าจะทำงานจริงได้?
+question/q_faculty_digital_art/answers/a_faculty_digital_art_1/text,I'm confident I can do it!,ฉันมั่นใจว่าทำได้!
+question/q_faculty_digital_art/answers/a_faculty_digital_art_2/text,Uh... I think I can do it.,อะ... ฉันว่าทำได้นะ
+question/q_faculty_digital_art/answers/a_faculty_digital_art_3/text,Of course I can.,ได้อยู่แล้ว
+question/q_faculty_digital_communications/questionText,You didn't study game development directly. Do you think you can handle this job?,ไม่ได้เรียนทำเกมตรง ๆ แล้วจะทำงานนี้ไหวเหรอ?
+question/q_faculty_digital_communications/answers/a_faculty_digital_communications_1/text,Absolutely! I can adapt!,ไหวแน่นอน! ฉันปรับตัวได้!
+question/q_faculty_digital_communications/answers/a_faculty_digital_communications_2/text,Uh... I'll try to learn more.,อะ... ฉันจะพยายามเรียนรู้เพิ่มนะ
+question/q_faculty_digital_communications/answers/a_faculty_digital_communications_3/text,I can handle it.,ไหวอยู่แล้ว
+question/q_faculty_fine_arts/questionText,You studied drawing. Do you really think you can work on games?,เรียนวาดรูปมา แล้วคิดว่าจะทำงานเกมได้จริงเหรอ?
+question/q_faculty_fine_arts/answers/a_faculty_fine_arts_1/text,Of course! Art is part of the foundation of game development!,ได้สิ! ศิลปะก็เป็นพื้นฐานของงานเกมเหมือนกัน!
+question/q_faculty_fine_arts/answers/a_faculty_fine_arts_2/text,Uh... I think I probably can.,อะ... ฉันคิดว่าน่าจะได้นะ
+question/q_faculty_fine_arts/answers/a_faculty_fine_arts_3/text,Of course I can.,ได้อยู่แล้ว
+question/q_faculty_information_technology/questionText,"You studied IT, and now you want to draw? Can you really do that?",เรียนไอทีมาแล้วจะมาวาดรูป ทำได้จริงเหรอ?
+question/q_faculty_information_technology/answers/a_faculty_information_technology_1/text,I can! I've practiced drawing too!,ทำได้สิ! ฉันฝึกวาดรูปมาเหมือนกัน!
+question/q_faculty_information_technology/answers/a_faculty_information_technology_2/text,Uh... I do have some basic skills.,อะ... ฉันก็พอมีพื้นฐานอยู่นะ
+question/q_faculty_information_technology/answers/a_faculty_information_technology_3/text,Of course I can.,ได้อยู่แล้ว
+question/q_motto_adapt_to_every_problem/questionText,"Ready to adapt to any problem? So if the company gives you work you're not good at, you can do it?",พร้อมปรับตัวกับทุกปัญหา แล้วถ้าบริษัทให้ทำงานที่ไม่ถนัด คุณก็ทำได้งั้นเหรอ?
+question/q_motto_adapt_to_every_problem/answers/a_motto_adapt_to_every_problem_1/text,Of course! I'm ready to adapt!,ได้สิ! ฉันพร้อมปรับตัว!
+question/q_motto_adapt_to_every_problem/answers/a_motto_adapt_to_every_problem_2/text,"Uh... If I get a chance, I'll try my best.",อะ... ถ้าได้ลอง ฉันก็จะพยายามนะ
+question/q_motto_adapt_to_every_problem/answers/a_motto_adapt_to_every_problem_3/text,"Yes, I can.",ได้ครับ/ค่ะ
+question/q_motto_do_everything_you_want/questionText,Your motto is 'Do everything you want to do'? Isn't that aiming a little too high?,คติประจำใจของคุณคือ ‘ทำทุกอย่างที่อยากทำ’ เหรอ? ไม่ได้ฝันสูงเกินตัวไปหน่อยเหรอ?
+question/q_motto_do_everything_you_want/answers/a_motto_do_everything_you_want_1/text,"If nobody makes what I want to see, I'll make it myself!",ถ้าไม่มีใครสร้างสิ่งที่อยากเห็น ฉันก็จะสร้างมันเอง!
+question/q_motto_do_everything_you_want/answers/a_motto_do_everything_you_want_2/text,Whoa! You've got to dare to dream!,โอ้โห! ก็ต้องกล้าฝันสิ!
+question/q_motto_dreams_never_expire/questionText,"'Dreams never expire,' huh? If you get rejected over and over, will you still keep dreaming?",ความฝันไม่มีวันหมดอายุงั้นเหรอ? แล้วถ้าสมัครงานไม่ผ่านหลายรอบ ยังจะฝันต่ออยู่ไหม?
+question/q_motto_dreams_never_expire/answers/a_motto_dreams_never_expire_1/text,Of course! Someday I will make it!,แน่นอน! สักวันฉันต้องทำได้!
+question/q_motto_dreams_never_expire/answers/a_motto_dreams_never_expire_2/text,Uh... I'll keep trying.,อะ... ฉันจะพยายามต่อไปนะ
+question/q_motto_every_day_learning/questionText,Every day is an opportunity to learn. Just how much more do you think you still need to learn?,ทุกวันคือโอกาสในการเรียนรู้ แล้วคุณคิดว่าตัวเองยังต้องเรียนรู้อีกเยอะแค่ไหน?
+question/q_motto_every_day_learning/answers/a_motto_every_day_learning_1/text,I'm always ready to learn and improve!,ฉันพร้อมเรียนรู้และพัฒนาตัวเองเสมอ!
+question/q_motto_every_day_learning/answers/a_motto_every_day_learning_2/text,Probably quite a lot...,ก็คงอีกเยอะเลยแหละ...
+question/q_motto_every_day_learning/answers/a_motto_every_day_learning_3/text,Quite a lot.,เยอะอยู่
+question/q_motto_flexibility_key/questionText,Flexibility is the key to success? Does that mean you'll do absolutely anything the company asks?,ความยืดหยุ่นคือกุญแจสู่ความสำเร็จงั้นเหรอ? ถ้าบริษัทให้ทำอะไรก็ต้องทำหมดเลยหรือเปล่า?
+question/q_motto_flexibility_key/answers/a_motto_flexibility_key_1/text,"If it helps the company succeed, I'm willing!",ถ้ามันทำให้บริษัทประสบความสำเร็จ ฉันก็พร้อม!
+question/q_motto_flexibility_key/answers/a_motto_flexibility_key_2/text,"Uh... If it's necessary work, I'll give it a try.",อะ... ถ้าเป็นงานที่จำเป็น ฉันก็จะลองดู
+question/q_university_a/questionText,"You graduated from University A? With a university of that caliber, I suppose I needn’t worry about your abilities?",จบจากมหาวิทยาลัย A มาเหรอ? มหาวิทยาลัยระดับนี้ก็คงไม่ต้องห่วงเรื่องความสามารถสินะ?
+question/q_university_a/answers/a_university_a_1/text,Of course! I passed the entrance exams on my own merit!,แน่นอน! ฉันสอบเข้ามาได้ด้วยความสามารถของตัวเอง!
+question/q_university_a/answers/a_university_a_2/text,Ugh! Just thinking about the entrance exams wears me out!,ฮึ่ย! แค่คิดถึงตอนสอบเข้าก็เหนื่อยแล้ว!
+question/q_university_a/answers/a_university_a_3/text,Yes.,ครับ/ค่ะ
+question/q_university_b/questionText,"You graduated from University B? With tuition that expensive, I imagine you expect a lot from yourself?",จบจากมหาวิทยาลัย B มาเลยเหรอ? ค่าเทอมแพงขนาดนั้น คงคาดหวังกับตัวเองไว้สูงน่าดูนะ?
+question/q_university_b/answers/a_university_b_1/text,Of course! My family invested a lot in me. I have to make it worthwhile!,แน่นอน! ที่บ้านลงทุนกับฉันไปเยอะ ฉันก็ต้องทำให้คุ้มสิ!
+question/q_university_b/answers/a_university_b_2/text,"It's a private university, but it's well regarded!",ถึงจะเป็นมหาวิทยาลัยเอกชนก็เถอะ แต่ที่นี่ก็มีชื่อเสียงดีนะ!
+question/q_university_b/answers/a_university_b_3/text,Yes.,ครับ/ค่ะ
+question/q_university_c/questionText,University C? It's not especially well known. So why should we choose you?,มหาวิทยาลัย C เหรอ? ก็ไม่ได้มีชื่อเสียงโดดเด่นอะไรเป็นพิเศษนี่ แล้วคิดว่าอะไรจะทำให้เราเลือกคุณ?
+question/q_university_c/answers/a_university_c_1/text,My work speaks for itself!,ผลงานของฉันไง!
+question/q_university_c/answers/a_university_c_2/text,"Uh... My university may not be famous, but I worked hard there!",อะ... ถึงมหาวิทยาลัยจะไม่ได้ดัง แต่ฉันก็ตั้งใจเรียนนะ!
+question/q_university_c/answers/a_university_c_3/text,Yes...,ครับ/ค่ะ
+question/q_university_d/questionText,You graduated from University D? Why didn’t you choose a more prestigious university?,จบจากมหาวิทยาลัย D เหรอ? ทำไมถึงไม่เลือกมหาวิทยาลัยที่มีชื่อเสียงกว่านี้ล่ะ?
+question/q_university_d/answers/a_university_d_1/text,"I couldn't afford the tuition back then, but I did my best!",ตอนนั้นค่าเทอมไม่ไหวจริง ๆ แต่ฉันก็พยายามเต็มที่นะ!
+question/q_university_d/answers/a_university_d_2/text,A university's name isn't the only measure of ability!,มหาวิทยาลัยไม่ได้เป็นตัวตัดสินความสามารถทั้งหมดสักหน่อย!
+question/q_university_d/answers/a_university_d_3/text,...Yes.,...ครับ/ค่ะ
+question/q_university_e/questionText,You graduated from University E? I don't recognize that name. Why should this company hire you?,จบจากมหาวิทยาลัย E เองเหรอ? ชื่อนี้ไม่ค่อยคุ้นเลยนะ แล้วคิดว่าบริษัทจะรับคุณเพราะอะไรล่ะ?
+question/q_university_e/answers/a_university_e_1/text,Yes... but I have skills too!,ใช่... แต่ฉันก็มีความสามารถนะ!
+question/q_university_e/answers/a_university_e_2/text,...I'll prove myself!,...ฉันจะพิสูจน์ให้ดูเอง!
+question/q_university_e/answers/a_university_e_3/text,Yes.,ครับ/ค่ะ
+category/faculty/displayName,Faculty,คณะ
+category/faculty/emptyMessage,Nothing is left to choose here.,ไม่มีตัวเลือกเหลือในหมวดนี้แล้ว
+category/motto/displayName,Personal Motto,คติประจำใจ
+category/motto/emptyMessage,Nothing is left to choose here.,ไม่มีตัวเลือกเหลือในหมวดนี้แล้ว
+category/university/displayName,University,มหาวิทยาลัย
+category/university/emptyMessage,Nothing is left to choose here.,ไม่มีตัวเลือกเหลือในหมวดนี้แล้ว
+choice/faculty_accounting/displayText,Accounting,คณะบัญชี
+choice/faculty_accounting/playerReaction/0/lines/0,Actually... I never wanted to study accounting that much.,จริง ๆ แล้ว... ตอนนั้นเราไม่ได้อยากเรียนบัญชีขนาดนั้นหรอก
+choice/faculty_accounting/playerReaction/0/lines/1,"My family wanted me to study it. They said I'd have a stable job after graduation. I didn't even know what I wanted to be back then, so I went along with what everyone said.",ที่บ้านอยากให้เรียน บอกว่าเรียนจบแล้วจะได้มีงานมั่นคง ส่วนเราตอนนั้นก็ยังไม่รู้ด้วยซ้ำว่าตัวเองอยากเป็นอะไรกันแน่ ก็เลยเรียนตามที่ทุกคนบอก
+choice/faculty_accounting/playerReaction/0/lines/2,"By the time I realized I liked drawing, designing characters, and wanted to make games... so much time had passed.",กว่าจะรู้ตัวว่าชอบวาดรูป ชอบออกแบบตัวละคร แล้วก็อยากทำเกม... เวลาก็ผ่านไปตั้งเยอะแล้ว
+choice/faculty_digital_art/displayText,Digital Art,คณะดิจิทัลอาร์ต (Digital Art)
+choice/faculty_digital_art/playerReaction/0/lines/0,This is the faculty for me! I endured all those final projects for this day!,นี้แหละคณะที่ใช่ ฉันอดทนทำไฟนอลมาก็เพื่อวันนี้!
+choice/faculty_digital_communications/displayText,Communication Arts (Digital Media),คณะนิเทศศาสตร์ (สื่อดิจิทัล)
+choice/faculty_digital_communications/playerReaction/0/lines/0,"Hmm... I didn't study drawing directly, but I did learn about visual communication and digital media.",อืม... ถึงจะไม่ได้เรียนวาดรูปโดยตรง แต่เราก็ได้เรียนเรื่องการสื่อสารด้วยภาพกับการทำสื่อมาบ้างนี่นา
+choice/faculty_digital_communications/playerReaction/0/lines/1,I should be able to apply some of that to making games!,บางอย่างก็น่าจะเอามาปรับใช้กับงานเกมได้แหละ!
+choice/faculty_digital_communications/playerReaction/0/lines/2,As for drawing... I'll need a little more practice.,ส่วนเรื่องวาดรูป... ก็ต้องฝึกเพิ่มอีกหน่อย
+choice/faculty_fine_arts/displayText,Fine Arts,คณะศิลปกรรมศาสตร์
+choice/faculty_fine_arts/playerReaction/0/lines/0,"Hmm... That's close enough, I guess!",อืมมม... ก็ถือว่าใกล้เคียงอยู่นะ!
+choice/faculty_fine_arts/playerReaction/0/lines/1,"At least I got plenty of practice drawing, using colors, and composing images, even if I didn't study game development directly.",อย่างน้อยตอนนั้นเราก็ได้ฝึกวาดรูป ฝึกใช้สี ฝึกจัดองค์ประกอบมาตั้งเยอะ ถึงจะไม่ได้เรียนทำเกมโดยตรงก็เถอะ
+choice/faculty_information_technology/displayText,Information Technology,คณะเทคโนโลยีสารสนเทศ
+choice/faculty_information_technology/playerReaction/0/lines/0,Sigh... If only I'd figured out what I wanted sooner.,เฮ้อ... ถ้าตอนนั้นรู้ตัวเร็วกว่านี้ก็คงดีนะ
+choice/faculty_information_technology/playerReaction/0/lines/1,"When I chose my faculty, I didn't even know what I liked. I just picked somewhere I thought I could manage, thinking I'd figure things out after graduating.",ตอนเลือกคณะก็ยังไม่รู้เลยว่าตัวเองชอบอะไรกันแน่ เห็นคณะไหนพอเรียนไหวก็เลือก ๆ ไปก่อน คิดว่าเดี๋ยวเรียนจบแล้วค่อยหาทางเอา
+choice/faculty_information_technology/playerReaction/0/lines/2,"But I kept drawing even while studying IT! I might not be amazing, but I'm not starting from zero.",แต่ถึงจะเรียนไอทีมา เราก็ยังวาดรูปอยู่เรื่อย ๆ นะ! ฝีมืออาจจะไม่ได้เทพอะไร แต่ก็ไม่ได้เริ่มจากศูนย์สักหน่อย
+choice/motto_adapt_to_every_problem/displayText,Ready to Adapt to Any Problem,พร้อมปรับตัวกับทุกปัญหา
+choice/motto_adapt_to_every_problem/playerReaction/0/lines/0,This sounds pretty professional!,อันนี้ก็ดูเป็นมืออาชีพดีนะ!
+choice/motto_adapt_to_every_problem/playerReaction/0/lines/1,"Real work won't always involve things I like. If I want to work with others, I'll have to be adaptable.",ทำงานจริงคงไม่ได้มีแต่สิ่งที่เราชอบทั้งหมดหรอก ถ้าอยากร่วมงานกับคนอื่นได้ เราก็ต้องรู้จักปรับตัวบ้าง
+choice/motto_adapt_to_every_problem/playerReaction/0/lines/2,I hope HR appreciates someone willing to improve...,หวังว่า HR จะชอบคนที่พร้อมพัฒนาตัวเองแบบนี้นะ...
+choice/motto_do_everything_you_want/displayText,Do Everything You Want to Do,ทำทุกอย่างที่อยากทำ
+choice/motto_do_everything_you_want/playerReaction/0/lines/0,Whoa! That's exactly it!!,โอ้โห! ประโยคนี้แหละ ใช่เลย!!
+choice/motto_do_everything_you_want/playerReaction/0/lines/1,"If nobody makes what we want to see, we'll make it ourselves!",ถ้าไม่มีใครสร้างสิ่งที่เราอยากเห็น งั้นเราก็สร้างมันขึ้นมาเองสิ!
+choice/motto_do_everything_you_want/playerReaction/0/lines/2,That's why I want to work on games!,นี่แหละเหตุผลที่ฉันอยากทำงานเกม!
+choice/motto_dreams_never_expire/displayText,Dreams Never Expire,ความฝันไม่มีวันหมดอายุ
+choice/motto_dreams_never_expire/playerReaction/0/lines/0,I really like that phrase!,ชอบประโยคนี้จัง!
+choice/motto_dreams_never_expire/playerReaction/0/lines/1,"I might only be a fresh graduate now, but someday I'll create something I can be proud of!",ถึงตอนนี้ฉันจะยังเป็นแค่เด็กจบใหม่ แต่สักวันหนึ่งฉันต้องสร้างผลงานที่ตัวเองภูมิใจให้ได้!
+choice/motto_dreams_never_expire/playerReaction/0/lines/2,All right! Let's make that dream come true!!,เอาล่ะ! ไปทำให้ความฝันเป็นจริงกันเถอะ!!
+choice/motto_every_day_learning/displayText,Every Day Is an Opportunity to Learn,ทุกวันคือโอกาสในการเรียนรู้
+choice/motto_every_day_learning/playerReaction/0/lines/0,Hmm... That sounds like a good motto.,ฟังดูเป็นคติที่ดีนะ
+choice/motto_every_day_learning/playerReaction/0/lines/1,"I might not be good at everything yet, but learning from actual work should help me grow a lot.",เราอาจจะยังไม่ได้เก่งทุกอย่าง แต่ถ้าได้เรียนรู้จากการทำงานจริง ก็น่าจะพัฒนาตัวเองไปได้อีกเยอะ
+choice/motto_every_day_learning/playerReaction/0/lines/2,"I just need a chance to try, learn, and get a little better every day...",ขอแค่มีโอกาสได้ลอง ได้เรียนรู้ แล้วก็ทำให้ดีขึ้นในทุกวันก็พอ...
+choice/motto_flexibility_key/displayText,Flexibility Is the Key to Success,ความยืดหยุ่น คือกุญแจสู่ความสำเร็จ
+choice/motto_flexibility_key/playerReaction/0/lines/0,"Hmm... This is probably what HR wants to hear most, right?",อืม... ประโยคนี้น่าจะถูกใจ HR มากที่สุดแล้วมั้ง?
+choice/motto_flexibility_key/playerReaction/0/lines/1,"Some tasks might not be what I'm best at, or even what I want to do. But if it makes me useful to the company, I suppose I have to try...",ถึงบางอย่างอาจไม่ใช่สิ่งที่เราถนัดหรืออยากทำที่สุด แต่ถ้ามันทำให้บริษัทเห็นว่าเรามีประโยชน์ ก็คงต้องลองดู..
+choice/motto_flexibility_key/playerReaction/0/lines/2,...I just need them to hire me.,...ขอแค่รับฉันเข้าทำงานก็พอแล้วล่ะ
+choice/university_a/displayText,University A,มหาลัย A
+choice/university_a/playerReaction/0/lines/0,Ugh! Just thinking about the entrance exams wears me out!,ฮึ่ย! แค่คิดถึงตอนสอบเข้าก็เหนื่อยแล้ว!
+choice/university_a/playerReaction/0/lines/1,"With a university name like this, at least HR should take an interest in my resume!",ชื่อมหาวิทยาลัยระดับนี้ อย่างน้อย HR ก็น่าจะเปิด Resume ดูด้วยความสนใจบ้างแหละ!
+choice/university_b/displayText,University B,มหาลัย B
+choice/university_b/playerReaction/0/lines/0,"It's a private university, but it has a good reputation!",ถึงจะเป็นมหาวิทยาลัยเอกชนก็เถอะ แต่ที่นี่ก็มีชื่อเสียงดีนะ!!
+choice/university_b/playerReaction/0/lines/1,And tuition wasn't cheap. My family invested a lot in getting me through school.,ค่าเทอมแต่ละเทอมก็ไม่ใช่น้อย ๆ กว่าจะเรียนจบมาได้ ที่บ้านก็ลงทุนกับเราไปเยอะเหมือนกัน
+choice/university_b/playerReaction/0/lines/2,"Besides, graduating from there doesn't make me any less capable than anyone else!",อีกอย่าง จบจากที่นี่ก็ไม่ได้แปลว่าเราด้อยกว่าใครสักหน่อย!
+choice/university_c/displayText,University C,มหาลัย C
+choice/university_c/playerReaction/0/lines/0,"Hmm... It's just an ordinary university, nothing especially prestigious.",อืม... มหาวิทยาลัยทั่วไปนี่แหละ ไม่ได้มีชื่อเสียงโดดเด่นอะไรเป็นพิเศษ
+choice/university_c/playerReaction/0/lines/1,"But I graduated through my own effort! Assignments, projects, exams... I've been through plenty.",แต่เราก็เรียนจบมาได้ด้วยความสามารถของตัวเองนะ! ส่งงาน ทำโปรเจกต์ สอบผ่าน ก็ผ่านอะไรมาเยอะเหมือนกัน
+choice/university_c/playerReaction/0/lines/2,Surely a university's name shouldn't be the only thing that matters... right?,จะให้ชื่อมหาวิทยาลัยเป็นตัวตัดสินทั้งหมดก็คงไม่ใช่หรอกมั้ง...
+choice/university_d/displayText,University D,มหาลัย D
+choice/university_d/playerReaction/0/lines/0,"Honestly, I wanted to attend a more prestigious university...",จริง ๆ ตอนนั้นก็อยากเข้ามหาวิทยาลัยที่มีชื่อเสียงกว่านี้นะ...
+choice/university_d/playerReaction/0/lines/1,But the tuition was just too much. I didn't want to put any more financial pressure on my family.,แต่ค่าเทอมมันไม่ไหวจริง ๆ จะให้ที่บ้านแบกรับค่าใช้จ่ายมากกว่านี้ก็ไม่อยากแล้ว
+choice/university_d/playerReaction/0/lines/2,"It might not make my resume stand out, but it wasn't because I didn't try!",มันอาจไม่ได้ทำให้ Resume ดูโดดเด่นเท่าคนอื่น แต่เราก็ไม่ได้เลือกเพราะไม่พยายามสักหน่อย!
+choice/university_d/playerReaction/0/lines/3,"Oh well... If my work is really good, a company should see its value!",เอาเถอะ... ถ้าผลงานเราดีจริง บริษัทก็น่าจะเห็นคุณค่าได้สิ!
+choice/university_e/displayText,University E,มหาลัย E
+choice/university_e/playerReaction/0/lines/0,"Sigh... It seemed easy to get into, so I picked it without thinking much.",เฮ้อ... ตอนนั้นเห็นว่าเข้าที่นี่ง่ายดี ก็เลยเลือก ๆ ไป ไม่ได้คิดอะไรเยอะ
+choice/university_e/playerReaction/0/lines/1,Back then I just wanted to graduate. Who knew a university's name would matter this much...,ตอนนั้นแค่คิดว่าเรียนให้จบก็พอแล้วนี่นา ใครจะไปคิดว่าชื่อมหาวิทยาลัยจะมีผลขนาดนี้..
+choice/university_e/playerReaction/0/lines/2,It's not like I can turn back time and choose again.,แต่จะให้ย้อนเวลากลับไปเลือกใหม่ก็ไม่ได้แล้วนี่
+question/__emergency/questionText,Tell me about yourself.,
+question/__emergency/answers/a1/text,I'm a recent graduate looking for an opportunity.,
+question/__emergency/answers/a1/playerReaction/0/text,That sounded rehearsed.,
+question/__emergency/answers/a1/hrResponse/0/text,I see.,
+ui/day,Day {0},วันที่ {0}
+ui/gender,Gender: {0},เพศ: {0}
+ui/resume/nothing_left,(nothing left),(ไม่เหลือแล้ว)
+ui/resume/nothing_to_choose,Nothing to choose.,ไม่มีให้เลือก
+ui/company/rejected,REJECTED,ถูกปฏิเสธ
+ui/company/none_left,No companies left.,ไม่มีบริษัทเหลือแล้ว
+ui/company/select_prompt,Select a company to see its details.,เลือกบริษัทเพื่อดูรายละเอียด
+ui/final/title,What will you do?,คุณจะทำอย่างไร?
+ui/final/no_endings,No endings configured.,ยังไม่ได้ตั้งค่าตอนจบ
+ui/sleep/day_over,Day {0} is over...,วันที่ {0} จบลงแล้ว...
+ui/token/company,the company,บริษัท
+ui/token/job,the position,ตำแหน่งงาน
+ui/error/name_required,Please enter a name.,กรุณากรอกชื่อ
+ui/error/name_too_long,Name is too long (max {0}).,ชื่อยาวเกินไป (สูงสุด {0})
+ui/error/gender_required,Please select a gender.,กรุณาเลือกเพศ
+ui/confidence/empty,No choices selected,ยังไม่ได้เลือกอะไร
+ui/confidence/categories,{0} / {1} categories,{0} / {1} หมวด
+ui/label/GameCanvas/MainMenuPanel/MenuPaper/Title,FIRST JOBBER,FIRST JOBBER
+ui/label/GameCanvas/MainMenuPanel/MenuPaper/Subtitle,Every rejection takes something with it.,ทุกการถูกปฏิเสธพรากบางอย่างไปจากเรา
+ui/label/GameCanvas/MainMenuPanel/MenuPaper/NameLabel,Name,ชื่อ
+ui/label/GameCanvas/MainMenuPanel/MenuPaper/NameInput/Text Area/Placeholder,Enter your name...,กรอกชื่อของคุณ...
+ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderLabel,Gender,เพศ
+ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderDropdown/Label,Option A,
+ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderDropdown/Template/Viewport/Content/Item/Item Label,Option A,
+ui/label/GameCanvas/MainMenuPanel/MenuPaper/SubmitButton/Label,Submit,ส่งใบสมัคร
+ui/label/GameCanvas/CreateApplicantPanel/Title,Create Applicant,สร้างผู้สมัคร
+ui/label/GameCanvas/CreateApplicantPanel/NameLabel,Name,ชื่อ
+ui/label/GameCanvas/CreateApplicantPanel/NameInput/Text Area/Placeholder,Enter your name...,กรอกชื่อของคุณ...
+ui/label/GameCanvas/CreateApplicantPanel/AgeLabel,Age,อายุ
+ui/label/GameCanvas/CreateApplicantPanel/AgeInput/Text Area/Placeholder,Enter your age...,กรอกอายุของคุณ...
+ui/label/GameCanvas/CreateApplicantPanel/SubmitButton/Label,Confirm,ยืนยัน
+ui/label/GameCanvas/ResumeEditorPanel/ResumePreview/NameText,Name,ชื่อ
+ui/label/GameCanvas/ResumeEditorPanel/ResumePreview/AgeText,Age,อายุ
+ui/label/GameCanvas/ResumeEditorPanel/EditorGroup/DayText,Day 1,วันที่ 1
+ui/label/GameCanvas/ResumeEditorPanel/EditorGroup/CategoryTitle,Category,หมวด
+ui/label/GameCanvas/ResumeEditorPanel/EditorGroup/ConfirmButton/Label,Confirm Resume,ยืนยันเรซูเม่
+ui/label/GameCanvas/ResumeEditorPanel/ConfidencePanel/ConfidenceTitle,OVERALL CONFIDENCE,ความมั่นใจโดยรวม
+ui/label/GameCanvas/CompanyPanel/Header,Choose a company,เลือกบริษัท
+ui/label/GameCanvas/CompanyPanel/DetailsCard/DetailsText,Select a company to see its details.,เลือกบริษัทเพื่อดูรายละเอียด
+ui/label/GameCanvas/CompanyPanel/BackButton/Label,Back,กลับ
+ui/label/GameCanvas/CompanyPanel/ApplyButton/Label,Apply,สมัคร
+ui/label/GameCanvas/InterviewPanel/HRArea/HRPortrait/PlaceholderLabel,Neutral,ปกติ
+ui/label/GameCanvas/EndingPanel/Buttons/RestartButton/Label,Restart,เริ่มใหม่
+ui/label/GameCanvas/EndingPanel/Buttons/MenuButton/Label,Main Menu,เมนูหลัก
+ui/label/GameCanvas/DialogueBox/SpeakerText,Speaker,ผู้พูด

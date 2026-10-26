@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_P_q_university_d
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: q_university_d
+  questionText: "You graduated from University D? Why didn\u2019t you choose a more prestigious university?"
+  hrEmotion: 0
+  questionDialogue: []
+  linkedChoice: {fileID: 11400000, guid: 993d1a2743dafc64086574eb76298135, type: 2}
+  linkedCategory: {fileID: 0}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a_university_d_1
+    text: I couldn't afford the tuition back then, but I did my best!
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []
+  - id: a_university_d_2
+    text: A university's name isn't the only measure of ability!
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []
+  - id: a_university_d_3
+    text: ...Yes.
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []

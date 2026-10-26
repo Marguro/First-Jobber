@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6218ca4452496448f05499db78f784, type: 3}
+  m_Name: Choice_P_motto_adapt_to_every_problem
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ResumeChoiceData
+  id: motto_adapt_to_every_problem
+  category: {fileID: 11400000, guid: 240fd755b95f27b4f8136e820b7fac14, type: 2}
+  displayText: Ready to Adapt to Any Problem
+  description: 
+  tags:
+  - todo_confidence
+  confidencePercentage: 50
+  playerReaction:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - This sounds pretty professional!
+    - Real work won't always involve things I like. If I want to work with others, I'll have to be adaptable.
+    - I hope HR appreciates someone willing to improve...
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  hrReactions: []

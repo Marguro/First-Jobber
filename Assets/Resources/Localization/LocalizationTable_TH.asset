@@ -14,4 +14,2659 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.LocalizationTable
   font: {fileID: 11400000, guid: c00c48ceb5c5e64488bfa9ff66cf2288, type: 2}
   correction: 2
-  entries: []
+  entries:
+  - key: database/genderPrompt
+    english: Select gender...
+    thai: "\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E40\u0E1E\u0E28..."
+  - key: database/genders/male
+    english: Male
+    thai: "\u0E0A\u0E32\u0E22"
+  - key: database/genders/female
+    english: Female
+    thai: "\u0E2B\u0E0D\u0E34\u0E07"
+  - key: database/genders/non_binary
+    english: Non-binary
+    thai: "\u0E19\u0E2D\u0E19\u0E44\u0E1A\u0E19\u0E32\u0E23\u0E35"
+  - key: database/genders/unspecified
+    english: Prefer Not to Say
+    thai: "\u0E44\u0E21\u0E48\u0E02\u0E2D\u0E23\u0E30\u0E1A\u0E38"
+  - key: database/resumeIntroLines/0/lines/0
+    english: This is me, on paper.
+    thai: "\u0E19\u0E35\u0E48\u0E04\u0E37\u0E2D\u0E09\u0E31\u0E19 \u0E1A\u0E19\u0E01\u0E23\u0E30\u0E14\u0E32\u0E29"
+  - key: database/resumeIntroLines/0/lines/1
+    english: What this shit
+    thai: "\u0E19\u0E35\u0E48\u0E21\u0E31\u0E19\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E31\u0E19\u0E40\u0E19\u0E35\u0E48\u0E22"
+  - key: database/resumeIntroLines/0/lines/2
+    english: What
+    thai: "\u0E2D\u0E30\u0E44\u0E23\u0E19\u0E30"
+  - key: database/resumeIntroLines/1/text
+    english: Let's make it better.
+    thai: "\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E21\u0E31\u0E19\u0E14\u0E35\u0E02\u0E36\u0E49\u0E19\u0E01\u0E31\u0E19\u0E40\u0E16\u0E2D\u0E30"
+  - key: database/defaultHrIntro/0/text
+    english: Good morning, {name}. Please have a seat.
+    thai: "\u0E2A\u0E27\u0E31\u0E2A\u0E14\u0E35\u0E15\u0E2D\u0E19\u0E40\u0E0A\u0E49\u0E32\u0E04\u0E48\u0E30/\u0E04\u0E23\u0E31\u0E1A \u0E04\u0E38\u0E13{name} \u0E40\u0E0A\u0E34\u0E0D\u0E19\u0E31\u0E48\u0E07\u0E01\u0E48\u0E2D\u0E19"
+  - key: speaker/HR
+    english: HR
+    thai: HR
+  - key: database/hrReviewLines/0/text
+    english: Let me look at your resume.
+    thai: "\u0E02\u0E2D\u0E14\u0E39\u0E40\u0E23\u0E0B\u0E39\u0E40\u0E21\u0E48\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E2B\u0E19\u0E48\u0E2D\u0E22\u0E19\u0E30"
+  - key: database/hrReviewLines/1/text
+    english: '{name}. A recent graduate.'
+    thai: "{name} \u0E40\u0E14\u0E47\u0E01\u0E08\u0E1A\u0E43\u0E2B\u0E21\u0E48\u0E2A\u0E34\u0E19\u0E30"
+  - key: database/rejectionHR/0/text
+    english: Thank you for your time, {name}.
+    thai: "\u0E02\u0E2D\u0E1A\u0E04\u0E38\u0E13\u0E17\u0E35\u0E48\u0E2A\u0E25\u0E30\u0E40\u0E27\u0E25\u0E32\u0E21\u0E32\u0E19\u0E30 \u0E04\u0E38\u0E13{name}"
+  - key: database/rejectionHR/1/text
+    english: We've decided to move forward with other candidates.
+    thai: "\u0E40\u0E23\u0E32\u0E15\u0E31\u0E14\u0E2A\u0E34\u0E19\u0E43\u0E08\u0E40\u0E14\u0E34\u0E19\u0E2B\u0E19\u0E49\u0E32\u0E01\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E17\u0E48\u0E32\u0E19\u0E2D\u0E37\u0E48\u0E19"
+  - key: database/rejectionPlayer/0/text
+    english: ...Again.
+    thai: "...\u0E2D\u0E35\u0E01\u0E41\u0E25\u0E49\u0E27"
+  - key: database/rejectionPlayer/1/text
+    english: Time to go home.
+    thai: "\u0E01\u0E25\u0E31\u0E1A\u0E1A\u0E49\u0E32\u0E19\u0E01\u0E31\u0E19\u0E40\u0E16\u0E2D\u0E30"
+  - key: database/fatherOfferLines/0/text
+    english: The phone is ringing. It's Dad.
+    thai: "\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C\u0E14\u0E31\u0E07\u0E02\u0E36\u0E49\u0E19 \u0E1E\u0E48\u0E2D\u0E42\u0E17\u0E23\u0E21\u0E32"
+  - key: speaker/Narrator
+    english: Narrator
+    thai: "\u0E1C\u0E39\u0E49\u0E1A\u0E23\u0E23\u0E22\u0E32\u0E22"
+  - key: database/fatherOfferLines/1/text
+    english: '{name}, I''ve been thinking. There''s an opening at my friend''s company.'
+    thai: "{name} \u0E1E\u0E48\u0E2D\u0E04\u0E34\u0E14\u0E21\u0E32\u0E2A\u0E31\u0E01\u0E1E\u0E31\u0E01\u0E41\u0E25\u0E49\u0E27\u0E19\u0E30 \u0E17\u0E35\u0E48\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E19\u0E1E\u0E48\u0E2D\u0E21\u0E35\u0E15\u0E33\u0E41\u0E2B\u0E19\u0E48\u0E07\u0E27\u0E48\u0E32\u0E07\u0E2D\u0E22\u0E39\u0E48"
+  - key: speaker/Father
+    english: Father
+    thai: "\u0E1E\u0E48\u0E2D"
+  - key: database/fatherOfferLines/2/text
+    english: Steady pay. Regular hours. You don't have to keep doing this.
+    thai: "\u0E40\u0E07\u0E34\u0E19\u0E40\u0E14\u0E37\u0E2D\u0E19\u0E21\u0E31\u0E48\u0E19\u0E04\u0E07 \u0E40\u0E27\u0E25\u0E32\u0E17\u0E33\u0E07\u0E32\u0E19\u0E41\u0E19\u0E48\u0E19\u0E2D\u0E19 \u0E25\u0E39\u0E01\u0E44\u0E21\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E17\u0E19\u0E17\u0E33\u0E41\u0E1A\u0E1A\u0E19\u0E35\u0E49\u0E15\u0E48\u0E2D\u0E44\u0E1B\u0E41\u0E25\u0E49\u0E27"
+  - key: database/fatherOfferLines/3/text
+    english: I... I don't have anything left to apply to.
+    thai: "\u0E2B\u0E19\u0E39... \u0E44\u0E21\u0E48\u0E40\u0E2B\u0E25\u0E37\u0E2D\u0E17\u0E35\u0E48\u0E43\u0E2B\u0E49\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E41\u0E25\u0E49\u0E27\u0E04\u0E48\u0E30/\u0E04\u0E23\u0E31\u0E1A"
+  - key: database/fatherOfferLines/4/text
+    english: Then take it. What do you say?
+    thai: "\u0E07\u0E31\u0E49\u0E19\u0E01\u0E47\u0E23\u0E31\u0E1A\u0E07\u0E32\u0E19\u0E19\u0E35\u0E49\u0E40\u0E16\u0E2D\u0E30 \u0E27\u0E48\u0E32\u0E44\u0E07\u0E25\u0E39\u0E01?"
+  - key: category/education/displayName
+    english: Education / University
+    thai: 
+  - key: category/education/emptyMessage
+    english: No universities left to list.
+    thai: 
+  - key: category/dream/displayName
+    english: Dream
+    thai: 
+  - key: category/dream/emptyMessage
+    english: There are no dreams left to write down.
+    thai: 
+  - key: category/passion/displayName
+    english: Passion
+    thai: 
+  - key: category/passion/emptyMessage
+    english: I can't think of anything I still love.
+    thai: 
+  - key: choice/dream_game_dev/displayText
+    english: Game Developer
+    thai: 
+  - key: choice/dream_game_dev/description
+    english: Build worlds people can play
+    thai: 
+  - key: choice/dream_game_dev/playerReaction/0/text
+    english: I've wanted this since I was a kid.
+    thai: 
+  - key: choice/dream_game_dev/playerReaction/1/text
+    english: I've wanted this since I was a kid.
+    thai: 
+  - key: choice/dream_game_dev/playerReaction/2/text
+    english: I've wanted this since I was a kid.
+    thai: 
+  - key: choice/dream_game_dev/hrReactions/0/text
+    english: So you want to make games for a living?
+    thai: 
+  - key: choice/dream_artist/displayText
+    english: Artist
+    thai: 
+  - key: choice/dream_artist/description
+    english: Make things people feel
+    thai: 
+  - key: choice/dream_artist/playerReaction/0/text
+    english: Drawing is the only time I stop thinking.
+    thai: 
+  - key: choice/dream_artist/hrReactions/0/text
+    english: Artist. And you're applying here because...?
+    thai: 
+  - key: choice/dream_programmer/displayText
+    english: Programmer
+    thai: 
+  - key: choice/dream_programmer/description
+    english: Solve problems with code
+    thai: 
+  - key: choice/dream_programmer/playerReaction/0/text
+    english: Practical. Safe. Maybe too safe.
+    thai: 
+  - key: choice/dream_programmer/hrReactions/0/text
+    english: A programmer. That's a good answer. A common one.
+    thai: 
+  - key: choice/dream_writer/displayText
+    english: Writer
+    thai: 
+  - key: choice/dream_writer/description
+    english: Tell stories
+    thai: 
+  - key: choice/dream_writer/playerReaction/0/text
+    english: Nobody pays you to write, they say.
+    thai: 
+  - key: choice/dream_writer/hrReactions/0/text
+    english: A writer? Do you have anything published?
+    thai: 
+  - key: choice/dearm_nerd/displayText
+    english: Nerd
+    thai: 
+  - key: choice/dearm_nerd/description
+    english: Nigger
+    thai: 
+  - key: choice/dearm_nerd/playerReaction/0/text
+    english: I'm a nerd
+    thai: 
+  - key: choice/dearm_nerd/hrReactions/0/text
+    english: fucking nerd
+    thai: 
+  - key: choice/edu_big_city/displayText
+    english: Big City University
+    thai: 
+  - key: choice/edu_big_city/description
+    english: B.Sc. Computer Science
+    thai: 
+  - key: choice/edu_big_city/playerReaction/0/text
+    english: The name looks good on paper. I hope it's enough.
+    thai: 
+  - key: choice/edu_big_city/hrReactions/0/text
+    english: Big City University. Everyone has that on their resume.
+    thai: 
+  - key: choice/edu_small_town/displayText
+    english: Small Town University
+    thai: 
+  - key: choice/edu_small_town/description
+    english: B.A. Liberal Arts
+    thai: 
+  - key: choice/edu_small_town/playerReaction/0/text
+    english: It's not famous, but I worked hard there.
+    thai: 
+  - key: choice/edu_small_town/hrReactions/0/text
+    english: I see you graduated from Small Town University.
+    thai: 
+  - key: choice/edu_art_college/displayText
+    english: Riverside Art College
+    thai: 
+  - key: choice/edu_art_college/description
+    english: B.F.A. Digital Media
+    thai: 
+  - key: choice/edu_art_college/playerReaction/0/text
+    english: I learned more there than anywhere else.
+    thai: 
+  - key: choice/edu_art_college/hrReactions/0/text
+    english: An art college... that's an unusual path for this position.
+    thai: 
+  - key: choice/edu_online/displayText
+    english: Online Degree Program
+    thai: 
+  - key: choice/edu_online/description
+    english: Self-paced, remote
+    thai: 
+  - key: choice/edu_online/playerReaction/0/text
+    english: Studied at night. It counts, right?
+    thai: 
+  - key: choice/edu_online/hrReactions/0/text
+    english: An online degree. Hm.
+    thai: 
+  - key: choice/passion_game_design/displayText
+    english: Game Design
+    thai: 
+  - key: choice/passion_game_design/description
+    english: Systems, rules, play
+    thai: 
+  - key: choice/passion_game_design/playerReaction/0/text
+    english: I could talk about game design for hours.
+    thai: 
+  - key: choice/passion_game_design/hrReactions/0/text
+    english: Game design. That's a hobby, isn't it?
+    thai: 
+  - key: choice/passion_technology/displayText
+    english: Technology
+    thai: 
+  - key: choice/passion_technology/description
+    english: New tools, new ideas
+    thai: 
+  - key: choice/passion_technology/playerReaction/0/text
+    english: I like knowing how things work.
+    thai: 
+  - key: choice/passion_technology/hrReactions/0/text
+    english: Technology. Very broad.
+    thai: 
+  - key: choice/passion_music/displayText
+    english: Music
+    thai: 
+  - key: choice/passion_music/description
+    english: Playing and composing
+    thai: 
+  - key: choice/passion_music/playerReaction/0/text
+    english: It's what I do when I can't sleep.
+    thai: 
+  - key: choice/passion_music/hrReactions/0/text
+    english: Music. Do you play professionally?
+    thai: 
+  - key: choice/passion_storytelling/displayText
+    english: Storytelling
+    thai: 
+  - key: choice/passion_storytelling/description
+    english: Characters and worlds
+    thai: 
+  - key: choice/passion_storytelling/playerReaction/0/text
+    english: Everyone has a story. I just like telling them.
+    thai: 
+  - key: choice/passion_storytelling/hrReactions/0/text
+    english: Storytelling... I'm not sure how that applies here.
+    thai: 
+  - key: company/company_pixel_pioneers/companyName
+    english: Pixel Pioneers
+    thai: Pixel Pioneers
+  - key: company/company_pixel_pioneers/jobTitle
+    english: Junior Game Designer
+    thai: "\u0E19\u0E31\u0E01\u0E2D\u0E2D\u0E01\u0E41\u0E1A\u0E1A\u0E40\u0E01\u0E21\u0E08\u0E39\u0E40\u0E19\u0E35\u0E22\u0E23\u0E4C"
+  - key: company/company_pixel_pioneers/salary
+    english: $2,400 / month
+    thai: "$2,400 / \u0E40\u0E14\u0E37\u0E2D\u0E19"
+  - key: company/company_pixel_pioneers/industry
+    english: Game Studio
+    thai: "\u0E2A\u0E15\u0E39\u0E14\u0E34\u0E42\u0E2D\u0E40\u0E01\u0E21"
+  - key: company/company_pixel_pioneers/description
+    english: A small studio with big plans and no budget.
+    thai: "\u0E2A\u0E15\u0E39\u0E14\u0E34\u0E42\u0E2D\u0E40\u0E25\u0E47\u0E01 \u0E46 \u0E17\u0E35\u0E48\u0E21\u0E35\u0E41\u0E1C\u0E19\u0E43\u0E2B\u0E0D\u0E48\u0E41\u0E15\u0E48\u0E44\u0E21\u0E48\u0E21\u0E35\u0E07\u0E1A"
+  - key: company/company_pixel_pioneers/playerReaction/0/text
+    english: A game studio... this could actually be it.
+    thai: "\u0E2A\u0E15\u0E39\u0E14\u0E34\u0E42\u0E2D\u0E40\u0E01\u0E21... \u0E19\u0E35\u0E48\u0E2D\u0E32\u0E08\u0E40\u0E1B\u0E47\u0E19\u0E17\u0E35\u0E48\u0E19\u0E35\u0E48\u0E08\u0E23\u0E34\u0E07 \u0E46 \u0E01\u0E47\u0E44\u0E14\u0E49"
+  - key: company/company_pixel_pioneers/hrIntro/0/text
+    english: Welcome to Pixel Pioneers. Please sit.
+    thai: "\u0E22\u0E34\u0E19\u0E14\u0E35\u0E15\u0E49\u0E2D\u0E19\u0E23\u0E31\u0E1A\u0E2A\u0E39\u0E48 Pixel Pioneers \u0E40\u0E0A\u0E34\u0E0D\u0E19\u0E31\u0E48\u0E07\u0E04\u0E48\u0E30/\u0E04\u0E23\u0E31\u0E1A"
+  - key: company/company_brightline/companyName
+    english: Brightline Corp
+    thai: Brightline Corp
+  - key: company/company_brightline/jobTitle
+    english: Assistant Account Executive
+    thai: "\u0E1C\u0E39\u0E49\u0E0A\u0E48\u0E27\u0E22\u0E1C\u0E39\u0E49\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23\u0E1D\u0E48\u0E32\u0E22\u0E25\u0E39\u0E01\u0E04\u0E49\u0E32"
+  - key: company/company_brightline/salary
+    english: $3,100 / month
+    thai: "$3,100 / \u0E40\u0E14\u0E37\u0E2D\u0E19"
+  - key: company/company_brightline/industry
+    english: Marketing
+    thai: "\u0E01\u0E32\u0E23\u0E15\u0E25\u0E32\u0E14"
+  - key: company/company_brightline/description
+    english: Fast-paced. Lots of meetings.
+    thai: "\u0E08\u0E31\u0E07\u0E2B\u0E27\u0E30\u0E40\u0E23\u0E47\u0E27 \u0E1B\u0E23\u0E30\u0E0A\u0E38\u0E21\u0E40\u0E22\u0E2D\u0E30"
+  - key: company/company_brightline/playerReaction/0/text
+    english: Marketing. I don't know anything about marketing.
+    thai: "\u0E01\u0E32\u0E23\u0E15\u0E25\u0E32\u0E14\u0E40\u0E2B\u0E23\u0E2D... \u0E40\u0E23\u0E32\u0E44\u0E21\u0E48\u0E23\u0E39\u0E49\u0E40\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E15\u0E25\u0E32\u0E14\u0E40\u0E25\u0E22"
+  - key: company/company_brightline/hrIntro/0/text
+    english: Thank you for coming to Brightline. Let's begin.
+    thai: "\u0E02\u0E2D\u0E1A\u0E04\u0E38\u0E13\u0E17\u0E35\u0E48\u0E21\u0E32\u0E17\u0E35\u0E48 Brightline \u0E40\u0E23\u0E34\u0E48\u0E21\u0E01\u0E31\u0E19\u0E40\u0E25\u0E22\u0E19\u0E30"
+  - key: company/company_gray_tower/companyName
+    english: Gray Tower Bank
+    thai: Gray Tower Bank
+  - key: company/company_gray_tower/jobTitle
+    english: Data Entry Clerk
+    thai: "\u0E1E\u0E19\u0E31\u0E01\u0E07\u0E32\u0E19\u0E04\u0E35\u0E22\u0E4C\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25"
+  - key: company/company_gray_tower/salary
+    english: $2,800 / month
+    thai: "$2,800 / \u0E40\u0E14\u0E37\u0E2D\u0E19"
+  - key: company/company_gray_tower/industry
+    english: Finance
+    thai: "\u0E01\u0E32\u0E23\u0E40\u0E07\u0E34\u0E19"
+  - key: company/company_gray_tower/description
+    english: Stable hours. Stable everything.
+    thai: "\u0E40\u0E27\u0E25\u0E32\u0E07\u0E32\u0E19\u0E21\u0E31\u0E48\u0E19\u0E04\u0E07 \u0E17\u0E38\u0E01\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E21\u0E31\u0E48\u0E19\u0E04\u0E07"
+  - key: company/company_gray_tower/playerReaction/0/text
+    english: A bank. The building looks like it never sleeps.
+    thai: "\u0E18\u0E19\u0E32\u0E04\u0E32\u0E23... \u0E15\u0E36\u0E01\u0E19\u0E35\u0E49\u0E14\u0E39\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E44\u0E21\u0E48\u0E40\u0E04\u0E22\u0E2B\u0E25\u0E31\u0E1A\u0E40\u0E25\u0E22"
+  - key: company/company_gray_tower/hrIntro/0/text
+    english: Gray Tower Bank. You're late by two minutes.
+    thai: "Gray Tower Bank \u0E04\u0E38\u0E13\u0E21\u0E32\u0E2A\u0E32\u0E22\u0E44\u0E1B\u0E2A\u0E2D\u0E07\u0E19\u0E32\u0E17\u0E35\u0E19\u0E30"
+  - key: company/company_nova_soft/companyName
+    english: Nova Soft
+    thai: Nova Soft
+  - key: company/company_nova_soft/jobTitle
+    english: QA Tester
+    thai: QA Tester
+  - key: company/company_nova_soft/salary
+    english: $2,600 / month
+    thai: "$2,600 / \u0E40\u0E14\u0E37\u0E2D\u0E19"
+  - key: company/company_nova_soft/industry
+    english: Software
+    thai: "\u0E0B\u0E2D\u0E1F\u0E15\u0E4C\u0E41\u0E27\u0E23\u0E4C"
+  - key: company/company_nova_soft/description
+    english: Find bugs before the customers do.
+    thai: "\u0E2B\u0E32\u0E1A\u0E31\u0E4A\u0E01\u0E43\u0E2B\u0E49\u0E40\u0E08\u0E2D\u0E01\u0E48\u0E2D\u0E19\u0E25\u0E39\u0E01\u0E04\u0E49\u0E32"
+  - key: company/company_nova_soft/playerReaction/0/text
+    english: Testing games is basically playing them, right?
+    thai: "\u0E40\u0E17\u0E2A\u0E15\u0E4C\u0E40\u0E01\u0E21\u0E01\u0E47\u0E04\u0E37\u0E2D\u0E40\u0E25\u0E48\u0E19\u0E40\u0E01\u0E21\u0E43\u0E0A\u0E48\u0E44\u0E2B\u0E21\u0E19\u0E30?"
+  - key: company/company_nova_soft/hrIntro/0/text
+    english: Nova Soft. Let's get this over with.
+    thai: "Nova Soft \u0E17\u0E33\u0E43\u0E2B\u0E49\u0E40\u0E2A\u0E23\u0E47\u0E08 \u0E46 \u0E44\u0E1B\u0E40\u0E16\u0E2D\u0E30"
+  - key: question/q_cat_dream_1/questionText
+    english: Where do you see yourself in five years?
+    thai: 
+  - key: question/q_cat_dream_1/answers/a1/text
+    english: Doing what I dreamed of.
+    thai: 
+  - key: question/q_cat_dream_1/answers/a1/playerReaction/0/text
+    english: If only it were that simple.
+    thai: 
+  - key: question/q_cat_dream_1/answers/a1/hrResponse/0/text
+    english: Dreams are not a plan.
+    thai: 
+  - key: question/q_cat_dream_1/answers/a2/text
+    english: In a position of responsibility.
+    thai: 
+  - key: question/q_cat_dream_1/answers/a2/playerReaction/0/text
+    english: I have no idea.
+    thai: 
+  - key: question/q_cat_dream_1/answers/a2/hrResponse/0/text
+    english: Ambitious. Good.
+    thai: 
+  - key: question/q_cat_dream_1/answers/a3/text
+    english: Somewhere stable.
+    thai: 
+  - key: question/q_cat_dream_1/answers/a3/playerReaction/0/text
+    english: Somewhere. Anywhere.
+    thai: 
+  - key: question/q_cat_dream_1/answers/a3/hrResponse/0/text
+    english: Stable. Sure.
+    thai: 
+  - key: question/q_cat_dream_2/questionText
+    english: Would you give up your dream for this job?
+    thai: 
+  - key: question/q_cat_dream_2/answers/a1/text
+    english: Yes, if I had to.
+    thai: 
+  - key: question/q_cat_dream_2/answers/a1/playerReaction/0/text
+    english: Did I just say that?
+    thai: 
+  - key: question/q_cat_dream_2/answers/a1/hrResponse/0/text
+    english: A realistic answer.
+    thai: 
+  - key: question/q_cat_dream_2/answers/a2/text
+    english: No.
+    thai: 
+  - key: question/q_cat_dream_2/answers/a2/playerReaction/0/text
+    english: It's the only thing I have.
+    thai: 
+  - key: question/q_cat_dream_2/answers/a2/hrResponse/0/text
+    english: Then why are you here?
+    thai: 
+  - key: question/q_cat_dream_2/answers/a3/text
+    english: I'd find a way to do both.
+    thai: 
+  - key: question/q_cat_dream_2/answers/a3/playerReaction/0/text
+    english: Both is exhausting.
+    thai: 
+  - key: question/q_cat_dream_2/answers/a3/hrResponse/0/text
+    english: Everyone says that.
+    thai: 
+  - key: question/q_cat_education_1/questionText
+    english: Tell me about your time at university.
+    thai: 
+  - key: question/q_cat_education_1/answers/a1/text
+    english: I mostly studied alone.
+    thai: 
+  - key: question/q_cat_education_1/answers/a1/playerReaction/0/text
+    english: It was a lonely four years.
+    thai: 
+  - key: question/q_cat_education_1/answers/a1/hrResponse/0/text
+    english: Self-motivated, then.
+    thai: 
+  - key: question/q_cat_education_1/answers/a2/text
+    english: I joined every club I could.
+    thai: 
+  - key: question/q_cat_education_1/answers/a2/playerReaction/0/text
+    english: And finished none of them.
+    thai: 
+  - key: question/q_cat_education_1/answers/a2/hrResponse/0/text
+    english: Involved. Good.
+    thai: 
+  - key: question/q_cat_education_1/answers/a3/text
+    english: I'd rather talk about the future.
+    thai: 
+  - key: question/q_cat_education_1/answers/a3/playerReaction/0/text
+    english: Please change the subject.
+    thai: 
+  - key: question/q_cat_education_1/answers/a3/hrResponse/0/text
+    english: Avoiding the question.
+    thai: 
+  - key: question/q_cat_education_2/questionText
+    english: What was your biggest academic failure?
+    thai: 
+  - key: question/q_cat_education_2/answers/a1/text
+    english: A group project that fell apart.
+    thai: 
+  - key: question/q_cat_education_2/answers/a1/playerReaction/0/text
+    english: I carried that team. For nothing.
+    thai: 
+  - key: question/q_cat_education_2/answers/a1/hrResponse/0/text
+    english: Teamwork matters here.
+    thai: 
+  - key: question/q_cat_education_2/answers/a2/text
+    english: I haven't failed.
+    thai: 
+  - key: question/q_cat_education_2/answers/a2/playerReaction/0/text
+    english: A lie. A confident one.
+    thai: 
+  - key: question/q_cat_education_2/answers/a2/hrResponse/0/text
+    english: Everyone has failed.
+    thai: 
+  - key: question/q_cat_education_2/answers/a3/text
+    english: I failed an exam and learned from it.
+    thai: 
+  - key: question/q_cat_education_2/answers/a3/playerReaction/0/text
+    english: A rehearsed answer.
+    thai: 
+  - key: question/q_cat_education_2/answers/a3/hrResponse/0/text
+    english: A standard answer.
+    thai: 
+  - key: question/q_cat_passion_1/questionText
+    english: What do you do when you're not working?
+    thai: 
+  - key: question/q_cat_passion_1/answers/a1/text
+    english: I work on my passion projects.
+    thai: 
+  - key: question/q_cat_passion_1/answers/a1/playerReaction/0/text
+    english: That's all I do.
+    thai: 
+  - key: question/q_cat_passion_1/answers/a1/hrResponse/0/text
+    english: No work-life balance, then.
+    thai: 
+  - key: question/q_cat_passion_1/answers/a2/text
+    english: I rest.
+    thai: 
+  - key: question/q_cat_passion_1/answers/a2/playerReaction/0/text
+    english: I stare at the ceiling.
+    thai: 
+  - key: question/q_cat_passion_1/answers/a2/hrResponse/0/text
+    english: Rest is important.
+    thai: 
+  - key: question/q_cat_passion_1/answers/a3/text
+    english: I look for jobs.
+    thai: 
+  - key: question/q_cat_passion_1/answers/a3/playerReaction/0/text
+    english: True. Painfully true.
+    thai: 
+  - key: question/q_cat_passion_1/answers/a3/hrResponse/0/text
+    english: ...I see.
+    thai: 
+  - key: question/q_cat_passion_2/questionText
+    english: Would your passion ever get in the way of your work?
+    thai: 
+  - key: question/q_cat_passion_2/answers/a1/text
+    english: Never.
+    thai: 
+  - key: question/q_cat_passion_2/answers/a1/playerReaction/0/text
+    english: Liar.
+    thai: 
+  - key: question/q_cat_passion_2/answers/a1/hrResponse/0/text
+    english: That's what they all say.
+    thai: 
+  - key: question/q_cat_passion_2/answers/a2/text
+    english: It would make my work better.
+    thai: 
+  - key: question/q_cat_passion_2/answers/a2/playerReaction/0/text
+    english: Please let that be true.
+    thai: 
+  - key: question/q_cat_passion_2/answers/a2/hrResponse/0/text
+    english: We prefer focus.
+    thai: 
+  - key: question/q_cat_passion_2/answers/a3/text
+    english: I can keep them separate.
+    thai: 
+  - key: question/q_cat_passion_2/answers/a3/playerReaction/0/text
+    english: I've been separating them for years.
+    thai: 
+  - key: question/q_cat_passion_2/answers/a3/hrResponse/0/text
+    english: Good.
+    thai: 
+  - key: question/q_dream_artist/questionText
+    english: Artists rarely last in this industry. Why should we invest in you?
+    thai: 
+  - key: question/q_dream_artist/answers/a1/text
+    english: I never stop practicing.
+    thai: 
+  - key: question/q_dream_artist/answers/a1/playerReaction/0/text
+    english: I practice every night.
+    thai: 
+  - key: question/q_dream_artist/answers/a1/hrResponse/0/text
+    english: Practice isn't a deliverable.
+    thai: 
+  - key: question/q_dream_artist/answers/a2/text
+    english: I can learn other skills.
+    thai: 
+  - key: question/q_dream_artist/answers/a2/playerReaction/0/text
+    english: Another thing to give up.
+    thai: 
+  - key: question/q_dream_artist/answers/a2/hrResponse/0/text
+    english: Flexible. Good.
+    thai: 
+  - key: question/q_dream_artist/answers/a3/text
+    english: Maybe you shouldn't.
+    thai: 
+  - key: question/q_dream_artist/answers/a3/playerReaction/0/text
+    english: I can't believe I said that.
+    thai: 
+  - key: question/q_dream_artist/answers/a3/hrResponse/0/text
+    english: ...
+    thai: 
+  - key: question/q_dream_game_dev/questionText
+    english: Why do you want to become a game developer?
+    thai: 
+  - key: question/q_dream_game_dev/answers/a1/text
+    english: I love creating experiences.
+    thai: 
+  - key: question/q_dream_game_dev/answers/a1/playerReaction/0/text
+    english: Games have always meant something to me.
+    thai: 
+  - key: question/q_dream_game_dev/answers/a1/hrResponse/0/text
+    english: Passion alone doesn't make you qualified.
+    thai: 
+  - key: question/q_dream_game_dev/answers/a2/text
+    english: I want to make people feel something.
+    thai: 
+  - key: question/q_dream_game_dev/answers/a2/playerReaction/0/text
+    english: That sounded better in my head.
+    thai: 
+  - key: question/q_dream_game_dev/answers/a2/hrResponse/0/text
+    english: This is a business, not an art project.
+    thai: 
+  - key: question/q_dream_game_dev/answers/a3/text
+    english: It's stable enough these days.
+    thai: 
+  - key: question/q_dream_game_dev/answers/a3/playerReaction/0/text
+    english: That's not even true.
+    thai: 
+  - key: question/q_dream_game_dev/answers/a3/hrResponse/0/text
+    english: That is... not true at all.
+    thai: 
+  - key: question/q_edu_big_city/questionText
+    english: Many applicants come from Big City University. What makes you different?
+    thai: 
+  - key: question/q_edu_big_city/answers/a1/text
+    english: I worked on projects outside class.
+    thai: 
+  - key: question/q_edu_big_city/answers/a1/playerReaction/0/text
+    english: I hope that counts for something.
+    thai: 
+  - key: question/q_edu_big_city/answers/a1/hrResponse/0/text
+    english: Projects. Everyone says that.
+    thai: 
+  - key: question/q_edu_big_city/answers/a2/text
+    english: Honestly, nothing yet.
+    thai: 
+  - key: question/q_edu_big_city/answers/a2/playerReaction/0/text
+    english: That came out wrong.
+    thai: 
+  - key: question/q_edu_big_city/answers/a2/hrResponse/0/text
+    english: At least you're honest.
+    thai: 
+  - key: question/q_edu_big_city/answers/a3/text
+    english: I learn fast.
+    thai: 
+  - key: question/q_edu_big_city/answers/a3/playerReaction/0/text
+    english: Please believe me.
+    thai: 
+  - key: question/q_edu_big_city/answers/a3/hrResponse/0/text
+    english: We'll see.
+    thai: 
+  - key: question/q_edu_small_town/questionText
+    english: Why did you choose Small Town University?
+    thai: 
+  - key: question/q_edu_small_town/answers/a1/text
+    english: It was close to home.
+    thai: 
+  - key: question/q_edu_small_town/answers/a1/playerReaction/0/text
+    english: Not the most inspiring answer.
+    thai: 
+  - key: question/q_edu_small_town/answers/a1/hrResponse/0/text
+    english: Convenient. I suppose.
+    thai: 
+  - key: question/q_edu_small_town/answers/a2/text
+    english: It taught me to work with what I have.
+    thai: 
+  - key: question/q_edu_small_town/answers/a2/playerReaction/0/text
+    english: I almost believe that myself.
+    thai: 
+  - key: question/q_edu_small_town/answers/a2/hrResponse/0/text
+    english: That's a nice way to say it.
+    thai: 
+  - key: question/q_edu_small_town/answers/a3/text
+    english: I couldn't afford anywhere else.
+    thai: 
+  - key: question/q_edu_small_town/answers/a3/playerReaction/0/text
+    english: Why did I say that out loud?
+    thai: 
+  - key: question/q_edu_small_town/answers/a3/hrResponse/0/text
+    english: Oh. I see.
+    thai: 
+  - key: question/q_gen_weakness/questionText
+    english: What is your greatest weakness?
+    thai: 
+  - key: question/q_gen_weakness/answers/a1/text
+    english: I care too much.
+    thai: 
+  - key: question/q_gen_weakness/answers/a1/playerReaction/0/text
+    english: Everyone says that.
+    thai: 
+  - key: question/q_gen_weakness/answers/a1/hrResponse/0/text
+    english: A cliche.
+    thai: 
+  - key: question/q_gen_weakness/answers/a2/text
+    english: I overthink everything.
+    thai: 
+  - key: question/q_gen_weakness/answers/a2/playerReaction/0/text
+    english: Like this answer.
+    thai: 
+  - key: question/q_gen_weakness/answers/a2/hrResponse/0/text
+    english: At least that's real.
+    thai: 
+  - key: question/q_gen_weakness/answers/a3/text
+    english: I don't know when to stop.
+    thai: 
+  - key: question/q_gen_weakness/answers/a3/playerReaction/0/text
+    english: I should stop.
+    thai: 
+  - key: question/q_gen_weakness/answers/a3/hrResponse/0/text
+    english: Noted.
+    thai: 
+  - key: question/q_gen_why/questionText
+    english: Why should we hire you?
+    thai: 
+  - key: question/q_gen_why/answers/a1/text
+    english: Because I'm motivated.
+    thai: 
+  - key: question/q_gen_why/answers/a1/playerReaction/0/text
+    english: Because I need to eat.
+    thai: 
+  - key: question/q_gen_why/answers/a1/hrResponse/0/text
+    english: So are the others.
+    thai: 
+  - key: question/q_gen_why/answers/a2/text
+    english: I'm not sure you should.
+    thai: 
+  - key: question/q_gen_why/answers/a2/playerReaction/0/text
+    english: Why did I say that?
+    thai: 
+  - key: question/q_gen_why/answers/a2/hrResponse/0/text
+    english: Interesting.
+    thai: 
+  - key: question/q_gen_why/answers/a3/text
+    english: Because I won't give up.
+    thai: 
+  - key: question/q_gen_why/answers/a3/playerReaction/0/text
+    english: I won't. I can't.
+    thai: 
+  - key: question/q_gen_why/answers/a3/hrResponse/0/text
+    english: We'll be in touch.
+    thai: 
+  - key: question/q_gen_yourself/questionText
+    english: Tell me about yourself.
+    thai: 
+  - key: question/q_gen_yourself/answers/a1/text
+    english: I'm a recent graduate who works hard.
+    thai: 
+  - key: question/q_gen_yourself/answers/a1/playerReaction/0/text
+    english: Same words as yesterday.
+    thai: 
+  - key: question/q_gen_yourself/answers/a1/hrResponse/0/text
+    english: Hm.
+    thai: 
+  - key: question/q_gen_yourself/answers/a2/text
+    english: I'm still figuring that out.
+    thai: 
+  - key: question/q_gen_yourself/answers/a2/playerReaction/0/text
+    english: Too honest again.
+    thai: 
+  - key: question/q_gen_yourself/answers/a2/hrResponse/0/text
+    english: Not exactly confidence-inspiring.
+    thai: 
+  - key: question/q_gen_yourself/answers/a3/text
+    english: I'm persistent.
+    thai: 
+  - key: question/q_gen_yourself/answers/a3/playerReaction/0/text
+    english: That's the word. Persistent.
+    thai: 
+  - key: question/q_gen_yourself/answers/a3/hrResponse/0/text
+    english: Persistence is good.
+    thai: 
+  - key: question/q_passion_game_design/questionText
+    english: Game design is a hobby for most people. Why is it more for you?
+    thai: 
+  - key: question/q_passion_game_design/answers/a1/text
+    english: I've finished three prototypes.
+    thai: 
+  - key: question/q_passion_game_design/answers/a1/playerReaction/0/text
+    english: None of them are good. But they exist.
+    thai: 
+  - key: question/q_passion_game_design/answers/a1/hrResponse/0/text
+    english: Prototypes. On your own time.
+    thai: 
+  - key: question/q_passion_game_design/answers/a2/text
+    english: It's how I understand people.
+    thai: 
+  - key: question/q_passion_game_design/answers/a2/playerReaction/0/text
+    english: That's the truest thing I've said today.
+    thai: 
+  - key: question/q_passion_game_design/answers/a2/hrResponse/0/text
+    english: Interesting. Unusual.
+    thai: 
+  - key: question/q_passion_game_design/answers/a3/text
+    english: I don't know.
+    thai: 
+  - key: question/q_passion_game_design/answers/a3/playerReaction/0/text
+    english: I really don't.
+    thai: 
+  - key: question/q_passion_game_design/answers/a3/hrResponse/0/text
+    english: Then why list it?
+    thai: 
+  - key: question/q_passion_music/questionText
+    english: Music is on your resume. How does it help you here?
+    thai: 
+  - key: question/q_passion_music/answers/a1/text
+    english: It taught me discipline.
+    thai: 
+  - key: question/q_passion_music/answers/a1/playerReaction/0/text
+    english: Hours of scales, nobody listening.
+    thai: 
+  - key: question/q_passion_music/answers/a1/hrResponse/0/text
+    english: Discipline. We value that.
+    thai: 
+  - key: question/q_passion_music/answers/a2/text
+    english: It doesn't, really.
+    thai: 
+  - key: question/q_passion_music/answers/a2/playerReaction/0/text
+    english: I should have lied.
+    thai: 
+  - key: question/q_passion_music/answers/a2/hrResponse/0/text
+    english: Then why is it here?
+    thai: 
+  - key: question/q_passion_music/answers/a3/text
+    english: I can keep a team in rhythm.
+    thai: 
+  - key: question/q_passion_music/answers/a3/playerReaction/0/text
+    english: That's a stretch.
+    thai: 
+  - key: question/q_passion_music/answers/a3/hrResponse/0/text
+    english: That is a stretch.
+    thai: 
+  - key: question/Q_Passion_Nerd/questionText
+    english: You are just fucking nerd
+    thai: 
+  - key: question/Q_Passion_Nerd/answers/a1/text
+    english: No, i'm not
+    thai: 
+  - key: question/Q_Passion_Nerd/answers/a1/playerReaction/0/text
+    english: Fuck
+    thai: 
+  - key: question/Q_Passion_Nerd/answers/a1/hrResponse/0/text
+    english: HaHAHAHA
+    thai: 
+  - key: question/q_gregor_dream/questionText
+    english: Dreams don't pay invoices. Convince me.
+    thai: 
+  - key: question/q_gregor_dream/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_gregor_dream/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_gregor_dream/answers/a1/hrResponse/0/lines/0
+    english: Noted.
+    thai: 
+  - key: question/q_gregor_dream/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_dream/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_gregor_dream/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_gregor_dream/answers/a2/hrResponse/0/lines/0
+    english: Acceptable. Concise.
+    thai: 
+  - key: question/q_gregor_dream/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_dream/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_gregor_dream/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_gregor_dream/answers/a3/hrResponse/0/lines/0
+    english: That was a waste of my time.
+    thai: 
+  - key: question/q_gregor_dream/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/questionText
+    english: Games are a luxury market. Why should we care?
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a1/hrResponse/0/lines/0
+    english: Noted.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a2/hrResponse/0/lines/0
+    english: Acceptable. Concise.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a3/hrResponse/0/lines/0
+    english: That was a waste of my time.
+    thai: 
+  - key: question/q_gregor_dream_gamedev/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_edu/questionText
+    english: Walk me through your degree, quickly.
+    thai: 
+  - key: question/q_gregor_edu/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_gregor_edu/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_gregor_edu/answers/a1/hrResponse/0/lines/0
+    english: Noted.
+    thai: 
+  - key: question/q_gregor_edu/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_edu/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_gregor_edu/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_gregor_edu/answers/a2/hrResponse/0/lines/0
+    english: Acceptable. Concise.
+    thai: 
+  - key: question/q_gregor_edu/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_edu/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_gregor_edu/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_gregor_edu/answers/a3/hrResponse/0/lines/0
+    english: That was a waste of my time.
+    thai: 
+  - key: question/q_gregor_edu/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fallback/questionText
+    english: Give me one concrete result you produced.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a1/hrResponse/0/lines/0
+    english: Noted.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a2/hrResponse/0/lines/0
+    english: Acceptable. Concise.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a3/hrResponse/0/lines/0
+    english: That was a waste of my time.
+    thai: 
+  - key: question/q_gregor_fallback/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_1/questionText
+    english: Summarize your career in one sentence.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a1/hrResponse/0/lines/0
+    english: Noted.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a2/hrResponse/0/lines/0
+    english: Acceptable. Concise.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a3/hrResponse/0/lines/0
+    english: That was a waste of my time.
+    thai: 
+  - key: question/q_gregor_fixed_1/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_2/questionText
+    english: What is your biggest weakness?
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a1/hrResponse/0/lines/0
+    english: Noted.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a2/hrResponse/0/lines/0
+    english: Acceptable. Concise.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a3/hrResponse/0/lines/0
+    english: That was a waste of my time.
+    thai: 
+  - key: question/q_gregor_fixed_2/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_3/questionText
+    english: Where are you in five years?
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a1/hrResponse/0/lines/0
+    english: Noted.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a2/hrResponse/0/lines/0
+    english: Acceptable. Concise.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a3/hrResponse/0/lines/0
+    english: That was a waste of my time.
+    thai: 
+  - key: question/q_gregor_fixed_3/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_passion/questionText
+    english: A passion is not a qualification. Explain.
+    thai: 
+  - key: question/q_gregor_passion/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_gregor_passion/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_gregor_passion/answers/a1/hrResponse/0/lines/0
+    english: Noted.
+    thai: 
+  - key: question/q_gregor_passion/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_passion/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_gregor_passion/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_gregor_passion/answers/a2/hrResponse/0/lines/0
+    english: Acceptable. Concise.
+    thai: 
+  - key: question/q_gregor_passion/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_gregor_passion/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_gregor_passion/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_gregor_passion/answers/a3/hrResponse/0/lines/0
+    english: That was a waste of my time.
+    thai: 
+  - key: question/q_gregor_passion/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_dream/questionText
+    english: This dream does not match our culture.
+    thai: 
+  - key: question/q_helena_dream/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_helena_dream/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_helena_dream/answers/a1/hrResponse/0/lines/0
+    english: I see.
+    thai: 
+  - key: question/q_helena_dream/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_dream/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_helena_dream/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_helena_dream/answers/a2/hrResponse/0/lines/0
+    english: That is a reasonable position.
+    thai: 
+  - key: question/q_helena_dream/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_dream/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_helena_dream/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_helena_dream/answers/a3/hrResponse/0/lines/0
+    english: That is not what we are looking for.
+    thai: 
+  - key: question/q_helena_dream/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_dream_gamedev/questionText
+    english: Games. In a bank. Help me understand.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a1/hrResponse/0/lines/0
+    english: I see.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a2/hrResponse/0/lines/0
+    english: That is a reasonable position.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a3/hrResponse/0/lines/0
+    english: That is not what we are looking for.
+    thai: 
+  - key: question/q_helena_dream_gamedev/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_edu/questionText
+    english: Your academic history is unconventional.
+    thai: 
+  - key: question/q_helena_edu/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_helena_edu/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_helena_edu/answers/a1/hrResponse/0/lines/0
+    english: I see.
+    thai: 
+  - key: question/q_helena_edu/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_edu/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_helena_edu/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_helena_edu/answers/a2/hrResponse/0/lines/0
+    english: That is a reasonable position.
+    thai: 
+  - key: question/q_helena_edu/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_edu/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_helena_edu/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_helena_edu/answers/a3/hrResponse/0/lines/0
+    english: That is not what we are looking for.
+    thai: 
+  - key: question/q_helena_edu/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fallback/questionText
+    english: What do you think we do here?
+    thai: 
+  - key: question/q_helena_fallback/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_helena_fallback/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_helena_fallback/answers/a1/hrResponse/0/lines/0
+    english: I see.
+    thai: 
+  - key: question/q_helena_fallback/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fallback/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_helena_fallback/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_helena_fallback/answers/a2/hrResponse/0/lines/0
+    english: That is a reasonable position.
+    thai: 
+  - key: question/q_helena_fallback/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fallback/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_helena_fallback/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_helena_fallback/answers/a3/hrResponse/0/lines/0
+    english: That is not what we are looking for.
+    thai: 
+  - key: question/q_helena_fallback/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_1/questionText
+    english: Why a bank?
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a1/hrResponse/0/lines/0
+    english: I see.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a2/hrResponse/0/lines/0
+    english: That is a reasonable position.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a3/hrResponse/0/lines/0
+    english: That is not what we are looking for.
+    thai: 
+  - key: question/q_helena_fixed_1/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_2/questionText
+    english: How do you handle pressure?
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a1/hrResponse/0/lines/0
+    english: I see.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a2/hrResponse/0/lines/0
+    english: That is a reasonable position.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a3/hrResponse/0/lines/0
+    english: That is not what we are looking for.
+    thai: 
+  - key: question/q_helena_fixed_2/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_3/questionText
+    english: Describe a time you followed a rule you disagreed with.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a1/hrResponse/0/lines/0
+    english: I see.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a2/hrResponse/0/lines/0
+    english: That is a reasonable position.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a3/hrResponse/0/lines/0
+    english: That is not what we are looking for.
+    thai: 
+  - key: question/q_helena_fixed_3/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_passion/questionText
+    english: Is this passion compatible with a career in finance?
+    thai: 
+  - key: question/q_helena_passion/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_helena_passion/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_helena_passion/answers/a1/hrResponse/0/lines/0
+    english: I see.
+    thai: 
+  - key: question/q_helena_passion/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_passion/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_helena_passion/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_helena_passion/answers/a2/hrResponse/0/lines/0
+    english: That is a reasonable position.
+    thai: 
+  - key: question/q_helena_passion/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_helena_passion/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_helena_passion/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_helena_passion/answers/a3/hrResponse/0/lines/0
+    english: That is not what we are looking for.
+    thai: 
+  - key: question/q_helena_passion/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_dream/questionText
+    english: Is this dream a plan, or a wish?
+    thai: 
+  - key: question/q_iris_dream/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_iris_dream/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_iris_dream/answers/a1/hrResponse/0/lines/0
+    english: Hm. Fair enough.
+    thai: 
+  - key: question/q_iris_dream/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_dream/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_iris_dream/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_iris_dream/answers/a2/hrResponse/0/lines/0
+    english: That's the kind of answer we like to hear.
+    thai: 
+  - key: question/q_iris_dream/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_dream/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_iris_dream/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_iris_dream/answers/a3/hrResponse/0/lines/0
+    english: We can't work with that.
+    thai: 
+  - key: question/q_iris_dream/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_dream_gamedev/questionText
+    english: You want to make games. Show me you understand the cost.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a1/hrResponse/0/lines/0
+    english: Hm. Fair enough.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a2/hrResponse/0/lines/0
+    english: That's the kind of answer we like to hear.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a3/hrResponse/0/lines/0
+    english: We can't work with that.
+    thai: 
+  - key: question/q_iris_dream_gamedev/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_edu/questionText
+    english: Your education stands out. What did you actually build there?
+    thai: 
+  - key: question/q_iris_edu/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_iris_edu/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_iris_edu/answers/a1/hrResponse/0/lines/0
+    english: Hm. Fair enough.
+    thai: 
+  - key: question/q_iris_edu/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_edu/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_iris_edu/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_iris_edu/answers/a2/hrResponse/0/lines/0
+    english: That's the kind of answer we like to hear.
+    thai: 
+  - key: question/q_iris_edu/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_edu/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_iris_edu/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_iris_edu/answers/a3/hrResponse/0/lines/0
+    english: We can't work with that.
+    thai: 
+  - key: question/q_iris_edu/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fallback/questionText
+    english: Is there anything on your resume you want to explain?
+    thai: 
+  - key: question/q_iris_fallback/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_iris_fallback/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_iris_fallback/answers/a1/hrResponse/0/lines/0
+    english: Hm. Fair enough.
+    thai: 
+  - key: question/q_iris_fallback/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fallback/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_iris_fallback/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_iris_fallback/answers/a2/hrResponse/0/lines/0
+    english: That's the kind of answer we like to hear.
+    thai: 
+  - key: question/q_iris_fallback/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fallback/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_iris_fallback/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_iris_fallback/answers/a3/hrResponse/0/lines/0
+    english: We can't work with that.
+    thai: 
+  - key: question/q_iris_fallback/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_1/questionText
+    english: Tell me about yourself.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a1/hrResponse/0/lines/0
+    english: Hm. Fair enough.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a2/hrResponse/0/lines/0
+    english: That's the kind of answer we like to hear.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a3/hrResponse/0/lines/0
+    english: We can't work with that.
+    thai: 
+  - key: question/q_iris_fixed_1/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_2/questionText
+    english: Why Pixel Pioneers?
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a1/hrResponse/0/lines/0
+    english: Hm. Fair enough.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a2/hrResponse/0/lines/0
+    english: That's the kind of answer we like to hear.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a3/hrResponse/0/lines/0
+    english: We can't work with that.
+    thai: 
+  - key: question/q_iris_fixed_2/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_3/questionText
+    english: What can you ship in three months?
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a1/hrResponse/0/lines/0
+    english: Hm. Fair enough.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a2/hrResponse/0/lines/0
+    english: That's the kind of answer we like to hear.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a3/hrResponse/0/lines/0
+    english: We can't work with that.
+    thai: 
+  - key: question/q_iris_fixed_3/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_passion/questionText
+    english: Everybody has a passion. What have you finished?
+    thai: 
+  - key: question/q_iris_passion/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_iris_passion/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_iris_passion/answers/a1/hrResponse/0/lines/0
+    english: Hm. Fair enough.
+    thai: 
+  - key: question/q_iris_passion/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_passion/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_iris_passion/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_iris_passion/answers/a2/hrResponse/0/lines/0
+    english: That's the kind of answer we like to hear.
+    thai: 
+  - key: question/q_iris_passion/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_iris_passion/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_iris_passion/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_iris_passion/answers/a3/hrResponse/0/lines/0
+    english: We can't work with that.
+    thai: 
+  - key: question/q_iris_passion/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_dream/questionText
+    english: Love a big dream. How big are we talking?
+    thai: 
+  - key: question/q_noel_dream/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_noel_dream/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_noel_dream/answers/a1/hrResponse/0/lines/0
+    english: Yeah, okay.
+    thai: 
+  - key: question/q_noel_dream/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_dream/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_noel_dream/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_noel_dream/answers/a2/hrResponse/0/lines/0
+    english: Love that!
+    thai: 
+  - key: question/q_noel_dream/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_dream/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_noel_dream/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_noel_dream/answers/a3/hrResponse/0/lines/0
+    english: Hmm. That's not really landing.
+    thai: 
+  - key: question/q_noel_dream/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_dream_gamedev/questionText
+    english: Making games, huh? What's your favorite one?
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a1/hrResponse/0/lines/0
+    english: Yeah, okay.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a2/hrResponse/0/lines/0
+    english: Love that!
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a3/hrResponse/0/lines/0
+    english: Hmm. That's not really landing.
+    thai: 
+  - key: question/q_noel_dream_gamedev/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_edu/questionText
+    english: Tell me about school. Any good stories?
+    thai: 
+  - key: question/q_noel_edu/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_noel_edu/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_noel_edu/answers/a1/hrResponse/0/lines/0
+    english: Yeah, okay.
+    thai: 
+  - key: question/q_noel_edu/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_edu/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_noel_edu/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_noel_edu/answers/a2/hrResponse/0/lines/0
+    english: Love that!
+    thai: 
+  - key: question/q_noel_edu/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_edu/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_noel_edu/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_noel_edu/answers/a3/hrResponse/0/lines/0
+    english: Hmm. That's not really landing.
+    thai: 
+  - key: question/q_noel_edu/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fallback/questionText
+    english: Anything you want to add that isn't on the page?
+    thai: 
+  - key: question/q_noel_fallback/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_noel_fallback/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_noel_fallback/answers/a1/hrResponse/0/lines/0
+    english: Yeah, okay.
+    thai: 
+  - key: question/q_noel_fallback/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fallback/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_noel_fallback/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_noel_fallback/answers/a2/hrResponse/0/lines/0
+    english: Love that!
+    thai: 
+  - key: question/q_noel_fallback/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fallback/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_noel_fallback/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_noel_fallback/answers/a3/hrResponse/0/lines/0
+    english: Hmm. That's not really landing.
+    thai: 
+  - key: question/q_noel_fallback/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_1/questionText
+    english: So, who are you?
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a1/hrResponse/0/lines/0
+    english: Yeah, okay.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a2/hrResponse/0/lines/0
+    english: Love that!
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a3/hrResponse/0/lines/0
+    english: Hmm. That's not really landing.
+    thai: 
+  - key: question/q_noel_fixed_1/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_2/questionText
+    english: What do you do for fun?
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a1/hrResponse/0/lines/0
+    english: Yeah, okay.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a2/hrResponse/0/lines/0
+    english: Love that!
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a3/hrResponse/0/lines/0
+    english: Hmm. That's not really landing.
+    thai: 
+  - key: question/q_noel_fixed_2/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_3/questionText
+    english: What would your friends say about you?
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a1/hrResponse/0/lines/0
+    english: Yeah, okay.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a2/hrResponse/0/lines/0
+    english: Love that!
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a3/hrResponse/0/lines/0
+    english: Hmm. That's not really landing.
+    thai: 
+  - key: question/q_noel_fixed_3/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_passion/questionText
+    english: What's the thing you could talk about all night?
+    thai: 
+  - key: question/q_noel_passion/answers/a1/text
+    english: I'll be honest with you.
+    thai: 
+  - key: question/q_noel_passion/answers/a1/playerReaction/0/text
+    english: Honesty is all I have left.
+    thai: 
+  - key: question/q_noel_passion/answers/a1/hrResponse/0/lines/0
+    english: Yeah, okay.
+    thai: 
+  - key: question/q_noel_passion/answers/a1/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_passion/answers/a2/text
+    english: I've prepared for exactly this.
+    thai: 
+  - key: question/q_noel_passion/answers/a2/playerReaction/0/text
+    english: Rehearsed, but it should hold.
+    thai: 
+  - key: question/q_noel_passion/answers/a2/hrResponse/0/lines/0
+    english: Love that!
+    thai: 
+  - key: question/q_noel_passion/answers/a2/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: question/q_noel_passion/answers/a3/text
+    english: I'm not sure what to say.
+    thai: 
+  - key: question/q_noel_passion/answers/a3/playerReaction/0/text
+    english: My mind went blank.
+    thai: 
+  - key: question/q_noel_passion/answers/a3/hrResponse/0/lines/0
+    english: Hmm. That's not really landing.
+    thai: 
+  - key: question/q_noel_passion/answers/a3/hrResponse/0/lines/1
+    english: Let's move on.
+    thai: 
+  - key: event/event_father_message/caption
+    english: Day 2
+    thai: "\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48 2"
+  - key: event/event_father_message/lines/0/text
+    english: Another morning. Another message on my phone.
+    thai: "\u0E40\u0E0A\u0E49\u0E32\u0E2D\u0E35\u0E01\u0E27\u0E31\u0E19 \u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E2D\u0E35\u0E01\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21\u0E43\u0E19\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C"
+  - key: event/event_father_message/lines/1/text
+    english: '"How is the job search going? Call me when you can."'
+    thai: "\"\u0E2B\u0E32\u0E07\u0E32\u0E19\u0E40\u0E1B\u0E47\u0E19\u0E22\u0E31\u0E07\u0E44\u0E07\u0E1A\u0E49\u0E32\u0E07 \u0E27\u0E48\u0E32\u0E07\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E44\u0E2B\u0E23\u0E48\u0E42\u0E17\u0E23\u0E2B\u0E32\u0E1E\u0E48\u0E2D\u0E14\u0E49\u0E27\u0E22\u0E19\u0E30\""
+  - key: event/event_father_message/lines/2/text
+    english: I'll call him back later. Maybe.
+    thai: "\u0E40\u0E14\u0E35\u0E4B\u0E22\u0E27\u0E04\u0E48\u0E2D\u0E22\u0E42\u0E17\u0E23\u0E01\u0E25\u0E31\u0E1A... \u0E21\u0E31\u0E49\u0E07"
+  - key: event/event_resume_distorted/lines/0/text
+    english: The words on my resume... they look wrong.
+    thai: "\u0E15\u0E31\u0E27\u0E2D\u0E31\u0E01\u0E29\u0E23\u0E43\u0E19\u0E40\u0E23\u0E0B\u0E39\u0E40\u0E21\u0E48... \u0E14\u0E39\u0E41\u0E1B\u0E25\u0E01\u0E44\u0E1B"
+  - key: event/event_resume_distorted/lines/1/text
+    english: Did I write it like this? I can't remember.
+    thai: "\u0E40\u0E23\u0E32\u0E40\u0E02\u0E35\u0E22\u0E19\u0E44\u0E27\u0E49\u0E41\u0E1A\u0E1A\u0E19\u0E35\u0E49\u0E40\u0E2B\u0E23\u0E2D? \u0E08\u0E33\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E25\u0E22"
+  - key: event/event_hr_strange/lines/0/text
+    english: The room feels smaller than yesterday.
+    thai: "\u0E2B\u0E49\u0E2D\u0E07\u0E19\u0E35\u0E49\u0E14\u0E39\u0E40\u0E25\u0E47\u0E01\u0E25\u0E07\u0E01\u0E27\u0E48\u0E32\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E27\u0E32\u0E19"
+  - key: event/event_hr_strange/lines/1/text
+    english: Why does the fan sound so loud?
+    thai: "\u0E17\u0E33\u0E44\u0E21\u0E1E\u0E31\u0E14\u0E25\u0E21\u0E16\u0E36\u0E07\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E14\u0E31\u0E07\u0E02\u0E19\u0E32\u0E14\u0E19\u0E35\u0E49"
+  - key: ending/ending_job_is_a_job/title
+    english: A Job Is a Job
+    thai: "\u0E07\u0E32\u0E19\u0E01\u0E47\u0E04\u0E37\u0E2D\u0E07\u0E32\u0E19"
+  - key: ending/ending_job_is_a_job/optionLabel
+    english: Accept father's offer
+    thai: "\u0E23\u0E31\u0E1A\u0E02\u0E49\u0E2D\u0E40\u0E2A\u0E19\u0E2D\u0E02\u0E2D\u0E07\u0E1E\u0E48\u0E2D"
+  - key: ending/ending_job_is_a_job/optionDescription
+    english: Take the office job. No more rejections.
+    thai: "\u0E23\u0E31\u0E1A\u0E07\u0E32\u0E19\u0E2D\u0E2D\u0E1F\u0E1F\u0E34\u0E28 \u0E44\u0E21\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E16\u0E39\u0E01\u0E1B\u0E0F\u0E34\u0E40\u0E2A\u0E18\u0E2D\u0E35\u0E01\u0E15\u0E48\u0E2D\u0E44\u0E1B"
+  - key: ending/ending_job_is_a_job/lines/0/text
+    english: Monday. The office smells like old coffee.
+    thai: "\u0E27\u0E31\u0E19\u0E08\u0E31\u0E19\u0E17\u0E23\u0E4C \u0E2D\u0E2D\u0E1F\u0E1F\u0E34\u0E28\u0E21\u0E35\u0E01\u0E25\u0E34\u0E48\u0E19\u0E01\u0E32\u0E41\u0E1F\u0E40\u0E01\u0E48\u0E32"
+  - key: ending/ending_job_is_a_job/lines/1/text
+    english: I escaped the interviews. I didn't escape the routine.
+    thai: "\u0E2B\u0E19\u0E35\u0E01\u0E32\u0E23\u0E2A\u0E31\u0E21\u0E20\u0E32\u0E29\u0E13\u0E4C\u0E21\u0E32\u0E44\u0E14\u0E49 \u0E41\u0E15\u0E48\u0E2B\u0E19\u0E35\u0E01\u0E34\u0E08\u0E27\u0E31\u0E15\u0E23\u0E40\u0E14\u0E34\u0E21 \u0E46 \u0E44\u0E21\u0E48\u0E1E\u0E49\u0E19"
+  - key: ending/ending_job_is_a_job/lines/2/text
+    english: Every desk looks the same. So does every day.
+    thai: "\u0E17\u0E38\u0E01\u0E42\u0E15\u0E4A\u0E30\u0E2B\u0E19\u0E49\u0E32\u0E15\u0E32\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E01\u0E31\u0E19 \u0E17\u0E38\u0E01\u0E27\u0E31\u0E19\u0E01\u0E47\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E01\u0E31\u0E19"
+  - key: ending/ending_job_is_a_job/lines/3/text
+    english: It's a job. A job is a job.
+    thai: "\u0E21\u0E31\u0E19\u0E01\u0E47\u0E04\u0E37\u0E2D\u0E07\u0E32\u0E19 \u0E07\u0E32\u0E19\u0E01\u0E47\u0E04\u0E37\u0E2D\u0E07\u0E32\u0E19"
+  - key: ending/ending_job_is_a_job/finalText
+    english: 'ENDING 1 - A JOB IS A JOB
+
+      No more interviews. The mornings just look the same.'
+    thai: "\u0E15\u0E2D\u0E19\u0E08\u0E1A\u0E17\u0E35\u0E48 1 - \u0E07\u0E32\u0E19\u0E01\u0E47\u0E04\u0E37\u0E2D\u0E07\u0E32\u0E19\n\u0E44\u0E21\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E2A\u0E31\u0E21\u0E20\u0E32\u0E29\u0E13\u0E4C\u0E2D\u0E35\u0E01\u0E41\u0E25\u0E49\u0E27 \u0E41\u0E15\u0E48\u0E17\u0E38\u0E01\u0E40\u0E0A\u0E49\u0E32\u0E01\u0E47\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E40\u0E14\u0E34\u0E21"
+  - key: ending/ending_another_morning/title
+    english: Another Morning
+    thai: "\u0E40\u0E0A\u0E49\u0E32\u0E2D\u0E35\u0E01\u0E27\u0E31\u0E19"
+  - key: ending/ending_another_morning/optionLabel
+    english: Refuse father's offer
+    thai: "\u0E1B\u0E0F\u0E34\u0E40\u0E2A\u0E18\u0E02\u0E49\u0E2D\u0E40\u0E2A\u0E19\u0E2D\u0E02\u0E2D\u0E07\u0E1E\u0E48\u0E2D"
+  - key: ending/ending_another_morning/optionDescription
+    english: Go back to applying. Maybe tomorrow.
+    thai: "\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19\u0E15\u0E48\u0E2D \u0E1A\u0E32\u0E07\u0E17\u0E35\u0E1E\u0E23\u0E38\u0E48\u0E07\u0E19\u0E35\u0E49\u0E2D\u0E32\u0E08\u0E15\u0E48\u0E32\u0E07\u0E2D\u0E2D\u0E01\u0E44\u0E1B"
+  - key: ending/ending_another_morning/lines/0/text
+    english: The alarm goes off. The laptop is still open.
+    thai: "\u0E19\u0E32\u0E2C\u0E34\u0E01\u0E32\u0E1B\u0E25\u0E38\u0E01\u0E14\u0E31\u0E07\u0E02\u0E36\u0E49\u0E19 \u0E41\u0E25\u0E47\u0E1B\u0E17\u0E47\u0E2D\u0E1B\u0E22\u0E31\u0E07\u0E40\u0E1B\u0E34\u0E14\u0E04\u0E49\u0E32\u0E07\u0E2D\u0E22\u0E39\u0E48"
+  - key: ending/ending_another_morning/lines/1/text
+    english: I told him no. I'll find something on my own.
+    thai: "\u0E1A\u0E2D\u0E01\u0E1E\u0E48\u0E2D\u0E44\u0E1B\u0E41\u0E25\u0E49\u0E27\u0E27\u0E48\u0E32\u0E44\u0E21\u0E48 \u0E08\u0E30\u0E2B\u0E32\u0E40\u0E2D\u0E07\u0E43\u0E2B\u0E49\u0E44\u0E14\u0E49"
+  - key: ending/ending_another_morning/lines/2/text
+    english: A new resume. A new list of companies.
+    thai: "\u0E40\u0E23\u0E0B\u0E39\u0E40\u0E21\u0E48\u0E09\u0E1A\u0E31\u0E1A\u0E43\u0E2B\u0E21\u0E48 \u0E23\u0E32\u0E22\u0E0A\u0E37\u0E48\u0E2D\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E0A\u0E38\u0E14\u0E43\u0E2B\u0E21\u0E48"
+  - key: ending/ending_another_morning/lines/3/text
+    english: Maybe today is different.
+    thai: "\u0E1A\u0E32\u0E07\u0E17\u0E35\u0E27\u0E31\u0E19\u0E19\u0E35\u0E49\u0E2D\u0E32\u0E08\u0E15\u0E48\u0E32\u0E07\u0E2D\u0E2D\u0E01\u0E44\u0E1B"
+  - key: ending/ending_another_morning/finalText
+    english: 'ENDING 2 - ANOTHER MORNING
+
+      The cycle begins again.'
+    thai: "\u0E15\u0E2D\u0E19\u0E08\u0E1A\u0E17\u0E35\u0E48 2 - \u0E40\u0E0A\u0E49\u0E32\u0E2D\u0E35\u0E01\u0E27\u0E31\u0E19\n\u0E27\u0E31\u0E0F\u0E08\u0E31\u0E01\u0E23\u0E40\u0E23\u0E34\u0E48\u0E21\u0E15\u0E49\u0E19\u0E02\u0E36\u0E49\u0E19\u0E2D\u0E35\u0E01\u0E04\u0E23\u0E31\u0E49\u0E07"
+  - key: ending/ending_my_own_terms/title
+    english: My Own Terms
+    thai: "\u0E43\u0E19\u0E41\u0E1A\u0E1A\u0E02\u0E2D\u0E07\u0E09\u0E31\u0E19"
+  - key: ending/ending_my_own_terms/optionLabel
+    english: Follow your own interests
+    thai: "\u0E17\u0E33\u0E15\u0E32\u0E21\u0E2A\u0E34\u0E48\u0E07\u0E17\u0E35\u0E48\u0E2A\u0E19\u0E43\u0E08"
+  - key: ending/ending_my_own_terms/optionDescription
+    english: Reject the expected path. Open that old project.
+    thai: "\u0E1B\u0E0F\u0E34\u0E40\u0E2A\u0E18\u0E40\u0E2A\u0E49\u0E19\u0E17\u0E32\u0E07\u0E17\u0E35\u0E48\u0E16\u0E39\u0E01\u0E04\u0E32\u0E14\u0E2B\u0E27\u0E31\u0E07 \u0E41\u0E25\u0E49\u0E27\u0E40\u0E1B\u0E34\u0E14\u0E42\u0E1B\u0E23\u0E40\u0E08\u0E01\u0E15\u0E4C\u0E40\u0E01\u0E48\u0E32\u0E19\u0E31\u0E49\u0E19\u0E02\u0E36\u0E49\u0E19\u0E21\u0E32"
+  - key: ending/ending_my_own_terms/lines/0/text
+    english: An old folder. An unfinished project.
+    thai: "\u0E42\u0E1F\u0E25\u0E40\u0E14\u0E2D\u0E23\u0E4C\u0E40\u0E01\u0E48\u0E32 \u0E42\u0E1B\u0E23\u0E40\u0E08\u0E01\u0E15\u0E4C\u0E17\u0E35\u0E48\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E40\u0E2A\u0E23\u0E47\u0E08"
+  - key: ending/ending_my_own_terms/lines/1/text
+    english: I forgot I made this.
+    thai: "\u0E25\u0E37\u0E21\u0E44\u0E1B\u0E40\u0E25\u0E22\u0E27\u0E48\u0E32\u0E40\u0E04\u0E22\u0E17\u0E33\u0E2D\u0E31\u0E19\u0E19\u0E35\u0E49\u0E44\u0E27\u0E49"
+  - key: ending/ending_my_own_terms/lines/2/text
+    english: The cursor blinks. The first line is typed.
+    thai: "\u0E40\u0E04\u0E2D\u0E23\u0E4C\u0E40\u0E0B\u0E2D\u0E23\u0E4C\u0E01\u0E30\u0E1E\u0E23\u0E34\u0E1A \u0E1A\u0E23\u0E23\u0E17\u0E31\u0E14\u0E41\u0E23\u0E01\u0E16\u0E39\u0E01\u0E1E\u0E34\u0E21\u0E1E\u0E4C\u0E25\u0E07\u0E44\u0E1B"
+  - key: ending/ending_my_own_terms/lines/3/text
+    english: It won't be perfect. It will be mine.
+    thai: "\u0E21\u0E31\u0E19\u0E04\u0E07\u0E44\u0E21\u0E48\u0E2A\u0E21\u0E1A\u0E39\u0E23\u0E13\u0E4C\u0E41\u0E1A\u0E1A \u0E41\u0E15\u0E48\u0E21\u0E31\u0E19\u0E08\u0E30\u0E40\u0E1B\u0E47\u0E19\u0E02\u0E2D\u0E07\u0E09\u0E31\u0E19"
+  - key: ending/ending_my_own_terms/finalText
+    english: 'ENDING 3 - MY OWN TERMS
+
+      Nothing is guaranteed. But the choice is mine.'
+    thai: "\u0E15\u0E2D\u0E19\u0E08\u0E1A\u0E17\u0E35\u0E48 3 - \u0E43\u0E19\u0E41\u0E1A\u0E1A\u0E02\u0E2D\u0E07\u0E09\u0E31\u0E19\n\u0E44\u0E21\u0E48\u0E21\u0E35\u0E2D\u0E30\u0E44\u0E23\u0E23\u0E31\u0E1A\u0E1B\u0E23\u0E30\u0E01\u0E31\u0E19 \u0E41\u0E15\u0E48\u0E17\u0E32\u0E07\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E19\u0E35\u0E49\u0E40\u0E1B\u0E47\u0E19\u0E02\u0E2D\u0E07\u0E09\u0E31\u0E19"
+  - key: question/q_faculty_accounting/questionText
+    english: You studied accounting. Do you really think you can work in this field?
+    thai: "\u0E40\u0E23\u0E35\u0E22\u0E19\u0E1A\u0E31\u0E0D\u0E0A\u0E35\u0E41\u0E25\u0E49\u0E27\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E08\u0E30\u0E21\u0E32\u0E17\u0E33\u0E07\u0E32\u0E19\u0E15\u0E23\u0E07\u0E19\u0E35\u0E49\u0E44\u0E14\u0E49\u0E40\u0E2B\u0E23\u0E2D?"
+  - key: question/q_faculty_accounting/answers/a_faculty_accounting_1/text
+    english: I'm sure I can!
+    thai: "\u0E09\u0E31\u0E19\u0E21\u0E31\u0E48\u0E19\u0E43\u0E08\u0E27\u0E48\u0E32\u0E44\u0E14\u0E49!"
+  - key: question/q_faculty_accounting/answers/a_faculty_accounting_2/text
+    english: Uh... well, I think I can.
+    thai: "\u0E2D\u0E30... \u0E40\u0E2D\u0E2D \u0E09\u0E31\u0E19\u0E27\u0E48\u0E32\u0E44\u0E14\u0E49\u0E19\u0E30"
+  - key: question/q_faculty_accounting/answers/a_faculty_accounting_3/text
+    english: Of course I can.
+    thai: "\u0E44\u0E14\u0E49\u0E2D\u0E22\u0E39\u0E48\u0E41\u0E25\u0E49\u0E27"
+  - key: question/q_faculty_digital_art/questionText
+    english: You graduated in digital art. How confident are you that you can handle real-world work?
+    thai: "\u0E08\u0E1A\u0E28\u0E34\u0E25\u0E1B\u0E30\u0E14\u0E34\u0E08\u0E34\u0E17\u0E31\u0E25\u0E21\u0E32 \u0E41\u0E25\u0E49\u0E27\u0E21\u0E31\u0E48\u0E19\u0E43\u0E08\u0E41\u0E04\u0E48\u0E44\u0E2B\u0E19\u0E27\u0E48\u0E32\u0E08\u0E30\u0E17\u0E33\u0E07\u0E32\u0E19\u0E08\u0E23\u0E34\u0E07\u0E44\u0E14\u0E49?"
+  - key: question/q_faculty_digital_art/answers/a_faculty_digital_art_1/text
+    english: I'm confident I can do it!
+    thai: "\u0E09\u0E31\u0E19\u0E21\u0E31\u0E48\u0E19\u0E43\u0E08\u0E27\u0E48\u0E32\u0E17\u0E33\u0E44\u0E14\u0E49!"
+  - key: question/q_faculty_digital_art/answers/a_faculty_digital_art_2/text
+    english: Uh... I think I can do it.
+    thai: "\u0E2D\u0E30... \u0E09\u0E31\u0E19\u0E27\u0E48\u0E32\u0E17\u0E33\u0E44\u0E14\u0E49\u0E19\u0E30"
+  - key: question/q_faculty_digital_art/answers/a_faculty_digital_art_3/text
+    english: Of course I can.
+    thai: "\u0E44\u0E14\u0E49\u0E2D\u0E22\u0E39\u0E48\u0E41\u0E25\u0E49\u0E27"
+  - key: question/q_faculty_digital_communications/questionText
+    english: You didn't study game development directly. Do you think you can handle this job?
+    thai: "\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E23\u0E35\u0E22\u0E19\u0E17\u0E33\u0E40\u0E01\u0E21\u0E15\u0E23\u0E07 \u0E46 \u0E41\u0E25\u0E49\u0E27\u0E08\u0E30\u0E17\u0E33\u0E07\u0E32\u0E19\u0E19\u0E35\u0E49\u0E44\u0E2B\u0E27\u0E40\u0E2B\u0E23\u0E2D?"
+  - key: question/q_faculty_digital_communications/answers/a_faculty_digital_communications_1/text
+    english: Absolutely! I can adapt!
+    thai: "\u0E44\u0E2B\u0E27\u0E41\u0E19\u0E48\u0E19\u0E2D\u0E19! \u0E09\u0E31\u0E19\u0E1B\u0E23\u0E31\u0E1A\u0E15\u0E31\u0E27\u0E44\u0E14\u0E49!"
+  - key: question/q_faculty_digital_communications/answers/a_faculty_digital_communications_2/text
+    english: Uh... I'll try to learn more.
+    thai: "\u0E2D\u0E30... \u0E09\u0E31\u0E19\u0E08\u0E30\u0E1E\u0E22\u0E32\u0E22\u0E32\u0E21\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E19\u0E30"
+  - key: question/q_faculty_digital_communications/answers/a_faculty_digital_communications_3/text
+    english: I can handle it.
+    thai: "\u0E44\u0E2B\u0E27\u0E2D\u0E22\u0E39\u0E48\u0E41\u0E25\u0E49\u0E27"
+  - key: question/q_faculty_fine_arts/questionText
+    english: You studied drawing. Do you really think you can work on games?
+    thai: "\u0E40\u0E23\u0E35\u0E22\u0E19\u0E27\u0E32\u0E14\u0E23\u0E39\u0E1B\u0E21\u0E32 \u0E41\u0E25\u0E49\u0E27\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E08\u0E30\u0E17\u0E33\u0E07\u0E32\u0E19\u0E40\u0E01\u0E21\u0E44\u0E14\u0E49\u0E08\u0E23\u0E34\u0E07\u0E40\u0E2B\u0E23\u0E2D?"
+  - key: question/q_faculty_fine_arts/answers/a_faculty_fine_arts_1/text
+    english: Of course! Art is part of the foundation of game development!
+    thai: "\u0E44\u0E14\u0E49\u0E2A\u0E34! \u0E28\u0E34\u0E25\u0E1B\u0E30\u0E01\u0E47\u0E40\u0E1B\u0E47\u0E19\u0E1E\u0E37\u0E49\u0E19\u0E10\u0E32\u0E19\u0E02\u0E2D\u0E07\u0E07\u0E32\u0E19\u0E40\u0E01\u0E21\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E01\u0E31\u0E19!"
+  - key: question/q_faculty_fine_arts/answers/a_faculty_fine_arts_2/text
+    english: Uh... I think I probably can.
+    thai: "\u0E2D\u0E30... \u0E09\u0E31\u0E19\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E19\u0E48\u0E32\u0E08\u0E30\u0E44\u0E14\u0E49\u0E19\u0E30"
+  - key: question/q_faculty_fine_arts/answers/a_faculty_fine_arts_3/text
+    english: Of course I can.
+    thai: "\u0E44\u0E14\u0E49\u0E2D\u0E22\u0E39\u0E48\u0E41\u0E25\u0E49\u0E27"
+  - key: question/q_faculty_information_technology/questionText
+    english: You studied IT, and now you want to draw? Can you really do that?
+    thai: "\u0E40\u0E23\u0E35\u0E22\u0E19\u0E44\u0E2D\u0E17\u0E35\u0E21\u0E32\u0E41\u0E25\u0E49\u0E27\u0E08\u0E30\u0E21\u0E32\u0E27\u0E32\u0E14\u0E23\u0E39\u0E1B \u0E17\u0E33\u0E44\u0E14\u0E49\u0E08\u0E23\u0E34\u0E07\u0E40\u0E2B\u0E23\u0E2D?"
+  - key: question/q_faculty_information_technology/answers/a_faculty_information_technology_1/text
+    english: I can! I've practiced drawing too!
+    thai: "\u0E17\u0E33\u0E44\u0E14\u0E49\u0E2A\u0E34! \u0E09\u0E31\u0E19\u0E1D\u0E36\u0E01\u0E27\u0E32\u0E14\u0E23\u0E39\u0E1B\u0E21\u0E32\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E01\u0E31\u0E19!"
+  - key: question/q_faculty_information_technology/answers/a_faculty_information_technology_2/text
+    english: Uh... I do have some basic skills.
+    thai: "\u0E2D\u0E30... \u0E09\u0E31\u0E19\u0E01\u0E47\u0E1E\u0E2D\u0E21\u0E35\u0E1E\u0E37\u0E49\u0E19\u0E10\u0E32\u0E19\u0E2D\u0E22\u0E39\u0E48\u0E19\u0E30"
+  - key: question/q_faculty_information_technology/answers/a_faculty_information_technology_3/text
+    english: Of course I can.
+    thai: "\u0E44\u0E14\u0E49\u0E2D\u0E22\u0E39\u0E48\u0E41\u0E25\u0E49\u0E27"
+  - key: question/q_motto_adapt_to_every_problem/questionText
+    english: Ready to adapt to any problem? So if the company gives you work you're not good at, you can do it?
+    thai: "\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E1B\u0E23\u0E31\u0E1A\u0E15\u0E31\u0E27\u0E01\u0E31\u0E1A\u0E17\u0E38\u0E01\u0E1B\u0E31\u0E0D\u0E2B\u0E32 \u0E41\u0E25\u0E49\u0E27\u0E16\u0E49\u0E32\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E43\u0E2B\u0E49\u0E17\u0E33\u0E07\u0E32\u0E19\u0E17\u0E35\u0E48\u0E44\u0E21\u0E48\u0E16\u0E19\u0E31\u0E14 \u0E04\u0E38\u0E13\u0E01\u0E47\u0E17\u0E33\u0E44\u0E14\u0E49\u0E07\u0E31\u0E49\u0E19\u0E40\u0E2B\u0E23\u0E2D?"
+  - key: question/q_motto_adapt_to_every_problem/answers/a_motto_adapt_to_every_problem_1/text
+    english: Of course! I'm ready to adapt!
+    thai: "\u0E44\u0E14\u0E49\u0E2A\u0E34! \u0E09\u0E31\u0E19\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E1B\u0E23\u0E31\u0E1A\u0E15\u0E31\u0E27!"
+  - key: question/q_motto_adapt_to_every_problem/answers/a_motto_adapt_to_every_problem_2/text
+    english: Uh... If I get a chance, I'll try my best.
+    thai: "\u0E2D\u0E30... \u0E16\u0E49\u0E32\u0E44\u0E14\u0E49\u0E25\u0E2D\u0E07 \u0E09\u0E31\u0E19\u0E01\u0E47\u0E08\u0E30\u0E1E\u0E22\u0E32\u0E22\u0E32\u0E21\u0E19\u0E30"
+  - key: question/q_motto_adapt_to_every_problem/answers/a_motto_adapt_to_every_problem_3/text
+    english: Yes, I can.
+    thai: "\u0E44\u0E14\u0E49\u0E04\u0E23\u0E31\u0E1A/\u0E04\u0E48\u0E30"
+  - key: question/q_motto_do_everything_you_want/questionText
+    english: Your motto is 'Do everything you want to do'? Isn't that aiming a little too high?
+    thai: "\u0E04\u0E15\u0E34\u0E1B\u0E23\u0E30\u0E08\u0E33\u0E43\u0E08\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E04\u0E37\u0E2D \u2018\u0E17\u0E33\u0E17\u0E38\u0E01\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E32\u0E01\u0E17\u0E33\u2019 \u0E40\u0E2B\u0E23\u0E2D? \u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E1D\u0E31\u0E19\u0E2A\u0E39\u0E07\u0E40\u0E01\u0E34\u0E19\u0E15\u0E31\u0E27\u0E44\u0E1B\u0E2B\u0E19\u0E48\u0E2D\u0E22\u0E40\u0E2B\u0E23\u0E2D?"
+  - key: question/q_motto_do_everything_you_want/answers/a_motto_do_everything_you_want_1/text
+    english: If nobody makes what I want to see, I'll make it myself!
+    thai: "\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E21\u0E35\u0E43\u0E04\u0E23\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E34\u0E48\u0E07\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E32\u0E01\u0E40\u0E2B\u0E47\u0E19 \u0E09\u0E31\u0E19\u0E01\u0E47\u0E08\u0E30\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E21\u0E31\u0E19\u0E40\u0E2D\u0E07!"
+  - key: question/q_motto_do_everything_you_want/answers/a_motto_do_everything_you_want_2/text
+    english: Whoa! You've got to dare to dream!
+    thai: "\u0E42\u0E2D\u0E49\u0E42\u0E2B! \u0E01\u0E47\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E25\u0E49\u0E32\u0E1D\u0E31\u0E19\u0E2A\u0E34!"
+  - key: question/q_motto_dreams_never_expire/questionText
+    english: '''Dreams never expire,'' huh? If you get rejected over and over, will you still keep dreaming?'
+    thai: "\u0E04\u0E27\u0E32\u0E21\u0E1D\u0E31\u0E19\u0E44\u0E21\u0E48\u0E21\u0E35\u0E27\u0E31\u0E19\u0E2B\u0E21\u0E14\u0E2D\u0E32\u0E22\u0E38\u0E07\u0E31\u0E49\u0E19\u0E40\u0E2B\u0E23\u0E2D? \u0E41\u0E25\u0E49\u0E27\u0E16\u0E49\u0E32\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19\u0E44\u0E21\u0E48\u0E1C\u0E48\u0E32\u0E19\u0E2B\u0E25\u0E32\u0E22\u0E23\u0E2D\u0E1A \u0E22\u0E31\u0E07\u0E08\u0E30\u0E1D\u0E31\u0E19\u0E15\u0E48\u0E2D\u0E2D\u0E22\u0E39\u0E48\u0E44\u0E2B\u0E21?"
+  - key: question/q_motto_dreams_never_expire/answers/a_motto_dreams_never_expire_1/text
+    english: Of course! Someday I will make it!
+    thai: "\u0E41\u0E19\u0E48\u0E19\u0E2D\u0E19! \u0E2A\u0E31\u0E01\u0E27\u0E31\u0E19\u0E09\u0E31\u0E19\u0E15\u0E49\u0E2D\u0E07\u0E17\u0E33\u0E44\u0E14\u0E49!"
+  - key: question/q_motto_dreams_never_expire/answers/a_motto_dreams_never_expire_2/text
+    english: Uh... I'll keep trying.
+    thai: "\u0E2D\u0E30... \u0E09\u0E31\u0E19\u0E08\u0E30\u0E1E\u0E22\u0E32\u0E22\u0E32\u0E21\u0E15\u0E48\u0E2D\u0E44\u0E1B\u0E19\u0E30"
+  - key: question/q_motto_every_day_learning/questionText
+    english: Every day is an opportunity to learn. Just how much more do you think you still need to learn?
+    thai: "\u0E17\u0E38\u0E01\u0E27\u0E31\u0E19\u0E04\u0E37\u0E2D\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49 \u0E41\u0E25\u0E49\u0E27\u0E04\u0E38\u0E13\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E22\u0E31\u0E07\u0E15\u0E49\u0E2D\u0E07\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49\u0E2D\u0E35\u0E01\u0E40\u0E22\u0E2D\u0E30\u0E41\u0E04\u0E48\u0E44\u0E2B\u0E19?"
+  - key: question/q_motto_every_day_learning/answers/a_motto_every_day_learning_1/text
+    english: I'm always ready to learn and improve!
+    thai: "\u0E09\u0E31\u0E19\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49\u0E41\u0E25\u0E30\u0E1E\u0E31\u0E12\u0E19\u0E32\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E40\u0E2A\u0E21\u0E2D!"
+  - key: question/q_motto_every_day_learning/answers/a_motto_every_day_learning_2/text
+    english: Probably quite a lot...
+    thai: "\u0E01\u0E47\u0E04\u0E07\u0E2D\u0E35\u0E01\u0E40\u0E22\u0E2D\u0E30\u0E40\u0E25\u0E22\u0E41\u0E2B\u0E25\u0E30..."
+  - key: question/q_motto_every_day_learning/answers/a_motto_every_day_learning_3/text
+    english: Quite a lot.
+    thai: "\u0E40\u0E22\u0E2D\u0E30\u0E2D\u0E22\u0E39\u0E48"
+  - key: question/q_motto_flexibility_key/questionText
+    english: Flexibility is the key to success? Does that mean you'll do absolutely anything the company asks?
+    thai: "\u0E04\u0E27\u0E32\u0E21\u0E22\u0E37\u0E14\u0E2B\u0E22\u0E38\u0E48\u0E19\u0E04\u0E37\u0E2D\u0E01\u0E38\u0E0D\u0E41\u0E08\u0E2A\u0E39\u0E48\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08\u0E07\u0E31\u0E49\u0E19\u0E40\u0E2B\u0E23\u0E2D? \u0E16\u0E49\u0E32\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E43\u0E2B\u0E49\u0E17\u0E33\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E47\u0E15\u0E49\u0E2D\u0E07\u0E17\u0E33\u0E2B\u0E21\u0E14\u0E40\u0E25\u0E22\u0E2B\u0E23\u0E37\u0E2D\u0E40\u0E1B\u0E25\u0E48\u0E32?"
+  - key: question/q_motto_flexibility_key/answers/a_motto_flexibility_key_1/text
+    english: If it helps the company succeed, I'm willing!
+    thai: "\u0E16\u0E49\u0E32\u0E21\u0E31\u0E19\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E1B\u0E23\u0E30\u0E2A\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08 \u0E09\u0E31\u0E19\u0E01\u0E47\u0E1E\u0E23\u0E49\u0E2D\u0E21!"
+  - key: question/q_motto_flexibility_key/answers/a_motto_flexibility_key_2/text
+    english: Uh... If it's necessary work, I'll give it a try.
+    thai: "\u0E2D\u0E30... \u0E16\u0E49\u0E32\u0E40\u0E1B\u0E47\u0E19\u0E07\u0E32\u0E19\u0E17\u0E35\u0E48\u0E08\u0E33\u0E40\u0E1B\u0E47\u0E19 \u0E09\u0E31\u0E19\u0E01\u0E47\u0E08\u0E30\u0E25\u0E2D\u0E07\u0E14\u0E39"
+  - key: question/q_university_a/questionText
+    english: "You graduated from University A? With a university of that caliber, I suppose I needn\u2019t worry about your abilities?"
+    thai: "\u0E08\u0E1A\u0E08\u0E32\u0E01\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22 A \u0E21\u0E32\u0E40\u0E2B\u0E23\u0E2D? \u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E19\u0E35\u0E49\u0E01\u0E47\u0E04\u0E07\u0E44\u0E21\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E2B\u0E48\u0E27\u0E07\u0E40\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E2A\u0E34\u0E19\u0E30?"
+  - key: question/q_university_a/answers/a_university_a_1/text
+    english: Of course! I passed the entrance exams on my own merit!
+    thai: "\u0E41\u0E19\u0E48\u0E19\u0E2D\u0E19! \u0E09\u0E31\u0E19\u0E2A\u0E2D\u0E1A\u0E40\u0E02\u0E49\u0E32\u0E21\u0E32\u0E44\u0E14\u0E49\u0E14\u0E49\u0E27\u0E22\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E02\u0E2D\u0E07\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07!"
+  - key: question/q_university_a/answers/a_university_a_2/text
+    english: Ugh! Just thinking about the entrance exams wears me out!
+    thai: "\u0E2E\u0E36\u0E48\u0E22! \u0E41\u0E04\u0E48\u0E04\u0E34\u0E14\u0E16\u0E36\u0E07\u0E15\u0E2D\u0E19\u0E2A\u0E2D\u0E1A\u0E40\u0E02\u0E49\u0E32\u0E01\u0E47\u0E40\u0E2B\u0E19\u0E37\u0E48\u0E2D\u0E22\u0E41\u0E25\u0E49\u0E27!"
+  - key: question/q_university_a/answers/a_university_a_3/text
+    english: Yes.
+    thai: "\u0E04\u0E23\u0E31\u0E1A/\u0E04\u0E48\u0E30"
+  - key: question/q_university_b/questionText
+    english: You graduated from University B? With tuition that expensive, I imagine you expect a lot from yourself?
+    thai: "\u0E08\u0E1A\u0E08\u0E32\u0E01\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22 B \u0E21\u0E32\u0E40\u0E25\u0E22\u0E40\u0E2B\u0E23\u0E2D? \u0E04\u0E48\u0E32\u0E40\u0E17\u0E2D\u0E21\u0E41\u0E1E\u0E07\u0E02\u0E19\u0E32\u0E14\u0E19\u0E31\u0E49\u0E19 \u0E04\u0E07\u0E04\u0E32\u0E14\u0E2B\u0E27\u0E31\u0E07\u0E01\u0E31\u0E1A\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E44\u0E27\u0E49\u0E2A\u0E39\u0E07\u0E19\u0E48\u0E32\u0E14\u0E39\u0E19\u0E30?"
+  - key: question/q_university_b/answers/a_university_b_1/text
+    english: Of course! My family invested a lot in me. I have to make it worthwhile!
+    thai: "\u0E41\u0E19\u0E48\u0E19\u0E2D\u0E19! \u0E17\u0E35\u0E48\u0E1A\u0E49\u0E32\u0E19\u0E25\u0E07\u0E17\u0E38\u0E19\u0E01\u0E31\u0E1A\u0E09\u0E31\u0E19\u0E44\u0E1B\u0E40\u0E22\u0E2D\u0E30 \u0E09\u0E31\u0E19\u0E01\u0E47\u0E15\u0E49\u0E2D\u0E07\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E04\u0E38\u0E49\u0E21\u0E2A\u0E34!"
+  - key: question/q_university_b/answers/a_university_b_2/text
+    english: It's a private university, but it's well regarded!
+    thai: "\u0E16\u0E36\u0E07\u0E08\u0E30\u0E40\u0E1B\u0E47\u0E19\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E40\u0E2D\u0E01\u0E0A\u0E19\u0E01\u0E47\u0E40\u0E16\u0E2D\u0E30 \u0E41\u0E15\u0E48\u0E17\u0E35\u0E48\u0E19\u0E35\u0E48\u0E01\u0E47\u0E21\u0E35\u0E0A\u0E37\u0E48\u0E2D\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E14\u0E35\u0E19\u0E30!"
+  - key: question/q_university_b/answers/a_university_b_3/text
+    english: Yes.
+    thai: "\u0E04\u0E23\u0E31\u0E1A/\u0E04\u0E48\u0E30"
+  - key: question/q_university_c/questionText
+    english: University C? It's not especially well known. So why should we choose you?
+    thai: "\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22 C \u0E40\u0E2B\u0E23\u0E2D? \u0E01\u0E47\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E21\u0E35\u0E0A\u0E37\u0E48\u0E2D\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E42\u0E14\u0E14\u0E40\u0E14\u0E48\u0E19\u0E2D\u0E30\u0E44\u0E23\u0E40\u0E1B\u0E47\u0E19\u0E1E\u0E34\u0E40\u0E28\u0E29\u0E19\u0E35\u0E48 \u0E41\u0E25\u0E49\u0E27\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E2D\u0E30\u0E44\u0E23\u0E08\u0E30\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E40\u0E23\u0E32\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E04\u0E38\u0E13?"
+  - key: question/q_university_c/answers/a_university_c_1/text
+    english: My work speaks for itself!
+    thai: "\u0E1C\u0E25\u0E07\u0E32\u0E19\u0E02\u0E2D\u0E07\u0E09\u0E31\u0E19\u0E44\u0E07!"
+  - key: question/q_university_c/answers/a_university_c_2/text
+    english: Uh... My university may not be famous, but I worked hard there!
+    thai: "\u0E2D\u0E30... \u0E16\u0E36\u0E07\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E08\u0E30\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E14\u0E31\u0E07 \u0E41\u0E15\u0E48\u0E09\u0E31\u0E19\u0E01\u0E47\u0E15\u0E31\u0E49\u0E07\u0E43\u0E08\u0E40\u0E23\u0E35\u0E22\u0E19\u0E19\u0E30!"
+  - key: question/q_university_c/answers/a_university_c_3/text
+    english: Yes...
+    thai: "\u0E04\u0E23\u0E31\u0E1A/\u0E04\u0E48\u0E30"
+  - key: question/q_university_d/questionText
+    english: "You graduated from University D? Why didn\u2019t you choose a more prestigious university?"
+    thai: "\u0E08\u0E1A\u0E08\u0E32\u0E01\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22 D \u0E40\u0E2B\u0E23\u0E2D? \u0E17\u0E33\u0E44\u0E21\u0E16\u0E36\u0E07\u0E44\u0E21\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E17\u0E35\u0E48\u0E21\u0E35\u0E0A\u0E37\u0E48\u0E2D\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E01\u0E27\u0E48\u0E32\u0E19\u0E35\u0E49\u0E25\u0E48\u0E30?"
+  - key: question/q_university_d/answers/a_university_d_1/text
+    english: I couldn't afford the tuition back then, but I did my best!
+    thai: "\u0E15\u0E2D\u0E19\u0E19\u0E31\u0E49\u0E19\u0E04\u0E48\u0E32\u0E40\u0E17\u0E2D\u0E21\u0E44\u0E21\u0E48\u0E44\u0E2B\u0E27\u0E08\u0E23\u0E34\u0E07 \u0E46 \u0E41\u0E15\u0E48\u0E09\u0E31\u0E19\u0E01\u0E47\u0E1E\u0E22\u0E32\u0E22\u0E32\u0E21\u0E40\u0E15\u0E47\u0E21\u0E17\u0E35\u0E48\u0E19\u0E30!"
+  - key: question/q_university_d/answers/a_university_d_2/text
+    english: A university's name isn't the only measure of ability!
+    thai: "\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E1B\u0E47\u0E19\u0E15\u0E31\u0E27\u0E15\u0E31\u0E14\u0E2A\u0E34\u0E19\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14\u0E2A\u0E31\u0E01\u0E2B\u0E19\u0E48\u0E2D\u0E22!"
+  - key: question/q_university_d/answers/a_university_d_3/text
+    english: ...Yes.
+    thai: "...\u0E04\u0E23\u0E31\u0E1A/\u0E04\u0E48\u0E30"
+  - key: question/q_university_e/questionText
+    english: You graduated from University E? I don't recognize that name. Why should this company hire you?
+    thai: "\u0E08\u0E1A\u0E08\u0E32\u0E01\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22 E \u0E40\u0E2D\u0E07\u0E40\u0E2B\u0E23\u0E2D? \u0E0A\u0E37\u0E48\u0E2D\u0E19\u0E35\u0E49\u0E44\u0E21\u0E48\u0E04\u0E48\u0E2D\u0E22\u0E04\u0E38\u0E49\u0E19\u0E40\u0E25\u0E22\u0E19\u0E30 \u0E41\u0E25\u0E49\u0E27\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E08\u0E30\u0E23\u0E31\u0E1A\u0E04\u0E38\u0E13\u0E40\u0E1E\u0E23\u0E32\u0E30\u0E2D\u0E30\u0E44\u0E23\u0E25\u0E48\u0E30?"
+  - key: question/q_university_e/answers/a_university_e_1/text
+    english: Yes... but I have skills too!
+    thai: "\u0E43\u0E0A\u0E48... \u0E41\u0E15\u0E48\u0E09\u0E31\u0E19\u0E01\u0E47\u0E21\u0E35\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E19\u0E30!"
+  - key: question/q_university_e/answers/a_university_e_2/text
+    english: ...I'll prove myself!
+    thai: "...\u0E09\u0E31\u0E19\u0E08\u0E30\u0E1E\u0E34\u0E2A\u0E39\u0E08\u0E19\u0E4C\u0E43\u0E2B\u0E49\u0E14\u0E39\u0E40\u0E2D\u0E07!"
+  - key: question/q_university_e/answers/a_university_e_3/text
+    english: Yes.
+    thai: "\u0E04\u0E23\u0E31\u0E1A/\u0E04\u0E48\u0E30"
+  - key: category/faculty/displayName
+    english: Faculty
+    thai: "\u0E04\u0E13\u0E30"
+  - key: category/faculty/emptyMessage
+    english: Nothing is left to choose here.
+    thai: "\u0E44\u0E21\u0E48\u0E21\u0E35\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E40\u0E2B\u0E25\u0E37\u0E2D\u0E43\u0E19\u0E2B\u0E21\u0E27\u0E14\u0E19\u0E35\u0E49\u0E41\u0E25\u0E49\u0E27"
+  - key: category/motto/displayName
+    english: Personal Motto
+    thai: "\u0E04\u0E15\u0E34\u0E1B\u0E23\u0E30\u0E08\u0E33\u0E43\u0E08"
+  - key: category/motto/emptyMessage
+    english: Nothing is left to choose here.
+    thai: "\u0E44\u0E21\u0E48\u0E21\u0E35\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E40\u0E2B\u0E25\u0E37\u0E2D\u0E43\u0E19\u0E2B\u0E21\u0E27\u0E14\u0E19\u0E35\u0E49\u0E41\u0E25\u0E49\u0E27"
+  - key: category/university/displayName
+    english: University
+    thai: "\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22"
+  - key: category/university/emptyMessage
+    english: Nothing is left to choose here.
+    thai: "\u0E44\u0E21\u0E48\u0E21\u0E35\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E40\u0E2B\u0E25\u0E37\u0E2D\u0E43\u0E19\u0E2B\u0E21\u0E27\u0E14\u0E19\u0E35\u0E49\u0E41\u0E25\u0E49\u0E27"
+  - key: choice/faculty_accounting/displayText
+    english: Accounting
+    thai: "\u0E04\u0E13\u0E30\u0E1A\u0E31\u0E0D\u0E0A\u0E35"
+  - key: choice/faculty_accounting/playerReaction/0/lines/0
+    english: Actually... I never wanted to study accounting that much.
+    thai: "\u0E08\u0E23\u0E34\u0E07 \u0E46 \u0E41\u0E25\u0E49\u0E27... \u0E15\u0E2D\u0E19\u0E19\u0E31\u0E49\u0E19\u0E40\u0E23\u0E32\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E2D\u0E22\u0E32\u0E01\u0E40\u0E23\u0E35\u0E22\u0E19\u0E1A\u0E31\u0E0D\u0E0A\u0E35\u0E02\u0E19\u0E32\u0E14\u0E19\u0E31\u0E49\u0E19\u0E2B\u0E23\u0E2D\u0E01"
+  - key: choice/faculty_accounting/playerReaction/0/lines/1
+    english: My family wanted me to study it. They said I'd have a stable job after graduation. I didn't even know what I wanted to be back then, so I went along with what everyone said.
+    thai: "\u0E17\u0E35\u0E48\u0E1A\u0E49\u0E32\u0E19\u0E2D\u0E22\u0E32\u0E01\u0E43\u0E2B\u0E49\u0E40\u0E23\u0E35\u0E22\u0E19 \u0E1A\u0E2D\u0E01\u0E27\u0E48\u0E32\u0E40\u0E23\u0E35\u0E22\u0E19\u0E08\u0E1A\u0E41\u0E25\u0E49\u0E27\u0E08\u0E30\u0E44\u0E14\u0E49\u0E21\u0E35\u0E07\u0E32\u0E19\u0E21\u0E31\u0E48\u0E19\u0E04\u0E07 \u0E2A\u0E48\u0E27\u0E19\u0E40\u0E23\u0E32\u0E15\u0E2D\u0E19\u0E19\u0E31\u0E49\u0E19\u0E01\u0E47\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E23\u0E39\u0E49\u0E14\u0E49\u0E27\u0E22\u0E0B\u0E49\u0E33\u0E27\u0E48\u0E32\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E2D\u0E22\u0E32\u0E01\u0E40\u0E1B\u0E47\u0E19\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E31\u0E19\u0E41\u0E19\u0E48 \u0E01\u0E47\u0E40\u0E25\u0E22\u0E40\u0E23\u0E35\u0E22\u0E19\u0E15\u0E32\u0E21\u0E17\u0E35\u0E48\u0E17\u0E38\u0E01\u0E04\u0E19\u0E1A\u0E2D\u0E01"
+  - key: choice/faculty_accounting/playerReaction/0/lines/2
+    english: By the time I realized I liked drawing, designing characters, and wanted to make games... so much time had passed.
+    thai: "\u0E01\u0E27\u0E48\u0E32\u0E08\u0E30\u0E23\u0E39\u0E49\u0E15\u0E31\u0E27\u0E27\u0E48\u0E32\u0E0A\u0E2D\u0E1A\u0E27\u0E32\u0E14\u0E23\u0E39\u0E1B \u0E0A\u0E2D\u0E1A\u0E2D\u0E2D\u0E01\u0E41\u0E1A\u0E1A\u0E15\u0E31\u0E27\u0E25\u0E30\u0E04\u0E23 \u0E41\u0E25\u0E49\u0E27\u0E01\u0E47\u0E2D\u0E22\u0E32\u0E01\u0E17\u0E33\u0E40\u0E01\u0E21... \u0E40\u0E27\u0E25\u0E32\u0E01\u0E47\u0E1C\u0E48\u0E32\u0E19\u0E44\u0E1B\u0E15\u0E31\u0E49\u0E07\u0E40\u0E22\u0E2D\u0E30\u0E41\u0E25\u0E49\u0E27"
+  - key: choice/faculty_digital_art/displayText
+    english: Digital Art
+    thai: "\u0E04\u0E13\u0E30\u0E14\u0E34\u0E08\u0E34\u0E17\u0E31\u0E25\u0E2D\u0E32\u0E23\u0E4C\u0E15 (Digital Art)"
+  - key: choice/faculty_digital_art/playerReaction/0/lines/0
+    english: This is the faculty for me! I endured all those final projects for this day!
+    thai: "\u0E19\u0E35\u0E49\u0E41\u0E2B\u0E25\u0E30\u0E04\u0E13\u0E30\u0E17\u0E35\u0E48\u0E43\u0E0A\u0E48 \u0E09\u0E31\u0E19\u0E2D\u0E14\u0E17\u0E19\u0E17\u0E33\u0E44\u0E1F\u0E19\u0E2D\u0E25\u0E21\u0E32\u0E01\u0E47\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E27\u0E31\u0E19\u0E19\u0E35\u0E49!"
+  - key: choice/faculty_digital_communications/displayText
+    english: Communication Arts (Digital Media)
+    thai: "\u0E04\u0E13\u0E30\u0E19\u0E34\u0E40\u0E17\u0E28\u0E28\u0E32\u0E2A\u0E15\u0E23\u0E4C (\u0E2A\u0E37\u0E48\u0E2D\u0E14\u0E34\u0E08\u0E34\u0E17\u0E31\u0E25)"
+  - key: choice/faculty_digital_communications/playerReaction/0/lines/0
+    english: Hmm... I didn't study drawing directly, but I did learn about visual communication and digital media.
+    thai: "\u0E2D\u0E37\u0E21... \u0E16\u0E36\u0E07\u0E08\u0E30\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E23\u0E35\u0E22\u0E19\u0E27\u0E32\u0E14\u0E23\u0E39\u0E1B\u0E42\u0E14\u0E22\u0E15\u0E23\u0E07 \u0E41\u0E15\u0E48\u0E40\u0E23\u0E32\u0E01\u0E47\u0E44\u0E14\u0E49\u0E40\u0E23\u0E35\u0E22\u0E19\u0E40\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E2A\u0E37\u0E48\u0E2D\u0E2A\u0E32\u0E23\u0E14\u0E49\u0E27\u0E22\u0E20\u0E32\u0E1E\u0E01\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E17\u0E33\u0E2A\u0E37\u0E48\u0E2D\u0E21\u0E32\u0E1A\u0E49\u0E32\u0E07\u0E19\u0E35\u0E48\u0E19\u0E32"
+  - key: choice/faculty_digital_communications/playerReaction/0/lines/1
+    english: I should be able to apply some of that to making games!
+    thai: "\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E01\u0E47\u0E19\u0E48\u0E32\u0E08\u0E30\u0E40\u0E2D\u0E32\u0E21\u0E32\u0E1B\u0E23\u0E31\u0E1A\u0E43\u0E0A\u0E49\u0E01\u0E31\u0E1A\u0E07\u0E32\u0E19\u0E40\u0E01\u0E21\u0E44\u0E14\u0E49\u0E41\u0E2B\u0E25\u0E30!"
+  - key: choice/faculty_digital_communications/playerReaction/0/lines/2
+    english: As for drawing... I'll need a little more practice.
+    thai: "\u0E2A\u0E48\u0E27\u0E19\u0E40\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E27\u0E32\u0E14\u0E23\u0E39\u0E1B... \u0E01\u0E47\u0E15\u0E49\u0E2D\u0E07\u0E1D\u0E36\u0E01\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E2D\u0E35\u0E01\u0E2B\u0E19\u0E48\u0E2D\u0E22"
+  - key: choice/faculty_fine_arts/displayText
+    english: Fine Arts
+    thai: "\u0E04\u0E13\u0E30\u0E28\u0E34\u0E25\u0E1B\u0E01\u0E23\u0E23\u0E21\u0E28\u0E32\u0E2A\u0E15\u0E23\u0E4C"
+  - key: choice/faculty_fine_arts/playerReaction/0/lines/0
+    english: Hmm... That's close enough, I guess!
+    thai: "\u0E2D\u0E37\u0E21\u0E21\u0E21... \u0E01\u0E47\u0E16\u0E37\u0E2D\u0E27\u0E48\u0E32\u0E43\u0E01\u0E25\u0E49\u0E40\u0E04\u0E35\u0E22\u0E07\u0E2D\u0E22\u0E39\u0E48\u0E19\u0E30!"
+  - key: choice/faculty_fine_arts/playerReaction/0/lines/1
+    english: At least I got plenty of practice drawing, using colors, and composing images, even if I didn't study game development directly.
+    thai: "\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E19\u0E49\u0E2D\u0E22\u0E15\u0E2D\u0E19\u0E19\u0E31\u0E49\u0E19\u0E40\u0E23\u0E32\u0E01\u0E47\u0E44\u0E14\u0E49\u0E1D\u0E36\u0E01\u0E27\u0E32\u0E14\u0E23\u0E39\u0E1B \u0E1D\u0E36\u0E01\u0E43\u0E0A\u0E49\u0E2A\u0E35 \u0E1D\u0E36\u0E01\u0E08\u0E31\u0E14\u0E2D\u0E07\u0E04\u0E4C\u0E1B\u0E23\u0E30\u0E01\u0E2D\u0E1A\u0E21\u0E32\u0E15\u0E31\u0E49\u0E07\u0E40\u0E22\u0E2D\u0E30 \u0E16\u0E36\u0E07\u0E08\u0E30\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E23\u0E35\u0E22\u0E19\u0E17\u0E33\u0E40\u0E01\u0E21\u0E42\u0E14\u0E22\u0E15\u0E23\u0E07\u0E01\u0E47\u0E40\u0E16\u0E2D\u0E30"
+  - key: choice/faculty_information_technology/displayText
+    english: Information Technology
+    thai: "\u0E04\u0E13\u0E30\u0E40\u0E17\u0E04\u0E42\u0E19\u0E42\u0E25\u0E22\u0E35\u0E2A\u0E32\u0E23\u0E2A\u0E19\u0E40\u0E17\u0E28"
+  - key: choice/faculty_information_technology/playerReaction/0/lines/0
+    english: Sigh... If only I'd figured out what I wanted sooner.
+    thai: "\u0E40\u0E2E\u0E49\u0E2D... \u0E16\u0E49\u0E32\u0E15\u0E2D\u0E19\u0E19\u0E31\u0E49\u0E19\u0E23\u0E39\u0E49\u0E15\u0E31\u0E27\u0E40\u0E23\u0E47\u0E27\u0E01\u0E27\u0E48\u0E32\u0E19\u0E35\u0E49\u0E01\u0E47\u0E04\u0E07\u0E14\u0E35\u0E19\u0E30"
+  - key: choice/faculty_information_technology/playerReaction/0/lines/1
+    english: When I chose my faculty, I didn't even know what I liked. I just picked somewhere I thought I could manage, thinking I'd figure things out after graduating.
+    thai: "\u0E15\u0E2D\u0E19\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E04\u0E13\u0E30\u0E01\u0E47\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E23\u0E39\u0E49\u0E40\u0E25\u0E22\u0E27\u0E48\u0E32\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E0A\u0E2D\u0E1A\u0E2D\u0E30\u0E44\u0E23\u0E01\u0E31\u0E19\u0E41\u0E19\u0E48 \u0E40\u0E2B\u0E47\u0E19\u0E04\u0E13\u0E30\u0E44\u0E2B\u0E19\u0E1E\u0E2D\u0E40\u0E23\u0E35\u0E22\u0E19\u0E44\u0E2B\u0E27\u0E01\u0E47\u0E40\u0E25\u0E37\u0E2D\u0E01 \u0E46 \u0E44\u0E1B\u0E01\u0E48\u0E2D\u0E19 \u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E40\u0E14\u0E35\u0E4B\u0E22\u0E27\u0E40\u0E23\u0E35\u0E22\u0E19\u0E08\u0E1A\u0E41\u0E25\u0E49\u0E27\u0E04\u0E48\u0E2D\u0E22\u0E2B\u0E32\u0E17\u0E32\u0E07\u0E40\u0E2D\u0E32"
+  - key: choice/faculty_information_technology/playerReaction/0/lines/2
+    english: But I kept drawing even while studying IT! I might not be amazing, but I'm not starting from zero.
+    thai: "\u0E41\u0E15\u0E48\u0E16\u0E36\u0E07\u0E08\u0E30\u0E40\u0E23\u0E35\u0E22\u0E19\u0E44\u0E2D\u0E17\u0E35\u0E21\u0E32 \u0E40\u0E23\u0E32\u0E01\u0E47\u0E22\u0E31\u0E07\u0E27\u0E32\u0E14\u0E23\u0E39\u0E1B\u0E2D\u0E22\u0E39\u0E48\u0E40\u0E23\u0E37\u0E48\u0E2D\u0E22 \u0E46 \u0E19\u0E30! \u0E1D\u0E35\u0E21\u0E37\u0E2D\u0E2D\u0E32\u0E08\u0E08\u0E30\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E17\u0E1E\u0E2D\u0E30\u0E44\u0E23 \u0E41\u0E15\u0E48\u0E01\u0E47\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E23\u0E34\u0E48\u0E21\u0E08\u0E32\u0E01\u0E28\u0E39\u0E19\u0E22\u0E4C\u0E2A\u0E31\u0E01\u0E2B\u0E19\u0E48\u0E2D\u0E22"
+  - key: choice/motto_adapt_to_every_problem/displayText
+    english: Ready to Adapt to Any Problem
+    thai: "\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E1B\u0E23\u0E31\u0E1A\u0E15\u0E31\u0E27\u0E01\u0E31\u0E1A\u0E17\u0E38\u0E01\u0E1B\u0E31\u0E0D\u0E2B\u0E32"
+  - key: choice/motto_adapt_to_every_problem/playerReaction/0/lines/0
+    english: This sounds pretty professional!
+    thai: "\u0E2D\u0E31\u0E19\u0E19\u0E35\u0E49\u0E01\u0E47\u0E14\u0E39\u0E40\u0E1B\u0E47\u0E19\u0E21\u0E37\u0E2D\u0E2D\u0E32\u0E0A\u0E35\u0E1E\u0E14\u0E35\u0E19\u0E30!"
+  - key: choice/motto_adapt_to_every_problem/playerReaction/0/lines/1
+    english: Real work won't always involve things I like. If I want to work with others, I'll have to be adaptable.
+    thai: "\u0E17\u0E33\u0E07\u0E32\u0E19\u0E08\u0E23\u0E34\u0E07\u0E04\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E21\u0E35\u0E41\u0E15\u0E48\u0E2A\u0E34\u0E48\u0E07\u0E17\u0E35\u0E48\u0E40\u0E23\u0E32\u0E0A\u0E2D\u0E1A\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14\u0E2B\u0E23\u0E2D\u0E01 \u0E16\u0E49\u0E32\u0E2D\u0E22\u0E32\u0E01\u0E23\u0E48\u0E27\u0E21\u0E07\u0E32\u0E19\u0E01\u0E31\u0E1A\u0E04\u0E19\u0E2D\u0E37\u0E48\u0E19\u0E44\u0E14\u0E49 \u0E40\u0E23\u0E32\u0E01\u0E47\u0E15\u0E49\u0E2D\u0E07\u0E23\u0E39\u0E49\u0E08\u0E31\u0E01\u0E1B\u0E23\u0E31\u0E1A\u0E15\u0E31\u0E27\u0E1A\u0E49\u0E32\u0E07"
+  - key: choice/motto_adapt_to_every_problem/playerReaction/0/lines/2
+    english: I hope HR appreciates someone willing to improve...
+    thai: "\u0E2B\u0E27\u0E31\u0E07\u0E27\u0E48\u0E32 HR \u0E08\u0E30\u0E0A\u0E2D\u0E1A\u0E04\u0E19\u0E17\u0E35\u0E48\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E1E\u0E31\u0E12\u0E19\u0E32\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E41\u0E1A\u0E1A\u0E19\u0E35\u0E49\u0E19\u0E30..."
+  - key: choice/motto_do_everything_you_want/displayText
+    english: Do Everything You Want to Do
+    thai: "\u0E17\u0E33\u0E17\u0E38\u0E01\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E32\u0E01\u0E17\u0E33"
+  - key: choice/motto_do_everything_you_want/playerReaction/0/lines/0
+    english: Whoa! That's exactly it!!
+    thai: "\u0E42\u0E2D\u0E49\u0E42\u0E2B! \u0E1B\u0E23\u0E30\u0E42\u0E22\u0E04\u0E19\u0E35\u0E49\u0E41\u0E2B\u0E25\u0E30 \u0E43\u0E0A\u0E48\u0E40\u0E25\u0E22!!"
+  - key: choice/motto_do_everything_you_want/playerReaction/0/lines/1
+    english: If nobody makes what we want to see, we'll make it ourselves!
+    thai: "\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E21\u0E35\u0E43\u0E04\u0E23\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2A\u0E34\u0E48\u0E07\u0E17\u0E35\u0E48\u0E40\u0E23\u0E32\u0E2D\u0E22\u0E32\u0E01\u0E40\u0E2B\u0E47\u0E19 \u0E07\u0E31\u0E49\u0E19\u0E40\u0E23\u0E32\u0E01\u0E47\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E21\u0E31\u0E19\u0E02\u0E36\u0E49\u0E19\u0E21\u0E32\u0E40\u0E2D\u0E07\u0E2A\u0E34!"
+  - key: choice/motto_do_everything_you_want/playerReaction/0/lines/2
+    english: That's why I want to work on games!
+    thai: "\u0E19\u0E35\u0E48\u0E41\u0E2B\u0E25\u0E30\u0E40\u0E2B\u0E15\u0E38\u0E1C\u0E25\u0E17\u0E35\u0E48\u0E09\u0E31\u0E19\u0E2D\u0E22\u0E32\u0E01\u0E17\u0E33\u0E07\u0E32\u0E19\u0E40\u0E01\u0E21!"
+  - key: choice/motto_dreams_never_expire/displayText
+    english: Dreams Never Expire
+    thai: "\u0E04\u0E27\u0E32\u0E21\u0E1D\u0E31\u0E19\u0E44\u0E21\u0E48\u0E21\u0E35\u0E27\u0E31\u0E19\u0E2B\u0E21\u0E14\u0E2D\u0E32\u0E22\u0E38"
+  - key: choice/motto_dreams_never_expire/playerReaction/0/lines/0
+    english: I really like that phrase!
+    thai: "\u0E0A\u0E2D\u0E1A\u0E1B\u0E23\u0E30\u0E42\u0E22\u0E04\u0E19\u0E35\u0E49\u0E08\u0E31\u0E07!"
+  - key: choice/motto_dreams_never_expire/playerReaction/0/lines/1
+    english: I might only be a fresh graduate now, but someday I'll create something I can be proud of!
+    thai: "\u0E16\u0E36\u0E07\u0E15\u0E2D\u0E19\u0E19\u0E35\u0E49\u0E09\u0E31\u0E19\u0E08\u0E30\u0E22\u0E31\u0E07\u0E40\u0E1B\u0E47\u0E19\u0E41\u0E04\u0E48\u0E40\u0E14\u0E47\u0E01\u0E08\u0E1A\u0E43\u0E2B\u0E21\u0E48 \u0E41\u0E15\u0E48\u0E2A\u0E31\u0E01\u0E27\u0E31\u0E19\u0E2B\u0E19\u0E36\u0E48\u0E07\u0E09\u0E31\u0E19\u0E15\u0E49\u0E2D\u0E07\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E1C\u0E25\u0E07\u0E32\u0E19\u0E17\u0E35\u0E48\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E20\u0E39\u0E21\u0E34\u0E43\u0E08\u0E43\u0E2B\u0E49\u0E44\u0E14\u0E49!"
+  - key: choice/motto_dreams_never_expire/playerReaction/0/lines/2
+    english: All right! Let's make that dream come true!!
+    thai: "\u0E40\u0E2D\u0E32\u0E25\u0E48\u0E30! \u0E44\u0E1B\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E04\u0E27\u0E32\u0E21\u0E1D\u0E31\u0E19\u0E40\u0E1B\u0E47\u0E19\u0E08\u0E23\u0E34\u0E07\u0E01\u0E31\u0E19\u0E40\u0E16\u0E2D\u0E30!!"
+  - key: choice/motto_every_day_learning/displayText
+    english: Every Day Is an Opportunity to Learn
+    thai: "\u0E17\u0E38\u0E01\u0E27\u0E31\u0E19\u0E04\u0E37\u0E2D\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49"
+  - key: choice/motto_every_day_learning/playerReaction/0/lines/0
+    english: Hmm... That sounds like a good motto.
+    thai: "\u0E1F\u0E31\u0E07\u0E14\u0E39\u0E40\u0E1B\u0E47\u0E19\u0E04\u0E15\u0E34\u0E17\u0E35\u0E48\u0E14\u0E35\u0E19\u0E30"
+  - key: choice/motto_every_day_learning/playerReaction/0/lines/1
+    english: I might not be good at everything yet, but learning from actual work should help me grow a lot.
+    thai: "\u0E40\u0E23\u0E32\u0E2D\u0E32\u0E08\u0E08\u0E30\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E01\u0E48\u0E07\u0E17\u0E38\u0E01\u0E2D\u0E22\u0E48\u0E32\u0E07 \u0E41\u0E15\u0E48\u0E16\u0E49\u0E32\u0E44\u0E14\u0E49\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49\u0E08\u0E32\u0E01\u0E01\u0E32\u0E23\u0E17\u0E33\u0E07\u0E32\u0E19\u0E08\u0E23\u0E34\u0E07 \u0E01\u0E47\u0E19\u0E48\u0E32\u0E08\u0E30\u0E1E\u0E31\u0E12\u0E19\u0E32\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E44\u0E1B\u0E44\u0E14\u0E49\u0E2D\u0E35\u0E01\u0E40\u0E22\u0E2D\u0E30"
+  - key: choice/motto_every_day_learning/playerReaction/0/lines/2
+    english: I just need a chance to try, learn, and get a little better every day...
+    thai: "\u0E02\u0E2D\u0E41\u0E04\u0E48\u0E21\u0E35\u0E42\u0E2D\u0E01\u0E32\u0E2A\u0E44\u0E14\u0E49\u0E25\u0E2D\u0E07 \u0E44\u0E14\u0E49\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49 \u0E41\u0E25\u0E49\u0E27\u0E01\u0E47\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E14\u0E35\u0E02\u0E36\u0E49\u0E19\u0E43\u0E19\u0E17\u0E38\u0E01\u0E27\u0E31\u0E19\u0E01\u0E47\u0E1E\u0E2D..."
+  - key: choice/motto_flexibility_key/displayText
+    english: Flexibility Is the Key to Success
+    thai: "\u0E04\u0E27\u0E32\u0E21\u0E22\u0E37\u0E14\u0E2B\u0E22\u0E38\u0E48\u0E19 \u0E04\u0E37\u0E2D\u0E01\u0E38\u0E0D\u0E41\u0E08\u0E2A\u0E39\u0E48\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08"
+  - key: choice/motto_flexibility_key/playerReaction/0/lines/0
+    english: Hmm... This is probably what HR wants to hear most, right?
+    thai: "\u0E2D\u0E37\u0E21... \u0E1B\u0E23\u0E30\u0E42\u0E22\u0E04\u0E19\u0E35\u0E49\u0E19\u0E48\u0E32\u0E08\u0E30\u0E16\u0E39\u0E01\u0E43\u0E08 HR \u0E21\u0E32\u0E01\u0E17\u0E35\u0E48\u0E2A\u0E38\u0E14\u0E41\u0E25\u0E49\u0E27\u0E21\u0E31\u0E49\u0E07?"
+  - key: choice/motto_flexibility_key/playerReaction/0/lines/1
+    english: Some tasks might not be what I'm best at, or even what I want to do. But if it makes me useful to the company, I suppose I have to try...
+    thai: "\u0E16\u0E36\u0E07\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E2D\u0E32\u0E08\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48\u0E2A\u0E34\u0E48\u0E07\u0E17\u0E35\u0E48\u0E40\u0E23\u0E32\u0E16\u0E19\u0E31\u0E14\u0E2B\u0E23\u0E37\u0E2D\u0E2D\u0E22\u0E32\u0E01\u0E17\u0E33\u0E17\u0E35\u0E48\u0E2A\u0E38\u0E14 \u0E41\u0E15\u0E48\u0E16\u0E49\u0E32\u0E21\u0E31\u0E19\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E40\u0E2B\u0E47\u0E19\u0E27\u0E48\u0E32\u0E40\u0E23\u0E32\u0E21\u0E35\u0E1B\u0E23\u0E30\u0E42\u0E22\u0E0A\u0E19\u0E4C \u0E01\u0E47\u0E04\u0E07\u0E15\u0E49\u0E2D\u0E07\u0E25\u0E2D\u0E07\u0E14\u0E39.."
+  - key: choice/motto_flexibility_key/playerReaction/0/lines/2
+    english: ...I just need them to hire me.
+    thai: "...\u0E02\u0E2D\u0E41\u0E04\u0E48\u0E23\u0E31\u0E1A\u0E09\u0E31\u0E19\u0E40\u0E02\u0E49\u0E32\u0E17\u0E33\u0E07\u0E32\u0E19\u0E01\u0E47\u0E1E\u0E2D\u0E41\u0E25\u0E49\u0E27\u0E25\u0E48\u0E30"
+  - key: choice/university_a/displayText
+    english: University A
+    thai: "\u0E21\u0E2B\u0E32\u0E25\u0E31\u0E22 A"
+  - key: choice/university_a/playerReaction/0/lines/0
+    english: Ugh! Just thinking about the entrance exams wears me out!
+    thai: "\u0E2E\u0E36\u0E48\u0E22! \u0E41\u0E04\u0E48\u0E04\u0E34\u0E14\u0E16\u0E36\u0E07\u0E15\u0E2D\u0E19\u0E2A\u0E2D\u0E1A\u0E40\u0E02\u0E49\u0E32\u0E01\u0E47\u0E40\u0E2B\u0E19\u0E37\u0E48\u0E2D\u0E22\u0E41\u0E25\u0E49\u0E27!"
+  - key: choice/university_a/playerReaction/0/lines/1
+    english: With a university name like this, at least HR should take an interest in my resume!
+    thai: "\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E23\u0E30\u0E14\u0E31\u0E1A\u0E19\u0E35\u0E49 \u0E2D\u0E22\u0E48\u0E32\u0E07\u0E19\u0E49\u0E2D\u0E22 HR \u0E01\u0E47\u0E19\u0E48\u0E32\u0E08\u0E30\u0E40\u0E1B\u0E34\u0E14 Resume \u0E14\u0E39\u0E14\u0E49\u0E27\u0E22\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E19\u0E43\u0E08\u0E1A\u0E49\u0E32\u0E07\u0E41\u0E2B\u0E25\u0E30!"
+  - key: choice/university_b/displayText
+    english: University B
+    thai: "\u0E21\u0E2B\u0E32\u0E25\u0E31\u0E22 B"
+  - key: choice/university_b/playerReaction/0/lines/0
+    english: It's a private university, but it has a good reputation!
+    thai: "\u0E16\u0E36\u0E07\u0E08\u0E30\u0E40\u0E1B\u0E47\u0E19\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E40\u0E2D\u0E01\u0E0A\u0E19\u0E01\u0E47\u0E40\u0E16\u0E2D\u0E30 \u0E41\u0E15\u0E48\u0E17\u0E35\u0E48\u0E19\u0E35\u0E48\u0E01\u0E47\u0E21\u0E35\u0E0A\u0E37\u0E48\u0E2D\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E14\u0E35\u0E19\u0E30!!"
+  - key: choice/university_b/playerReaction/0/lines/1
+    english: And tuition wasn't cheap. My family invested a lot in getting me through school.
+    thai: "\u0E04\u0E48\u0E32\u0E40\u0E17\u0E2D\u0E21\u0E41\u0E15\u0E48\u0E25\u0E30\u0E40\u0E17\u0E2D\u0E21\u0E01\u0E47\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48\u0E19\u0E49\u0E2D\u0E22 \u0E46 \u0E01\u0E27\u0E48\u0E32\u0E08\u0E30\u0E40\u0E23\u0E35\u0E22\u0E19\u0E08\u0E1A\u0E21\u0E32\u0E44\u0E14\u0E49 \u0E17\u0E35\u0E48\u0E1A\u0E49\u0E32\u0E19\u0E01\u0E47\u0E25\u0E07\u0E17\u0E38\u0E19\u0E01\u0E31\u0E1A\u0E40\u0E23\u0E32\u0E44\u0E1B\u0E40\u0E22\u0E2D\u0E30\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E01\u0E31\u0E19"
+  - key: choice/university_b/playerReaction/0/lines/2
+    english: Besides, graduating from there doesn't make me any less capable than anyone else!
+    thai: "\u0E2D\u0E35\u0E01\u0E2D\u0E22\u0E48\u0E32\u0E07 \u0E08\u0E1A\u0E08\u0E32\u0E01\u0E17\u0E35\u0E48\u0E19\u0E35\u0E48\u0E01\u0E47\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E41\u0E1B\u0E25\u0E27\u0E48\u0E32\u0E40\u0E23\u0E32\u0E14\u0E49\u0E2D\u0E22\u0E01\u0E27\u0E48\u0E32\u0E43\u0E04\u0E23\u0E2A\u0E31\u0E01\u0E2B\u0E19\u0E48\u0E2D\u0E22!"
+  - key: choice/university_c/displayText
+    english: University C
+    thai: "\u0E21\u0E2B\u0E32\u0E25\u0E31\u0E22 C"
+  - key: choice/university_c/playerReaction/0/lines/0
+    english: Hmm... It's just an ordinary university, nothing especially prestigious.
+    thai: "\u0E2D\u0E37\u0E21... \u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E17\u0E31\u0E48\u0E27\u0E44\u0E1B\u0E19\u0E35\u0E48\u0E41\u0E2B\u0E25\u0E30 \u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E21\u0E35\u0E0A\u0E37\u0E48\u0E2D\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E42\u0E14\u0E14\u0E40\u0E14\u0E48\u0E19\u0E2D\u0E30\u0E44\u0E23\u0E40\u0E1B\u0E47\u0E19\u0E1E\u0E34\u0E40\u0E28\u0E29"
+  - key: choice/university_c/playerReaction/0/lines/1
+    english: But I graduated through my own effort! Assignments, projects, exams... I've been through plenty.
+    thai: "\u0E41\u0E15\u0E48\u0E40\u0E23\u0E32\u0E01\u0E47\u0E40\u0E23\u0E35\u0E22\u0E19\u0E08\u0E1A\u0E21\u0E32\u0E44\u0E14\u0E49\u0E14\u0E49\u0E27\u0E22\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E02\u0E2D\u0E07\u0E15\u0E31\u0E27\u0E40\u0E2D\u0E07\u0E19\u0E30! \u0E2A\u0E48\u0E07\u0E07\u0E32\u0E19 \u0E17\u0E33\u0E42\u0E1B\u0E23\u0E40\u0E08\u0E01\u0E15\u0E4C \u0E2A\u0E2D\u0E1A\u0E1C\u0E48\u0E32\u0E19 \u0E01\u0E47\u0E1C\u0E48\u0E32\u0E19\u0E2D\u0E30\u0E44\u0E23\u0E21\u0E32\u0E40\u0E22\u0E2D\u0E30\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E01\u0E31\u0E19"
+  - key: choice/university_c/playerReaction/0/lines/2
+    english: Surely a university's name shouldn't be the only thing that matters... right?
+    thai: "\u0E08\u0E30\u0E43\u0E2B\u0E49\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E40\u0E1B\u0E47\u0E19\u0E15\u0E31\u0E27\u0E15\u0E31\u0E14\u0E2A\u0E34\u0E19\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14\u0E01\u0E47\u0E04\u0E07\u0E44\u0E21\u0E48\u0E43\u0E0A\u0E48\u0E2B\u0E23\u0E2D\u0E01\u0E21\u0E31\u0E49\u0E07..."
+  - key: choice/university_d/displayText
+    english: University D
+    thai: "\u0E21\u0E2B\u0E32\u0E25\u0E31\u0E22 D"
+  - key: choice/university_d/playerReaction/0/lines/0
+    english: Honestly, I wanted to attend a more prestigious university...
+    thai: "\u0E08\u0E23\u0E34\u0E07 \u0E46 \u0E15\u0E2D\u0E19\u0E19\u0E31\u0E49\u0E19\u0E01\u0E47\u0E2D\u0E22\u0E32\u0E01\u0E40\u0E02\u0E49\u0E32\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E17\u0E35\u0E48\u0E21\u0E35\u0E0A\u0E37\u0E48\u0E2D\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E01\u0E27\u0E48\u0E32\u0E19\u0E35\u0E49\u0E19\u0E30..."
+  - key: choice/university_d/playerReaction/0/lines/1
+    english: But the tuition was just too much. I didn't want to put any more financial pressure on my family.
+    thai: "\u0E41\u0E15\u0E48\u0E04\u0E48\u0E32\u0E40\u0E17\u0E2D\u0E21\u0E21\u0E31\u0E19\u0E44\u0E21\u0E48\u0E44\u0E2B\u0E27\u0E08\u0E23\u0E34\u0E07 \u0E46 \u0E08\u0E30\u0E43\u0E2B\u0E49\u0E17\u0E35\u0E48\u0E1A\u0E49\u0E32\u0E19\u0E41\u0E1A\u0E01\u0E23\u0E31\u0E1A\u0E04\u0E48\u0E32\u0E43\u0E0A\u0E49\u0E08\u0E48\u0E32\u0E22\u0E21\u0E32\u0E01\u0E01\u0E27\u0E48\u0E32\u0E19\u0E35\u0E49\u0E01\u0E47\u0E44\u0E21\u0E48\u0E2D\u0E22\u0E32\u0E01\u0E41\u0E25\u0E49\u0E27"
+  - key: choice/university_d/playerReaction/0/lines/2
+    english: It might not make my resume stand out, but it wasn't because I didn't try!
+    thai: "\u0E21\u0E31\u0E19\u0E2D\u0E32\u0E08\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E17\u0E33\u0E43\u0E2B\u0E49 Resume \u0E14\u0E39\u0E42\u0E14\u0E14\u0E40\u0E14\u0E48\u0E19\u0E40\u0E17\u0E48\u0E32\u0E04\u0E19\u0E2D\u0E37\u0E48\u0E19 \u0E41\u0E15\u0E48\u0E40\u0E23\u0E32\u0E01\u0E47\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E40\u0E1E\u0E23\u0E32\u0E30\u0E44\u0E21\u0E48\u0E1E\u0E22\u0E32\u0E22\u0E32\u0E21\u0E2A\u0E31\u0E01\u0E2B\u0E19\u0E48\u0E2D\u0E22!"
+  - key: choice/university_d/playerReaction/0/lines/3
+    english: Oh well... If my work is really good, a company should see its value!
+    thai: "\u0E40\u0E2D\u0E32\u0E40\u0E16\u0E2D\u0E30... \u0E16\u0E49\u0E32\u0E1C\u0E25\u0E07\u0E32\u0E19\u0E40\u0E23\u0E32\u0E14\u0E35\u0E08\u0E23\u0E34\u0E07 \u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E01\u0E47\u0E19\u0E48\u0E32\u0E08\u0E30\u0E40\u0E2B\u0E47\u0E19\u0E04\u0E38\u0E13\u0E04\u0E48\u0E32\u0E44\u0E14\u0E49\u0E2A\u0E34!"
+  - key: choice/university_e/displayText
+    english: University E
+    thai: "\u0E21\u0E2B\u0E32\u0E25\u0E31\u0E22 E"
+  - key: choice/university_e/playerReaction/0/lines/0
+    english: Sigh... It seemed easy to get into, so I picked it without thinking much.
+    thai: "\u0E40\u0E2E\u0E49\u0E2D... \u0E15\u0E2D\u0E19\u0E19\u0E31\u0E49\u0E19\u0E40\u0E2B\u0E47\u0E19\u0E27\u0E48\u0E32\u0E40\u0E02\u0E49\u0E32\u0E17\u0E35\u0E48\u0E19\u0E35\u0E48\u0E07\u0E48\u0E32\u0E22\u0E14\u0E35 \u0E01\u0E47\u0E40\u0E25\u0E22\u0E40\u0E25\u0E37\u0E2D\u0E01 \u0E46 \u0E44\u0E1B \u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E04\u0E34\u0E14\u0E2D\u0E30\u0E44\u0E23\u0E40\u0E22\u0E2D\u0E30"
+  - key: choice/university_e/playerReaction/0/lines/1
+    english: Back then I just wanted to graduate. Who knew a university's name would matter this much...
+    thai: "\u0E15\u0E2D\u0E19\u0E19\u0E31\u0E49\u0E19\u0E41\u0E04\u0E48\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E40\u0E23\u0E35\u0E22\u0E19\u0E43\u0E2B\u0E49\u0E08\u0E1A\u0E01\u0E47\u0E1E\u0E2D\u0E41\u0E25\u0E49\u0E27\u0E19\u0E35\u0E48\u0E19\u0E32 \u0E43\u0E04\u0E23\u0E08\u0E30\u0E44\u0E1B\u0E04\u0E34\u0E14\u0E27\u0E48\u0E32\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E2B\u0E32\u0E27\u0E34\u0E17\u0E22\u0E32\u0E25\u0E31\u0E22\u0E08\u0E30\u0E21\u0E35\u0E1C\u0E25\u0E02\u0E19\u0E32\u0E14\u0E19\u0E35\u0E49.."
+  - key: choice/university_e/playerReaction/0/lines/2
+    english: It's not like I can turn back time and choose again.
+    thai: "\u0E41\u0E15\u0E48\u0E08\u0E30\u0E43\u0E2B\u0E49\u0E22\u0E49\u0E2D\u0E19\u0E40\u0E27\u0E25\u0E32\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E43\u0E2B\u0E21\u0E48\u0E01\u0E47\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E41\u0E25\u0E49\u0E27\u0E19\u0E35\u0E48"
+  - key: question/__emergency/questionText
+    english: Tell me about yourself.
+    thai: 
+  - key: question/__emergency/answers/a1/text
+    english: I'm a recent graduate looking for an opportunity.
+    thai: 
+  - key: question/__emergency/answers/a1/playerReaction/0/text
+    english: That sounded rehearsed.
+    thai: 
+  - key: question/__emergency/answers/a1/hrResponse/0/text
+    english: I see.
+    thai: 
+  - key: ui/day
+    english: Day {0}
+    thai: "\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48 {0}"
+  - key: ui/gender
+    english: 'Gender: {0}'
+    thai: "\u0E40\u0E1E\u0E28: {0}"
+  - key: ui/resume/nothing_left
+    english: (nothing left)
+    thai: "(\u0E44\u0E21\u0E48\u0E40\u0E2B\u0E25\u0E37\u0E2D\u0E41\u0E25\u0E49\u0E27)"
+  - key: ui/resume/nothing_to_choose
+    english: Nothing to choose.
+    thai: "\u0E44\u0E21\u0E48\u0E21\u0E35\u0E43\u0E2B\u0E49\u0E40\u0E25\u0E37\u0E2D\u0E01"
+  - key: ui/company/rejected
+    english: REJECTED
+    thai: "\u0E16\u0E39\u0E01\u0E1B\u0E0F\u0E34\u0E40\u0E2A\u0E18"
+  - key: ui/company/none_left
+    english: No companies left.
+    thai: "\u0E44\u0E21\u0E48\u0E21\u0E35\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E40\u0E2B\u0E25\u0E37\u0E2D\u0E41\u0E25\u0E49\u0E27"
+  - key: ui/company/select_prompt
+    english: Select a company to see its details.
+    thai: "\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E14\u0E39\u0E23\u0E32\u0E22\u0E25\u0E30\u0E40\u0E2D\u0E35\u0E22\u0E14"
+  - key: ui/final/title
+    english: What will you do?
+    thai: "\u0E04\u0E38\u0E13\u0E08\u0E30\u0E17\u0E33\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E44\u0E23?"
+  - key: ui/final/no_endings
+    english: No endings configured.
+    thai: "\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E15\u0E31\u0E49\u0E07\u0E04\u0E48\u0E32\u0E15\u0E2D\u0E19\u0E08\u0E1A"
+  - key: ui/sleep/day_over
+    english: Day {0} is over...
+    thai: "\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48 {0} \u0E08\u0E1A\u0E25\u0E07\u0E41\u0E25\u0E49\u0E27..."
+  - key: ui/token/company
+    english: the company
+    thai: "\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17"
+  - key: ui/token/job
+    english: the position
+    thai: "\u0E15\u0E33\u0E41\u0E2B\u0E19\u0E48\u0E07\u0E07\u0E32\u0E19"
+  - key: ui/error/name_required
+    english: Please enter a name.
+    thai: "\u0E01\u0E23\u0E38\u0E13\u0E32\u0E01\u0E23\u0E2D\u0E01\u0E0A\u0E37\u0E48\u0E2D"
+  - key: ui/error/name_too_long
+    english: Name is too long (max {0}).
+    thai: "\u0E0A\u0E37\u0E48\u0E2D\u0E22\u0E32\u0E27\u0E40\u0E01\u0E34\u0E19\u0E44\u0E1B (\u0E2A\u0E39\u0E07\u0E2A\u0E38\u0E14 {0})"
+  - key: ui/error/gender_required
+    english: Please select a gender.
+    thai: "\u0E01\u0E23\u0E38\u0E13\u0E32\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E40\u0E1E\u0E28"
+  - key: ui/confidence/empty
+    english: No choices selected
+    thai: "\u0E22\u0E31\u0E07\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E2D\u0E30\u0E44\u0E23"
+  - key: ui/confidence/categories
+    english: '{0} / {1} categories'
+    thai: "{0} / {1} \u0E2B\u0E21\u0E27\u0E14"
+  - key: ui/label/GameCanvas/MainMenuPanel/MenuPaper/Title
+    english: FIRST JOBBER
+    thai: FIRST JOBBER
+  - key: ui/label/GameCanvas/MainMenuPanel/MenuPaper/Subtitle
+    english: Every rejection takes something with it.
+    thai: "\u0E17\u0E38\u0E01\u0E01\u0E32\u0E23\u0E16\u0E39\u0E01\u0E1B\u0E0F\u0E34\u0E40\u0E2A\u0E18\u0E1E\u0E23\u0E32\u0E01\u0E1A\u0E32\u0E07\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E44\u0E1B\u0E08\u0E32\u0E01\u0E40\u0E23\u0E32"
+  - key: ui/label/GameCanvas/MainMenuPanel/MenuPaper/NameLabel
+    english: Name
+    thai: "\u0E0A\u0E37\u0E48\u0E2D"
+  - key: ui/label/GameCanvas/MainMenuPanel/MenuPaper/NameInput/Text Area/Placeholder
+    english: Enter your name...
+    thai: "\u0E01\u0E23\u0E2D\u0E01\u0E0A\u0E37\u0E48\u0E2D\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13..."
+  - key: ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderLabel
+    english: Gender
+    thai: "\u0E40\u0E1E\u0E28"
+  - key: ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderDropdown/Label
+    english: Option A
+    thai: 
+  - key: ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderDropdown/Template/Viewport/Content/Item/Item Label
+    english: Option A
+    thai: 
+  - key: ui/label/GameCanvas/MainMenuPanel/MenuPaper/SubmitButton/Label
+    english: Submit
+    thai: "\u0E2A\u0E48\u0E07\u0E43\u0E1A\u0E2A\u0E21\u0E31\u0E04\u0E23"
+  - key: ui/label/GameCanvas/CreateApplicantPanel/Title
+    english: Create Applicant
+    thai: "\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E1C\u0E39\u0E49\u0E2A\u0E21\u0E31\u0E04\u0E23"
+  - key: ui/label/GameCanvas/CreateApplicantPanel/NameLabel
+    english: Name
+    thai: "\u0E0A\u0E37\u0E48\u0E2D"
+  - key: ui/label/GameCanvas/CreateApplicantPanel/NameInput/Text Area/Placeholder
+    english: Enter your name...
+    thai: "\u0E01\u0E23\u0E2D\u0E01\u0E0A\u0E37\u0E48\u0E2D\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13..."
+  - key: ui/label/GameCanvas/CreateApplicantPanel/AgeLabel
+    english: Age
+    thai: "\u0E2D\u0E32\u0E22\u0E38"
+  - key: ui/label/GameCanvas/CreateApplicantPanel/AgeInput/Text Area/Placeholder
+    english: Enter your age...
+    thai: "\u0E01\u0E23\u0E2D\u0E01\u0E2D\u0E32\u0E22\u0E38\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13..."
+  - key: ui/label/GameCanvas/CreateApplicantPanel/SubmitButton/Label
+    english: Confirm
+    thai: "\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19"
+  - key: ui/label/GameCanvas/ResumeEditorPanel/ResumePreview/NameText
+    english: Name
+    thai: "\u0E0A\u0E37\u0E48\u0E2D"
+  - key: ui/label/GameCanvas/ResumeEditorPanel/ResumePreview/AgeText
+    english: Age
+    thai: "\u0E2D\u0E32\u0E22\u0E38"
+  - key: ui/label/GameCanvas/ResumeEditorPanel/EditorGroup/DayText
+    english: Day 1
+    thai: "\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48 1"
+  - key: ui/label/GameCanvas/ResumeEditorPanel/EditorGroup/CategoryTitle
+    english: Category
+    thai: "\u0E2B\u0E21\u0E27\u0E14"
+  - key: ui/label/GameCanvas/ResumeEditorPanel/EditorGroup/ConfirmButton/Label
+    english: Confirm Resume
+    thai: "\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E40\u0E23\u0E0B\u0E39\u0E40\u0E21\u0E48"
+  - key: ui/label/GameCanvas/ResumeEditorPanel/ConfidencePanel/ConfidenceTitle
+    english: OVERALL CONFIDENCE
+    thai: "\u0E04\u0E27\u0E32\u0E21\u0E21\u0E31\u0E48\u0E19\u0E43\u0E08\u0E42\u0E14\u0E22\u0E23\u0E27\u0E21"
+  - key: ui/label/GameCanvas/CompanyPanel/Header
+    english: Choose a company
+    thai: "\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17"
+  - key: ui/label/GameCanvas/CompanyPanel/DetailsCard/DetailsText
+    english: Select a company to see its details.
+    thai: "\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E14\u0E39\u0E23\u0E32\u0E22\u0E25\u0E30\u0E40\u0E2D\u0E35\u0E22\u0E14"
+  - key: ui/label/GameCanvas/CompanyPanel/BackButton/Label
+    english: Back
+    thai: "\u0E01\u0E25\u0E31\u0E1A"
+  - key: ui/label/GameCanvas/CompanyPanel/ApplyButton/Label
+    english: Apply
+    thai: "\u0E2A\u0E21\u0E31\u0E04\u0E23"
+  - key: ui/label/GameCanvas/InterviewPanel/HRArea/HRPortrait/PlaceholderLabel
+    english: Neutral
+    thai: "\u0E1B\u0E01\u0E15\u0E34"
+  - key: ui/label/GameCanvas/EndingPanel/Buttons/RestartButton/Label
+    english: Restart
+    thai: "\u0E40\u0E23\u0E34\u0E48\u0E21\u0E43\u0E2B\u0E21\u0E48"
+  - key: ui/label/GameCanvas/EndingPanel/Buttons/MenuButton/Label
+    english: Main Menu
+    thai: "\u0E40\u0E21\u0E19\u0E39\u0E2B\u0E25\u0E31\u0E01"
+  - key: ui/label/GameCanvas/DialogueBox/SpeakerText
+    english: Speaker
+    thai: "\u0E1C\u0E39\u0E49\u0E1E\u0E39\u0E14"

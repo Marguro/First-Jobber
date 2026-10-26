@@ -1,0 +1,305 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008f9df6dce40f44dac679cd64be634b, type: 3}
+  m_Name: GameDatabase_Production
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.GameDatabase
+  categories:
+  - {fileID: 11400000, guid: c802727f80f3c454c968210a7e1a657f, type: 2}
+  - {fileID: 11400000, guid: 9006c40c6bb8f654c9267b93eddf883f, type: 2}
+  - {fileID: 11400000, guid: 240fd755b95f27b4f8136e820b7fac14, type: 2}
+  choices:
+  - {fileID: 11400000, guid: 56730c75e24fc0b45884fb44593cd941, type: 2}
+  - {fileID: 11400000, guid: 36f44d9e2a9dbc342851977112970d4c, type: 2}
+  - {fileID: 11400000, guid: ab9c364cc14445044ad6c7738b84c051, type: 2}
+  - {fileID: 11400000, guid: 4715e2dc4bf71194ab17c9a175b05b96, type: 2}
+  - {fileID: 11400000, guid: af038982550807143ba0015f7f938af9, type: 2}
+  - {fileID: 11400000, guid: 363b10542928cf747906fc121324d643, type: 2}
+  - {fileID: 11400000, guid: fc83de0d7de256f4198a331a9010db40, type: 2}
+  - {fileID: 11400000, guid: 8cef5fcb92f834c4cb01b8f97c40f3f3, type: 2}
+  - {fileID: 11400000, guid: 993d1a2743dafc64086574eb76298135, type: 2}
+  - {fileID: 11400000, guid: 03bc3aae74f4d4c40bf19b28f84479f3, type: 2}
+  - {fileID: 11400000, guid: 845a4d1a4bedf5b4bb7560cb55f97903, type: 2}
+  - {fileID: 11400000, guid: ef476c60d3c378142ad34bdbcb9760a0, type: 2}
+  - {fileID: 11400000, guid: 68db72012578b2048a28297b70560584, type: 2}
+  - {fileID: 11400000, guid: 62152da43d94b8e44a8638221ca72874, type: 2}
+  - {fileID: 11400000, guid: 63919e4ac51e73349b38f412aaa8ab1f, type: 2}
+  companies:
+  - {fileID: 11400000, guid: 9166c41823fbd2f4788d894d1d315ccb, type: 2}
+  - {fileID: 11400000, guid: 130b36bfcb04069469d92f004f0ac48c, type: 2}
+  - {fileID: 11400000, guid: 13d525d1e39f8a04fa28935970b229a6, type: 2}
+  - {fileID: 11400000, guid: 34969ca36625bc345a5ce5bfb7352c23, type: 2}
+  questions: []
+  events:
+  - {fileID: 11400000, guid: 0bb27cc7649a7c94e8e430fd45e7d4fa, type: 2}
+  - {fileID: 11400000, guid: 7d71e283ce6638649afbeebd5b77578b, type: 2}
+  - {fileID: 11400000, guid: 8e8d0b7117a55dd43a8345336c528375, type: 2}
+  endings:
+  - {fileID: 11400000, guid: 4a0c87e0421daf94693bd35feca52ec7, type: 2}
+  - {fileID: 11400000, guid: ab342f493c61c29468e9851682b3dbe0, type: 2}
+  - {fileID: 11400000, guid: abe100e8586be6f448b5766f86e4ded8, type: 2}
+  hrCharacters:
+  - {fileID: 11400000, guid: aa0a699511c53a04384718880b786e91, type: 2}
+  - {fileID: 11400000, guid: 3b5609a4429fb534386a3a52c00e090a, type: 2}
+  - {fileID: 11400000, guid: c794c075b4093ba4aaa2728b575ec6ca, type: 2}
+  - {fileID: 11400000, guid: 9aad7dc52b832094eb1d7c9027fb48eb, type: 2}
+  fallbackHr: {fileID: 0}
+  genders:
+  - id: male
+    displayName: Male
+  - id: female
+    displayName: Female
+  - id: non_binary
+    displayName: Non-binary
+  - id: unspecified
+    displayName: Prefer Not to Say
+  genderPrompt: Select gender...
+  questionsPerInterview: 5
+  showConsumedChoices: 1
+  showRejectedCompanies: 1
+  minAge: 18
+  maxAge: 99
+  maxNameLength: 24
+  resumeIntroMode: 1
+  resumeIntroLines:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - This is me, on paper.
+    - What this shit
+    - What
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: Let's make it better.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  resumeConfirmedThreshold: 50
+  highConfidenceConfirmedLines:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - I think this looks good.
+    - I've prepared everything.
+    - This time will be different.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - That's the best I can make it.
+    - Now, who will take me?
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  lowConfidenceConfirmedLines:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - I don't think this is enough.
+    - Maybe I should try anyway.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - There's barely anything left.
+    - Why does this keep happening?
+    - I guess I'll submit it.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  resumeConfirmedMode: 1
+  resumeConfirmedLines:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - That's the best I can make it.
+    - I've sent so many applications already.
+    - Now, who will take me?
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  companyConfirmedMode: 0
+  companyConfirmedLines:
+  - speaker: Player
+    text: '{company}... {job}. Please let this be the one.'
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  defaultHrIntroMode: 0
+  defaultHrIntro:
+  - speaker: HR
+    text: Good morning, {name}. Please have a seat.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  hrReviewMode: 0
+  hrReviewLines:
+  - speaker: HR
+    text: Let me look at your resume.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: HR
+    text: '{name}. A recent graduate.'
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  rejectionHRMode: 0
+  rejectionHR:
+  - speaker: HR
+    text: Thank you for your time, {name}.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: HR
+    text: We've decided to move forward with other candidates.
+    dialogueLines: []
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  rejectionPlayerMode: 0
+  rejectionPlayer:
+  - speaker: Player
+    text: ...Again.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: Time to go home.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  fatherOfferMode: 0
+  fatherOfferLines:
+  - speaker: Narrator
+    text: The phone is ringing. It's Dad.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Father
+    text: '{name}, I''ve been thinking. There''s an opening at my friend''s company.'
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Father
+    text: Steady pay. Regular hours. You don't have to keep doing this.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: I... I don't have anything left to apply to.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Father
+    text: Then take it. What do you say?
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 

@@ -36,7 +36,7 @@ namespace FirstJobber
 
         void Update()
         {
-            if (LocalizationManager.Current != Language.Thai || Time.unscaledTime < nextScan) return;
+            if (Time.unscaledTime < nextScan) return;
             nextScan = Time.unscaledTime + ScanInterval;
             ApplyAll();
         }
@@ -62,13 +62,20 @@ namespace FirstJobber
         {
             if (t == null) return;
             var table = LocalizationManager.Table; // null unless Thai
-            var thaiFont = table != null ? table.font : null;
+            var fontTable = LocalizationManager.ThaiTable; // the font is the same in every language
+            var thaiFont = fontTable != null ? fontTable.font : null;
             var nurse = t.GetComponent<ThaiTextNurse>();
 
             if (thaiFont != null)
             {
                 if (!originalFonts.ContainsKey(t)) originalFonts[t] = t.font;
                 if (t.font != thaiFont) t.font = thaiFont;
+
+                if (table == null) // English: same font, no Thai word-break processing
+                {
+                    if (nurse != null && nurse.enabled) { nurse.enabled = false; t.SetAllDirty(); }
+                    return;
+                }
 
                 // The nurse's zero-width spaces break the caret of input fields, so only the font is changed there.
                 if (t.GetComponentInParent<TMP_InputField>() != null) return;

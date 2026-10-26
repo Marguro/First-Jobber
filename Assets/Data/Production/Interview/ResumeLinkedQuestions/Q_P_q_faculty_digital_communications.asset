@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_P_q_faculty_digital_communications
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: q_faculty_digital_communications
+  questionText: You didn't study game development directly. Do you think you can handle this job?
+  hrEmotion: 0
+  questionDialogue: []
+  linkedChoice: {fileID: 11400000, guid: ab9c364cc14445044ad6c7738b84c051, type: 2}
+  linkedCategory: {fileID: 0}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a_faculty_digital_communications_1
+    text: Absolutely! I can adapt!
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []
+  - id: a_faculty_digital_communications_2
+    text: Uh... I'll try to learn more.
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []
+  - id: a_faculty_digital_communications_3
+    text: I can handle it.
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []

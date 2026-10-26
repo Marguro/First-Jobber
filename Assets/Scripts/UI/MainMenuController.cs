@@ -32,6 +32,19 @@ namespace FirstJobber
         GameDatabase db;
         bool submitted;
 
+        void OnEnable() { LocalizationManager.LanguageChanged += OnLanguageChanged; }
+        void OnDisable() { LocalizationManager.LanguageChanged -= OnLanguageChanged; }
+
+        // Rebuild the gender captions in the new language but keep what the player already picked.
+        void OnLanguageChanged()
+        {
+            if (db == null || genderDropdown == null) return;
+            int picked = genderDropdown.value;
+            CreateApplicantController.PopulateGenderDropdown(genderDropdown, db);
+            genderDropdown.SetValueWithoutNotify(Mathf.Clamp(picked, 0, Mathf.Max(0, genderDropdown.options.Count - 1)));
+            genderDropdown.RefreshShownValue();
+        }
+
         void Awake()
         {
             if (submitButton != null) submitButton.onClick.AddListener(TrySubmit);

@@ -178,8 +178,14 @@ namespace FirstJobber
         public string GenderDisplay(string id)
         {
             var g = FindGender(id);
-            return g != null && !string.IsNullOrEmpty(g.displayName) ? g.displayName : (id ?? "");
+            return g != null && !string.IsNullOrEmpty(g.displayName) ? LocalizationManager.Get(GenderKey(g.id), g.displayName) : (id ?? "");
         }
+
+        /// <summary>Localization key of a gender option's display name.</summary>
+        public static string GenderKey(string id) { return "database/genders/" + id; }
+
+        /// <summary>Localization key of the gender dropdown prompt.</summary>
+        public const string GenderPromptKey = "database/genderPrompt";
 
         public ResumeCategoryData FindCategory(string id)
         {

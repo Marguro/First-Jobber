@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6218ca4452496448f05499db78f784, type: 3}
+  m_Name: Choice_P_motto_flexibility_key
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ResumeChoiceData
+  id: motto_flexibility_key
+  category: {fileID: 11400000, guid: 240fd755b95f27b4f8136e820b7fac14, type: 2}
+  displayText: Flexibility Is the Key to Success
+  description: 
+  tags:
+  - todo_confidence
+  confidencePercentage: 50
+  playerReaction:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - Hmm... This is probably what HR wants to hear most, right?
+    - Some tasks might not be what I'm best at, or even what I want to do. But if it makes me useful to the company, I suppose I have to try...
+    - ...I just need them to hire me.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  hrReactions: []

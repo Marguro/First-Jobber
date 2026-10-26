@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6218ca4452496448f05499db78f784, type: 3}
+  m_Name: Choice_P_faculty_fine_arts
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ResumeChoiceData
+  id: faculty_fine_arts
+  category: {fileID: 11400000, guid: c802727f80f3c454c968210a7e1a657f, type: 2}
+  displayText: Fine Arts
+  description: 
+  tags:
+  - todo_confidence
+  confidencePercentage: 50
+  playerReaction:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - Hmm... That's close enough, I guess!
+    - At least I got plenty of practice drawing, using colors, and composing images, even if I didn't study game development directly.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  hrReactions: []

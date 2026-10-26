@@ -241,10 +241,13 @@ namespace FirstJobber.EditorTools
             db.InvalidateLookups();
         }
 
+        public const string ProductionRoot = "Assets/Data/Production";
+
         static List<T> Load<T>() where T : Object
         {
             return AssetDatabase.FindAssets("t:" + typeof(T).Name, new[] { Root })
                 .Select(AssetDatabase.GUIDToAssetPath)
+                .Where(p => !p.StartsWith(ProductionRoot + "/", System.StringComparison.Ordinal)) // production content has its own database
                 .OrderBy(p => System.IO.Path.GetFileNameWithoutExtension(p), System.StringComparer.Ordinal)
                 .Select(AssetDatabase.LoadAssetAtPath<T>)
                 .Where(a => a != null).ToList();

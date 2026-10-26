@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6218ca4452496448f05499db78f784, type: 3}
+  m_Name: Choice_P_motto_dreams_never_expire
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ResumeChoiceData
+  id: motto_dreams_never_expire
+  category: {fileID: 11400000, guid: 240fd755b95f27b4f8136e820b7fac14, type: 2}
+  displayText: Dreams Never Expire
+  description: 
+  tags:
+  - todo_confidence
+  confidencePercentage: 50
+  playerReaction:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - I really like that phrase!
+    - I might only be a fresh graduate now, but someday I'll create something I can be proud of!
+    - All right! Let's make that dream come true!!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  hrReactions: []
