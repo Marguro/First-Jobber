@@ -80,7 +80,7 @@ namespace FirstJobber
             ctx = context;
             confirmed = false;
             ctx.Choices.PruneInvalidSelections();
-            preview.SetApplicant(ctx.Session.applicantName, ctx.Session.applicantAge);
+            preview.SetApplicant(ctx.Session.applicantName, ctx.Database.GenderDisplay(ctx.Session.applicantGender));
             preview.SetDistorted(ctx.Session.HasFlag("resume_distorted"));
             if (dayText != null) dayText.text = "Day " + ctx.Session.day;
 

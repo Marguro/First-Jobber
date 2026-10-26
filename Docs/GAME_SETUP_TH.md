@@ -368,3 +368,70 @@ Assets/Data/Atmosphere/       Phase_01_Normal (วัน 1), Phase_02_Deteriorat
 `Data/DialogueData.cs` (enum `DialoguePlaybackMode`, `HasContent`), `Dialogue/DialogueManager.cs` (`Play`/`PlayAndWait` รับ mode และสุ่ม), `Data/GameDatabase.cs` (ช่อง Mode), และจุดเรียกใน `GameFlowManager.cs`, `ResumeEditorController.cs`, `InterviewController.cs`, `FinalDecisionController.cs`
 
 > หมายเหตุ: เก็บ Mode เป็นช่องแยกข้างอาร์เรย์เดิม (ไม่ห่ออาร์เรย์ด้วย class ใหม่) เพื่อไม่ให้ Asset ที่ serialize ไว้เสียหาย
+
+
+## เพศผู้สมัคร (Gender) แทนอายุ
+
+- หน้าลงทะเบียนมีช่อง **ชื่อ** และ **Gender (TMP_Dropdown)** ไม่มีช่องอายุแล้ว ตัวเลือกแรกของ dropdown คือข้อความ prompt (Select gender...) เลือกไม่ได้ ผู้เล่นต้องเลือกตัวเลือกจริงก่อนกด Submit
+- ค่าที่เลือกเก็บเป็น **Gender ID** ใน `GameSession.applicantGender` และคงอยู่ตลอดทุกวัน/ทุกรอบ เซฟเก่าที่ไม่มีค่านี้จะเป็น `unspecified`
+- `applicantAge` ยังอยู่ในโค้ดเพื่อให้เซฟและ Asset เก่าอ่านได้ แต่ไม่ถูกใช้แล้ว Token `{age}` เลิกใช้ ให้ใช้ `{gender}` (ชื่อที่แสดงของเพศ) แทน
+- **เพิ่ม/แก้ตัวเลือกเพศ:** เปิด `GameDatabase.asset` > **Genders** > เพิ่ม element ใส่ `id` (ตัวพิมพ์เล็ก คงที่ ห้ามเปลี่ยนภายหลัง เช่น `male`) และ `displayName` (ข้อความใน dropdown) ต้องมี id `unspecified` อยู่เสมอ ลำดับใน list คือลำดับใน dropdown และแก้ข้อความ prompt ได้ที่ `Gender Prompt`
+- **ต้องอัปเดต Scene:** เปิด Scene เกม แล้วเมนู `Tools > First Jobber > 9. Convert Main Menu To Resume Style` (หน้าเมนูจะถูกสร้างใหม่ มี Dropdown แทนช่องอายุ) หรือสร้าง `TMP_Dropdown` เองแล้วลากใส่ช่อง **Gender Dropdown** ของ `MainMenuController` ถ้ายังไม่ใส่ เกมจะใช้ `unspecified` และเตือนใน Console
+- ส่วนหัวใบสมัครในหน้า Resume Editor แสดง `Gender: ...` แทนอายุ (ช่องเดิมชื่อ ageText ถูก map เป็น genderText อัตโนมัติ)
+
+## บทพูดตามเพศ (Gender-conditional dialogue)
+
+ทุก Dialogue Block มี 2 ช่องใหม่:
+- **Gender Ids:** ว่าง = ใช้กับทุกเพศ ถ้าใส่ (เช่น `male`) block นี้จะเล่นเฉพาะเพศนั้น ใส่ได้หลายค่า
+- **Variant Group:** block ที่ใช้ชื่อกลุ่มเดียวกันเป็น **ทางเลือกของจุดเดียวกัน** ระบบเล่น block ที่ตรงเพศ และถ้าไม่มีตรง ก็เล่น block ของกลุ่มเดียวกันที่ Gender Ids ว่าง (Any Gender) เป็น fallback
+
+ตัวอย่าง (HR Introduction) 3 elements ที่ Variant Group = `greeting`:
+1. Gender Ids = `male` : "Good morning, Mr. {name}."
+2. Gender Ids = `female` : "Good morning, Ms. {name}."
+3. Gender Ids ว่าง : "Good morning, {name}."
+
+block ที่ไม่ใส่ Variant Group และไม่ใส่ Gender Ids จะเล่นกับทุกเพศเสมอ ไม่ต้องเขียนซ้ำ
+
+- ใช้ได้กับบทพูดทุกชุด: Intro, Resume Review, ปฏิกิริยาต่อ Choice, คำถาม (ช่อง **Question Dialogue**), Player Reaction, HR Response, Rejection
+- **ใช้ร่วมกับ RandomOne:** ระบบกรองตามเพศ/กลุ่มก่อน แล้วค่อยสุ่ม 1 block จากที่เหลือ แล้วเล่นทุกบรรทัดของ block นั้นตามลำดับ เพศไม่มีผลต่อ Confidence หรือผลการปฏิเสธ
+- Token ที่ใช้ได้เพิ่ม: `{PlayerName}` (เหมือน `{name}`), `{gender}`, `{hr}` (ชื่อ HR)
+
+## HR ประจำบริษัท (Company-specific HR)
+
+### สร้าง HR ใหม่
+1. Project: คลิกขวาใน `Assets/Data/HR` > `Create > First Jobber > HR Character` ตั้งชื่อ เช่น `HR_05_Mina`
+2. กรอก **Id** (ไม่ซ้ำ) และ **Hr Name** (ชื่อที่แสดงเป็นผู้พูด)
+3. **Visuals:** Default Portrait, Emotion Visuals (ภาพ/สีชั่วคราวต่ออารมณ์), Atmosphere Variants (ภาพต่อ Phase: ใส่ Phase แล้วเพิ่มภาพต่ออารมณ์ ถ้าอารมณ์ไหนไม่มีจะใช้ภาพปกติ), Animator Controller (ไม่บังคับ ต้องใส่ Animator ที่ช่อง Animator ของ HRReactionController ด้วย) ยังไม่มีภาพจริงให้เว้นว่างได้ ระบบแสดงสีและชื่อแทน
+4. ลาก HR เข้า list **HR Characters** ของ `GameDatabase` หรือใช้เมนู `Tools > First Jobber > Refresh Database Lists`
+
+### ผูก HR กับบริษัท
+เปิด `Company_xx` > ช่อง **Hr** ลาก HR ใส่ บริษัทเลือกแล้วจะโหลด HR นี้เสมอ (ไม่สุ่ม ไม่ใช้ของบริษัทอื่น) ถ้าไม่ใส่และไม่มี `Fallback Hr` ใน Database จะมี Error ใน Console และเกมใช้การสัมภาษณ์แบบเดิม (shared) เพื่อไม่ให้เกมค้าง
+
+### บทพูดของ HR (แยกต่อ HR)
+- **Introduction / Resume Review / Rejection:** แต่ละชุดมี Playback Mode ของตัวเอง (Sequential / RandomOne) และรองรับหลายบรรทัดต่อ block ถ้าช่องว่าง ระบบถอยไปใช้บทพูดของบริษัท (`CompanyData.hrIntro/rejection`) และบทพูดกลางของ Database ตามลำดับ
+- **Choice Reactions:** ใส่คู่ Choice + บทพูด เพื่อให้ HR คนนี้มีปฏิกิริยาของตัวเองต่อ Choice นั้น ถ้าไม่ใส่ใช้ `HR Reactions` เดิมของ Choice
+- แก้บทพูดของ HR คนหนึ่งไม่กระทบอีกคน เพราะเก็บใน Asset ของ HR แต่ละตัว
+
+### คำถาม 2 ประเภท
+- **Fixed Questions:** คำถามที่เขียนไว้ เรียงตามลำดับใน list ไม่สุ่ม ไม่ผูกกับ Resume สร้างด้วย `Create > First Jobber > Interview Question` ไม่ต้องใส่ Linked Choice/Category แล้วลากใส่ list **Fixed Questions** (ลำดับ list = ลำดับที่ถาม)
+- **Resume Linked Questions:** ใส่ **Linked Choice** (ตรง Choice เป๊ะ มาก่อน) หรือ **Linked Category** (ตรงหมวด) แล้วลากใส่ list **Resume Linked Questions** เลือกคำถามตามใบสมัครที่ยืนยันแล้ว: ตรง Choice ก่อน แล้วตรงหมวด ภายในลำดับเดียวกัน ค่า **Weight** สูงกว่ามาก่อน ที่เหลือตามลำดับใน list และเลือกข้อที่ยังไม่เคยถามก่อน ห้ามให้คำถามซ้ำในการสัมภาษณ์รอบเดียว
+- **Fallback Question:** ถ้าไม่มีคำถามที่ตรงเลย จะถามข้อนี้ของ HR เดียวกัน (ควรใส่เสมอ) ถ้าไม่มีอีก ระบบใช้คำถามฉุกเฉินในโค้ด เกมจึงไม่ค้าง
+- **Question Dialogue** (ไม่บังคับ): ถ้าใส่ HR จะพูดตาม block เหล่านี้ (หลายบรรทัด/ตามเพศได้) แทน Question Text และข้อความบนจอใช้บรรทัดแรกที่ตรงเพศ
+- แต่ละ Answer มี Player Reaction / HR Response พร้อม Playback Mode ของตัวเอง
+- **ห้ามใช้ Asset คำถามเดียวกันกับ HR สองคน** (Validate Content จะเตือน)
+
+### ลำดับการสัมภาษณ์ (Sequence)
+list **Sequence** ของ HR: แต่ละ slot เลือก Type = `Fixed` หรือ `ResumeLinked`
+- Fixed ที่ไม่ระบุ `Fixed Question` = เอาข้อถัดไปที่ยังไม่ใช้จาก Fixed Questions ตามลำดับ (ระบุเองเพื่อบังคับข้อได้)
+- ว่าง = ค่าเริ่มต้น Fixed 1 ข้อ + ResumeLinked 1 ข้อ
+- ตัวอย่าง: `Fixed, Fixed, ResumeLinked` หรือ `ResumeLinked, Fixed`
+
+### ทดลองกับตัวอย่าง 2 บริษัทขึ้นไป
+1. `Tools > First Jobber > 12. Generate Sample HR Content` สร้าง HR ตัวอย่าง 4 คนใน `Assets/Data/HR` (Iris, Gregor, Helena, Noel) พร้อมคำถามของตัวเอง และผูกกับ 4 บริษัทที่ยังไม่มี HR (ไม่ทับ Asset เดิม)
+2. `Tools > First Jobber > 3. Validate Content` ตรวจข้อผิดพลาด
+3. กด Play เลือกเพศ ผ่านวันแรกที่บริษัท Pixel Pioneers (HR Iris: intro สุ่ม, ถาม Fixed แล้ว Resume Linked) และวันถัดไปที่ Brightline Corp (HR Gregor: ถาม Resume Linked ก่อนแล้ว Fixed) เทียบชื่อผู้พูด สี และบทพูดที่ต่างกัน ลองเลือกเพศต่างกันเพื่อดู Mr./Ms.
+
+### ไฟล์ที่เพิ่ม/แก้
+- เพิ่ม: `Data/GenderData.cs`, `Data/HRCharacterData.cs`, `Interview/HrInterviewPlanner.cs`, `Editor/SampleHrGenerator.cs`
+- แก้: `Data/DialogueData.cs`, `Dialogue/DialogueManager.cs` (กรองตามเพศ, ชื่อ HR), `Data/GameDatabase.cs`, `Data/CompanyData.cs`, `Data/InterviewQuestionData.cs`, `Core/GameSession.cs`, `Core/GameContext.cs`, `Core/GameFlowManager.cs`, `UI/CreateApplicantController.cs`, `UI/MainMenuController.cs`, `UI/ResumePreviewUI.cs`, `Resume/ResumeEditorController.cs`, `Interview/InterviewController.cs`, `Interview/HRReactionController.cs`, `Interview/InterviewQuestionSelector.cs`, `Editor/GameSceneBuilder.cs`, `Editor/DialogueLineDrawer.cs`, `Editor/MenuTools.cs`, `Editor/SampleDataGenerator.cs`
+- แก้ข้อความใน `GameDatabase.asset`: บรรทัด `hrReviewLines` เดิมมี `{age} years old` เปลี่ยนเป็น `{name}. A recent graduate.` เพราะไม่มี Token อายุแล้ว

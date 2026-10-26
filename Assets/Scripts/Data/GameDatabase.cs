@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace FirstJobber
@@ -19,14 +20,30 @@ namespace FirstJobber
         public List<DailyEventData> events = new List<DailyEventData>();
         public List<EndingData> endings = new List<EndingData>();
 
+        [Header("HR characters (one per company - see CompanyData.hr)")]
+        public List<HRCharacterData> hrCharacters = new List<HRCharacterData>();
+        [Tooltip("Optional. Used ONLY for a company that has no HR assigned. Leave empty to treat that as a content error.")]
+        public HRCharacterData fallbackHr;
+
+        [Header("Applicant gender (dropdown options - edit freely)")]
+        public List<GenderOption> genders = new List<GenderOption>
+        {
+            new GenderOption("male", "Male"),
+            new GenderOption("female", "Female"),
+            new GenderOption("non_binary", "Non-binary"),
+            new GenderOption(Genders.Unspecified, "Prefer Not to Say")
+        };
+        [Tooltip("First dropdown entry. Choosing it is rejected, so the player must pick a real option.")]
+        public string genderPrompt = "Select gender...";
+
         [Header("Settings")]
         [Min(1)] public int questionsPerInterview = 2;
         [Tooltip("Show choices consumed by earlier rejections as greyed-out entries (otherwise they vanish).")]
         public bool showConsumedChoices = false;
         [Tooltip("Show rejected companies as greyed-out entries (otherwise they vanish).")]
         public bool showRejectedCompanies = true;
-        public int minAge = 18;
-        public int maxAge = 99;
+        [HideInInspector] public int minAge = 18; // legacy, unused
+        [HideInInspector] public int maxAge = 99; // legacy, unused
         public int maxNameLength = 24;
 
         [Header("Shared dialogue")]
@@ -94,6 +111,20 @@ namespace FirstJobber
             return map;
         }
 
+        public GenderOption FindGender(string id)
+        {
+            if (string.IsNullOrEmpty(id) || genders == null) return null;
+            for (int i = 0; i < genders.Count; i++) if (genders[i] != null && genders[i].id == id) return genders[i];
+            return null;
+        }
+
+        /// <summary>Display name for a gender id; unknown ids fall back to the id itself.</summary>
+        public string GenderDisplay(string id)
+        {
+            var g = FindGender(id);
+            return g != null && !string.IsNullOrEmpty(g.displayName) ? g.displayName : (id ?? "");
+        }
+
         public ResumeCategoryData FindCategory(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
@@ -143,6 +174,44 @@ namespace FirstJobber
             else if (endings.Count != 3) problems.Add("Endings count is " + endings.Count + " (design expects 3).");
             if (fatherOfferLines == null || fatherOfferLines.Length == 0) problems.Add("fatherOfferLines is empty.");
             if (rejectionHR == null || rejectionHR.Length == 0) problems.Add("rejectionHR is empty (companies without their own rejection will be silent).");
+
+            // gender options
+            if (genders == null || genders.Count == 0) problems.Add("No gender options: the applicant dropdown would be empty.");
+            else
+            {
+                var seenGender = new HashSet<string>();
+                foreach (var g in genders)
+                {
+                    if (g == null || string.IsNullOrWhiteSpace(g.id)) { problems.Add("A gender option has an empty id."); continue; }
+                    if (!seenGender.Add(g.id)) problems.Add("Gender id '" + g.id + "' is duplicated.");
+                    if (string.IsNullOrWhiteSpace(g.displayName)) problems.Add("Gender '" + g.id + "' has no display name.");
+                }
+                if (!seenGender.Contains(Genders.Unspecified)) problems.Add("No '" + Genders.Unspecified + "' gender option (used for old saves).");
+            }
+
+            // HR characters
+            CheckIds(hrCharacters, h => h.id, "HR", problems);
+            var questionOwner = new Dictionary<InterviewQuestionData, HRCharacterData>();
+            foreach (var hr in hrCharacters)
+            {
+                if (hr == null) continue;
+                hr.Validate(problems);
+                foreach (var q in hr.fixedQuestions.Concat(hr.resumeLinkedQuestions).Append(hr.fallbackQuestion))
+                {
+                    if (q == null) continue;
+                    if (questionOwner.TryGetValue(q, out var other) && other != hr)
+                        problems.Add("Question '" + q.name + "' is used by two HR characters ('" + other.name + "' and '" + hr.name + "'). Give each HR its own question asset.");
+                    else questionOwner[q] = hr;
+                }
+            }
+            foreach (var co in companies)
+            {
+                if (co == null) continue;
+                if (co.hr == null && fallbackHr == null)
+                    problems.Add("Company '" + co.name + "' has no HR assigned (and no fallbackHr): it will run the old shared interview.");
+                else if (co.hr != null && !hrCharacters.Contains(co.hr))
+                    problems.Add("Company '" + co.name + "' uses HR '" + co.hr.name + "' which is not in the database HR list.");
+            }
 
             foreach (var cat in categories)
             {

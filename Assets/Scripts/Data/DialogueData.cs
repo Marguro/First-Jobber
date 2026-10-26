@@ -45,7 +45,24 @@ namespace FirstJobber
         public string eventId;
         public Sprite portrait;
 
+        [Header("Gender (optional)")]
+        [Tooltip("Empty = this block is for every gender. Otherwise only used for these Gender IDs (e.g. male, female, non_binary).")]
+        public string[] genderIds;
+        [Tooltip("Blocks that share a group are alternatives for ONE spot: the block whose Gender IDs match is played; a block with no Gender IDs is the fallback. Leave empty for ordinary blocks.")]
+        public string variantGroup;
+
         public DialogueLine() { }
+
+        public bool IsGenderSpecific => genderIds != null && genderIds.Length > 0;
+
+        /// <summary>True when this block may be shown to the given gender (a block with no Gender IDs matches everyone).</summary>
+        public bool MatchesGender(string genderId)
+        {
+            if (!IsGenderSpecific) return true;
+            if (string.IsNullOrEmpty(genderId)) return false;
+            for (int i = 0; i < genderIds.Length; i++) if (genderIds[i] == genderId) return true;
+            return false;
+        }
 
         bool HasLines
         {

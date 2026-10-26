@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace FirstJobber
 {
     /// <summary>
-    /// Main menu drawn as a large resume: type a name and an age, press Submit.
+    /// Main menu drawn as a large resume: type a name, pick a gender, press Submit.
     /// Submitting zooms the paper out into the Resume Editor (see ResumeEditorController.Intro Start From).
     /// Continue / Quit are optional: leave their references empty to hide the feature.
     /// </summary>
@@ -16,14 +16,15 @@ namespace FirstJobber
         [Tooltip("The paper. The Resume Editor's intro zooms out from this rectangle.")]
         [SerializeField] RectTransform paperRect;
         [SerializeField] TMP_InputField nameInput;
-        [SerializeField] TMP_InputField ageInput;
+        [SerializeField] TMP_Dropdown genderDropdown;
         [SerializeField] TMP_Text errorText;
         [SerializeField] Button submitButton;
         [Header("Optional")]
         [SerializeField] Button continueButton;
         [SerializeField] Button quitButton;
 
-        public event Action<string, int> SubmitRequested;
+        /// <summary>(name, gender id)</summary>
+        public event Action<string, string> SubmitRequested;
         public event Action ContinueRequested;
 
         public RectTransform PaperRect => paperRect;
@@ -34,11 +35,6 @@ namespace FirstJobber
         void Awake()
         {
             if (submitButton != null) submitButton.onClick.AddListener(TrySubmit);
-            if (ageInput != null)
-            {
-                ageInput.contentType = TMP_InputField.ContentType.IntegerNumber;
-                ageInput.onSubmit.AddListener(_ => TrySubmit()); // Enter in the age field submits
-            }
             if (continueButton != null) continueButton.onClick.AddListener(() => ContinueRequested?.Invoke());
             if (quitButton != null) quitButton.onClick.AddListener(Quit);
         }
@@ -48,7 +44,7 @@ namespace FirstJobber
             db = database;
             submitted = false;
             if (nameInput != null) nameInput.text = "";
-            if (ageInput != null) ageInput.text = "";
+            CreateApplicantController.PopulateGenderDropdown(genderDropdown, db);
             if (errorText != null) errorText.text = "";
             if (submitButton != null) submitButton.interactable = true;
             if (continueButton != null) continueButton.gameObject.SetActive(GameSession.HasSave());
@@ -57,8 +53,8 @@ namespace FirstJobber
         void TrySubmit()
         {
             if (submitted || db == null) return;
-            if (!CreateApplicantController.Validate(db, nameInput != null ? nameInput.text : "", ageInput != null ? ageInput.text : "",
-                    out string playerName, out int age, out string error))
+            if (!CreateApplicantController.Validate(db, nameInput != null ? nameInput.text : "", genderDropdown,
+                    out string playerName, out string genderId, out string error))
             {
                 if (errorText != null) errorText.text = error;
                 return;
@@ -66,7 +62,7 @@ namespace FirstJobber
             submitted = true;
             if (submitButton != null) submitButton.interactable = false;
             if (errorText != null) errorText.text = "";
-            SubmitRequested?.Invoke(playerName, age);
+            SubmitRequested?.Invoke(playerName, genderId);
         }
 
         static void Quit()

@@ -10,8 +10,10 @@ namespace FirstJobber
         public string id;
         public string text;
         [Tooltip("Player's reaction after choosing this answer.")]
+        public DialoguePlaybackMode playerReactionMode;
         public DialogueLine[] playerReaction;
         [Tooltip("HR response. Set speaker = HR and an emotion on each line.")]
+        public DialoguePlaybackMode hrResponseMode;
         public DialogueLine[] hrResponse;
     }
 
@@ -21,6 +23,8 @@ namespace FirstJobber
         public string id;
         [TextArea] public string questionText;
         public HREmotion hrEmotion = HREmotion.Neutral;
+        [Tooltip("Optional. When filled, the HR says these blocks instead of Question Text (multi-line and gender variants allowed). Question Text is still shown on screen.")]
+        public DialogueLine[] questionDialogue;
 
         [Header("Links (all optional - leave both empty for a generic fallback question)")]
         [Tooltip("Exact match: asked only if the player picked this choice. Highest priority.")]

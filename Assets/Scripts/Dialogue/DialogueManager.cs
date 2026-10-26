@@ -21,6 +21,10 @@ namespace FirstJobber
         public Func<string, string> TokenResolver;
         /// <summary>Name shown for speaker "Player".</summary>
         public Func<string> PlayerNameProvider;
+        /// <summary>Gender id of the applicant. Blocks with Gender IDs are filtered against it.</summary>
+        public Func<string> GenderIdProvider;
+        /// <summary>Name shown for speaker "HR" (the HR of the selected company). Null/empty keeps "HR".</summary>
+        public Func<string> HrNameProvider;
 
         public event Action<DialogueLine> LineShown;
         public event Action<string> LineEvent;
@@ -45,7 +49,8 @@ namespace FirstJobber
             DialoguePlaybackMode mode = DialoguePlaybackMode.Sequential)
         {
             Cancel();
-            if (mode == DialoguePlaybackMode.RandomOne) lines = PickOne(lines);
+            lines = ResolveGender(lines);                       // 1. gender filter / variant groups
+            if (mode == DialoguePlaybackMode.RandomOne) lines = PickOne(lines); // 2. then pick one of what is left
             if (lines == null || lines.Count == 0)
             {
                 if (ui != null) ui.Hide();
@@ -64,6 +69,62 @@ namespace FirstJobber
             bool done = false;
             Play(lines, () => done = true, defaultAutoAdvance, mode);
             while (!done) yield return null;
+        }
+
+        /// <summary>
+        /// Applies gender conditions. Blocks without Gender IDs always stay. Blocks sharing a variantGroup are
+        /// alternatives: matching specific blocks win, otherwise the group's no-gender blocks are the fallback.
+        /// Returns the original list untouched when nothing uses gender data.
+        /// </summary>
+        public IList<DialogueLine> ResolveGender(IList<DialogueLine> lines)
+        {
+            if (lines == null) return null;
+            bool needed = false;
+            for (int i = 0; i < lines.Count && !needed; i++)
+                needed = lines[i] != null && (lines[i].IsGenderSpecific || !string.IsNullOrEmpty(lines[i].variantGroup));
+            if (!needed) return lines;
+
+            string gender = GenderIdProvider != null ? GenderIdProvider() : null;
+            var result = new List<DialogueLine>(lines.Count);
+            var doneGroups = new HashSet<string>();
+            for (int i = 0; i < lines.Count; i++)
+            {
+                var l = lines[i];
+                if (l == null) continue;
+                if (string.IsNullOrEmpty(l.variantGroup))
+                {
+                    if (l.MatchesGender(gender)) result.Add(l);
+                    continue;
+                }
+                if (!doneGroups.Add(l.variantGroup)) continue;
+
+                int before = result.Count;
+                for (int j = i; j < lines.Count; j++)
+                    if (lines[j] != null && lines[j].variantGroup == l.variantGroup && lines[j].IsGenderSpecific && lines[j].MatchesGender(gender))
+                        result.Add(lines[j]);
+                if (result.Count != before) continue;
+                for (int j = i; j < lines.Count; j++)
+                    if (lines[j] != null && lines[j].variantGroup == l.variantGroup && !lines[j].IsGenderSpecific)
+                        result.Add(lines[j]);
+            }
+            return result;
+        }
+
+        /// <summary>First page of the first block that applies to the applicant, with tokens resolved (for on-screen question text).</summary>
+        public string FirstText(IList<DialogueLine> lines)
+        {
+            var resolved = ResolveGender(lines);
+            if (resolved == null) return null;
+            for (int i = 0; i < resolved.Count; i++)
+            {
+                if (resolved[i] == null) continue;
+                for (int p = 0; p < resolved[i].PageCount; p++)
+                {
+                    string t = resolved[i].GetPage(p);
+                    if (!string.IsNullOrWhiteSpace(t)) return Format(t);
+                }
+            }
+            return null;
         }
 
         // Equal chance for every non-null block that has something to show. Returns null when there is none.
@@ -161,6 +222,11 @@ namespace FirstJobber
             if (speaker == Speakers.Player && PlayerNameProvider != null)
             {
                 string n = PlayerNameProvider();
+                if (!string.IsNullOrEmpty(n)) return n;
+            }
+            if (speaker == Speakers.HR && HrNameProvider != null)
+            {
+                string n = HrNameProvider();
                 if (!string.IsNullOrEmpty(n)) return n;
             }
             return Format(speaker);

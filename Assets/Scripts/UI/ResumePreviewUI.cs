@@ -9,24 +9,25 @@ namespace FirstJobber
     public class ResumePreviewUI : MonoBehaviour
     {
         [SerializeField] TMP_Text nameText;
-        [SerializeField] TMP_Text ageText;
+        [UnityEngine.Serialization.FormerlySerializedAs("ageText")]
+        [SerializeField] TMP_Text genderText;
         [SerializeField] ChoiceListUI categoryList;
 
         public ChoiceListUI CategoryList => categoryList;
 
         string realName = "";
-        string realAge = "";
+        string realGender = "";
         Coroutine distortRoutine;
         bool distorted;
 
-        public void SetApplicant(string applicantName, int age)
+        public void SetApplicant(string applicantName, string genderDisplay)
         {
             realName = applicantName ?? "";
-            realAge = "Age: " + age;
+            realGender = string.IsNullOrEmpty(genderDisplay) ? "" : "Gender: " + genderDisplay;
             if (!distorted)
             {
                 if (nameText != null) nameText.text = realName;
-                if (ageText != null) ageText.text = realAge;
+                if (genderText != null) genderText.text = realGender;
             }
         }
 
@@ -42,7 +43,7 @@ namespace FirstJobber
             else
             {
                 if (nameText != null) nameText.text = realName;
-                if (ageText != null) ageText.text = realAge;
+                if (genderText != null) genderText.text = realGender;
             }
         }
 
@@ -53,11 +54,11 @@ namespace FirstJobber
                 yield return new WaitForSecondsRealtime(Random.Range(0.6f, 1.8f));
                 transform.localRotation = Quaternion.Euler(0, 0, Random.Range(-1.5f, 1.5f));
                 if (nameText != null) nameText.text = Scramble(realName);
-                if (ageText != null) ageText.text = Scramble(realAge);
+                if (genderText != null) genderText.text = Scramble(realGender);
                 yield return new WaitForSecondsRealtime(0.12f);
                 transform.localRotation = Quaternion.identity;
                 if (nameText != null) nameText.text = realName;
-                if (ageText != null) ageText.text = realAge;
+                if (genderText != null) genderText.text = realGender;
             }
         }
 

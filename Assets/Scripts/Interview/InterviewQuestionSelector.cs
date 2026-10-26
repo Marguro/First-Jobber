@@ -73,7 +73,7 @@ namespace FirstJobber
             return true;
         }
 
-        static InterviewQuestionData GetEmergencyQuestion()
+        public static InterviewQuestionData GetEmergencyQuestion()
         {
             if (emergencyQuestion != null) return emergencyQuestion;
             emergencyQuestion = ScriptableObject.CreateInstance<InterviewQuestionData>();

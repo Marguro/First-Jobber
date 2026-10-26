@@ -93,6 +93,8 @@ namespace FirstJobber
 
             dialogue.TokenResolver = ResolveToken;
             dialogue.PlayerNameProvider = () => session != null ? session.applicantName : null;
+            dialogue.GenderIdProvider = () => session != null ? session.applicantGender : null;
+            dialogue.HrNameProvider = () => { var h = ctx != null ? ctx.SelectedHr : null; return h != null ? h.hrName : null; };
 
             session = new GameSession();
             ctx = new GameContext(database, session, dialogue);
@@ -118,10 +120,12 @@ namespace FirstJobber
         string ResolveToken(string key)
         {
             if (session == null) return null;
-            switch (key)
+            switch (key.ToLowerInvariant())
             {
-                case "name": return session.applicantName;
-                case "age": return session.applicantAge.ToString();
+                case "name":
+                case "playername": return session.applicantName;
+                case "gender": return database.GenderDisplay(session.applicantGender);
+                case "hr": { var h = ctx != null ? ctx.SelectedHr : null; return h != null ? h.hrName : "HR"; }
                 case "day": return session.day.ToString();
                 case "company": { var c = ctx != null ? ctx.SelectedCompany : null; return c != null ? c.companyName : "the company"; }
                 case "job": { var c = ctx != null ? ctx.SelectedCompany : null; return c != null ? c.jobTitle : "the position"; }
@@ -149,10 +153,10 @@ namespace FirstJobber
         // ------------------------------------------------------------ start of game
 
         /// <summary>Submit on the main-menu resume: the applicant is created right there, then the paper zooms out into the editor.</summary>
-        void NewGame(string playerName, int age)
+        void NewGame(string playerName, string genderId)
         {
             if (!referencesOk || Phase != GamePhase.MainMenu) return;
-            session = new GameSession { applicantName = playerName, applicantAge = age };
+            session = new GameSession { applicantName = playerName, applicantGender = genderId };
             ctx = new GameContext(database, session, dialogue);
             ApplyAtmosphere(true);
             if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(true);
@@ -174,11 +178,11 @@ namespace FirstJobber
             if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(false);
         }
 
-        void OnApplicantSubmitted(string playerName, int age)
+        void OnApplicantSubmitted(string playerName, string genderId)
         {
             if (Phase != GamePhase.CreateApplicant) return;
             session.applicantName = playerName;
-            session.applicantAge = age;
+            session.applicantGender = genderId;
             if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(true);
         }
 
@@ -250,10 +254,14 @@ namespace FirstJobber
         IEnumerator RejectionRoutine()
         {
             var company = ctx.SelectedCompany;
-            bool ownRejection = company != null && company.rejection != null && company.rejection.Length > 0;
-            var hrLines = ownRejection ? company.rejection : database.rejectionHR;
-            // A company's own rejection is authored as a fixed scene; only the shared fallback honours the mode.
-            yield return dialogue.PlayAndWait(hrLines, 0f, ownRejection ? DialoguePlaybackMode.Sequential : database.rejectionHRMode);
+            // The company's HR owns the rejection. Missing -> the company's own lines -> the shared fallback.
+            var hrData = ctx.SelectedHr;
+            DialogueLine[] hrLines;
+            DialoguePlaybackMode hrMode;
+            if (hrData != null && hrData.rejection != null && hrData.rejection.Length > 0) { hrLines = hrData.rejection; hrMode = hrData.rejectionMode; }
+            else if (company != null && company.rejection != null && company.rejection.Length > 0) { hrLines = company.rejection; hrMode = DialoguePlaybackMode.Sequential; }
+            else { hrLines = database.rejectionHR; hrMode = database.rejectionHRMode; }
+            yield return dialogue.PlayAndWait(hrLines, 0f, hrMode);
             yield return dialogue.PlayAndWait(database.rejectionPlayer, 0f, database.rejectionPlayerMode);
 
             // Consequences: runs exactly once per application (LoopManager guards against repeats).

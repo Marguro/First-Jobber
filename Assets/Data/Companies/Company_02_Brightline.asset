@@ -20,20 +20,27 @@ MonoBehaviour:
   description: Fast-paced. Lots of meetings.
   logo: {fileID: 0}
   tags: []
+  hr: {fileID: 11400000, guid: 3b5609a4429fb534386a3a52c00e090a, type: 2}
   playerReaction:
   - speaker: Player
     text: Marketing. I don't know anything about marketing.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   hrIntro:
   - speaker: HR
     text: Thank you for coming to Brightline. Let's begin.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   rejection: []

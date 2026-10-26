@@ -1,0 +1,191 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c649331e2e84b74bb1a3d78fb66f15b, type: 3}
+  m_Name: HR_03_Helena
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.HRCharacterData
+  id: hr_helena
+  hrName: Helena Gray
+  company: {fileID: 11400000, guid: 13d525d1e39f8a04fa28935970b229a6, type: 2}
+  description: Placeholder HR for Company_03_GrayTower.
+  defaultPortrait: {fileID: 0}
+  defaultEmotion: 0
+  emotionVisuals:
+  - emotion: 0
+    sprite: {fileID: 0}
+    tint: {r: 0.5, g: 0.5, b: 0.55, a: 1}
+  - emotion: 1
+    sprite: {fileID: 0}
+    tint: {r: 0.375, g: 0.625, b: 0.41250002, a: 1}
+  - emotion: 2
+    sprite: {fileID: 0}
+    tint: {r: 0.65, g: 0.35, b: 0.385, a: 1}
+  - emotion: 3
+    sprite: {fileID: 0}
+    tint: {r: 0.65, g: 0.62647057, b: 0.3897059, a: 1}
+  atmosphereVariants: []
+  animatorController: {fileID: 0}
+  introMode: 1
+  introduction:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good afternoon, Mr. {name}.
+    - Gray Tower Bank values stability above all.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - male
+    variantGroup: intro_a
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good afternoon, Ms. {name}.
+    - Gray Tower Bank values stability above all.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - female
+    variantGroup: intro_a
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good afternoon, {name}.
+    - Gray Tower Bank values stability above all.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: intro_a
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good afternoon, Mr. {name}.
+    - Please take a seat. This will be brief.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - male
+    variantGroup: intro_b
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good afternoon, Ms. {name}.
+    - Please take a seat. This will be brief.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - female
+    variantGroup: intro_b
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good afternoon, {name}.
+    - Please take a seat. This will be brief.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: intro_b
+  resumeReviewMode: 0
+  resumeReview:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Your file is... interesting.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  choiceReactions: []
+  rejectionMode: 0
+  rejection:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Our regrets, Mr. {name}.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - male
+    variantGroup: rej_title
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Our regrets, Ms. {name}.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - female
+    variantGroup: rej_title
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Our regrets, {name}.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: rej_title
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Our decision is final.
+    - We wish you every success elsewhere.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  fixedQuestions:
+  - {fileID: 11400000, guid: edaab779a2d7bf3448f0cc832706e31d, type: 2}
+  - {fileID: 11400000, guid: 756bdc6aa0ea25a428d9253e7b416df9, type: 2}
+  - {fileID: 11400000, guid: 303fb4e94bcbf4646b0a1e8ea5ea9328, type: 2}
+  resumeLinkedQuestions:
+  - {fileID: 11400000, guid: 09a855ff32697914b8d37a99be3a8870, type: 2}
+  - {fileID: 11400000, guid: 36d9416f93166c94792e4a748d6f34aa, type: 2}
+  - {fileID: 11400000, guid: f9295ec77b6944c499ab4a4e21fcbbd0, type: 2}
+  - {fileID: 11400000, guid: e2c49b4543dcfc94b97c88e8083ed07d, type: 2}
+  fallbackQuestion: {fileID: 11400000, guid: f1195db40a76eef449e1d4b1165fb9c6, type: 2}
+  sequence:
+  - type: 0
+    fixedQuestion: {fileID: 0}
+  - type: 1
+    fixedQuestion: {fileID: 0}

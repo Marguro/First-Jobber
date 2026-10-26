@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c649331e2e84b74bb1a3d78fb66f15b, type: 3}
+  m_Name: HR_04_Noel
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.HRCharacterData
+  id: hr_noel
+  hrName: Noel Archer
+  company: {fileID: 11400000, guid: 34969ca36625bc345a5ce5bfb7352c23, type: 2}
+  description: Placeholder HR for Company_04_NovaSoft.
+  defaultPortrait: {fileID: 0}
+  defaultEmotion: 0
+  emotionVisuals:
+  - emotion: 0
+    sprite: {fileID: 0}
+    tint: {r: 0.4, g: 0.75, b: 0.6, a: 1}
+  - emotion: 1
+    sprite: {fileID: 0}
+    tint: {r: 0.3, g: 0.8125, b: 0.45000002, a: 1}
+  - emotion: 2
+    sprite: {fileID: 0}
+    tint: {r: 0.58, g: 0.525, b: 0.42000002, a: 1}
+  - emotion: 3
+    sprite: {fileID: 0}
+    tint: {r: 0.58, g: 0.8014706, b: 0.4247059, a: 1}
+  atmosphereVariants: []
+  animatorController: {fileID: 0}
+  introMode: 0
+  introduction:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Hey Mr. {name}! Great to meet you.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - male
+    variantGroup: greeting
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Hey Ms. {name}! Great to meet you.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - female
+    variantGroup: greeting
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Hey {name}! Great to meet you.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: greeting
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Welcome to Nova Soft!
+    - Grab a coffee. We're casual here.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  resumeReviewMode: 0
+  resumeReview:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Cool, cool. Let's see the resume.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  choiceReactions: []
+  rejectionMode: 1
+  rejection:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Really enjoyed this!
+    - Sadly it's a no for now.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - You were great, honestly.
+    - We just went another way.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  fixedQuestions:
+  - {fileID: 11400000, guid: abfb257d6d50bfe439c95cb2ce8de68c, type: 2}
+  - {fileID: 11400000, guid: c8d350d7ae4b57346a83f0ce47412991, type: 2}
+  - {fileID: 11400000, guid: a442faa27c020b44a97510f62e55532e, type: 2}
+  resumeLinkedQuestions:
+  - {fileID: 11400000, guid: 6cee697722535754d9f959a21e9142dd, type: 2}
+  - {fileID: 11400000, guid: c044548b157f30643b5d463053a1fb7d, type: 2}
+  - {fileID: 11400000, guid: f7f3c0c8095896944ab69d6fb46e39f8, type: 2}
+  - {fileID: 11400000, guid: b0ac85492da09014c8845355e281557c, type: 2}
+  fallbackQuestion: {fileID: 11400000, guid: 2bbca835d45246f45b1c8b31815fc696, type: 2}
+  sequence:
+  - type: 0
+    fixedQuestion: {fileID: 0}
+  - type: 1
+    fixedQuestion: {fileID: 0}

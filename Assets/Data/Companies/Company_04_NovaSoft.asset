@@ -20,20 +20,27 @@ MonoBehaviour:
   description: Find bugs before the customers do.
   logo: {fileID: 0}
   tags: []
+  hr: {fileID: 11400000, guid: 9aad7dc52b832094eb1d7c9027fb48eb, type: 2}
   playerReaction:
   - speaker: Player
     text: Testing games is basically playing them, right?
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   hrIntro:
   - speaker: HR
     text: Nova Soft. Let's get this over with.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   rejection: []

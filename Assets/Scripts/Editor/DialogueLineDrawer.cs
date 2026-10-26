@@ -15,7 +15,7 @@ namespace FirstJobber
         static float Row => EditorGUIUtility.singleLineHeight;
         static float TextH => Row * 3f;
 
-        static readonly string[] Shared = { "speaker", "emotion", "portrait", "autoAdvanceDelay", "delayBefore", "eventId" };
+        static readonly string[] Shared = { "speaker", "emotion", "portrait", "autoAdvanceDelay", "delayBefore", "eventId", "genderIds", "variantGroup" };
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {

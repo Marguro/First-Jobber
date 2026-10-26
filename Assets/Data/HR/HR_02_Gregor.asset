@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c649331e2e84b74bb1a3d78fb66f15b, type: 3}
+  m_Name: HR_02_Gregor
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.HRCharacterData
+  id: hr_gregor
+  hrName: Gregor Hale
+  company: {fileID: 11400000, guid: 130b36bfcb04069469d92f004f0ac48c, type: 2}
+  description: Placeholder HR for Company_02_Brightline.
+  defaultPortrait: {fileID: 0}
+  defaultEmotion: 0
+  emotionVisuals:
+  - emotion: 0
+    sprite: {fileID: 0}
+    tint: {r: 0.8, g: 0.55, b: 0.4, a: 1}
+  - emotion: 1
+    sprite: {fileID: 0}
+    tint: {r: 0.6, g: 0.6625, b: 0.3, a: 1}
+  - emotion: 2
+    sprite: {fileID: 0}
+    tint: {r: 0.86, g: 0.385, b: 0.28, a: 1}
+  - emotion: 3
+    sprite: {fileID: 0}
+    tint: {r: 0.86, g: 0.6614706, b: 0.28470588, a: 1}
+  atmosphereVariants: []
+  animatorController: {fileID: 0}
+  introMode: 0
+  introduction:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Mr. {name}. Right on time.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - male
+    variantGroup: greeting
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Ms. {name}. Right on time.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - female
+    variantGroup: greeting
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - '{name}. Right on time.'
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: greeting
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Brightline Corp has no room for guesswork.
+    - Let's keep this efficient.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  resumeReviewMode: 0
+  resumeReview:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Let me see what you brought.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  choiceReactions: []
+  rejectionMode: 1
+  rejection:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - That will be all.
+    - HR will not be contacting you.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Not a fit.
+    - Close the door on your way out.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - We've seen stronger candidates this week.
+    - Thank you.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  fixedQuestions:
+  - {fileID: 11400000, guid: 04cb7035509cc9e48996000e2673ddbd, type: 2}
+  - {fileID: 11400000, guid: 43d66beee9bf9c14d9525cec8e0cc9d2, type: 2}
+  - {fileID: 11400000, guid: d37e4c8539a53364f8cf5b60e55251ce, type: 2}
+  resumeLinkedQuestions:
+  - {fileID: 11400000, guid: bddca2159653e4743bd327b9a7fbb9be, type: 2}
+  - {fileID: 11400000, guid: 7820c37affceefd4a9440384e48c1d97, type: 2}
+  - {fileID: 11400000, guid: 33d5850ffba3f2b4893a30a054dc69fc, type: 2}
+  - {fileID: 11400000, guid: 924946bae9e3f594f9f639c9a5db83d7, type: 2}
+  fallbackQuestion: {fileID: 11400000, guid: 0aebec27dd6c4624bb92afa3033110ca, type: 2}
+  sequence:
+  - type: 1
+    fixedQuestion: {fileID: 0}
+  - type: 0
+    fixedQuestion: {fileID: 0}

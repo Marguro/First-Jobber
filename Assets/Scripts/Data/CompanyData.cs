@@ -13,6 +13,10 @@ namespace FirstJobber
         [TextArea] public string description;
         public Sprite logo;
         public string[] tags;
+        [Header("Interviewer")]
+        [Tooltip("The HR who interviews applicants here. All HR dialogue and questions come from this asset.")]
+        public HRCharacterData hr;
+
         [Header("Dialogue")]
         public DialogueLine[] playerReaction;
         [Tooltip("Optional. Falls back to GameDatabase.defaultHrIntro.")]

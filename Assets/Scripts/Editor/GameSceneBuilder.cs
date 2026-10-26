@@ -145,7 +145,7 @@ namespace FirstJobber.EditorTools
         }
 
         /// <summary>
-        /// Main menu drawn as a big resume paper (name + age + one Submit button). Also used by
+        /// Main menu drawn as a big resume paper (name + gender + one Submit button). Also used by
         /// Tools > First Jobber > 9. Convert Main Menu To Resume Style to rebuild the menu of an existing scene.
         /// </summary>
         internal static void PopulateMainMenu(RectTransform panel, MainMenuController controller)
@@ -162,15 +162,14 @@ namespace FirstJobber.EditorTools
                 TextAlignmentOptions.Center, FontStyles.Italic, 0.05f, 0.72f, 0.95f, 0.8f);
             NewText(paper, "NameLabel", "Name", 32, new Color(0.3f, 0.3f, 0.3f), TextAlignmentOptions.BottomLeft, FontStyles.Normal, 0.12f, 0.63f, 0.88f, 0.69f);
             var nameInput = NewInput(paper, "NameInput", "Enter your name...", 0.12f, 0.53f, 0.88f, 0.63f);
-            NewText(paper, "AgeLabel", "Age", 32, new Color(0.3f, 0.3f, 0.3f), TextAlignmentOptions.BottomLeft, FontStyles.Normal, 0.12f, 0.46f, 0.88f, 0.52f);
-            var ageInput = NewInput(paper, "AgeInput", "Enter your age...", 0.12f, 0.36f, 0.88f, 0.46f);
-            ageInput.contentType = TMP_InputField.ContentType.IntegerNumber;
+            NewText(paper, "GenderLabel", "Gender", 32, new Color(0.3f, 0.3f, 0.3f), TextAlignmentOptions.BottomLeft, FontStyles.Normal, 0.12f, 0.46f, 0.88f, 0.52f);
+            var genderDropdown = NewDropdown(paper, "GenderDropdown", 0.12f, 0.36f, 0.88f, 0.46f);
             var error = NewText(paper, "ErrorText", "", 28, new Color(0.75f, 0.15f, 0.15f), TextAlignmentOptions.Center, FontStyles.Normal, 0.1f, 0.27f, 0.9f, 0.34f);
             var submit = NewButton(paper, "SubmitButton", "Submit", ButtonGreen, 0.3f, 0.1f, 0.7f, 0.24f, 44);
 
             Set(controller, "paperRect", paper);
             Set(controller, "nameInput", nameInput);
-            Set(controller, "ageInput", ageInput);
+            Set(controller, "genderDropdown", genderDropdown);
             Set(controller, "errorText", error);
             Set(controller, "submitButton", submit);
         }
@@ -181,9 +180,8 @@ namespace FirstJobber.EditorTools
             NewText(panel, "Title", "Create Applicant", 72, Accent, TextAlignmentOptions.Center, FontStyles.Bold, 0.2f, 0.8f, 0.8f, 0.95f);
             NewText(panel, "NameLabel", "Name", 34, Color.white, TextAlignmentOptions.BottomLeft, FontStyles.Normal, 0.3f, 0.7f, 0.7f, 0.76f);
             var nameInput = NewInput(panel, "NameInput", "Enter your name...", 0.3f, 0.6f, 0.7f, 0.7f);
-            NewText(panel, "AgeLabel", "Age", 34, Color.white, TextAlignmentOptions.BottomLeft, FontStyles.Normal, 0.3f, 0.5f, 0.7f, 0.56f);
-            var ageInput = NewInput(panel, "AgeInput", "Enter your age...", 0.3f, 0.4f, 0.7f, 0.5f);
-            ageInput.contentType = TMP_InputField.ContentType.IntegerNumber;
+            NewText(panel, "GenderLabel", "Gender", 34, Color.white, TextAlignmentOptions.BottomLeft, FontStyles.Normal, 0.3f, 0.5f, 0.7f, 0.56f);
+            var genderDropdown = NewDropdown(panel, "GenderDropdown", 0.3f, 0.4f, 0.7f, 0.5f);
             var error = NewText(panel, "ErrorText", "", 30, new Color(1f, 0.4f, 0.4f), TextAlignmentOptions.Center, FontStyles.Normal, 0.3f, 0.32f, 0.7f, 0.39f);
             var submit = NewButton(panel, "SubmitButton", "Confirm", ButtonGreen, 0.4f, 0.28f, 0.6f, 0.37f);
             // move the button below the error text
@@ -192,7 +190,7 @@ namespace FirstJobber.EditorTools
 
             controller = panel.gameObject.AddComponent<CreateApplicantController>();
             Set(controller, "nameInput", nameInput);
-            Set(controller, "ageInput", ageInput);
+            Set(controller, "genderDropdown", genderDropdown);
             Set(controller, "errorText", error);
             Set(controller, "submitButton", submit);
             return panel.GetComponent<CanvasGroup>();
@@ -207,11 +205,11 @@ namespace FirstJobber.EditorTools
             Anchor(previewRt, 0.03f, 0.28f, 0.46f, 0.97f);
             previewRt.gameObject.AddComponent<Image>().color = Paper;
             var nameText = NewText(previewRt, "NameText", "Name", 56, Ink, TextAlignmentOptions.MidlineLeft, FontStyles.Bold, 0.05f, 0.86f, 0.95f, 0.97f);
-            var ageText = NewText(previewRt, "AgeText", "Age", 32, new Color(0.3f, 0.3f, 0.3f), TextAlignmentOptions.MidlineLeft, FontStyles.Normal, 0.05f, 0.79f, 0.95f, 0.86f);
+            var genderText = NewText(previewRt, "GenderText", "Gender", 32, new Color(0.3f, 0.3f, 0.3f), TextAlignmentOptions.MidlineLeft, FontStyles.Normal, 0.05f, 0.79f, 0.95f, 0.86f);
             var categoryList = NewChoiceList(previewRt, "CategoryList", prefab, new Color(0, 0, 0, 0), 0.04f, 0.04f, 0.96f, 0.77f);
             var previewUI = previewRt.gameObject.AddComponent<ResumePreviewUI>();
             Set(previewUI, "nameText", nameText);
-            Set(previewUI, "ageText", ageText);
+            Set(previewUI, "genderText", genderText);
             Set(previewUI, "categoryList", categoryList);
 
             // RIGHT: editor
@@ -671,6 +669,31 @@ namespace FirstJobber.EditorTools
             btn.targetGraphic = img;
             NewText(rt, "Label", label, fontSize, Color.white, TextAlignmentOptions.Center, FontStyles.Bold, 0f, 0f, 1f, 1f);
             return btn;
+        }
+
+        /// <summary>TMP dropdown with built-in Unity UI sprites. Options are filled at runtime from GameDatabase.genders.</summary>
+        static TMP_Dropdown NewDropdown(RectTransform parent, string name, float x0, float y0, float x1, float y1)
+        {
+            Sprite Builtin(string path) => AssetDatabase.GetBuiltinExtraResource<Sprite>(path);
+            var resources = new TMP_DefaultControls.Resources
+            {
+                standard = Builtin("UI/Skin/UISprite.psd"),
+                background = Builtin("UI/Skin/Background.psd"),
+                inputField = Builtin("UI/Skin/InputFieldBackground.psd"),
+                knob = Builtin("UI/Skin/Knob.psd"),
+                checkmark = Builtin("UI/Skin/Checkmark.psd"),
+                dropdown = Builtin("UI/Skin/DropdownArrow.psd"),
+                mask = Builtin("UI/Skin/UIMask.psd"),
+            };
+            var go = TMP_DefaultControls.CreateDropdown(resources);
+            go.name = name;
+            go.transform.SetParent(parent, false);
+            Anchor((RectTransform)go.transform, x0, y0, x1, y1);
+            var dropdown = go.GetComponent<TMP_Dropdown>();
+            dropdown.captionText.fontSize = 34;
+            dropdown.itemText.fontSize = 30;
+            dropdown.AddOptions(new System.Collections.Generic.List<string> { "Select gender..." });
+            return dropdown;
         }
 
         static TMP_InputField NewInput(RectTransform parent, string name, string placeholder, float x0, float y0, float x1, float y1)

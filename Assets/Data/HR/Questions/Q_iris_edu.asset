@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_iris_edu
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: q_iris_edu
+  questionText: Your education stands out. What did you actually build there?
+  hrEmotion: 0
+  questionDialogue: []
+  linkedChoice: {fileID: 0}
+  linkedCategory: {fileID: 11400000, guid: ff3548d03552c8c4fae133410f98e830, type: 2}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a1
+    text: I'll be honest with you.
+    playerReactionMode: 0
+    playerReaction:
+    - speaker: Player
+      text: Honesty is all I have left.
+      dialogueLines: []
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+      genderIds: []
+      variantGroup: 
+    hrResponseMode: 0
+    hrResponse:
+    - speaker: HR
+      text: 
+      dialogueLines:
+      - Hm. Fair enough.
+      - Let's move on.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+      genderIds: []
+      variantGroup: 
+  - id: a2
+    text: I've prepared for exactly this.
+    playerReactionMode: 0
+    playerReaction:
+    - speaker: Player
+      text: Rehearsed, but it should hold.
+      dialogueLines: []
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+      genderIds: []
+      variantGroup: 
+    hrResponseMode: 0
+    hrResponse:
+    - speaker: HR
+      text: 
+      dialogueLines:
+      - That's the kind of answer we like to hear.
+      - Let's move on.
+      emotion: 1
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+      genderIds: []
+      variantGroup: 
+  - id: a3
+    text: I'm not sure what to say.
+    playerReactionMode: 0
+    playerReaction:
+    - speaker: Player
+      text: My mind went blank.
+      dialogueLines: []
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+      genderIds: []
+      variantGroup: 
+    hrResponseMode: 0
+    hrResponse:
+    - speaker: HR
+      text: 
+      dialogueLines:
+      - We can't work with that.
+      - Let's move on.
+      emotion: 2
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+      genderIds: []
+      variantGroup: 

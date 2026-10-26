@@ -60,30 +60,43 @@ namespace FirstJobber
         IEnumerator Run()
         {
             var company = ctx.SelectedCompany;
+            // Everything below comes from the company's HR. No HR = the old shared interview (and an error in the log).
+            var hrData = ctx.SelectedHr;
+            if (hrData == null)
+                Debug.LogError("[Interview] Company '" + (company != null ? company.name : "?") + "' has no HR assigned. Running the old shared interview. Assign CompanyData.hr.", company);
+
             hr.StrangeMode = ctx.Session.HasFlag("hr_strange");
-            hr.ResetToNeutral();
+            hr.SetCharacter(hrData);
             if (questionText != null) questionText.text = "";
             answerList.Clear();
             answerList.SetInteractable(false);
 
-            // 1. HR introduction
+            // 1. HR introduction: HR's own -> company's legacy -> shared default
             PhaseRequested?.Invoke(GamePhase.InterviewIntroduction);
-            bool ownIntro = company != null && company.hrIntro != null && company.hrIntro.Length > 0;
-            yield return PlayAndWait(ownIntro ? company.hrIntro : ctx.Database.defaultHrIntro,
-                ownIntro ? DialoguePlaybackMode.Sequential : ctx.Database.defaultHrIntroMode);
+            if (hrData != null && HasLines(hrData.introduction)) yield return PlayAndWait(hrData.introduction, hrData.introMode);
+            else if (company != null && HasLines(company.hrIntro)) yield return PlayAndWait(company.hrIntro);
+            else yield return PlayAndWait(ctx.Database.defaultHrIntro, ctx.Database.defaultHrIntroMode);
 
             // 2. HR reviews the resume and reacts to each selected choice
             PhaseRequested?.Invoke(GamePhase.InterviewResumeReview);
-            yield return PlayAndWait(ctx.Database.hrReviewLines, ctx.Database.hrReviewMode);
+            if (hrData != null && HasLines(hrData.resumeReview)) yield return PlayAndWait(hrData.resumeReview, hrData.resumeReviewMode);
+            else yield return PlayAndWait(ctx.Database.hrReviewLines, ctx.Database.hrReviewMode);
             ctx.Choices.GetSelectedChoices(selectedBuffer);
             for (int i = 0; i < selectedBuffer.Count; i++)
-                yield return PlayAndWait(selectedBuffer[i].hrReactions);
+            {
+                var own = hrData != null ? hrData.FindChoiceReaction(selectedBuffer[i]) : null;
+                if (own != null) yield return PlayAndWait(own.lines, own.mode);
+                else yield return PlayAndWait(selectedBuffer[i].hrReactions);
+            }
             yield return new WaitForSecondsRealtime(neutralDelay);
             hr.ResetToNeutral();
 
-            // 3. Questions linked to the resume
-            InterviewQuestionSelector.Pick(ctx.Database, ctx.Session, selectedBuffer, company,
-                Mathf.Max(1, ctx.Database.questionsPerInterview), questionBuffer);
+            // 3. Questions: the HR's sequence (fixed + resume-linked), or the shared bank without an HR
+            if (hrData != null)
+                HrInterviewPlanner.Plan(hrData, ctx.Session, selectedBuffer, company, questionBuffer);
+            else
+                InterviewQuestionSelector.Pick(ctx.Database, ctx.Session, selectedBuffer, company,
+                    Mathf.Max(1, ctx.Database.questionsPerInterview), questionBuffer);
             ctx.Session.interviewQuestionIds.Clear();
             foreach (var q in questionBuffer) ctx.Session.interviewQuestionIds.Add(q.id);
 
@@ -94,8 +107,14 @@ namespace FirstJobber
 
                 PhaseRequested?.Invoke(GamePhase.InterviewQuestion);
                 string formatted = ctx.Dialogue.Format(question.questionText);
+                if (HasLines(question.questionDialogue))
+                {
+                    string shown = ctx.Dialogue.FirstText(question.questionDialogue);
+                    if (!string.IsNullOrEmpty(shown)) formatted = shown;
+                }
                 if (questionText != null) questionText.text = formatted;
-                yield return PlayAndWait(new[] { new DialogueLine(Speakers.HR, formatted, question.hrEmotion) });
+                if (HasLines(question.questionDialogue)) yield return PlayAndWait(question.questionDialogue);
+                else yield return PlayAndWait(new[] { new DialogueLine(Speakers.HR, formatted, question.hrEmotion) });
 
                 // Show answers and wait for exactly one pick
                 BuildAnswerItems(question);
@@ -112,8 +131,8 @@ namespace FirstJobber
                 var answer = FindAnswer(question, chosenAnswerId);
                 if (answer != null)
                 {
-                    yield return PlayAndWait(answer.playerReaction);
-                    yield return PlayAndWait(answer.hrResponse);
+                    yield return PlayAndWait(answer.playerReaction, answer.playerReactionMode);
+                    yield return PlayAndWait(answer.hrResponse, answer.hrResponseMode);
                 }
                 if (!ctx.Session.askedQuestionIds.Contains(question.id)) ctx.Session.askedQuestionIds.Add(question.id);
 
@@ -126,6 +145,8 @@ namespace FirstJobber
             routine = null;
             Finished?.Invoke();
         }
+
+        static bool HasLines(DialogueLine[] lines) => lines != null && lines.Length > 0;
 
         void BuildAnswerItems(InterviewQuestionData question)
         {

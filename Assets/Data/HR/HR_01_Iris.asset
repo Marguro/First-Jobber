@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c649331e2e84b74bb1a3d78fb66f15b, type: 3}
+  m_Name: HR_01_Iris
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.HRCharacterData
+  id: hr_iris
+  hrName: Iris Park
+  company: {fileID: 11400000, guid: 9166c41823fbd2f4788d894d1d315ccb, type: 2}
+  description: Placeholder HR for Company_01_PixelPioneers.
+  defaultPortrait: {fileID: 0}
+  defaultEmotion: 0
+  emotionVisuals:
+  - emotion: 0
+    sprite: {fileID: 0}
+    tint: {r: 0.55, g: 0.6, b: 0.85, a: 1}
+  - emotion: 1
+    sprite: {fileID: 0}
+    tint: {r: 0.41250002, g: 0.70000005, b: 0.63750005, a: 1}
+  - emotion: 2
+    sprite: {fileID: 0}
+    tint: {r: 0.685, g: 0.42000002, b: 0.595, a: 1}
+  - emotion: 3
+    sprite: {fileID: 0}
+    tint: {r: 0.685, g: 0.6964706, b: 0.5997059, a: 1}
+  atmosphereVariants: []
+  animatorController: {fileID: 0}
+  introMode: 1
+  introduction:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good morning, Mr. {name}.
+    - Welcome to Pixel Pioneers.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - male
+    variantGroup: intro_a
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good morning, Ms. {name}.
+    - Welcome to Pixel Pioneers.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - female
+    variantGroup: intro_a
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good morning, {name}.
+    - Welcome to Pixel Pioneers.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: intro_a
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good morning, Mr. {name}.
+    - Please sit. We're a small team and we move fast.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - male
+    variantGroup: intro_b
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good morning, Ms. {name}.
+    - Please sit. We're a small team and we move fast.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds:
+    - female
+    variantGroup: intro_b
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Good morning, {name}.
+    - Please sit. We're a small team and we move fast.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: intro_b
+  resumeReviewMode: 0
+  resumeReview:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - I've had a look at your resume.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  choiceReactions: []
+  rejectionMode: 1
+  rejection:
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - Thank you for coming in.
+    - We loved the energy, but we need someone who is already shipping.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: HR
+    text: 
+    dialogueLines:
+    - We'll be moving forward with another candidate.
+    - Keep making things, {name}.
+    emotion: 2
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  fixedQuestions:
+  - {fileID: 11400000, guid: cff27d12aee5e0e4a8615461a6fbf31d, type: 2}
+  - {fileID: 11400000, guid: 704d21fe0c84aeb41b15235da4ec1a84, type: 2}
+  - {fileID: 11400000, guid: c74eb85e5723c7e428012e23fdef1106, type: 2}
+  resumeLinkedQuestions:
+  - {fileID: 11400000, guid: d44c99f77a746f54aa0def76344d0833, type: 2}
+  - {fileID: 11400000, guid: 45f15b2f9b753d64c93cf3918476a56b, type: 2}
+  - {fileID: 11400000, guid: f21b6dcce7928af4ba868642455453ba, type: 2}
+  - {fileID: 11400000, guid: 16749a123d459fd4a87fc252b14296b1, type: 2}
+  fallbackQuestion: {fileID: 11400000, guid: 045733070b1cbaf42a27a10e959d43db, type: 2}
+  sequence:
+  - type: 0
+    fixedQuestion: {fileID: 0}
+  - type: 1
+    fixedQuestion: {fileID: 0}

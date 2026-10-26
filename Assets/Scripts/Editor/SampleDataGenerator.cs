@@ -190,7 +190,7 @@ namespace FirstJobber.EditorTools
             {
                 db.resumeIntroLines = new[] { S("This is me, on paper."), S("Let's make it better.") };
                 db.defaultHrIntro = new[] { HL("Good morning, {name}. Please have a seat.", HREmotion.Neutral) };
-                db.hrReviewLines = new[] { HL("Let me look at your resume.", HREmotion.Neutral), HL("{name}, {age} years old. A recent graduate.", HREmotion.Neutral) };
+                db.hrReviewLines = new[] { HL("Let me look at your resume.", HREmotion.Neutral), HL("{name}. A recent graduate.", HREmotion.Neutral) };
                 db.rejectionHR = new[]
                 {
                     HL("Thank you for your time, {name}.", HREmotion.Neutral),
@@ -234,6 +234,7 @@ namespace FirstJobber.EditorTools
             db.categories = Load<ResumeCategoryData>();
             db.choices = Load<ResumeChoiceData>();
             db.companies = Load<CompanyData>();
+            db.hrCharacters = Load<HRCharacterData>();
             db.questions = Load<InterviewQuestionData>();
             db.events = Load<DailyEventData>();
             db.endings = Load<EndingData>();

@@ -14,7 +14,7 @@ namespace FirstJobber.EditorTools
 
             var panel = (RectTransform)menu.transform;
             if (!EditorUtility.DisplayDialog("Convert Main Menu",
-                    "This deletes everything inside '" + panel.name + "' and rebuilds it as a resume paper with Name, Age and Submit. Custom menu art will be lost. Continue?",
+                    "This deletes everything inside '" + panel.name + "' and rebuilds it as a resume paper with Name, Gender and Submit. Custom menu art will be lost. Continue?",
                     "Convert", "Cancel")) return;
 
             Undo.RegisterFullObjectHierarchyUndo(panel.gameObject, "Convert Main Menu");

@@ -19,5 +19,16 @@ namespace FirstJobber
         }
 
         public CompanyData SelectedCompany => Database.FindCompany(Session.selectedCompanyId);
+
+        /// <summary>The HR of the selected company; the database fallback HR only when the company has none. Null = legacy shared interview.</summary>
+        public HRCharacterData SelectedHr
+        {
+            get
+            {
+                var company = SelectedCompany;
+                if (company == null) return null;
+                return company.hr != null ? company.hr : Database.fallbackHr;
+            }
+        }
     }
 }

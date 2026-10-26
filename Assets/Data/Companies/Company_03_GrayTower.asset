@@ -20,20 +20,27 @@ MonoBehaviour:
   description: Stable hours. Stable everything.
   logo: {fileID: 0}
   tags: []
+  hr: {fileID: 11400000, guid: c794c075b4093ba4aaa2728b575ec6ca, type: 2}
   playerReaction:
   - speaker: Player
     text: A bank. The building looks like it never sleeps.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   hrIntro:
   - speaker: HR
     text: Gray Tower Bank. You're late by two minutes.
+    dialogueLines: []
     emotion: 2
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   rejection: []

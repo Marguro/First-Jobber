@@ -31,7 +31,10 @@ namespace FirstJobber
     public class GameSession
     {
         public string applicantName;
+        [Tooltip("Legacy. Age is no longer asked; kept so old saves and assets still deserialize.")]
         public int applicantAge;
+        /// <summary>Gender id chosen at creation (see GameDatabase.genders). Old saves without it are 'unspecified'.</summary>
+        public string applicantGender = Genders.Unspecified;
         public int day = 1;
         public GamePhase phase;
 
@@ -104,7 +107,9 @@ namespace FirstJobber
             {
                 if (!File.Exists(SavePath)) return false;
                 session = JsonUtility.FromJson<GameSession>(File.ReadAllText(SavePath));
-                return session != null && !string.IsNullOrEmpty(session.applicantName);
+                if (session == null || string.IsNullOrEmpty(session.applicantName)) return false;
+                if (string.IsNullOrEmpty(session.applicantGender)) session.applicantGender = Genders.Unspecified;
+                return true;
             }
             catch (Exception e)
             {

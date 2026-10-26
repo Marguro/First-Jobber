@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 256acfdc3444f3b45a526b1e228361ef, type: 2}
   - {fileID: 11400000, guid: d2d3e4d0e5cdaef4da892e0b6d3980e7, type: 2}
   - {fileID: 11400000, guid: 081fc3a9ec47640479a1f815e04b469a, type: 2}
+  - {fileID: 11400000, guid: d4eeb1eeb4ac4434b9b090df141af2cf, type: 2}
   - {fileID: 11400000, guid: 1a7bde8ca8d79054594a8ee6ac6826bd, type: 2}
   - {fileID: 11400000, guid: 1779a68d7736d104c81e5aa0d52c0165, type: 2}
   - {fileID: 11400000, guid: bd7e952ce5bdeb94da82376987b3ed97, type: 2}
@@ -51,6 +52,38 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48b179d8468409747b5dbe3290ae7e17, type: 2}
   - {fileID: 11400000, guid: 6f87584652903c24597f8940e8d36970, type: 2}
   - {fileID: 11400000, guid: ff4e17ecfae142b46b3d2275d198fc53, type: 2}
+  - {fileID: 11400000, guid: 33d5850ffba3f2b4893a30a054dc69fc, type: 2}
+  - {fileID: 11400000, guid: bddca2159653e4743bd327b9a7fbb9be, type: 2}
+  - {fileID: 11400000, guid: 7820c37affceefd4a9440384e48c1d97, type: 2}
+  - {fileID: 11400000, guid: 0aebec27dd6c4624bb92afa3033110ca, type: 2}
+  - {fileID: 11400000, guid: 04cb7035509cc9e48996000e2673ddbd, type: 2}
+  - {fileID: 11400000, guid: 43d66beee9bf9c14d9525cec8e0cc9d2, type: 2}
+  - {fileID: 11400000, guid: d37e4c8539a53364f8cf5b60e55251ce, type: 2}
+  - {fileID: 11400000, guid: 924946bae9e3f594f9f639c9a5db83d7, type: 2}
+  - {fileID: 11400000, guid: f9295ec77b6944c499ab4a4e21fcbbd0, type: 2}
+  - {fileID: 11400000, guid: 09a855ff32697914b8d37a99be3a8870, type: 2}
+  - {fileID: 11400000, guid: 36d9416f93166c94792e4a748d6f34aa, type: 2}
+  - {fileID: 11400000, guid: f1195db40a76eef449e1d4b1165fb9c6, type: 2}
+  - {fileID: 11400000, guid: edaab779a2d7bf3448f0cc832706e31d, type: 2}
+  - {fileID: 11400000, guid: 756bdc6aa0ea25a428d9253e7b416df9, type: 2}
+  - {fileID: 11400000, guid: 303fb4e94bcbf4646b0a1e8ea5ea9328, type: 2}
+  - {fileID: 11400000, guid: e2c49b4543dcfc94b97c88e8083ed07d, type: 2}
+  - {fileID: 11400000, guid: f21b6dcce7928af4ba868642455453ba, type: 2}
+  - {fileID: 11400000, guid: d44c99f77a746f54aa0def76344d0833, type: 2}
+  - {fileID: 11400000, guid: 45f15b2f9b753d64c93cf3918476a56b, type: 2}
+  - {fileID: 11400000, guid: 045733070b1cbaf42a27a10e959d43db, type: 2}
+  - {fileID: 11400000, guid: cff27d12aee5e0e4a8615461a6fbf31d, type: 2}
+  - {fileID: 11400000, guid: 704d21fe0c84aeb41b15235da4ec1a84, type: 2}
+  - {fileID: 11400000, guid: c74eb85e5723c7e428012e23fdef1106, type: 2}
+  - {fileID: 11400000, guid: 16749a123d459fd4a87fc252b14296b1, type: 2}
+  - {fileID: 11400000, guid: f7f3c0c8095896944ab69d6fb46e39f8, type: 2}
+  - {fileID: 11400000, guid: 6cee697722535754d9f959a21e9142dd, type: 2}
+  - {fileID: 11400000, guid: c044548b157f30643b5d463053a1fb7d, type: 2}
+  - {fileID: 11400000, guid: 2bbca835d45246f45b1c8b31815fc696, type: 2}
+  - {fileID: 11400000, guid: abfb257d6d50bfe439c95cb2ce8de68c, type: 2}
+  - {fileID: 11400000, guid: c8d350d7ae4b57346a83f0ce47412991, type: 2}
+  - {fileID: 11400000, guid: a442faa27c020b44a97510f62e55532e, type: 2}
+  - {fileID: 11400000, guid: b0ac85492da09014c8845355e281557c, type: 2}
   events:
   - {fileID: 11400000, guid: 0bb27cc7649a7c94e8e430fd45e7d4fa, type: 2}
   - {fileID: 11400000, guid: 7d71e283ce6638649afbeebd5b77578b, type: 2}
@@ -59,7 +92,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4a0c87e0421daf94693bd35feca52ec7, type: 2}
   - {fileID: 11400000, guid: ab342f493c61c29468e9851682b3dbe0, type: 2}
   - {fileID: 11400000, guid: abe100e8586be6f448b5766f86e4ded8, type: 2}
-  questionsPerInterview: 4
+  hrCharacters:
+  - {fileID: 11400000, guid: aa0a699511c53a04384718880b786e91, type: 2}
+  - {fileID: 11400000, guid: 3b5609a4429fb534386a3a52c00e090a, type: 2}
+  - {fileID: 11400000, guid: c794c075b4093ba4aaa2728b575ec6ca, type: 2}
+  - {fileID: 11400000, guid: 9aad7dc52b832094eb1d7c9027fb48eb, type: 2}
+  fallbackHr: {fileID: 0}
+  genders:
+  - id: male
+    displayName: Male
+  - id: female
+    displayName: Female
+  - id: non_binary
+    displayName: Non-binary
+  - id: unspecified
+    displayName: Prefer Not to Say
+  genderPrompt: Select gender...
+  questionsPerInterview: 5
   showConsumedChoices: 1
   showRejectedCompanies: 1
   minAge: 18
@@ -78,6 +127,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: Player
     text: Let's make it better.
     dialogueLines: []
@@ -86,6 +137,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   resumeConfirmedMode: 1
   resumeConfirmedLines:
   - speaker: Player
@@ -99,6 +152,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   companyConfirmedMode: 0
   companyConfirmedLines:
   - speaker: Player
@@ -109,6 +164,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   defaultHrIntroMode: 0
   defaultHrIntro:
   - speaker: HR
@@ -119,6 +176,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   hrReviewMode: 0
   hrReviewLines:
   - speaker: HR
@@ -129,14 +188,18 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: HR
-    text: '{name}, {age} years old. A recent graduate.'
+    text: '{name}. A recent graduate.'
     dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   rejectionHRMode: 0
   rejectionHR:
   - speaker: HR
@@ -147,6 +210,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: HR
     text: We've decided to move forward with other candidates.
     dialogueLines: []
@@ -155,6 +220,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   rejectionPlayerMode: 0
   rejectionPlayer:
   - speaker: Player
@@ -165,6 +232,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: Player
     text: Time to go home.
     dialogueLines: []
@@ -173,6 +242,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   fatherOfferMode: 0
   fatherOfferLines:
   - speaker: Narrator
@@ -183,6 +254,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: Father
     text: '{name}, I''ve been thinking. There''s an opening at my friend''s company.'
     dialogueLines: []
@@ -191,6 +264,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: Father
     text: Steady pay. Regular hours. You don't have to keep doing this.
     dialogueLines: []
@@ -199,6 +274,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: Player
     text: I... I don't have anything left to apply to.
     dialogueLines: []
@@ -207,6 +284,8 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: Father
     text: Then take it. What do you say?
     dialogueLines: []
@@ -215,3 +294,5 @@ MonoBehaviour:
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 

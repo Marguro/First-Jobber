@@ -28,6 +28,8 @@ namespace FirstJobber
         [SerializeField] RectTransform fan;
         [SerializeField] Image flickerOverlay;
         [SerializeField] List<HREmotionVisual> visuals = new List<HREmotionVisual>();
+        [Tooltip("Optional. Receives the Animator Controller of the current HR character.")]
+        [SerializeField] Animator animator;
         [Header("Ambient")]
         [SerializeField] float fanSpeed = 240f;
         [SerializeField] float swayAmount = 4f;
@@ -36,6 +38,17 @@ namespace FirstJobber
         /// <summary>Set by the interview when flag hr_strange is active: faster fan, stronger jitter and flicker.</summary>
         public bool StrangeMode { get; set; }
         public HREmotion Current { get; private set; } = HREmotion.Neutral;
+        /// <summary>The HR currently shown. Null = the old shared visuals list below.</summary>
+        public HRCharacterData Character { get; private set; }
+
+        /// <summary>Switches the portrait to another HR (or back to the shared visuals with null). Keeps nothing of the previous HR.</summary>
+        public void SetCharacter(HRCharacterData character)
+        {
+            Character = character;
+            if (animator != null && character != null && character.animatorController != null)
+                animator.runtimeAnimatorController = character.animatorController;
+            SetEmotion(character != null ? character.defaultEmotion : HREmotion.Neutral);
+        }
 
         Vector2 swayBase;
         float nextFlicker;
@@ -66,6 +79,7 @@ namespace FirstJobber
         public void SetEmotion(HREmotion emotion)
         {
             Current = emotion;
+            if (Character != null) { ShowCharacter(emotion); return; }
             HREmotionVisual visual = null;
             for (int i = 0; i < visuals.Count; i++)
             {
@@ -92,9 +106,21 @@ namespace FirstJobber
             if (placeholderLabel != null) placeholderLabel.text = sprite != null ? "" : emotion.ToString();
         }
 
+        // An HR owns its sprites: phase variant -> normal emotion sprite -> default portrait -> text placeholder.
+        // The shared AtmospherePhaseData.hrSprites are NOT used here, so one HR never shows another HR's art.
+        void ShowCharacter(HREmotion emotion)
+        {
+            var atmosphere = AtmosphereManager.Instance;
+            var phase = atmosphere != null ? atmosphere.AppliedPhase : null;
+            Sprite sprite = Character.ResolveSprite(emotion, phase, out Color tint);
+            if (atmosphere != null) tint *= atmosphere.HrTint;
+            if (portrait != null) { portrait.sprite = sprite; portrait.color = tint; }
+            if (placeholderLabel != null) placeholderLabel.text = sprite != null ? "" : Character.DisplayName + "\n" + emotion;
+        }
+
         void OnAtmosphereChanged(AtmospherePhaseData phase) { SetEmotion(Current); }
 
-        public void ResetToNeutral() { SetEmotion(HREmotion.Neutral); }
+        public void ResetToNeutral() { SetEmotion(Character != null ? Character.defaultEmotion : HREmotion.Neutral); }
 
         void Update()
         {
