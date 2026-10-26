@@ -435,3 +435,44 @@ list **Sequence** ของ HR: แต่ละ slot เลือก Type = `Fix
 - เพิ่ม: `Data/GenderData.cs`, `Data/HRCharacterData.cs`, `Interview/HrInterviewPlanner.cs`, `Editor/SampleHrGenerator.cs`
 - แก้: `Data/DialogueData.cs`, `Dialogue/DialogueManager.cs` (กรองตามเพศ, ชื่อ HR), `Data/GameDatabase.cs`, `Data/CompanyData.cs`, `Data/InterviewQuestionData.cs`, `Core/GameSession.cs`, `Core/GameContext.cs`, `Core/GameFlowManager.cs`, `UI/CreateApplicantController.cs`, `UI/MainMenuController.cs`, `UI/ResumePreviewUI.cs`, `Resume/ResumeEditorController.cs`, `Interview/InterviewController.cs`, `Interview/HRReactionController.cs`, `Interview/InterviewQuestionSelector.cs`, `Editor/GameSceneBuilder.cs`, `Editor/DialogueLineDrawer.cs`, `Editor/MenuTools.cs`, `Editor/SampleDataGenerator.cs`
 - แก้ข้อความใน `GameDatabase.asset`: บรรทัด `hrReviewLines` เดิมมี `{age} years old` เปลี่ยนเป็น `{name}. A recent graduate.` เพราะไม่มี Token อายุแล้ว
+
+
+## บทพูดตอนกด Confirm Resume ตามระดับ Confidence
+
+เมื่อผู้เล่นกด Confirm Resume ระบบดึงค่า Overall Confidence ที่ถูกบันทึกไว้ ณ ตอนกด (ไม่คำนวณใหม่ระหว่างเล่นบทพูด) แล้วเลือกชุดบทพูด:
+
+| เงื่อนไข | ชุดที่ใช้ |
+|---|---|
+| Confidence **มากกว่า** Threshold (ค่าเริ่มต้น 50) | High Confidence Confirmed Lines |
+| Confidence **เท่ากับหรือน้อยกว่า** Threshold (รวม 50% พอดี และ 0%) | Low Confidence Confirmed Lines |
+
+จากนั้นสุ่ม **1 Chunk** จากชุดที่เลือก (ทุก Chunk ที่ใช้ได้มีโอกาสเท่ากัน) แล้วเล่นทุกบรรทัดใน Chunk นั้นเรียงลำดับ จบแล้วไปหน้าเลือกบริษัท ไม่สุ่มบรรทัด ไม่เล่นทั้งสองชุด และการเลือกชุดไม่มีการสุ่ม ส่วนที่สุ่มมีแค่ Chunk
+
+### วิธีแก้ไข (ที่ `GameDatabase.asset` หัวข้อ "Resume confirmed")
+- **High Confidence Confirmed Lines / Low Confidence Confirmed Lines:** เพิ่ม/ลบ/ย้าย Chunk ได้ตามปกติ แต่ละ Chunk ใช้ Inspector หลายบรรทัดเดิม (Speaker, Portrait, Auto Advance Delay, Event Id, Dialogue Lines)
+- **Resume Confirmed Threshold:** เลื่อนค่าที่ช่องนี้ (0-100) เพื่อเปลี่ยนเส้นแบ่ง
+- สองชุดนี้เล่นแบบ RandomOne เสมอ ไม่ต้องตั้ง Mode
+- ช่อง **Emotion** ใช้เปลี่ยนสีหน้าเฉพาะ Speaker = HR ถ้าเป็น Player จะไม่มีผล (ไม่มีอารมณ์ Happy/Worried/Sad ในระบบ ถ้าต้องการให้เขียนในข้อความหรือเพิ่ม Portrait ต่อ Chunk)
+
+### กรณีข้อมูลว่าง (ไม่ค้าง)
+1. ชุดที่ถูกเลือกไม่มี Chunk ที่ใช้ได้ (ว่างหรือไม่มีข้อความ) ใช้อีกชุดแทน
+2. ทั้งสองชุดว่าง ใช้ **Resume Confirmed Lines** (ชุดเดิม + Resume Confirmed Mode ของมัน) เป็นตัวสำรองสุดท้าย
+3. ว่างหมดทั้งหมด จบบทพูดทันทีและไปหน้าเลือกบริษัท
+
+### ข้อมูลเดิม
+บทพูดที่เขียนไว้ใน **Resume Confirmed Lines** เดิมไม่ถูกลบหรือแก้ ยังอยู่ในช่องเดิมภายใต้หัวข้อ "legacy / last resort" และจะถูกเล่นเมื่อทั้ง High และ Low ว่างเท่านั้น ถ้าต้องการใช้ข้อความเดิมต่อ ให้คัดลอก Chunk ไปใส่ High หรือ Low
+
+บทพูดชุดนี้ใช้กับ Confirm Resume เท่านั้น บทพูดอื่น (Choice Reaction, Company Selection, HR, Events, Endings) ไม่เปลี่ยน และ Confidence ไม่มีผลต่อการปฏิเสธ Choice Depletion หรือ Ending
+
+### วิธีทดสอบใน Play Mode
+1. เปิด Console แล้วรัน `Tools > First Jobber > 3. Validate Content` ต้องไม่มีคำเตือนเรื่อง Resume Confirmed
+2. กด Play เลือก Choice ที่มี Confidence สูง (ผลรวมแถบ Confidence > 50) แล้วกด Confirm จะได้บทพูดจากชุด High
+3. เริ่มวันใหม่ เลือก Choice ที่ Confidence ต่ำ (<= 50) จะได้บทพูดจากชุด Low
+4. ทดสอบ 50% พอดี ต้องได้ชุด Low
+5. เล่นหลายรอบ/วัน ตรวจว่า Chunk ที่ได้สุ่มใหม่ทุกครั้ง และ Chunk ที่มีหลายบรรทัดเล่นครบเรียงลำดับ ทดสอบเพิ่มโดยลบ Chunk ออกจากชุดหนึ่งให้ว่างเพื่อดู fallback
+6. ปรับ Threshold แล้วลองใหม่
+
+### ไฟล์ที่แก้
+- `Data/GameDatabase.cs` : ช่อง `resumeConfirmedThreshold`, `highConfidenceConfirmedLines`, `lowConfidenceConfirmedLines`, เมธอด `ResolveResumeConfirmedLines` และการตรวจใน Validate
+- `Core/GameFlowManager.cs` : `OnResumeConfirmed` เรียกเมธอดข้างบนด้วย `session.confirmedConfidence` แล้วเล่นผ่าน `DialogueManager` เดิม (RandomOne)
+- ไม่ได้แก้ `ResumeConfidenceCalculator`, `ResumeEditorController` หรือ Scene

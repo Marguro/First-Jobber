@@ -50,7 +50,39 @@ namespace FirstJobber
         [Tooltip("Played when the resume first slides into the editor.")]
         public DialoguePlaybackMode resumeIntroMode;
         public DialogueLine[] resumeIntroLines;
-        [Tooltip("Played when the player confirms the resume, before the company list opens.")]
+        [Header("Resume confirmed (depends on resume confidence)")]
+        [Tooltip("Overall confidence ABOVE this value plays the High pool. Equal to it or below plays the Low pool.")]
+        [Range(0f, 100f)] public float resumeConfirmedThreshold = 50f;
+        [Tooltip("Played when the confirmed confidence is above the threshold. ONE random block is played.")]
+        public DialogueLine[] highConfidenceConfirmedLines =
+        {
+            new DialogueLine
+            {
+                speaker = Speakers.Player,
+                dialogueLines = new List<string> { "I think this looks good.", "I've prepared everything.", "This time will be different." }
+            },
+            new DialogueLine
+            {
+                speaker = Speakers.Player,
+                dialogueLines = new List<string> { "That's the best I can make it.", "Now, who will take me?" }
+            }
+        };
+        [Tooltip("Played when the confirmed confidence is equal to or below the threshold. ONE random block is played.")]
+        public DialogueLine[] lowConfidenceConfirmedLines =
+        {
+            new DialogueLine
+            {
+                speaker = Speakers.Player,
+                dialogueLines = new List<string> { "I don't think this is enough.", "Maybe I should try anyway." }
+            },
+            new DialogueLine
+            {
+                speaker = Speakers.Player,
+                dialogueLines = new List<string> { "There's barely anything left.", "Why does this keep happening?", "I guess I'll submit it." }
+            }
+        };
+        [Header("Resume confirmed - legacy / last resort")]
+        [Tooltip("Old single collection. Played only when BOTH confidence pools above have no usable block.")]
         public DialoguePlaybackMode resumeConfirmedMode;
         public DialogueLine[] resumeConfirmedLines =
         {
@@ -109,6 +141,30 @@ namespace FirstJobber
                 if (!map.ContainsKey(id)) map.Add(id, item);
             }
             return map;
+        }
+
+        /// <summary>
+        /// Chooses the dialogue collection for Confirm Resume. Confidence is NOT random: above the threshold = High,
+        /// otherwise Low. An empty chosen pool falls back to the other pool, then to the legacy collection.
+        /// The caller plays the result with the returned mode (pools are always RandomOne: one block, all its lines).
+        /// </summary>
+        public DialogueLine[] ResolveResumeConfirmedLines(float confidence, out DialoguePlaybackMode mode)
+        {
+            bool high = confidence > resumeConfirmedThreshold;
+            var primary = high ? highConfidenceConfirmedLines : lowConfidenceConfirmedLines;
+            var other = high ? lowConfidenceConfirmedLines : highConfidenceConfirmedLines;
+            mode = DialoguePlaybackMode.RandomOne;
+            if (HasUsableBlock(primary)) return primary;
+            if (HasUsableBlock(other)) return other;
+            mode = resumeConfirmedMode;
+            return resumeConfirmedLines; // may be empty: the dialogue then completes immediately
+        }
+
+        static bool HasUsableBlock(DialogueLine[] lines)
+        {
+            if (lines == null) return false;
+            for (int i = 0; i < lines.Length; i++) if (lines[i] != null && lines[i].HasContent) return true;
+            return false;
         }
 
         public GenderOption FindGender(string id)
@@ -172,6 +228,10 @@ namespace FirstJobber
             if (companies.Count == 0) problems.Add("No companies.");
             if (endings.Count == 0) problems.Add("No endings. The final decision needs at least one.");
             else if (endings.Count != 3) problems.Add("Endings count is " + endings.Count + " (design expects 3).");
+            if (!HasUsableBlock(highConfidenceConfirmedLines) && !HasUsableBlock(lowConfidenceConfirmedLines) && !HasUsableBlock(resumeConfirmedLines))
+                problems.Add("No Resume Confirmed dialogue (high, low and legacy are all empty): confirming a resume will be silent.");
+            else if (!HasUsableBlock(highConfidenceConfirmedLines) || !HasUsableBlock(lowConfidenceConfirmedLines))
+                problems.Add("Only one Resume Confirmed confidence pool has dialogue; the other confidence level reuses it.");
             if (fatherOfferLines == null || fatherOfferLines.Length == 0) problems.Add("fatherOfferLines is empty.");
             if (rejectionHR == null || rejectionHR.Length == 0) problems.Add("rejectionHR is empty (companies without their own rejection will be silent).");
 

@@ -210,7 +210,9 @@ namespace FirstJobber
         void OnResumeConfirmed()
         {
             if (Phase != GamePhase.ResumeEditor) return;
-            dialogue.Play(database.resumeConfirmedLines, mode: database.resumeConfirmedMode, onComplete: () =>
+            // Confidence was captured when Confirm was pressed (ResumeEditorController); it is not recalculated here.
+            var confirmedLines = database.ResolveResumeConfirmedLines(session.confirmedConfidence, out var confirmedMode);
+            dialogue.Play(confirmedLines, mode: confirmedMode, onComplete: () =>
                 dailyEvents.Run(EventTrigger.AfterResumeConfirmed, session, () =>
                 {
                     if (ChangePhase(GamePhase.CompanySelection)) companySelection.Open(ctx);
