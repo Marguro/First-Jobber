@@ -86,41 +86,45 @@ namespace FirstJobber
 
                 if (line.delayBefore > 0f) yield return new WaitForSecondsRealtime(line.delayBefore);
 
+                // Block-level: raised once per block, not once per page.
                 LineShown?.Invoke(line);
                 if (!string.IsNullOrEmpty(line.eventId)) LineEvent?.Invoke(line.eventId);
 
-                string text = Format(line.text);
-                if (string.IsNullOrEmpty(text)) continue;
-
-                int total = ui != null ? ui.SetLine(ResolveSpeaker(line.speaker), text, line.portrait) : 0;
-                if (ui != null) ui.SetContinueIndicator(false);
-
-                // Typewriter. A click while typing only completes the text.
-                clicked = false;
-                float shown = 0f;
-                while (shown < total && !clicked)
+                for (int p = 0; p < line.PageCount; p++)
                 {
-                    shown += charactersPerSecond * Time.unscaledDeltaTime;
-                    if (ui != null) ui.SetVisibleCharacters(Mathf.Min(total, Mathf.FloorToInt(shown)));
-                    yield return null;
-                }
-                if (ui != null) ui.SetVisibleCharacters(total);
+                    string text = Format(line.GetPage(p));
+                    if (string.IsNullOrEmpty(text)) continue;
 
-                float auto = line.autoAdvanceDelay > 0f ? line.autoAdvanceDelay : defaultAuto;
-                if (ui != null) ui.SetContinueIndicator(auto <= 0f);
+                    int total = ui != null ? ui.SetLine(ResolveSpeaker(line.speaker), text, line.portrait) : 0;
+                    if (ui != null) ui.SetContinueIndicator(false);
 
-                clicked = false;
-                float waited = 0f;
-                while (true)
-                {
-                    waited += Time.unscaledDeltaTime;
-                    if (auto > 0f && waited >= auto) break;
-                    if (clicked)
+                    // Typewriter. A click while typing only completes the text.
+                    clicked = false;
+                    float shown = 0f;
+                    while (shown < total && !clicked)
                     {
-                        clicked = false;
-                        if (waited >= minAdvanceDelay) break;
+                        shown += charactersPerSecond * Time.unscaledDeltaTime;
+                        if (ui != null) ui.SetVisibleCharacters(Mathf.Min(total, Mathf.FloorToInt(shown)));
+                        yield return null;
                     }
-                    yield return null;
+                    if (ui != null) ui.SetVisibleCharacters(total);
+
+                    float auto = line.autoAdvanceDelay > 0f ? line.autoAdvanceDelay : defaultAuto;
+                    if (ui != null) ui.SetContinueIndicator(auto <= 0f);
+
+                    clicked = false;
+                    float waited = 0f;
+                    while (true)
+                    {
+                        waited += Time.unscaledDeltaTime;
+                        if (auto > 0f && waited >= auto) break;
+                        if (clicked)
+                        {
+                            clicked = false;
+                            if (waited >= minAdvanceDelay) break;
+                        }
+                        yield return null;
+                    }
                 }
             }
 

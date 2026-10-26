@@ -67,7 +67,11 @@ MonoBehaviour:
   maxNameLength: 24
   resumeIntroLines:
   - speaker: Player
-    text: This is me, on paper.
+    text: 
+    dialogueLines:
+    - This is me, on paper.
+    - What this shit
+    - What
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -75,6 +79,28 @@ MonoBehaviour:
     portrait: {fileID: 0}
   - speaker: Player
     text: Let's make it better.
+    dialogueLines: []
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  resumeConfirmedLines:
+  - speaker: Player
+    text: 
+    dialogueLines:
+    - That's the best I can make it.
+    - I've sent so many applications already.
+    - Now, who will take me?
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+  companyConfirmedLines:
+  - speaker: Player
+    text: '{company}... {job}. Please let this be the one.'
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -83,6 +109,7 @@ MonoBehaviour:
   defaultHrIntro:
   - speaker: HR
     text: Good morning, {name}. Please have a seat.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -91,6 +118,7 @@ MonoBehaviour:
   hrReviewLines:
   - speaker: HR
     text: Let me look at your resume.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -98,6 +126,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
   - speaker: HR
     text: '{name}, {age} years old. A recent graduate.'
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -106,6 +135,7 @@ MonoBehaviour:
   rejectionHR:
   - speaker: HR
     text: Thank you for your time, {name}.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -113,6 +143,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
   - speaker: HR
     text: We've decided to move forward with other candidates.
+    dialogueLines: []
     emotion: 2
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -121,6 +152,7 @@ MonoBehaviour:
   rejectionPlayer:
   - speaker: Player
     text: ...Again.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -128,6 +160,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
   - speaker: Player
     text: Time to go home.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -136,6 +169,7 @@ MonoBehaviour:
   fatherOfferLines:
   - speaker: Narrator
     text: The phone is ringing. It's Dad.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -143,6 +177,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
   - speaker: Father
     text: '{name}, I''ve been thinking. There''s an opening at my friend''s company.'
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -150,6 +185,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
   - speaker: Father
     text: Steady pay. Regular hours. You don't have to keep doing this.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -157,6 +193,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
   - speaker: Player
     text: I... I don't have anything left to apply to.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
@@ -164,6 +201,7 @@ MonoBehaviour:
     portrait: {fileID: 0}
   - speaker: Father
     text: Then take it. What do you say?
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
