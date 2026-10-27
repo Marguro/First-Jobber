@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ResumeChoiceData
   id: university_d
   category: {fileID: 11400000, guid: 9006c40c6bb8f654c9267b93eddf883f, type: 2}
-  displayText: University D
+  displayText: "Pracham Changwat Suwichana University"
   description: 
   tags:
   - todo_confidence

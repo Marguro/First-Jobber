@@ -311,8 +311,8 @@
         {
           "id": "university_a",
           "display": {
-            "en": "University A",
-            "th": "มหาลัย A"
+            "en": "Chalunpha Mahanakhon University",
+            "th": "มหาวิทยาลัยจาฬุนภามหานคร"
           },
           "playerReaction": {
             "playbackMode": "Sequential",
@@ -335,8 +335,8 @@
           "linkedQuestion": {
             "id": "q_university_a",
             "question": {
-              "en": "You graduated from University A? With a university of that caliber, I suppose I needn’t worry about your abilities?",
-              "th": "จบจากมหาวิทยาลัย A มาเหรอ? มหาวิทยาลัยระดับนี้ก็คงไม่ต้องห่วงเรื่องความสามารถสินะ?"
+              "en": "You graduated from Chalunpha Mahanakhon University? With a university of that caliber, I suppose I needn’t worry about your abilities?",
+              "th": "จบจากมหาวิทยาลัยจาฬุนภามหานคร มาเหรอ? มหาวิทยาลัยระดับนี้ก็คงไม่ต้องห่วงเรื่องความสามารถสินะ?"
             },
             "answers": [
               {
@@ -366,8 +366,8 @@
         {
           "id": "university_b",
           "display": {
-            "en": "University B",
-            "th": "มหาลัย B"
+            "en": "Ho Kan Chang University",
+            "th": "มหาวิทยาลัยหอการช่าง"
           },
           "playerReaction": {
             "playbackMode": "Sequential",
@@ -394,8 +394,8 @@
           "linkedQuestion": {
             "id": "q_university_b",
             "question": {
-              "en": "You graduated from University B? With tuition that expensive, I imagine you expect a lot from yourself?",
-              "th": "จบจากมหาวิทยาลัย B มาเลยเหรอ? ค่าเทอมแพงขนาดนั้น คงคาดหวังกับตัวเองไว้สูงน่าดูนะ?"
+              "en": "You graduated from Ho Kan Chang University? With tuition that expensive, I imagine you expect a lot from yourself?",
+              "th": "จบจากมหาวิทยาลัยหอการช่าง มาเลยเหรอ? ค่าเทอมแพงขนาดนั้น คงคาดหวังกับตัวเองไว้สูงน่าดูนะ?"
             },
             "answers": [
               {
@@ -425,8 +425,8 @@
         {
           "id": "university_c",
           "display": {
-            "en": "University C",
-            "th": "มหาลัย C"
+            "en": "Ratchakon Nakhon University",
+            "th": "มหาวิทยาลัยราชกลนคร"
           },
           "playerReaction": {
             "playbackMode": "Sequential",
@@ -453,8 +453,8 @@
           "linkedQuestion": {
             "id": "q_university_c",
             "question": {
-              "en": "University C? It's not especially well known. So why should we choose you?",
-              "th": "มหาวิทยาลัย C เหรอ? ก็ไม่ได้มีชื่อเสียงโดดเด่นอะไรเป็นพิเศษนี่ แล้วคิดว่าอะไรจะทำให้เราเลือกคุณ?"
+              "en": "Ratchakon Nakhon University? It's not especially well known. So why should we choose you?",
+              "th": "มหาวิทยาลัยราชกลนคร เหรอ? ก็ไม่ได้มีชื่อเสียงโดดเด่นอะไรเป็นพิเศษนี่ แล้วคิดว่าอะไรจะทำให้เราเลือกคุณ?"
             },
             "answers": [
               {
@@ -484,8 +484,8 @@
         {
           "id": "university_d",
           "display": {
-            "en": "University D",
-            "th": "มหาลัย D"
+            "en": "Pracham Changwat Suwichana University",
+            "th": "มหาวิทยาลัยประจำจังหวัดสุวิชนา"
           },
           "playerReaction": {
             "playbackMode": "Sequential",
@@ -516,8 +516,8 @@
           "linkedQuestion": {
             "id": "q_university_d",
             "question": {
-              "en": "You graduated from University D? Why didn’t you choose a more prestigious university?",
-              "th": "จบจากมหาวิทยาลัย D เหรอ? ทำไมถึงไม่เลือกมหาวิทยาลัยที่มีชื่อเสียงกว่านี้ล่ะ?"
+              "en": "You graduated from Pracham Changwat Suwichana University? Why didn’t you choose a more prestigious university?",
+              "th": "จบจากมหาวิทยาลัยประจำจังหวัดสุวิชนา เหรอ? ทำไมถึงไม่เลือกมหาวิทยาลัยที่มีชื่อเสียงกว่านี้ล่ะ?"
             },
             "answers": [
               {
@@ -547,8 +547,8 @@
         {
           "id": "university_e",
           "display": {
-            "en": "University E",
-            "th": "มหาลัย E"
+            "en": "Kakinang Ban Nong Khuem University",
+            "th": "มหาวิทยาลัยกากินัง บ้านหนองขึ่ม"
           },
           "playerReaction": {
             "playbackMode": "Sequential",
@@ -575,8 +575,8 @@
           "linkedQuestion": {
             "id": "q_university_e",
             "question": {
-              "en": "You graduated from University E? I don't recognize that name. Why should this company hire you?",
-              "th": "จบจากมหาวิทยาลัย E เองเหรอ? ชื่อนี้ไม่ค่อยคุ้นเลยนะ แล้วคิดว่าบริษัทจะรับคุณเพราะอะไรล่ะ?"
+              "en": "You graduated from Kakinang Ban Nong Khuem University? I don't recognize that name. Why should this company hire you?",
+              "th": "จบจากมหาวิทยาลัยกากินัง บ้านหนองขึ่ม เองเหรอ? ชื่อนี้ไม่ค่อยคุ้นเลยนะ แล้วคิดว่าบริษัทจะรับคุณเพราะอะไรล่ะ?"
             },
             "answers": [
               {

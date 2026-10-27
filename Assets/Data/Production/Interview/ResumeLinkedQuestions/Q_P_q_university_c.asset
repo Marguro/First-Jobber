@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Q_P_q_university_c
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_c
-  questionText: University C? It's not especially well known. So why should we choose you?
+  questionText: "Ratchakon Nakhon University? It's not especially well known. So why should we choose you?"
   hrEmotion: 0
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: 8cef5fcb92f834c4cb01b8f97c40f3f3, type: 2}

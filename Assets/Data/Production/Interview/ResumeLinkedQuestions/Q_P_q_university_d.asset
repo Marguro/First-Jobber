@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Q_P_q_university_d
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_d
-  questionText: "You graduated from University D? Why didn\u2019t you choose a more prestigious university?"
+  questionText: "You graduated from Pracham Changwat Suwichana University? Why didn\u2019t you choose a more prestigious university?"
   hrEmotion: 0
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: 993d1a2743dafc64086574eb76298135, type: 2}

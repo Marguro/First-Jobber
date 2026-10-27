@@ -160,17 +160,7 @@ MonoBehaviour:
     genderIds: []
     variantGroup: 
   companyConfirmedMode: 0
-  companyConfirmedLines:
-  - speaker: Player
-    text: '{company}... {job}. Please let this be the one.'
-    dialogueLines: []
-    emotion: 0
-    autoAdvanceDelay: 0
-    delayBefore: 0
-    eventId: 
-    portrait: {fileID: 0}
-    genderIds: []
-    variantGroup: 
+  companyConfirmedLines: []
   defaultHrIntroMode: 0
   defaultHrIntro:
   - speaker: HR

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Q_P_q_university_b
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_b
-  questionText: You graduated from University B? With tuition that expensive, I imagine you expect a lot from yourself?
+  questionText: "You graduated from Ho Kan Chang University? With tuition that expensive, I imagine you expect a lot from yourself?"
   hrEmotion: 0
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: fc83de0d7de256f4198a331a9010db40, type: 2}

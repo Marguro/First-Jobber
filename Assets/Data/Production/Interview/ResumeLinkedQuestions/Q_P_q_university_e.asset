@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Q_P_q_university_e
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_e
-  questionText: You graduated from University E? I don't recognize that name. Why should this company hire you?
+  questionText: "You graduated from Kakinang Ban Nong Khuem University? I don't recognize that name. Why should this company hire you?"
   hrEmotion: 0
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: 03bc3aae74f4d4c40bf19b28f84479f3, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Q_P_q_university_a
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_a
-  questionText: "You graduated from University A? With a university of that caliber, I suppose I needn\u2019t worry about your abilities?"
+  questionText: "You graduated from Chalunpha Mahanakhon University? With a university of that caliber, I suppose I needn\u2019t worry about your abilities?"
   hrEmotion: 0
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: 363b10542928cf747906fc121324d643, type: 2}

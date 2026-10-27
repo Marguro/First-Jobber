@@ -958,23 +958,23 @@ question/q_motto_every_day_learning/answers/a_motto_every_day_learning_3/text,Qu
 question/q_motto_flexibility_key/questionText,Flexibility is the key to success? Does that mean you'll do absolutely anything the company asks?,ความยืดหยุ่นคือกุญแจสู่ความสำเร็จงั้นเหรอ? ถ้าบริษัทให้ทำอะไรก็ต้องทำหมดเลยหรือเปล่า?
 question/q_motto_flexibility_key/answers/a_motto_flexibility_key_1/text,"If it helps the company succeed, I'm willing!",ถ้ามันทำให้บริษัทประสบความสำเร็จ ฉันก็พร้อม!
 question/q_motto_flexibility_key/answers/a_motto_flexibility_key_2/text,"Uh... If it's necessary work, I'll give it a try.",อะ... ถ้าเป็นงานที่จำเป็น ฉันก็จะลองดู
-question/q_university_a/questionText,"You graduated from University A? With a university of that caliber, I suppose I needn’t worry about your abilities?",จบจากมหาวิทยาลัย A มาเหรอ? มหาวิทยาลัยระดับนี้ก็คงไม่ต้องห่วงเรื่องความสามารถสินะ?
+question/q_university_a/questionText,"You graduated from Chalunpha Mahanakhon University? With a university of that caliber, I suppose I needn’t worry about your abilities?",จบจากมหาวิทยาลัยจาฬุนภามหานคร มาเหรอ? มหาวิทยาลัยระดับนี้ก็คงไม่ต้องห่วงเรื่องความสามารถสินะ?
 question/q_university_a/answers/a_university_a_1/text,Of course! I passed the entrance exams on my own merit!,แน่นอน! ฉันสอบเข้ามาได้ด้วยความสามารถของตัวเอง!
 question/q_university_a/answers/a_university_a_2/text,Ugh! Just thinking about the entrance exams wears me out!,ฮึ่ย! แค่คิดถึงตอนสอบเข้าก็เหนื่อยแล้ว!
 question/q_university_a/answers/a_university_a_3/text,Yes.,ครับ/ค่ะ
-question/q_university_b/questionText,"You graduated from University B? With tuition that expensive, I imagine you expect a lot from yourself?",จบจากมหาวิทยาลัย B มาเลยเหรอ? ค่าเทอมแพงขนาดนั้น คงคาดหวังกับตัวเองไว้สูงน่าดูนะ?
+question/q_university_b/questionText,"You graduated from Ho Kan Chang University? With tuition that expensive, I imagine you expect a lot from yourself?",จบจากมหาวิทยาลัยหอการช่าง มาเลยเหรอ? ค่าเทอมแพงขนาดนั้น คงคาดหวังกับตัวเองไว้สูงน่าดูนะ?
 question/q_university_b/answers/a_university_b_1/text,Of course! My family invested a lot in me. I have to make it worthwhile!,แน่นอน! ที่บ้านลงทุนกับฉันไปเยอะ ฉันก็ต้องทำให้คุ้มสิ!
 question/q_university_b/answers/a_university_b_2/text,"It's a private university, but it's well regarded!",ถึงจะเป็นมหาวิทยาลัยเอกชนก็เถอะ แต่ที่นี่ก็มีชื่อเสียงดีนะ!
 question/q_university_b/answers/a_university_b_3/text,Yes.,ครับ/ค่ะ
-question/q_university_c/questionText,University C? It's not especially well known. So why should we choose you?,มหาวิทยาลัย C เหรอ? ก็ไม่ได้มีชื่อเสียงโดดเด่นอะไรเป็นพิเศษนี่ แล้วคิดว่าอะไรจะทำให้เราเลือกคุณ?
+question/q_university_c/questionText,Ratchakon Nakhon University? It's not especially well known. So why should we choose you?,มหาวิทยาลัยราชกลนคร เหรอ? ก็ไม่ได้มีชื่อเสียงโดดเด่นอะไรเป็นพิเศษนี่ แล้วคิดว่าอะไรจะทำให้เราเลือกคุณ?
 question/q_university_c/answers/a_university_c_1/text,My work speaks for itself!,ผลงานของฉันไง!
 question/q_university_c/answers/a_university_c_2/text,"Uh... My university may not be famous, but I worked hard there!",อะ... ถึงมหาวิทยาลัยจะไม่ได้ดัง แต่ฉันก็ตั้งใจเรียนนะ!
 question/q_university_c/answers/a_university_c_3/text,Yes...,ครับ/ค่ะ
-question/q_university_d/questionText,You graduated from University D? Why didn’t you choose a more prestigious university?,จบจากมหาวิทยาลัย D เหรอ? ทำไมถึงไม่เลือกมหาวิทยาลัยที่มีชื่อเสียงกว่านี้ล่ะ?
+question/q_university_d/questionText,You graduated from Pracham Changwat Suwichana University? Why didn’t you choose a more prestigious university?,จบจากมหาวิทยาลัยประจำจังหวัดสุวิชนา เหรอ? ทำไมถึงไม่เลือกมหาวิทยาลัยที่มีชื่อเสียงกว่านี้ล่ะ?
 question/q_university_d/answers/a_university_d_1/text,"I couldn't afford the tuition back then, but I did my best!",ตอนนั้นค่าเทอมไม่ไหวจริง ๆ แต่ฉันก็พยายามเต็มที่นะ!
 question/q_university_d/answers/a_university_d_2/text,A university's name isn't the only measure of ability!,มหาวิทยาลัยไม่ได้เป็นตัวตัดสินความสามารถทั้งหมดสักหน่อย!
 question/q_university_d/answers/a_university_d_3/text,...Yes.,...ครับ/ค่ะ
-question/q_university_e/questionText,You graduated from University E? I don't recognize that name. Why should this company hire you?,จบจากมหาวิทยาลัย E เองเหรอ? ชื่อนี้ไม่ค่อยคุ้นเลยนะ แล้วคิดว่าบริษัทจะรับคุณเพราะอะไรล่ะ?
+question/q_university_e/questionText,You graduated from Kakinang Ban Nong Khuem University? I don't recognize that name. Why should this company hire you?,จบจากมหาวิทยาลัยกากินัง บ้านหนองขึ่ม เองเหรอ? ชื่อนี้ไม่ค่อยคุ้นเลยนะ แล้วคิดว่าบริษัทจะรับคุณเพราะอะไรล่ะ?
 question/q_university_e/answers/a_university_e_1/text,Yes... but I have skills too!,ใช่... แต่ฉันก็มีความสามารถนะ!
 question/q_university_e/answers/a_university_e_2/text,...I'll prove myself!,...ฉันจะพิสูจน์ให้ดูเอง!
 question/q_university_e/answers/a_university_e_3/text,Yes.,ครับ/ค่ะ
@@ -1021,23 +1021,23 @@ choice/motto_flexibility_key/displayText,Flexibility Is the Key to Success,ค�
 choice/motto_flexibility_key/playerReaction/0/lines/0,"Hmm... This is probably what HR wants to hear most, right?",อืม... ประโยคนี้น่าจะถูกใจ HR มากที่สุดแล้วมั้ง?
 choice/motto_flexibility_key/playerReaction/0/lines/1,"Some tasks might not be what I'm best at, or even what I want to do. But if it makes me useful to the company, I suppose I have to try...",ถึงบางอย่างอาจไม่ใช่สิ่งที่เราถนัดหรืออยากทำที่สุด แต่ถ้ามันทำให้บริษัทเห็นว่าเรามีประโยชน์ ก็คงต้องลองดู..
 choice/motto_flexibility_key/playerReaction/0/lines/2,...I just need them to hire me.,...ขอแค่รับฉันเข้าทำงานก็พอแล้วล่ะ
-choice/university_a/displayText,University A,มหาลัย A
+choice/university_a/displayText,Chalunpha Mahanakhon University,มหาวิทยาลัยจาฬุนภามหานคร
 choice/university_a/playerReaction/0/lines/0,Ugh! Just thinking about the entrance exams wears me out!,ฮึ่ย! แค่คิดถึงตอนสอบเข้าก็เหนื่อยแล้ว!
 choice/university_a/playerReaction/0/lines/1,"With a university name like this, at least HR should take an interest in my resume!",ชื่อมหาวิทยาลัยระดับนี้ อย่างน้อย HR ก็น่าจะเปิด Resume ดูด้วยความสนใจบ้างแหละ!
-choice/university_b/displayText,University B,มหาลัย B
+choice/university_b/displayText,Ho Kan Chang University,มหาวิทยาลัยหอการช่าง
 choice/university_b/playerReaction/0/lines/0,"It's a private university, but it has a good reputation!",ถึงจะเป็นมหาวิทยาลัยเอกชนก็เถอะ แต่ที่นี่ก็มีชื่อเสียงดีนะ!!
 choice/university_b/playerReaction/0/lines/1,And tuition wasn't cheap. My family invested a lot in getting me through school.,ค่าเทอมแต่ละเทอมก็ไม่ใช่น้อย ๆ กว่าจะเรียนจบมาได้ ที่บ้านก็ลงทุนกับเราไปเยอะเหมือนกัน
 choice/university_b/playerReaction/0/lines/2,"Besides, graduating from there doesn't make me any less capable than anyone else!",อีกอย่าง จบจากที่นี่ก็ไม่ได้แปลว่าเราด้อยกว่าใครสักหน่อย!
-choice/university_c/displayText,University C,มหาลัย C
+choice/university_c/displayText,Ratchakon Nakhon University,มหาวิทยาลัยราชกลนคร
 choice/university_c/playerReaction/0/lines/0,"Hmm... It's just an ordinary university, nothing especially prestigious.",อืม... มหาวิทยาลัยทั่วไปนี่แหละ ไม่ได้มีชื่อเสียงโดดเด่นอะไรเป็นพิเศษ
 choice/university_c/playerReaction/0/lines/1,"But I graduated through my own effort! Assignments, projects, exams... I've been through plenty.",แต่เราก็เรียนจบมาได้ด้วยความสามารถของตัวเองนะ! ส่งงาน ทำโปรเจกต์ สอบผ่าน ก็ผ่านอะไรมาเยอะเหมือนกัน
 choice/university_c/playerReaction/0/lines/2,Surely a university's name shouldn't be the only thing that matters... right?,จะให้ชื่อมหาวิทยาลัยเป็นตัวตัดสินทั้งหมดก็คงไม่ใช่หรอกมั้ง...
-choice/university_d/displayText,University D,มหาลัย D
+choice/university_d/displayText,Pracham Changwat Suwichana University,มหาวิทยาลัยประจำจังหวัดสุวิชนา
 choice/university_d/playerReaction/0/lines/0,"Honestly, I wanted to attend a more prestigious university...",จริง ๆ ตอนนั้นก็อยากเข้ามหาวิทยาลัยที่มีชื่อเสียงกว่านี้นะ...
 choice/university_d/playerReaction/0/lines/1,But the tuition was just too much. I didn't want to put any more financial pressure on my family.,แต่ค่าเทอมมันไม่ไหวจริง ๆ จะให้ที่บ้านแบกรับค่าใช้จ่ายมากกว่านี้ก็ไม่อยากแล้ว
 choice/university_d/playerReaction/0/lines/2,"It might not make my resume stand out, but it wasn't because I didn't try!",มันอาจไม่ได้ทำให้ Resume ดูโดดเด่นเท่าคนอื่น แต่เราก็ไม่ได้เลือกเพราะไม่พยายามสักหน่อย!
 choice/university_d/playerReaction/0/lines/3,"Oh well... If my work is really good, a company should see its value!",เอาเถอะ... ถ้าผลงานเราดีจริง บริษัทก็น่าจะเห็นคุณค่าได้สิ!
-choice/university_e/displayText,University E,มหาลัย E
+choice/university_e/displayText,Kakinang Ban Nong Khuem University,มหาวิทยาลัยกากินัง บ้านหนองขึ่ม
 choice/university_e/playerReaction/0/lines/0,"Sigh... It seemed easy to get into, so I picked it without thinking much.",เฮ้อ... ตอนนั้นเห็นว่าเข้าที่นี่ง่ายดี ก็เลยเลือก ๆ ไป ไม่ได้คิดอะไรเยอะ
 choice/university_e/playerReaction/0/lines/1,Back then I just wanted to graduate. Who knew a university's name would matter this much...,ตอนนั้นแค่คิดว่าเรียนให้จบก็พอแล้วนี่นา ใครจะไปคิดว่าชื่อมหาวิทยาลัยจะมีผลขนาดนี้..
 choice/university_e/playerReaction/0/lines/2,It's not like I can turn back time and choose again.,แต่จะให้ย้อนเวลากลับไปเลือกใหม่ก็ไม่ได้แล้วนี่
