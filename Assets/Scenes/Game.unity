@@ -15020,7 +15020,7 @@ MonoBehaviour:
   enableScrolling: 1
   patternTileSize: {x: 960, y: 640}
   patternSpacing: 1
-  elementScale: 1
+  elementScale: 0.75
   motifSlots:
   - motif: 0
     image: {fileID: 910300004}
@@ -15030,7 +15030,7 @@ MonoBehaviour:
     direction: {x: -1, y: -0.65}
     speed: 16
     elementSize: {x: 300, y: 300}
-    startOffset: {x: -0.33, y: 0.27}
+    startOffset: {x: -0.2, y: 0.27}
   - motif: 1
     image: {fileID: 910300014}
     normalSprite: {fileID: -8818675542939785473, guid: 1da4923416a943f4ea5a50608db87dc0, type: 3}
@@ -15039,7 +15039,7 @@ MonoBehaviour:
     direction: {x: -1, y: -0.75}
     speed: 18
     elementSize: {x: 300, y: 300}
-    startOffset: {x: 0.31, y: -0.26}
+    startOffset: {x: 0.21, y: -0.26}
   - motif: 2
     image: {fileID: 910300024}
     normalSprite: {fileID: 1656480539572101311, guid: ef5773bf7cf738049b5c2f96bab0ef92, type: 3}
@@ -15048,7 +15048,7 @@ MonoBehaviour:
     direction: {x: -1, y: -0.85}
     speed: 20
     elementSize: {x: 300, y: 300}
-    startOffset: {x: -0.3, y: -0.28}
+    startOffset: {x: -0.31, y: -0.28}
   - motif: 3
     image: {fileID: 910300034}
     normalSprite: {fileID: 6745837257119630097, guid: fedc8ddc06114264a858573900d84739, type: 3}
