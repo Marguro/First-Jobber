@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_P_prod_hr_focusframe_fixed_02
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: prod_hr_focusframe_fixed_02
+  questionText: If urgent work comes in after hours, can you stay until it is done?
+  hrEmotion: 0
+  questionDialogue: []
+  linkedChoice: {fileID: 0}
+  linkedCategory: {fileID: 0}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a1
+    text: Yes.
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []
+  - id: a2
+    text: Only on some days.
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []
+  - id: a3
+    text: Not at all.
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []

@@ -1,0 +1,23 @@
+{
+  "companies": 5,
+  "hrs": 5,
+  "fixedQuestions": 15,
+  "fixedAnswers": 39,
+  "missingAnswerQuestionIds": [],
+  "genderVariantCompanies": [
+    "prod_company_appfair"
+  ],
+  "genderMatchSource": "ApplicantProfile.genderId",
+  "interviewQuestionPattern": [
+    "FixedRandom",
+    "FixedRandom",
+    "ResumeLinkedRandomMatching",
+    "ResumeLinkedRandomMatching"
+  ],
+  "resumeLinkedPerHRReferences": "must be configured using existing production Resume-linked content",
+  "remainingAuthoring": [
+    "HR follow-up responses to player answers",
+    "Per-HR explicit Resume-linked assignments and/or HR-specific dialogue",
+    "AppFair neutral/unspecified dialogue only if such applicant genders are allowed and authored later"
+  ]
+}

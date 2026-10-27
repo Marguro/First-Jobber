@@ -1,0 +1,924 @@
+{
+  "schemaVersion": "1.1",
+  "source": "Five user-provided company/HR storyboard images dated 2026-10-27",
+  "contentKind": "staging bilingual HR company and fixed questions",
+  "note": "English translations are editorial renderings of supplied Thai text; preserve Thai as authored. AppFair male/female intro/rejection uses ApplicantProfile.genderId (NOT random gender variants). ControlGroup Fixed Q2 & Q3 authored answers added. 2 random Fixed + 2 random Resume-matched HR-assigned questions per interview. HR answer follow-up dialogue and exact per-HR Resume-linked assignments are not authored in source. Do not load JSON at runtime; import to existing SO model + LocalizationKeys.",
+  "companies": [
+    {
+      "companyId": "prod_company_focusframe",
+      "name": {
+        "english": "FocusFrame Interactive",
+        "thai": "โฟกัสเฟรม อินเตอร์แอคทีฟ"
+      },
+      "jobDescription": [
+        {
+          "english": "Design characters and visual elements for games.",
+          "thai": "ออกแบบตัวละครและองค์ประกอบภาพสำหรับเกม"
+        },
+        {
+          "english": "Work with the development team to meet project goals.",
+          "thai": "ทำงานร่วมกับทีมพัฒนาเพื่อให้ได้ผลงานตามเป้าหมาย"
+        },
+        {
+          "english": "Talented applicants willing to learn are welcome.",
+          "thai": "ยินดีรับผู้มีความสามารถและพร้อมเรียนรู้"
+        },
+        {
+          "english": "Video editing skills required.",
+          "thai": "ตัดต่อได้"
+        }
+      ],
+      "workingConditions": [
+        {
+          "english": "Work six days a week.",
+          "thai": "ทำงาน 6 วันต่อสัปดาห์"
+        },
+        {
+          "english": "No overtime pay; everyone is expected to finish their assigned work.",
+          "thai": "ไม่มีค่าล่วงเวลา โดยคาดหวังให้ทุกคนรับผิดชอบงานจนเสร็จ"
+        },
+        {
+          "english": "Flexible working hours, but you must be reachable whenever the team needs you.",
+          "thai": "เวลาทำงานยืดหยุ่น แต่ต้องพร้อมติดต่อได้ตลอดเวลาที่ทีมต้องการ"
+        }
+      ],
+      "salary": null,
+      "hr": {
+        "hrId": "prod_hr_focusframe",
+        "name": {
+          "english": "CCTV-Head HR",
+          "thai": "HR หัวกล้องวงจร"
+        },
+        "portrait": null,
+        "introductionVariants": [
+          {
+            "genderIds": [],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Hello. Please turn on your camera so we can see your face clearly. Transparency matters to us here. Everything you do at work must be verifiable. Let’s begin the interview.",
+                    "thai": "สวัสดีครับ เปิดกล้องให้เห็นหน้าชัด ๆ ด้วยนะครับ ที่นี่เราให้ความสำคัญกับความโปร่งใส ทุกการกระทำระหว่างทำงานต้องตรวจสอบได้ งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าครับ"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "rejectionVariants": [
+          {
+            "genderIds": [],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Thank you for taking the time to interview. After careful consideration, you do not currently meet the qualifications our company is looking for. Good luck with your next application.",
+                    "thai": "ขอบคุณที่สละเวลามาสัมภาษณ์นะครับ แต่ทางเราพิจารณาแล้วว่าคุณยังไม่ตรงกับคุณสมบัติที่บริษัทต้องการในขณะนี้ ขอให้โชคดีกับการสมัครงานครั้งต่อไปแล้วกันครับ"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "fixedQuestions": [
+          {
+            "question": {
+              "english": "We work six days a week. Can you handle that?",
+              "thai": "บริษัทเราทำงาน 6 วันต่อสัปดาห์ คุณรับได้ไหม?"
+            },
+            "answers": [
+              {
+                "english": "Yes.",
+                "thai": "ได้"
+              },
+              {
+                "english": "I think I can.",
+                "thai": "เหมือนจะได้"
+              },
+              {
+                "english": "No.",
+                "thai": "ไม่ได้"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_focusframe_fixed_01",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "If urgent work comes in after hours, can you stay until it is done?",
+              "thai": "ถ้ามีงานด่วนหลังเลิกงาน คุณสามารถทำต่อจนเสร็จได้ไหม?"
+            },
+            "answers": [
+              {
+                "english": "Yes.",
+                "thai": "ได้"
+              },
+              {
+                "english": "Only on some days.",
+                "thai": "ได้แค่บางวัน"
+              },
+              {
+                "english": "Not at all.",
+                "thai": "ไม่ได้เลย"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_focusframe_fixed_02",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "Do you know how to edit video?",
+              "thai": "คุณพอจะตัดต่อวิดีโอเป็นไหม?"
+            },
+            "answers": [
+              {
+                "english": "I can do that.",
+                "thai": "สามารถทำได้"
+              },
+              {
+                "english": "Only the basics.",
+                "thai": "ตัดเป็นแค่พื้นฐาน"
+              },
+              {
+                "english": "I’m not comfortable doing video editing.",
+                "thai": "ไม่สะดวกทำงานตัดต่อ"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_focusframe_fixed_03",
+            "productionReady": true
+          }
+        ],
+        "resumeLinkedQuestions": [],
+        "resumeLinkedIntegration": "Assign HR-specific links to existing production Resume-Linked Question assets; do not treat fixed questions as resume-linked.",
+        "interviewPlan": {
+          "questionCount": 4,
+          "orderedSlots": [
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            }
+          ],
+          "fixedSelection": "random_without_replacement_within_interview",
+          "resumeLinkedSelection": "random_without_replacement_from_HR_assigned_bank_matching_current_confirmed_resume",
+          "sampleResumeLinkedSource": "previously_imported_production_resume_questions",
+          "resumeLinkedRequiresExplicitHRReferences": true,
+          "note": "Each HR must have at least two distinct matching Resume-Linked questions assigned for 4-question interviews. Do not import missing HR-specific dialogue or fabricate it. Validate assigned HR bank before shipping. Skip/fallback safely if fewer than two."
+        }
+      }
+    },
+    {
+      "companyId": "prod_company_redline",
+      "name": {
+        "english": "Redline Studio",
+        "thai": "เรดไลน์ สตูดิโอ"
+      },
+      "jobDescription": [
+        {
+          "english": "Design characters, environments, items, and graphics as assigned.",
+          "thai": "ออกแบบตัวละคร ฉาก ไอเทม และงานกราฟิกตามที่ได้รับมอบหมาย"
+        },
+        {
+          "english": "Work under tight deadlines.",
+          "thai": "ทำงานภายใต้กำหนดเวลาที่กระชั้นชิด"
+        },
+        {
+          "english": "New graduates who love games are welcome.",
+          "thai": "ยินดีรับเด็กจบใหม่ที่มีใจรักเกม"
+        }
+      ],
+      "workingConditions": [
+        {
+          "english": "Must have four to five years of work experience.",
+          "thai": "ต้องมีประสบการณ์ทำงาน 4–5 ปี"
+        },
+        {
+          "english": "Must be able to cover multiple roles alone.",
+          "thai": "ทำงานหลายหน้าที่ได้ในคนเดียว"
+        },
+        {
+          "english": "Must handle pressure and urgent revisions well.",
+          "thai": "ต้องรับมือกับแรงกดดันและการแก้ไขงานเร่งด่วนได้ดี"
+        }
+      ],
+      "salary": null,
+      "hr": {
+        "hrId": "prod_hr_redline",
+        "name": {
+          "english": "Ogre HR",
+          "thai": "HR ยักษ์ (Ref พี่บอย)"
+        },
+        "portrait": null,
+        "introductionVariants": [
+          {
+            "genderIds": [],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "You’re here, so let’s get started. I have ten more applicants and I don’t have all day to talk to you. Let’s begin.",
+                    "thai": "มาแล้วก็รีบเริ่มเลยครับ ผมมีผู้สมัครอีกเป็นสิบ ไม่ได้มีเวลามานั่งคุยกับคุณทั้งวัน งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่า"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "rejectionVariants": [
+          {
+            "genderIds": [],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Hmph! With qualifications like these, you’re still not what we’re looking for. This interview is over. Next!",
+                    "thai": "เหอะ!...คุณสมบัติแค่นี้ยังไม่ใช่คนที่เรากำลังมองหา จบการสัมภาษณ์แค่นี้ครับ คนต่อไป"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "fixedQuestions": [
+          {
+            "question": {
+              "english": "Do you have the four to five years of professional experience we require?",
+              "thai": "คุณมีประสบการณ์ทำงานจริง 4–5 ปีตามที่เราต้องการหรือยัง?"
+            },
+            "answers": [
+              {
+                "english": "I gained some experience while studying.",
+                "thai": "พอมีบ้างตอนเรียน"
+              },
+              {
+                "english": "I thought you were hiring new graduates?",
+                "thai": "ไม่ใช่ว่ารับเด็กจบใหม่หรอกเหรอ"
+              },
+              {
+                "english": "None at all.",
+                "thai": "ไม่มีเลย"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_redline_fixed_01",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "This role involves characters, environments, and items. Can you do all three?",
+              "thai": "ตำแหน่งนี้ต้องทำทั้งตัวละคร ฉาก และไอเทม คุณทำได้ทั้งหมดไหม?"
+            },
+            "answers": [
+              {
+                "english": "Absolutely! That’s my specialty.",
+                "thai": "ทำได้! ของถนัดเลย"
+              },
+              {
+                "english": "There are some areas I still need to practice.",
+                "thai": "มีบางอย่างที่ยังต้องฝึกเพิ่ม"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_redline_fixed_02",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "If we assign you multiple tasks with tight deadlines, are you confident you can finish on time?",
+              "thai": "ถ้าเราให้คุณรับผิดชอบงานหลายชิ้นพร้อมกันและส่งภายในเวลาจำกัด คุณมั่นใจว่าจะทำทันไหม?"
+            },
+            "answers": [
+              {
+                "english": "Definitely!",
+                "thai": "ทำได้แน่นอน!"
+              },
+              {
+                "english": "If I have enough time.",
+                "thai": "ถ้ามีเวลาให้มากพอ"
+              },
+              {
+                "english": "I’m worried the quality would suffer.",
+                "thai": "เกรงว่าจะทำให้ผลงานมีคุณภาพไม่ดี"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_redline_fixed_03",
+            "productionReady": true
+          }
+        ],
+        "resumeLinkedQuestions": [],
+        "resumeLinkedIntegration": "Assign HR-specific links to existing production Resume-Linked Question assets; do not treat fixed questions as resume-linked.",
+        "interviewPlan": {
+          "questionCount": 4,
+          "orderedSlots": [
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            }
+          ],
+          "fixedSelection": "random_without_replacement_within_interview",
+          "resumeLinkedSelection": "random_without_replacement_from_HR_assigned_bank_matching_current_confirmed_resume",
+          "sampleResumeLinkedSource": "previously_imported_production_resume_questions",
+          "resumeLinkedRequiresExplicitHRReferences": true,
+          "note": "Each HR must have at least two distinct matching Resume-Linked questions assigned for 4-question interviews. Do not import missing HR-specific dialogue or fabricate it. Validate assigned HR bank before shipping. Skip/fallback safely if fewer than two."
+        }
+      }
+    },
+    {
+      "companyId": "prod_company_ideaharvest",
+      "name": {
+        "english": "IdeaHarvest Interactive",
+        "thai": "ไอเดียฮาร์เวสต์ อินเตอร์แอคทีฟ"
+      },
+      "jobDescription": [
+        {
+          "english": "Create visual designs and develop concepts for game projects.",
+          "thai": "ออกแบบงานภาพและพัฒนาคอนเซปต์สำหรับโปรเจกต์เกม"
+        },
+        {
+          "english": "Collaborate with the art and development teams.",
+          "thai": "ทำงานร่วมกับทีมศิลปะและทีมพัฒนา"
+        },
+        {
+          "english": "Applicants with strong portfolios are welcome, even with limited experience.",
+          "thai": "เปิดรับผู้สมัครที่มีผลงานโดดเด่น แม้ประสบการณ์ยังไม่มาก"
+        }
+      ],
+      "workingConditions": [
+        {
+          "english": "Attractive salary and benefits.",
+          "thai": "เงินเดือนและสวัสดิการน่าสนใจ"
+        },
+        {
+          "english": "Work from home three days and in the office two days per week.",
+          "thai": "ทำงานจากที่บ้าน 3 วัน เข้าออฟฟิศ 2 วันต่อสัปดาห์"
+        },
+        {
+          "english": "There is a pre-employment assignment (to steal applicants’ ideas).",
+          "thai": "มี assignment ให้ทำก่อนเริ่มงาน(ขโมยความคิดผู้สมัคร)"
+        }
+      ],
+      "salary": null,
+      "hr": {
+        "hrId": "prod_hr_ideaharvest",
+        "name": {
+          "english": "Ghost HR",
+          "thai": "HR ผี"
+        },
+        "portrait": null,
+        "introductionVariants": [
+          {
+            "genderIds": [],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Hello~ Can you hear me? If the video freezes, that’s fine. We’ve opened this position so many times, but nobody has quite met the company’s expectations. Let’s start the interview.",
+                    "thai": "ฮัลโหล~ ได้ยินพี่ไหมคะ? ถ้าภาพค้างก็ไม่เป็นไรนะคะ ตำแหน่งนี้เปิดรับมาหลายรอบแล้ว ยังไม่มีใครตรงใจบริษัทสักทีเลยค่ะ งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าค่ะ"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "rejectionVariants": [
+          {
+            "genderIds": [],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Thank you for your interest in this position. The company will contact you if there are any updates.",
+                    "thai": "ขอบคุณสำหรับความสนใจในตำแหน่งนี้นะคะ หากมีความคืบหน้า ทางบริษัทจะติดต่อกลับไปค่ะ"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "fixedQuestions": [
+          {
+            "question": {
+              "english": "Can you complete a company assignment before hearing the hiring decision?",
+              "thai": "คุณสามารถทำ Assignment ตามโจทย์ของบริษัทก่อนทราบผลการคัดเลือกได้ไหม?"
+            },
+            "answers": [
+              {
+                "english": "Yes.",
+                "thai": "ได้"
+              },
+              {
+                "english": "Could I have some time to complete it?",
+                "thai": "ฉันขอเวลาทำได้ไหม"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_ideaharvest_fixed_01",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "Would you agree to provide editable source files for the company to review?",
+              "thai": "คุณยินยอมส่งไฟล์งานต้นฉบับที่แก้ไขต่อได้ให้บริษัทตรวจสอบด้วยไหม?"
+            },
+            "answers": [
+              {
+                "english": "Uh... I guess so.",
+                "thai": "อะ..เออ น่าจะได้"
+              },
+              {
+                "english": "I’m not very comfortable with that.",
+                "thai": "ไม่สะดวกเท่าไหร่"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_ideaharvest_fixed_02",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "By the way, your name is Gukkui, right? Oh, sorry. There are so many applicants that I’ve mixed them up.",
+              "thai": "ว่าแต่คุณชื่อกุ๊กกุ๋ยนะ...เออ โทษที มีคนสมัครเยอะจนจำสลับกัน"
+            },
+            "answers": [
+              {
+                "english": "...",
+                "thai": "..."
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_ideaharvest_fixed_03",
+            "productionReady": true
+          }
+        ],
+        "resumeLinkedQuestions": [],
+        "resumeLinkedIntegration": "Assign HR-specific links to existing production Resume-Linked Question assets; do not treat fixed questions as resume-linked.",
+        "interviewPlan": {
+          "questionCount": 4,
+          "orderedSlots": [
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            }
+          ],
+          "fixedSelection": "random_without_replacement_within_interview",
+          "resumeLinkedSelection": "random_without_replacement_from_HR_assigned_bank_matching_current_confirmed_resume",
+          "sampleResumeLinkedSource": "previously_imported_production_resume_questions",
+          "resumeLinkedRequiresExplicitHRReferences": true,
+          "note": "Each HR must have at least two distinct matching Resume-Linked questions assigned for 4-question interviews. Do not import missing HR-specific dialogue or fabricate it. Validate assigned HR bank before shipping. Skip/fallback safely if fewer than two."
+        }
+      }
+    },
+    {
+      "companyId": "prod_company_appfair",
+      "name": {
+        "english": "AppFair Digital Co., Ltd.",
+        "thai": "แอฟแฟร์ ดิจิทัล จำกัด"
+      },
+      "jobDescription": [
+        {
+          "english": "Design characters and illustrations for digital media.",
+          "thai": "ออกแบบตัวละครและภาพประกอบสำหรับสื่อดิจิทัล"
+        },
+        {
+          "english": "Work with the creative team and clients.",
+          "thai": "ทำงานร่วมกับทีมครีเอทีฟและลูกค้า"
+        },
+        {
+          "english": "Applicants of all genders are welcome; women will receive special consideration.",
+          "thai": "เปิดรับผู้สมัครทุกเพศ หากเป็นผู้หญิงจะพิจารณาเป็นพิเศษ"
+        }
+      ],
+      "workingConditions": [
+        {
+          "english": "Must be able to present work to clients.",
+          "thai": "ต้องนำเสนองานต่อหน้าลูกค้าได้"
+        },
+        {
+          "english": "The company places importance on personality and appearance.",
+          "thai": "บริษัทให้ความสำคัญกับบุคลิกภาพและภาพลักษณ์"
+        },
+        {
+          "english": "Must be willing to attend company activities and social events.",
+          "thai": "ต้องพร้อมเข้าร่วมกิจกรรมและงานสังสรรค์ของบริษัท"
+        }
+      ],
+      "salary": null,
+      "hr": {
+        "hrId": "prod_hr_appfair",
+        "name": {
+          "english": "Snake HR",
+          "thai": "HR หัวงู (Ref พี่วุฒิ)"
+        },
+        "portrait": null,
+        "introductionVariants": [
+          {
+            "genderIds": [
+              "male"
+            ],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Hello~ Oh! A man applied today. Well, let’s start the interview.",
+                    "thai": "สวัสดีครับ~ อุ๊ย วันนี้มีผู้ชายมาสมัครด้วยแฮะ งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าครับ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "genderIds": [
+              "female"
+            ],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Hello, beautiful~ You look adorable on camera. Well, let’s start the interview.",
+                    "thai": "สวัสดีจ้ะคนสวย~ เปิดกล้องแล้วน่ารักเชียวนะ งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าครับ"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "rejectionVariants": [
+          {
+            "genderIds": [
+              "male"
+            ],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Hmm. I think I’m looking for a good-looking female employee.",
+                    "thai": "อืมม พอดีฉันว่าฉันกำลังมาหาพนักงานผู้หญิงที่ดูดีน่ะ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "genderIds": [
+              "female"
+            ],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Hmm! You’re not quite my ty— I mean, your work hasn’t really impressed me. Maybe next time, beautiful.",
+                    "thai": "ฮึ่ม! ฉันว่าเธอยังไม่ใช่สเป... เอ้ย! หมายถึงผลงานของคุณยังไม่ถูกใจผมเท่าไหร่ครับ เอาไว้โอกาสหน้านะคนสวย"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "fixedQuestions": [
+          {
+            "question": {
+              "english": "Can you present your work to clients and speak with them?",
+              "thai": "คุณสามารถนำเสนองานต่อหน้าลูกค้าและพูดคุยกับลูกค้าได้ไหม?"
+            },
+            "answers": [
+              {
+                "english": "No problem!",
+                "thai": "สบายมาก!"
+              },
+              {
+                "english": "I’m not very good at speaking, but I’ll try.",
+                "thai": "พอดีฉันพูดไม่ค่อยเก่ง แต่จะพยายาม"
+              },
+              {
+                "english": "I’m more comfortable working at a computer.",
+                "thai": "ฉันถนัดแต่งานหน้าจอคอม"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_appfair_fixed_01",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "Are you available for company activities and social events after work?",
+              "thai": "คุณสะดวกเข้าร่วมกิจกรรมและงานสังสรรค์ของบริษัทหลังเลิกงานไหม?"
+            },
+            "answers": [
+              {
+                "english": "Definitely. I love parties.",
+                "thai": "สะดวกมาก ฉันชอบปาร์ตี้"
+              },
+              {
+                "english": "Only sometimes.",
+                "thai": "ได้แค่บางครั้ง"
+              },
+              {
+                "english": "My family worries when I’m out late.",
+                "thai": "ที่บ้านฉันคอยข้างเป็นห่วง"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_appfair_fixed_02",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "Do you think your personality and appearance make you a good representative of the company?",
+              "thai": "คุณคิดว่าบุคลิกภาพและภาพลักษณ์ของคุณเหมาะกับการเป็นตัวแทนบริษัทหรือเปล่า?"
+            },
+            "answers": [
+              {
+                "english": "Uh... maybe I’m not quite suited for that.",
+                "thai": "เออ...ฉันอาจจะยังไม่เหมาะ"
+              },
+              {
+                "english": "I think I’m more suited to working at a computer.",
+                "thai": "ฉันว่าฉันถนัดทำงานหน้าคอมเป็นส่วนใหญ่"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_appfair_fixed_03",
+            "productionReady": true
+          }
+        ],
+        "resumeLinkedQuestions": [],
+        "resumeLinkedIntegration": "Assign HR-specific links to existing production Resume-Linked Question assets; do not treat fixed questions as resume-linked.",
+        "interviewPlan": {
+          "questionCount": 4,
+          "orderedSlots": [
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            }
+          ],
+          "fixedSelection": "random_without_replacement_within_interview",
+          "resumeLinkedSelection": "random_without_replacement_from_HR_assigned_bank_matching_current_confirmed_resume",
+          "sampleResumeLinkedSource": "previously_imported_production_resume_questions",
+          "resumeLinkedRequiresExplicitHRReferences": true,
+          "note": "Each HR must have at least two distinct matching Resume-Linked questions assigned for 4-question interviews. Do not import missing HR-specific dialogue or fabricate it. Validate assigned HR bank before shipping. Skip/fallback safely if fewer than two."
+        },
+        "applicantGenderDialoguePolicy": {
+          "matchSource": "ApplicantProfile.genderId",
+          "genderVariants": {
+            "male": "male intro/rejection only",
+            "female": "female intro/rejection only"
+          },
+          "filterBeforeRandomOne": true,
+          "ifOtherGender": "Use an existing explicitly authored gender-neutral fallback if available; otherwise mark missing in validation and safely skip that optional sequence (do NOT fabricate or play wrong gender dialogue).",
+          "notASeparateHR": "Same HR instance and company for every applicant gender."
+        }
+      }
+    },
+    {
+      "companyId": "prod_company_controlgroup",
+      "name": {
+        "english": "Control Group",
+        "thai": "คอนโทรล กรุ๊ป"
+      },
+      "jobDescription": [
+        {
+          "english": "Create artwork according to customer briefs and requirements.",
+          "thai": "สร้างงานศิลป์ตามโจทย์และความต้องการของลูกค้า"
+        },
+        {
+          "english": "Revise work based on feedback until it is approved.",
+          "thai": "แก้ไขผลงานตาม Feedback จนกว่าจะผ่านการอนุมัติ"
+        },
+        {
+          "english": "Applicants with passion who want to grow with the company are welcome.",
+          "thai": "ยินดีรับผู้ที่มีแพสชันและพร้อมเติบโตไปกับบริษัท"
+        }
+      ],
+      "workingConditions": [
+        {
+          "english": "Must work on several projects at the same time.",
+          "thai": "ต้องทำงานหลายโปรเจกต์พร้อมกัน"
+        },
+        {
+          "english": "Multiple rounds of revisions may be required based on client requests.",
+          "thai": "อาจมีการแก้ไขงานหลายรอบตามความต้องการของลูกค้า"
+        },
+        {
+          "english": "Must prioritize the team’s success over personal preferences.",
+          "thai": "ต้องมองความสำเร็จของทีมเป็นเป้าหมายสำคัญกว่าความชอบส่วนตัว"
+        }
+      ],
+      "salary": null,
+      "hr": {
+        "hrId": "prod_hr_controlgroup",
+        "name": {
+          "english": "Soul Warden HR",
+          "thai": "HR ผู้คุมวิญญาณ"
+        },
+        "portrait": null,
+        "introductionVariants": [
+          {
+            "genderIds": [],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "Hello... I hope you’ve had enough rest, because if you join us, you may not get to rest like this again for quite some time. Let’s begin.",
+                    "thai": "สวัสดีครับ... หวังว่าคุณจะพักผ่อนมาเพียงพอนะครับ เพราะถ้าได้ร่วมงานกับเรา คุณอาจไม่มีเวลาพักผ่อนแบบนี้อีกนานเลย งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าครับ"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "rejectionVariants": [
+          {
+            "genderIds": [],
+            "dialogueBlocks": [
+              {
+                "speaker": "HR",
+                "lines": [
+                  {
+                    "english": "You have good intentions, but determination alone may not be enough for this position. We have decided to choose another candidate who is a better fit.",
+                    "thai": "คุณมีความตั้งใจที่ดีนะครับ แต่ความตั้งใจเพียงอย่างเดียวอาจยังไม่เพียงพอสำหรับตำแหน่งนี้ ทางเราขอเลือกผู้สมัครที่เหมาะสมกว่า"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "fixedQuestions": [
+          {
+            "question": {
+              "english": "Can you handle several projects at the same time?",
+              "thai": "คุณสามารถรับผิดชอบงานหลายโปรเจกต์พร้อมกันได้ไหม?"
+            },
+            "answers": [
+              {
+                "english": "Easily!",
+                "thai": "สบายมาก!"
+              },
+              {
+                "english": "I’m not very good at speaking, but I’ll try.",
+                "thai": "พอดีฉันพูดไม่ค่อยเก่ง แต่จะพยายาม"
+              },
+              {
+                "english": "I’m more comfortable working at a computer.",
+                "thai": "ฉันถนัดแต่งานหน้าจอคอม"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_controlgroup_fixed_01",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "If a client asks you to revise a piece repeatedly, even when you think the original was better, would you comply?",
+              "thai": "ถ้าลูกค้าสั่งแก้งานเดิมหลายรอบ แม้คุณจะคิดว่างานเดิมดีกว่า คุณจะทำตามไหม?"
+            },
+            "answers": [
+              {
+                "english": "I can adapt to whatever they ask for.",
+                "thai": "สามารถยอมปรับตามได้ทุกอย่าง"
+              },
+              {
+                "english": "We may need to discuss it.",
+                "thai": "อาจจะมีการพูดคุย"
+              },
+              {
+                "english": "I think I can.",
+                "thai": "คิดว่าได้นะ"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_controlgroup_fixed_02",
+            "productionReady": true
+          },
+          {
+            "question": {
+              "english": "If the work assigned to you isn’t what you enjoy or excel at, would you still do it to help the team meet its goals?",
+              "thai": "หากงานที่ได้รับมอบหมายไม่ตรงกับสิ่งที่คุณชอบหรือถนัด คุณยังยินดีทำเพื่อให้เป้าหมายของทีมสำเร็จไหม?"
+            },
+            "answers": [
+              {
+                "english": "Gladly.",
+                "thai": "ยินดี"
+              },
+              {
+                "english": "I'll try to learn.",
+                "thai": "จะพยายามเรียนรู้"
+              },
+              {
+                "english": "I think I can.",
+                "thai": "คิดว่าได้นะ"
+              }
+            ],
+            "hasAuthoredAnswers": true,
+            "selectionMode": "RandomEligibleFixed",
+            "id": "prod_hr_controlgroup_fixed_03",
+            "productionReady": true
+          }
+        ],
+        "resumeLinkedQuestions": [],
+        "resumeLinkedIntegration": "Assign HR-specific links to existing production Resume-Linked Question assets; do not treat fixed questions as resume-linked.",
+        "interviewPlan": {
+          "questionCount": 4,
+          "orderedSlots": [
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "FixedRandom",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            },
+            {
+              "type": "ResumeLinkedRandomMatching",
+              "count": 1
+            }
+          ],
+          "fixedSelection": "random_without_replacement_within_interview",
+          "resumeLinkedSelection": "random_without_replacement_from_HR_assigned_bank_matching_current_confirmed_resume",
+          "sampleResumeLinkedSource": "previously_imported_production_resume_questions",
+          "resumeLinkedRequiresExplicitHRReferences": true,
+          "note": "Each HR must have at least two distinct matching Resume-Linked questions assigned for 4-question interviews. Do not import missing HR-specific dialogue or fabricate it. Validate assigned HR bank before shipping. Skip/fallback safely if fewer than two."
+        }
+      }
+    }
+  ]
+}

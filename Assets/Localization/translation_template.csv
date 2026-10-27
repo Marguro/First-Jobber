@@ -2,8 +2,6 @@
 database/genderPrompt,Select gender...,เลือกเพศ...
 database/genders/male,Male,ชาย
 database/genders/female,Female,หญิง
-database/genders/non_binary,Non-binary,นอนไบนารี
-database/genders/unspecified,Prefer Not to Say,ไม่ขอระบุ
 database/resumeIntroLines/0/lines/0,"This is me, on paper.",นี่คือฉัน บนกระดาษ
 database/resumeIntroLines/0/lines/1,What this shit,นี่มันอะไรกันเนี่ย
 database/resumeIntroLines/0/lines/2,What,อะไรนะ
@@ -111,6 +109,67 @@ company/company_nova_soft/industry,Software,ซอฟต์แวร์
 company/company_nova_soft/description,Find bugs before the customers do.,หาบั๊กให้เจอก่อนลูกค้า
 company/company_nova_soft/playerReaction/0/text,"Testing games is basically playing them, right?",เทสต์เกมก็คือเล่นเกมใช่ไหมนะ?
 company/company_nova_soft/hrIntro/0/text,Nova Soft. Let's get this over with.,Nova Soft ทำให้เสร็จ ๆ ไปเถอะ
+hr/hr_iris/hrName,Iris Park,
+hr/hr_iris/introduction/0/lines/0,"Good morning, Mr. {name}.",
+hr/hr_iris/introduction/0/lines/1,Welcome to Pixel Pioneers.,
+hr/hr_iris/introduction/1/lines/0,"Good morning, Ms. {name}.",
+hr/hr_iris/introduction/1/lines/1,Welcome to Pixel Pioneers.,
+hr/hr_iris/introduction/2/lines/0,"Good morning, {name}.",
+hr/hr_iris/introduction/2/lines/1,Welcome to Pixel Pioneers.,
+hr/hr_iris/introduction/3/lines/0,"Good morning, Mr. {name}.",
+hr/hr_iris/introduction/3/lines/1,Please sit. We're a small team and we move fast.,
+hr/hr_iris/introduction/4/lines/0,"Good morning, Ms. {name}.",
+hr/hr_iris/introduction/4/lines/1,Please sit. We're a small team and we move fast.,
+hr/hr_iris/introduction/5/lines/0,"Good morning, {name}.",
+hr/hr_iris/introduction/5/lines/1,Please sit. We're a small team and we move fast.,
+hr/hr_iris/resumeReview/0/lines/0,I've had a look at your resume.,
+hr/hr_iris/rejection/0/lines/0,Thank you for coming in.,
+hr/hr_iris/rejection/0/lines/1,"We loved the energy, but we need someone who is already shipping.",
+hr/hr_iris/rejection/1/lines/0,We'll be moving forward with another candidate.,
+hr/hr_iris/rejection/1/lines/1,"Keep making things, {name}.",
+hr/hr_gregor/hrName,Gregor Hale,
+hr/hr_gregor/introduction/0/lines/0,Mr. {name}. Right on time.,
+hr/hr_gregor/introduction/1/lines/0,Ms. {name}. Right on time.,
+hr/hr_gregor/introduction/2/lines/0,{name}. Right on time.,
+hr/hr_gregor/introduction/3/lines/0,Brightline Corp has no room for guesswork.,
+hr/hr_gregor/introduction/3/lines/1,Let's keep this efficient.,
+hr/hr_gregor/resumeReview/0/lines/0,Let me see what you brought.,
+hr/hr_gregor/rejection/0/lines/0,That will be all.,
+hr/hr_gregor/rejection/0/lines/1,HR will not be contacting you.,
+hr/hr_gregor/rejection/1/lines/0,Not a fit.,
+hr/hr_gregor/rejection/1/lines/1,Close the door on your way out.,
+hr/hr_gregor/rejection/2/lines/0,We've seen stronger candidates this week.,
+hr/hr_gregor/rejection/2/lines/1,Thank you.,
+hr/hr_helena/hrName,Helena Gray,
+hr/hr_helena/introduction/0/lines/0,"Good afternoon, Mr. {name}.",
+hr/hr_helena/introduction/0/lines/1,Gray Tower Bank values stability above all.,
+hr/hr_helena/introduction/1/lines/0,"Good afternoon, Ms. {name}.",
+hr/hr_helena/introduction/1/lines/1,Gray Tower Bank values stability above all.,
+hr/hr_helena/introduction/2/lines/0,"Good afternoon, {name}.",
+hr/hr_helena/introduction/2/lines/1,Gray Tower Bank values stability above all.,
+hr/hr_helena/introduction/3/lines/0,"Good afternoon, Mr. {name}.",
+hr/hr_helena/introduction/3/lines/1,Please take a seat. This will be brief.,
+hr/hr_helena/introduction/4/lines/0,"Good afternoon, Ms. {name}.",
+hr/hr_helena/introduction/4/lines/1,Please take a seat. This will be brief.,
+hr/hr_helena/introduction/5/lines/0,"Good afternoon, {name}.",
+hr/hr_helena/introduction/5/lines/1,Please take a seat. This will be brief.,
+hr/hr_helena/resumeReview/0/lines/0,Your file is... interesting.,
+hr/hr_helena/rejection/0/lines/0,"Our regrets, Mr. {name}.",
+hr/hr_helena/rejection/1/lines/0,"Our regrets, Ms. {name}.",
+hr/hr_helena/rejection/2/lines/0,"Our regrets, {name}.",
+hr/hr_helena/rejection/3/lines/0,Our decision is final.,
+hr/hr_helena/rejection/3/lines/1,We wish you every success elsewhere.,
+hr/hr_noel/hrName,Noel Archer,
+hr/hr_noel/introduction/0/lines/0,Hey Mr. {name}! Great to meet you.,
+hr/hr_noel/introduction/1/lines/0,Hey Ms. {name}! Great to meet you.,
+hr/hr_noel/introduction/2/lines/0,Hey {name}! Great to meet you.,
+hr/hr_noel/introduction/3/lines/0,Welcome to Nova Soft!,
+hr/hr_noel/introduction/3/lines/1,Grab a coffee. We're casual here.,
+hr/hr_noel/resumeReview/0/lines/0,"Cool, cool. Let's see the resume.",
+hr/hr_noel/rejection/0/lines/0,Really enjoyed this!,
+hr/hr_noel/rejection/0/lines/1,Sadly it's a no for now.,
+hr/hr_noel/rejection/1/lines/0,"You were great, honestly.",
+hr/hr_noel/rejection/1/lines/1,We just went another way.,
 question/q_cat_dream_1/questionText,Where do you see yourself in five years?,
 question/q_cat_dream_1/answers/a1/text,Doing what I dreamed of.,
 question/q_cat_dream_1/answers/a1/playerReaction/0/text,If only it were that simple.,
@@ -719,6 +778,149 @@ ending/ending_my_own_terms/lines/3/text,It won't be perfect. It will be mine.,�
 ending/ending_my_own_terms/finalText,"ENDING 3 - MY OWN TERMS
 Nothing is guaranteed. But the choice is mine.","ตอนจบที่ 3 - ในแบบของฉัน
 ไม่มีอะไรรับประกัน แต่ทางเลือกนี้เป็นของฉัน"
+company/prod_company_appfair/companyName,"AppFair Digital Co., Ltd.",แอฟแฟร์ ดิจิทัล จำกัด
+company/prod_company_appfair/description,"• Design characters and illustrations for digital media.
+• Work with the creative team and clients.
+• Applicants of all genders are welcome; women will receive special consideration.
+
+• Must be able to present work to clients.
+• The company places importance on personality and appearance.
+• Must be willing to attend company activities and social events.","• ออกแบบตัวละครและภาพประกอบสำหรับสื่อดิจิทัล
+• ทำงานร่วมกับทีมครีเอทีฟและลูกค้า
+• เปิดรับผู้สมัครทุกเพศ หากเป็นผู้หญิงจะพิจารณาเป็นพิเศษ
+
+• ต้องนำเสนองานต่อหน้าลูกค้าได้
+• บริษัทให้ความสำคัญกับบุคลิกภาพและภาพลักษณ์
+• ต้องพร้อมเข้าร่วมกิจกรรมและงานสังสรรค์ของบริษัท"
+company/prod_company_controlgroup/companyName,Control Group,คอนโทรล กรุ๊ป
+company/prod_company_controlgroup/description,"• Create artwork according to customer briefs and requirements.
+• Revise work based on feedback until it is approved.
+• Applicants with passion who want to grow with the company are welcome.
+
+• Must work on several projects at the same time.
+• Multiple rounds of revisions may be required based on client requests.
+• Must prioritize the team’s success over personal preferences.","• สร้างงานศิลป์ตามโจทย์และความต้องการของลูกค้า
+• แก้ไขผลงานตาม Feedback จนกว่าจะผ่านการอนุมัติ
+• ยินดีรับผู้ที่มีแพสชันและพร้อมเติบโตไปกับบริษัท
+
+• ต้องทำงานหลายโปรเจกต์พร้อมกัน
+• อาจมีการแก้ไขงานหลายรอบตามความต้องการของลูกค้า
+• ต้องมองความสำเร็จของทีมเป็นเป้าหมายสำคัญกว่าความชอบส่วนตัว"
+company/prod_company_focusframe/companyName,FocusFrame Interactive,โฟกัสเฟรม อินเตอร์แอคทีฟ
+company/prod_company_focusframe/description,"• Design characters and visual elements for games.
+• Work with the development team to meet project goals.
+• Talented applicants willing to learn are welcome.
+• Video editing skills required.
+
+• Work six days a week.
+• No overtime pay; everyone is expected to finish their assigned work.
+• Flexible working hours, but you must be reachable whenever the team needs you.","• ออกแบบตัวละครและองค์ประกอบภาพสำหรับเกม
+• ทำงานร่วมกับทีมพัฒนาเพื่อให้ได้ผลงานตามเป้าหมาย
+• ยินดีรับผู้มีความสามารถและพร้อมเรียนรู้
+• ตัดต่อได้
+
+• ทำงาน 6 วันต่อสัปดาห์
+• ไม่มีค่าล่วงเวลา โดยคาดหวังให้ทุกคนรับผิดชอบงานจนเสร็จ
+• เวลาทำงานยืดหยุ่น แต่ต้องพร้อมติดต่อได้ตลอดเวลาที่ทีมต้องการ"
+company/prod_company_ideaharvest/companyName,IdeaHarvest Interactive,ไอเดียฮาร์เวสต์ อินเตอร์แอคทีฟ
+company/prod_company_ideaharvest/description,"• Create visual designs and develop concepts for game projects.
+• Collaborate with the art and development teams.
+• Applicants with strong portfolios are welcome, even with limited experience.
+
+• Attractive salary and benefits.
+• Work from home three days and in the office two days per week.
+• There is a pre-employment assignment (to steal applicants’ ideas).","• ออกแบบงานภาพและพัฒนาคอนเซปต์สำหรับโปรเจกต์เกม
+• ทำงานร่วมกับทีมศิลปะและทีมพัฒนา
+• เปิดรับผู้สมัครที่มีผลงานโดดเด่น แม้ประสบการณ์ยังไม่มาก
+
+• เงินเดือนและสวัสดิการน่าสนใจ
+• ทำงานจากที่บ้าน 3 วัน เข้าออฟฟิศ 2 วันต่อสัปดาห์
+• มี assignment ให้ทำก่อนเริ่มงาน(ขโมยความคิดผู้สมัคร)"
+company/prod_company_redline/companyName,Redline Studio,เรดไลน์ สตูดิโอ
+company/prod_company_redline/description,"• Design characters, environments, items, and graphics as assigned.
+• Work under tight deadlines.
+• New graduates who love games are welcome.
+
+• Must have four to five years of work experience.
+• Must be able to cover multiple roles alone.
+• Must handle pressure and urgent revisions well.","• ออกแบบตัวละคร ฉาก ไอเทม และงานกราฟิกตามที่ได้รับมอบหมาย
+• ทำงานภายใต้กำหนดเวลาที่กระชั้นชิด
+• ยินดีรับเด็กจบใหม่ที่มีใจรักเกม
+
+• ต้องมีประสบการณ์ทำงาน 4–5 ปี
+• ทำงานหลายหน้าที่ได้ในคนเดียว
+• ต้องรับมือกับแรงกดดันและการแก้ไขงานเร่งด่วนได้ดี"
+hr/prod_hr_appfair/hrName,Snake HR,HR หัวงู (Ref พี่วุฒิ)
+hr/prod_hr_appfair/introduction/0/lines/0,"Hello~ Oh! A man applied today. Well, let’s start the interview.",สวัสดีครับ~ อุ๊ย วันนี้มีผู้ชายมาสมัครด้วยแฮะ งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าครับ
+hr/prod_hr_appfair/introduction/1/lines/0,"Hello, beautiful~ You look adorable on camera. Well, let’s start the interview.",สวัสดีจ้ะคนสวย~ เปิดกล้องแล้วน่ารักเชียวนะ งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าครับ
+hr/prod_hr_appfair/rejection/0/lines/0,Hmm. I think I’m looking for a good-looking female employee.,อืมม พอดีฉันว่าฉันกำลังมาหาพนักงานผู้หญิงที่ดูดีน่ะ
+hr/prod_hr_appfair/rejection/1/lines/0,"Hmm! You’re not quite my ty— I mean, your work hasn’t really impressed me. Maybe next time, beautiful.",ฮึ่ม! ฉันว่าเธอยังไม่ใช่สเป... เอ้ย! หมายถึงผลงานของคุณยังไม่ถูกใจผมเท่าไหร่ครับ เอาไว้โอกาสหน้านะคนสวย
+hr/prod_hr_controlgroup/hrName,Soul Warden HR,HR ผู้คุมวิญญาณ
+hr/prod_hr_controlgroup/introduction/0/lines/0,"Hello... I hope you’ve had enough rest, because if you join us, you may not get to rest like this again for quite some time. Let’s begin.",สวัสดีครับ... หวังว่าคุณจะพักผ่อนมาเพียงพอนะครับ เพราะถ้าได้ร่วมงานกับเรา คุณอาจไม่มีเวลาพักผ่อนแบบนี้อีกนานเลย งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าครับ
+hr/prod_hr_controlgroup/rejection/0/lines/0,"You have good intentions, but determination alone may not be enough for this position. We have decided to choose another candidate who is a better fit.",คุณมีความตั้งใจที่ดีนะครับ แต่ความตั้งใจเพียงอย่างเดียวอาจยังไม่เพียงพอสำหรับตำแหน่งนี้ ทางเราขอเลือกผู้สมัครที่เหมาะสมกว่า
+hr/prod_hr_focusframe/hrName,CCTV-Head HR,HR หัวกล้องวงจร
+hr/prod_hr_focusframe/introduction/0/lines/0,Hello. Please turn on your camera so we can see your face clearly. Transparency matters to us here. Everything you do at work must be verifiable. Let’s begin the interview.,สวัสดีครับ เปิดกล้องให้เห็นหน้าชัด ๆ ด้วยนะครับ ที่นี่เราให้ความสำคัญกับความโปร่งใส ทุกการกระทำระหว่างทำงานต้องตรวจสอบได้ งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าครับ
+hr/prod_hr_focusframe/rejection/0/lines/0,"Thank you for taking the time to interview. After careful consideration, you do not currently meet the qualifications our company is looking for. Good luck with your next application.",ขอบคุณที่สละเวลามาสัมภาษณ์นะครับ แต่ทางเราพิจารณาแล้วว่าคุณยังไม่ตรงกับคุณสมบัติที่บริษัทต้องการในขณะนี้ ขอให้โชคดีกับการสมัครงานครั้งต่อไปแล้วกันครับ
+hr/prod_hr_ideaharvest/hrName,Ghost HR,HR ผี
+hr/prod_hr_ideaharvest/introduction/0/lines/0,"Hello~ Can you hear me? If the video freezes, that’s fine. We’ve opened this position so many times, but nobody has quite met the company’s expectations. Let’s start the interview.",ฮัลโหล~ ได้ยินพี่ไหมคะ? ถ้าภาพค้างก็ไม่เป็นไรนะคะ ตำแหน่งนี้เปิดรับมาหลายรอบแล้ว ยังไม่มีใครตรงใจบริษัทสักทีเลยค่ะ งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่าค่ะ
+hr/prod_hr_ideaharvest/rejection/0/lines/0,Thank you for your interest in this position. The company will contact you if there are any updates.,ขอบคุณสำหรับความสนใจในตำแหน่งนี้นะคะ หากมีความคืบหน้า ทางบริษัทจะติดต่อกลับไปค่ะ
+hr/prod_hr_redline/hrName,Ogre HR,HR ยักษ์ (Ref พี่บอย)
+hr/prod_hr_redline/introduction/0/lines/0,"You’re here, so let’s get started. I have ten more applicants and I don’t have all day to talk to you. Let’s begin.",มาแล้วก็รีบเริ่มเลยครับ ผมมีผู้สมัครอีกเป็นสิบ ไม่ได้มีเวลามานั่งคุยกับคุณทั้งวัน งั้นมาเริ่มสัมภาษณ์กันเลยดีกว่า
+hr/prod_hr_redline/rejection/0/lines/0,"Hmph! With qualifications like these, you’re still not what we’re looking for. This interview is over. Next!",เหอะ!...คุณสมบัติแค่นี้ยังไม่ใช่คนที่เรากำลังมองหา จบการสัมภาษณ์แค่นี้ครับ คนต่อไป
+question/prod_hr_appfair_fixed_01/questionText,Can you present your work to clients and speak with them?,คุณสามารถนำเสนองานต่อหน้าลูกค้าและพูดคุยกับลูกค้าได้ไหม?
+question/prod_hr_appfair_fixed_01/answers/a1/text,No problem!,สบายมาก!
+question/prod_hr_appfair_fixed_01/answers/a2/text,"I’m not very good at speaking, but I’ll try.",พอดีฉันพูดไม่ค่อยเก่ง แต่จะพยายาม
+question/prod_hr_appfair_fixed_01/answers/a3/text,I’m more comfortable working at a computer.,ฉันถนัดแต่งานหน้าจอคอม
+question/prod_hr_appfair_fixed_02/questionText,Are you available for company activities and social events after work?,คุณสะดวกเข้าร่วมกิจกรรมและงานสังสรรค์ของบริษัทหลังเลิกงานไหม?
+question/prod_hr_appfair_fixed_02/answers/a1/text,Definitely. I love parties.,สะดวกมาก ฉันชอบปาร์ตี้
+question/prod_hr_appfair_fixed_02/answers/a2/text,Only sometimes.,ได้แค่บางครั้ง
+question/prod_hr_appfair_fixed_02/answers/a3/text,My family worries when I’m out late.,ที่บ้านฉันคอยข้างเป็นห่วง
+question/prod_hr_appfair_fixed_03/questionText,Do you think your personality and appearance make you a good representative of the company?,คุณคิดว่าบุคลิกภาพและภาพลักษณ์ของคุณเหมาะกับการเป็นตัวแทนบริษัทหรือเปล่า?
+question/prod_hr_appfair_fixed_03/answers/a1/text,Uh... maybe I’m not quite suited for that.,เออ...ฉันอาจจะยังไม่เหมาะ
+question/prod_hr_appfair_fixed_03/answers/a2/text,I think I’m more suited to working at a computer.,ฉันว่าฉันถนัดทำงานหน้าคอมเป็นส่วนใหญ่
+question/prod_hr_controlgroup_fixed_01/questionText,Can you handle several projects at the same time?,คุณสามารถรับผิดชอบงานหลายโปรเจกต์พร้อมกันได้ไหม?
+question/prod_hr_controlgroup_fixed_01/answers/a1/text,Easily!,สบายมาก!
+question/prod_hr_controlgroup_fixed_01/answers/a2/text,"I’m not very good at speaking, but I’ll try.",พอดีฉันพูดไม่ค่อยเก่ง แต่จะพยายาม
+question/prod_hr_controlgroup_fixed_01/answers/a3/text,I’m more comfortable working at a computer.,ฉันถนัดแต่งานหน้าจอคอม
+question/prod_hr_controlgroup_fixed_02/questionText,"If a client asks you to revise a piece repeatedly, even when you think the original was better, would you comply?",ถ้าลูกค้าสั่งแก้งานเดิมหลายรอบ แม้คุณจะคิดว่างานเดิมดีกว่า คุณจะทำตามไหม?
+question/prod_hr_controlgroup_fixed_02/answers/a1/text,I can adapt to whatever they ask for.,สามารถยอมปรับตามได้ทุกอย่าง
+question/prod_hr_controlgroup_fixed_02/answers/a2/text,We may need to discuss it.,อาจจะมีการพูดคุย
+question/prod_hr_controlgroup_fixed_02/answers/a3/text,I think I can.,คิดว่าได้นะ
+question/prod_hr_controlgroup_fixed_03/questionText,"If the work assigned to you isn’t what you enjoy or excel at, would you still do it to help the team meet its goals?",หากงานที่ได้รับมอบหมายไม่ตรงกับสิ่งที่คุณชอบหรือถนัด คุณยังยินดีทำเพื่อให้เป้าหมายของทีมสำเร็จไหม?
+question/prod_hr_controlgroup_fixed_03/answers/a1/text,Gladly.,ยินดี
+question/prod_hr_controlgroup_fixed_03/answers/a2/text,I'll try to learn.,จะพยายามเรียนรู้
+question/prod_hr_controlgroup_fixed_03/answers/a3/text,I think I can.,คิดว่าได้นะ
+question/prod_hr_focusframe_fixed_01/questionText,We work six days a week. Can you handle that?,บริษัทเราทำงาน 6 วันต่อสัปดาห์ คุณรับได้ไหม?
+question/prod_hr_focusframe_fixed_01/answers/a1/text,Yes.,ได้
+question/prod_hr_focusframe_fixed_01/answers/a2/text,I think I can.,เหมือนจะได้
+question/prod_hr_focusframe_fixed_01/answers/a3/text,No.,ไม่ได้
+question/prod_hr_focusframe_fixed_02/questionText,"If urgent work comes in after hours, can you stay until it is done?",ถ้ามีงานด่วนหลังเลิกงาน คุณสามารถทำต่อจนเสร็จได้ไหม?
+question/prod_hr_focusframe_fixed_02/answers/a1/text,Yes.,ได้
+question/prod_hr_focusframe_fixed_02/answers/a2/text,Only on some days.,ได้แค่บางวัน
+question/prod_hr_focusframe_fixed_02/answers/a3/text,Not at all.,ไม่ได้เลย
+question/prod_hr_focusframe_fixed_03/questionText,Do you know how to edit video?,คุณพอจะตัดต่อวิดีโอเป็นไหม?
+question/prod_hr_focusframe_fixed_03/answers/a1/text,I can do that.,สามารถทำได้
+question/prod_hr_focusframe_fixed_03/answers/a2/text,Only the basics.,ตัดเป็นแค่พื้นฐาน
+question/prod_hr_focusframe_fixed_03/answers/a3/text,I’m not comfortable doing video editing.,ไม่สะดวกทำงานตัดต่อ
+question/prod_hr_ideaharvest_fixed_01/questionText,Can you complete a company assignment before hearing the hiring decision?,คุณสามารถทำ Assignment ตามโจทย์ของบริษัทก่อนทราบผลการคัดเลือกได้ไหม?
+question/prod_hr_ideaharvest_fixed_01/answers/a1/text,Yes.,ได้
+question/prod_hr_ideaharvest_fixed_01/answers/a2/text,Could I have some time to complete it?,ฉันขอเวลาทำได้ไหม
+question/prod_hr_ideaharvest_fixed_02/questionText,Would you agree to provide editable source files for the company to review?,คุณยินยอมส่งไฟล์งานต้นฉบับที่แก้ไขต่อได้ให้บริษัทตรวจสอบด้วยไหม?
+question/prod_hr_ideaharvest_fixed_02/answers/a1/text,Uh... I guess so.,อะ..เออ น่าจะได้
+question/prod_hr_ideaharvest_fixed_02/answers/a2/text,I’m not very comfortable with that.,ไม่สะดวกเท่าไหร่
+question/prod_hr_ideaharvest_fixed_03/questionText,"By the way, your name is Gukkui, right? Oh, sorry. There are so many applicants that I’ve mixed them up.",ว่าแต่คุณชื่อกุ๊กกุ๋ยนะ...เออ โทษที มีคนสมัครเยอะจนจำสลับกัน
+question/prod_hr_ideaharvest_fixed_03/answers/a1/text,...,...
+question/prod_hr_redline_fixed_01/questionText,Do you have the four to five years of professional experience we require?,คุณมีประสบการณ์ทำงานจริง 4–5 ปีตามที่เราต้องการหรือยัง?
+question/prod_hr_redline_fixed_01/answers/a1/text,I gained some experience while studying.,พอมีบ้างตอนเรียน
+question/prod_hr_redline_fixed_01/answers/a2/text,I thought you were hiring new graduates?,ไม่ใช่ว่ารับเด็กจบใหม่หรอกเหรอ
+question/prod_hr_redline_fixed_01/answers/a3/text,None at all.,ไม่มีเลย
+question/prod_hr_redline_fixed_02/questionText,"This role involves characters, environments, and items. Can you do all three?",ตำแหน่งนี้ต้องทำทั้งตัวละคร ฉาก และไอเทม คุณทำได้ทั้งหมดไหม?
+question/prod_hr_redline_fixed_02/answers/a1/text,Absolutely! That’s my specialty.,ทำได้! ของถนัดเลย
+question/prod_hr_redline_fixed_02/answers/a2/text,There are some areas I still need to practice.,มีบางอย่างที่ยังต้องฝึกเพิ่ม
+question/prod_hr_redline_fixed_03/questionText,"If we assign you multiple tasks with tight deadlines, are you confident you can finish on time?",ถ้าเราให้คุณรับผิดชอบงานหลายชิ้นพร้อมกันและส่งภายในเวลาจำกัด คุณมั่นใจว่าจะทำทันไหม?
+question/prod_hr_redline_fixed_03/answers/a1/text,Definitely!,ทำได้แน่นอน!
+question/prod_hr_redline_fixed_03/answers/a2/text,If I have enough time.,ถ้ามีเวลาให้มากพอ
+question/prod_hr_redline_fixed_03/answers/a3/text,I’m worried the quality would suffer.,เกรงว่าจะทำให้ผลงานมีคุณภาพไม่ดี
 question/q_faculty_accounting/questionText,You studied accounting. Do you really think you can work in this field?,เรียนบัญชีแล้วคิดว่าจะมาทำงานตรงนี้ได้เหรอ?
 question/q_faculty_accounting/answers/a_faculty_accounting_1/text,I'm sure I can!,ฉันมั่นใจว่าได้!
 question/q_faculty_accounting/answers/a_faculty_accounting_2/text,"Uh... well, I think I can.",อะ... เออ ฉันว่าได้นะ
@@ -784,14 +986,14 @@ category/university/displayName,University,มหาวิทยาลัย
 category/university/emptyMessage,Nothing is left to choose here.,ไม่มีตัวเลือกเหลือในหมวดนี้แล้ว
 choice/faculty_accounting/displayText,Accounting,คณะบัญชี
 choice/faculty_accounting/playerReaction/0/lines/0,Actually... I never wanted to study accounting that much.,จริง ๆ แล้ว... ตอนนั้นเราไม่ได้อยากเรียนบัญชีขนาดนั้นหรอก
-choice/faculty_accounting/playerReaction/0/lines/1,"My family wanted me to study it. They said I'd have a stable job after graduation. I didn't even know what I wanted to be back then, so I went along with what everyone said.",ที่บ้านอยากให้เรียน บอกว่าเรียนจบแล้วจะได้มีงานมั่นคง ส่วนเราตอนนั้นก็ยังไม่รู้ด้วยซ้ำว่าตัวเองอยากเป็นอะไรกันแน่ ก็เลยเรียนตามที่ทุกคนบอก
-choice/faculty_accounting/playerReaction/0/lines/2,"By the time I realized I liked drawing, designing characters, and wanted to make games... so much time had passed.",กว่าจะรู้ตัวว่าชอบวาดรูป ชอบออกแบบตัวละคร แล้วก็อยากทำเกม... เวลาก็ผ่านไปตั้งเยอะแล้ว
+choice/faculty_accounting/playerReaction/1/lines/0,"My family wanted me to study it. They said I'd have a stable job after graduation. I didn't even know what I wanted to be back then, so I went along with what everyone said.",
+choice/faculty_accounting/playerReaction/2/lines/0,"By the time I realized I liked drawing, designing characters, and wanted to make games... so much time had passed.",
 choice/faculty_digital_art/displayText,Digital Art,คณะดิจิทัลอาร์ต (Digital Art)
 choice/faculty_digital_art/playerReaction/0/lines/0,This is the faculty for me! I endured all those final projects for this day!,นี้แหละคณะที่ใช่ ฉันอดทนทำไฟนอลมาก็เพื่อวันนี้!
 choice/faculty_digital_communications/displayText,Communication Arts (Digital Media),คณะนิเทศศาสตร์ (สื่อดิจิทัล)
 choice/faculty_digital_communications/playerReaction/0/lines/0,"Hmm... I didn't study drawing directly, but I did learn about visual communication and digital media.",อืม... ถึงจะไม่ได้เรียนวาดรูปโดยตรง แต่เราก็ได้เรียนเรื่องการสื่อสารด้วยภาพกับการทำสื่อมาบ้างนี่นา
-choice/faculty_digital_communications/playerReaction/0/lines/1,I should be able to apply some of that to making games!,บางอย่างก็น่าจะเอามาปรับใช้กับงานเกมได้แหละ!
-choice/faculty_digital_communications/playerReaction/0/lines/2,As for drawing... I'll need a little more practice.,ส่วนเรื่องวาดรูป... ก็ต้องฝึกเพิ่มอีกหน่อย
+choice/faculty_digital_communications/playerReaction/1/lines/0,I should be able to apply some of that to making games!,
+choice/faculty_digital_communications/playerReaction/2/lines/0,As for drawing... I'll need a little more practice.,
 choice/faculty_fine_arts/displayText,Fine Arts,คณะศิลปกรรมศาสตร์
 choice/faculty_fine_arts/playerReaction/0/lines/0,"Hmm... That's close enough, I guess!",อืมมม... ก็ถือว่าใกล้เคียงอยู่นะ!
 choice/faculty_fine_arts/playerReaction/0/lines/1,"At least I got plenty of practice drawing, using colors, and composing images, even if I didn't study game development directly.",อย่างน้อยตอนนั้นเราก็ได้ฝึกวาดรูป ฝึกใช้สี ฝึกจัดองค์ประกอบมาตั้งเยอะ ถึงจะไม่ได้เรียนทำเกมโดยตรงก็เถอะ
@@ -868,6 +1070,7 @@ ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderLabel,Gender,เพศ
 ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderDropdown/Label,Option A,
 ui/label/GameCanvas/MainMenuPanel/MenuPaper/GenderDropdown/Template/Viewport/Content/Item/Item Label,Option A,
 ui/label/GameCanvas/MainMenuPanel/MenuPaper/SubmitButton/Label,Submit,ส่งใบสมัคร
+ui/label/GameCanvas/MainMenuPanel/LanguageDropdown/Template/Viewport/Content/Item/Item Label,Option A,
 ui/label/GameCanvas/CreateApplicantPanel/Title,Create Applicant,สร้างผู้สมัคร
 ui/label/GameCanvas/CreateApplicantPanel/NameLabel,Name,ชื่อ
 ui/label/GameCanvas/CreateApplicantPanel/NameInput/Text Area/Placeholder,Enter your name...,กรอกชื่อของคุณ...

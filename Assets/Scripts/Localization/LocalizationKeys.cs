@@ -28,6 +28,7 @@ namespace FirstJobber
                 case ResumeCategoryData a: return "category/" + IdOr(a.id, a);
                 case ResumeChoiceData a: return "choice/" + IdOr(a.id, a);
                 case CompanyData a: return "company/" + IdOr(a.id, a);
+                case HRCharacterData a: return "hr/" + IdOr(a.id, a);
                 case InterviewQuestionData a: return "question/" + IdOr(a.id, a);
                 case DailyEventData a: return "event/" + IdOr(a.id, a);
                 case EndingData a: return "ending/" + IdOr(a.id, a);
@@ -56,6 +57,7 @@ namespace FirstJobber
             foreach (var a in db.categories) VisitAsset(a, add);
             foreach (var a in db.choices) VisitAsset(a, add);
             foreach (var a in db.companies) VisitAsset(a, add);
+            foreach (var a in db.hrCharacters) VisitAsset(a, add);
             foreach (var a in db.questions) VisitAsset(a, add);
             foreach (var a in db.events) VisitAsset(a, add);
             foreach (var a in db.endings) VisitAsset(a, add);
@@ -97,6 +99,16 @@ namespace FirstJobber
                     Lines(c, "playerReaction", c.playerReaction, add);
                     Lines(c, "hrIntro", c.hrIntro, add);
                     Lines(c, "rejection", c.rejection, add);
+                    break;
+                case HRCharacterData h:
+                    Text(h, "hrName", h.hrName, add);
+                    Lines(h, "introduction", h.introduction, add);
+                    Lines(h, "resumeReview", h.resumeReview, add);
+                    Lines(h, "rejection", h.rejection, add);
+                    if (h.choiceReactions != null)
+                        for (int i = 0; i < h.choiceReactions.Count; i++)
+                            if (h.choiceReactions[i] != null && h.choiceReactions[i].choice != null)
+                                LinesWithPrefix(Of(h, "choiceReactions/" + h.choiceReactions[i].choice.name), h.choiceReactions[i].lines, add);
                     break;
                 case InterviewQuestionData q:
                     Text(q, "questionText", q.questionText, add);

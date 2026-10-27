@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b07467f27147a340ae9724f7f4450c8, type: 3}
+  m_Name: Q_P_prod_hr_appfair_fixed_01
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
+  id: prod_hr_appfair_fixed_01
+  questionText: Can you present your work to clients and speak with them?
+  hrEmotion: 0
+  questionDialogue: []
+  linkedChoice: {fileID: 0}
+  linkedCategory: {fileID: 0}
+  requiredCompany: {fileID: 0}
+  requiredTag: 
+  weight: 1
+  answers:
+  - id: a1
+    text: No problem!
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []
+  - id: a2
+    text: "I\u2019m not very good at speaking, but I\u2019ll try."
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []
+  - id: a3
+    text: "I\u2019m more comfortable working at a computer."
+    playerReactionMode: 0
+    playerReaction: []
+    hrResponseMode: 0
+    hrResponse: []

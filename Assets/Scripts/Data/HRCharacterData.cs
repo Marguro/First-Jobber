@@ -6,6 +6,9 @@ namespace FirstJobber
 {
     public enum InterviewSlotType { Fixed, ResumeLinked }
 
+    /// <summary>How a slot without an explicit question chooses from its list.</summary>
+    public enum QuestionPickMode { InOrder, Random }
+
     /// <summary>One question slot of an interview, asked in list order.</summary>
     [Serializable]
     public class InterviewSlot
@@ -78,6 +81,10 @@ namespace FirstJobber
         public InterviewQuestionData fallbackQuestion;
         [Tooltip("Order of the interview. Empty = 1 Fixed + 1 Resume Linked.")]
         public List<InterviewSlot> sequence = new List<InterviewSlot>();
+        [Tooltip("InOrder = next unused Fixed Question in list order (old behaviour). Random = random unused Fixed Question, chosen once when the interview starts.")]
+        public QuestionPickMode fixedPickMode = QuestionPickMode.InOrder;
+        [Tooltip("InOrder = best match first (old behaviour). Random = random unused question among ALL matches of the confirmed resume (exact choice or category).")]
+        public QuestionPickMode resumeLinkedPickMode = QuestionPickMode.InOrder;
 
         // ------------------------------------------------------------ queries
 
@@ -159,9 +166,18 @@ namespace FirstJobber
             foreach (var q in resumeLinkedQuestions) CheckQuestion(q, n + " resume-linked question", problems, true);
             if (fallbackQuestion != null) CheckQuestion(fallbackQuestion, n + " fallback question", problems, false);
 
+            int fixedSlots = 0, linkedSlots = 0;
             foreach (var slot in sequence)
-                if (slot != null && slot.type == InterviewSlotType.Fixed && slot.fixedQuestion == null && fixedQuestions.Count == 0)
+            {
+                if (slot == null) continue;
+                if (slot.type == InterviewSlotType.Fixed) fixedSlots++; else linkedSlots++;
+                if (slot.type == InterviewSlotType.Fixed && slot.fixedQuestion == null && fixedQuestions.Count == 0)
                     problems.Add(n + " has a Fixed slot but no Fixed Questions.");
+            }
+            if (fixedSlots > fixedQuestions.Count && fixedQuestions.Count > 0)
+                problems.Add(n + " has " + fixedSlots + " Fixed slots but only " + fixedQuestions.Count + " Fixed Questions: fewer questions will be asked.");
+            if (linkedSlots > resumeLinkedQuestions.Count)
+                problems.Add(n + " has " + linkedSlots + " Resume Linked slots but " + resumeLinkedQuestions.Count + " assigned Resume-Linked Questions: it cannot reach the full question count (assign them on this HR).");
         }
 
         static void CheckQuestion(InterviewQuestionData q, string label, List<string> problems, bool needsLink)

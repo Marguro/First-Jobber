@@ -97,7 +97,7 @@ namespace FirstJobber
             dialogue.TokenResolver = ResolveToken;
             dialogue.PlayerNameProvider = () => session != null ? session.applicantName : null;
             dialogue.GenderIdProvider = () => session != null ? session.applicantGender : null;
-            dialogue.HrNameProvider = () => { var h = ctx != null ? ctx.SelectedHr : null; return h != null ? h.hrName : null; };
+            dialogue.HrNameProvider = () => { var h = ctx != null ? ctx.SelectedHr : null; return h != null ? LocalizationManager.Get(h, "hrName", h.hrName) : null; };
 
             session = new GameSession();
             ctx = new GameContext(database, session, dialogue);
@@ -128,7 +128,7 @@ namespace FirstJobber
                 case "name":
                 case "playername": return session.applicantName;
                 case "gender": return database.GenderDisplay(session.applicantGender);
-                case "hr": { var h = ctx != null ? ctx.SelectedHr : null; return h != null ? h.hrName : "HR"; }
+                case "hr": { var h = ctx != null ? ctx.SelectedHr : null; return h != null ? LocalizationManager.Get(h, "hrName", h.hrName) : "HR"; }
                 case "day": return session.day.ToString();
                 case "company": { var c = ctx != null ? ctx.SelectedCompany : null; return c != null ? LocalizationManager.Get(c, "companyName", c.companyName) : UiText.TokenCompany.Text; }
                 case "job": { var c = ctx != null ? ctx.SelectedCompany : null; return c != null ? LocalizationManager.Get(c, "jobTitle", c.jobTitle) : UiText.TokenJob.Text; }

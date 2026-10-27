@@ -6,7 +6,8 @@ namespace FirstJobber
 {
     /// <summary>
     /// Builds the question list of one interview from the assigned HR's own question lists and sequence.
-    /// Deterministic: no randomness. Never returns an empty list.
+    /// Deterministic unless the HR's pick modes are Random; the plan is built once per interview (never on UI refresh)
+    /// and never repeats a question inside one interview. Never returns an empty list.
     /// </summary>
     public static class HrInterviewPlanner
     {
@@ -26,6 +27,13 @@ namespace FirstJobber
                 if (slot.type == InterviewSlotType.Fixed)
                 {
                     if (Usable(slot.fixedQuestion)) q = slot.fixedQuestion;
+                    else if (hr.fixedPickMode == QuestionPickMode.Random)
+                    {
+                        var pool = new List<InterviewQuestionData>();
+                        foreach (var candidate in hr.fixedQuestions)
+                            if (Usable(candidate) && !result.Contains(candidate) && !pool.Contains(candidate)) pool.Add(candidate);
+                        if (pool.Count > 0) q = pool[Random.Range(0, pool.Count)];
+                    }
                     else
                     {
                         // Next unused question of the Fixed list, in the order the designer wrote it.
@@ -69,6 +77,11 @@ namespace FirstJobber
                 else if (q.linkedCategory != null) { if (selected.Any(c => c != null && c.category == q.linkedCategory)) category.Add(q); }
             }
 
+            if (hr.resumeLinkedPickMode == QuestionPickMode.Random)
+            {
+                exact.AddRange(category); // every match is equally likely
+                return exact.Count > 0 ? exact[Random.Range(0, exact.Count)] : null;
+            }
             return PickTier(exact, session) ?? PickTier(category, session);
         }
 
