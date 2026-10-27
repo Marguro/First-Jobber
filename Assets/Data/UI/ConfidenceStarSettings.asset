@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac8eb91cff949b2b588efc447a24c20, type: 3}
+  m_Name: ConfidenceStarSettings
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ConfidenceStarSettings
+  starLevel1: {fileID: 8602868836670732453, guid: a4762d7a5df1ace4f81dd0892d4c51a3, type: 3}
+  starLevel2: {fileID: 4480849499839255065, guid: 14871602cc07b3049979cfc373c82fcc, type: 3}
+  starLevel3: {fileID: -8711518865222806459, guid: 923700c00eaeed94480ca7cc5252fff8, type: 3}
+  starLevel4: {fileID: 7509677380017340374, guid: 4a0f08565ae2bcb4383eeda2d94f9c81, type: 3}
+  starLevel5: {fileID: 7121790387451194273, guid: 9d85e8ec8c010ff4aac9d15b72411c17, type: 3}
+  defaultStar: {fileID: 5653626284197273718, guid: 45b1d4d2153f1d148bac2d1fe94a7ace, type: 3}
+  level5Max: 20
+  level4Max: 40
+  level3Max: 60
+  level2Max: 80

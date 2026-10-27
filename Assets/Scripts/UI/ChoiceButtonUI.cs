@@ -17,6 +17,9 @@ namespace FirstJobber
         public ChoiceState state;
         [Tooltip("Optional small label on the right (e.g. confidence '85%'). Empty = hidden.")]
         public string badge;
+        // Only Resume Choice items supply these. Other users of the shared button keep the star hidden.
+        public bool showConfidenceStar;
+        public float confidence;
     }
 
     /// <summary>Reusable list entry. The click listener is added once in Awake, so refreshing never duplicates it.</summary>
@@ -28,6 +31,9 @@ namespace FirstJobber
         [SerializeField] TMP_Text subtitleText;
         [SerializeField] Image iconImage;
         [SerializeField] TMP_Text badgeText;
+        [Header("Confidence Star")]
+        [SerializeField] Image confidenceStar;
+        [SerializeField] ConfidenceStarSettings confidenceStarSettings;
         [SerializeField] Color availableColor = new Color(0.88f, 0.88f, 0.84f);
         [SerializeField] Color selectedColor = new Color(0.98f, 0.82f, 0.35f);
         [SerializeField] Color consumedColor = new Color(0.35f, 0.35f, 0.35f);
@@ -74,6 +80,15 @@ namespace FirstJobber
                 bool has = !string.IsNullOrEmpty(item.badge);
                 badgeText.gameObject.SetActive(has);
                 if (has) badgeText.text = item.badge;
+            }
+            if (confidenceStar != null)
+            {
+                confidenceStar.sprite = item.showConfidenceStar && confidenceStarSettings != null
+                    ? confidenceStarSettings.GetSprite(item.confidence) : null;
+                confidenceStar.color = Color.white;
+                confidenceStar.preserveAspect = true;
+                confidenceStar.raycastTarget = false;
+                confidenceStar.gameObject.SetActive(confidenceStar.sprite != null);
             }
             if (iconImage != null)
             {

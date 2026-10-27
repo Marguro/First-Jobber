@@ -488,6 +488,7 @@ namespace FirstJobber.EditorTools
             Set(comp, "subtitleText", subtitle);
             Set(comp, "iconImage", iconImg);
 
+            ConfidenceStarTools.ConfigurePrefabRoot(root);
             PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
             Object.DestroyImmediate(root);
             AssetDatabase.ImportAsset(PrefabPath);

@@ -255,6 +255,8 @@ namespace FirstJobber
                         title = LocalizationManager.Get(c, "displayText", c.displayText),
                         subtitle = LocalizationManager.Get(c, "description", c.description),
                         badge = showChoiceConfidence ? ResumeConfidenceCalculator.FormatPercent(c.Confidence, choiceConfidenceDecimals) : null,
+                        showConfidenceStar = true,
+                        confidence = c.Confidence,
                         state = ctx.Choices.IsConsumed(c) ? ChoiceState.Consumed
                               : c.id == selectedId ? ChoiceState.Selected : ChoiceState.Available
                     });

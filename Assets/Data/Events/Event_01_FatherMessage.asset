@@ -22,26 +22,36 @@ MonoBehaviour:
   forbiddenFlag: 
   setFlags: []
   caption: Day 2
-  background: {fileID: 0}
+  background: {fileID: 4922145649491599510, guid: ecca1d4d25e43364db69ad6f2d601c29, type: 3}
+  flickerSeconds: 0
   lines:
   - speaker: Narrator
     text: Another morning. Another message on my phone.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: Father
     text: '"How is the job search going? Call me when you can."'
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
   - speaker: Player
     text: I'll call him back later. Maybe.
+    dialogueLines: []
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
     eventId: 
     portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
