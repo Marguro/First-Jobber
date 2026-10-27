@@ -57,10 +57,6 @@ MonoBehaviour:
     displayName: Male
   - id: female
     displayName: Female
-  - id: non_binary
-    displayName: Non-binary
-  - id: unspecified
-    displayName: Prefer Not to Say
   genderPrompt: Select gender...
   questionsPerInterview: 5
   showConsumedChoices: 1
