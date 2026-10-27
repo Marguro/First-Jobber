@@ -54,6 +54,26 @@ namespace FirstJobber
 
         public void Clear() { SetItems(null); }
 
+        /// <summary>Modal list within its owning panel. Keep it above that panel's background/caption.</summary>
+        public void ShowPopup(IList<ChoiceItem> items)
+        {
+            transform.SetAsLastSibling();
+            gameObject.SetActive(true);
+            if (canvasGroup != null)
+            {
+                canvasGroup.alpha = 1f;
+                canvasGroup.blocksRaycasts = true;
+            }
+            SetItems(items, resetScroll: true);
+            SetInteractable(true);
+        }
+
+        public void HidePopup()
+        {
+            SetInteractable(false);
+            gameObject.SetActive(false);
+        }
+
         public void SetInteractable(bool value)
         {
             if (canvasGroup != null) canvasGroup.interactable = value;

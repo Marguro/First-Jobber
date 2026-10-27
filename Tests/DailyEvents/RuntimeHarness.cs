@@ -13,6 +13,7 @@ class Harness
         var db = Fixture.Create(); var session = new GameSession { day = 2 };
         var dialogue = new DialogueManager(); var list = new ChoiceListUI();
         var events = new DailyEventManager(); Set(events,"database",db); Set(events,"dialogue",dialogue); Set(events,"choiceList",list);
+        Invoke(events,"OnEnable");
         foreach (var ev in db.events)
         {
             var isolated = new GameSession { day = ev.exactDay };
@@ -29,11 +30,21 @@ class Harness
         Check(done==0 && dialogue.Next!=null,"Event must await dialogue");
         for(int i=0;i<5;i++) dialogue.Complete();
         Check(list.gameObject.active && list.Items.Count==2 && dialogue.Next==null && done==0,"Phone popup must stop sequence");
+        Check(events.IsWaitingForChoice && dialogue.Stops>0,"Choice must explicitly stop dialogue input");
+        string english = list.Items[1].title;
+        LocalizationManager.Change();
+        Check(list.Items[1].title=="TH:"+english && list.gameObject.active && events.IsWaitingForChoice,"Language refresh must keep pending choice visible");
+        LocalizationManager.Change();
+        Check(list.Items[1].title==english,"Restore English source on language change");
+        bool overlappingBlocked=false;
+        try { events.Run(EventTrigger.BeforeResume,session,()=>done++); } catch(InvalidOperationException) {overlappingBlocked=true;}
+        Check(overlappingBlocked && events.IsWaitingForChoice && done==0,"Another event must not bypass pending choices");
         list.Click("invalid"); Check(done==0,"Invalid phone choice");
         list.Click("later"); list.Click("later");
         Check(session.flags.Count==1 && !list.gameObject.active,"Phone choice must be recorded exactly once");
         while(dialogue.Next!=null) dialogue.Complete();
         Check(done==1,"Phone common outro must complete once");
+        Check(!events.IsWaitingForChoice,"Pending choice state must clear before next dialogue");
         events.Run(EventTrigger.BeforeResume,session,()=>done++);
         Check(done==2 && dialogue.Next==null,"Refresh must not replay event");
         session.day=4;
@@ -60,7 +71,8 @@ namespace UnityEngine
 {
     public class Object {}
     public class MonoBehaviour : Object {}
-    public class GameObject { public bool active; public void SetActive(bool v) {active=v;} }
+    public static class Debug { public static void Log(string message, Object context) {} }
+    public class GameObject { public bool active; public bool activeInHierarchy => active; public void SetActive(bool v) {active=v;} }
     public class SerializeField : Attribute {}
 }
 namespace TMPro { public class TMP_Text { public string text; } }
@@ -78,11 +90,11 @@ namespace FirstJobber
     public class GameDatabase { public int finalStoryDay=6;public List<DailyEventData> events=new List<DailyEventData>();public List<EndingData> endings=new List<EndingData>();public DialogueLine[] fatherOfferLines;public DialoguePlaybackMode fatherOfferMode;public EndingData FindEnding(string id)=>endings.Find(e=>e.id==id); }
     public class GameSession {public int day;public List<string> triggeredEvents=new List<string>(),flags=new List<string>();public void SetFlag(string f){if(!flags.Contains(f))flags.Add(f);}public bool HasFlag(string f)=>flags.Contains(f);public void Save(){} }
     public class GameContext { public GameDatabase Database; public DialogueManager Dialogue; }
-    public class DialogueManager { public Action Next;public void Play(DialogueLine[] lines,Action done,float delay=0,DialoguePlaybackMode mode=DialoguePlaybackMode.Sequential) { Next=done; } public void Complete(){var next=Next;Next=null;next?.Invoke();} }
-    public class ChoiceListUI {public UnityEngine.GameObject gameObject=new UnityEngine.GameObject();public event Action<string> ItemChosen;public List<ChoiceItem> Items=new List<ChoiceItem>();bool enabled=true;public void SetItems(IList<ChoiceItem> items,string emptyMessage=null,bool resetScroll=false){Items=new List<ChoiceItem>(items);}public void Clear(){Items.Clear();}public void SetInteractable(bool value){enabled=value;}public void Click(string id){if(enabled)ItemChosen?.Invoke(id);} }
+    public class DialogueManager { public Action Next;public int Stops;public void Stop(){Stops++;Next=null;}public void Play(DialogueLine[] lines,Action done,float delay=0,DialoguePlaybackMode mode=DialoguePlaybackMode.Sequential) { Next=done; } public void Complete(){var next=Next;Next=null;next?.Invoke();} }
+    public class ChoiceListUI {public string name="PhoneChoices";public UnityEngine.GameObject gameObject=new UnityEngine.GameObject();public event Action<string> ItemChosen;public List<ChoiceItem> Items=new List<ChoiceItem>();bool enabled=true;public void SetItems(IList<ChoiceItem> items,string emptyMessage=null,bool resetScroll=false){Items=new List<ChoiceItem>(items);}public void ShowPopup(IList<ChoiceItem> items){gameObject.SetActive(true);SetItems(items);SetInteractable(true);}public void HidePopup(){SetInteractable(false);gameObject.SetActive(false);}public void Clear(){Items.Clear();}public void SetInteractable(bool value){enabled=value;}public void Click(string id){if(enabled)ItemChosen?.Invoke(id);} }
     public class DailyEventPanelUI { public void Clear(){} public void Show(string caption,object background){} }
     public class AtmosphereManager {public static AtmosphereManager Instance;public void PulseFlicker(float f){} }
-    public static class LocalizationManager {public static string Get(object owner,string field,string english)=>english;public static string Get(string key,string english)=>english;}
+    public static class LocalizationManager {public static event Action LanguageChanged;public static bool Thai;public static void Change(){Thai=!Thai;LanguageChanged?.Invoke();}public static string Get(object owner,string field,string english)=>Thai ? "TH:"+english:english;public static string Get(string key,string english)=>english;}
     public class Label {public string Text="";}
     public static class UiText {public static Label WhatWillYouDo=new Label(),NoEndings=new Label(),ConfirmDecision=new Label(),BackToDecisions=new Label();}
 }

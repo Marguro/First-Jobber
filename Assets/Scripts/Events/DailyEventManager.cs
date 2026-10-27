@@ -15,6 +15,42 @@ namespace FirstJobber
         [SerializeField] DailyEventPanelUI eventPanel;
         [SerializeField] ChoiceListUI choiceList;
         int choiceGeneration;
+        DailyEventData choiceEvent;
+        DailyEventSegment choiceSegment;
+        Action<string> choiceSelected;
+        readonly List<ChoiceItem> choiceItems = new List<ChoiceItem>();
+        public bool IsWaitingForChoice => choiceSegment != null;
+
+        void OnEnable() { LocalizationManager.LanguageChanged += RefreshChoiceLanguage; }
+        void OnDisable()
+        {
+            LocalizationManager.LanguageChanged -= RefreshChoiceLanguage;
+            CloseChoice();
+        }
+
+        void CloseChoice()
+        {
+            choiceGeneration++;
+            if (choiceList != null)
+            {
+                if (choiceSelected != null) choiceList.ItemChosen -= choiceSelected;
+                choiceList.HidePopup();
+            }
+            choiceSelected = null;
+            choiceEvent = null;
+            choiceSegment = null;
+        }
+
+        void RefreshChoiceLanguage()
+        {
+            if (!IsWaitingForChoice) return;
+            choiceItems.Clear();
+            foreach (var option in choiceSegment.options) choiceItems.Add(new ChoiceItem {
+                id = option.id,
+                title = LocalizationManager.Get(choiceEvent, "segments/" + choiceSegment.id + "/options/" + option.id + "/label", option.label),
+                state = ChoiceState.Available });
+            choiceList.SetItems(choiceItems);
+        }
 
         readonly List<DailyEventData> scratch = new List<DailyEventData>();
 
@@ -29,6 +65,7 @@ namespace FirstJobber
         /// <summary>Plays every eligible event (highest priority first), then calls onDone.</summary>
         public void Run(EventTrigger trigger, GameSession session, Action onDone)
         {
+            if (IsWaitingForChoice) throw new InvalidOperationException("Resolve the open Daily Event choice before starting another event sequence.");
             var queue = new List<DailyEventData>();
             Collect(trigger, session, queue);
             RunFrom(queue, 0, session, onDone);
@@ -63,25 +100,24 @@ namespace FirstJobber
             if (segment.options != null && segment.options.Length > 0)
             {
                 if (choiceList == null) throw new InvalidOperationException("DailyEventManager.choiceList is not assigned.");
-                var items = new List<ChoiceItem>();
-                foreach (var option in segment.options) items.Add(new ChoiceItem {
-                    id = option.id, title = LocalizationManager.Get(ev, "segments/" + segment.id + "/options/" + option.id + "/label", option.label),
-                    state = ChoiceState.Available });
+                Debug.Log("[DailyEvent] Choice node reached: " + ev.id + "/" + segment.id + " (" + segment.options.Length + " options).", this);
+                // Completion callbacks run before DialogueManager hides its previous box. Hide it now,
+                // so neither its click area nor keyboard advance can compete with the choice buttons.
+                dialogue.Stop();
+                choiceEvent = ev;
+                choiceSegment = segment;
+                RefreshChoiceLanguage();
                 int generation = ++choiceGeneration;
-                Action<string> selected = null;
-                selected = id => {
-                    if (generation != choiceGeneration || !items.Exists(item => item.id == id)) return;
-                    choiceGeneration++;
-                    choiceList.ItemChosen -= selected;
-                    choiceList.SetInteractable(false);
-                    choiceList.gameObject.SetActive(false);
+                choiceSelected = id => {
+                    if (generation != choiceGeneration || !choiceItems.Exists(item => item.id == id)) return;
+                    CloseChoice();
                     session.SetFlag("event_choice/" + ev.id + "/" + segment.id + "/" + id);
+                    Debug.Log("[DailyEvent] Selected " + ev.id + "/" + segment.id + "/" + id + "; resuming dialogue.", this);
                     RunSegment(ev, index + 1, session, done);
                 };
-                choiceList.ItemChosen += selected;
-                choiceList.gameObject.SetActive(true);
-                choiceList.SetItems(items, resetScroll: true);
-                choiceList.SetInteractable(true);
+                choiceList.ItemChosen += choiceSelected;
+                choiceList.ShowPopup(choiceItems);
+                Debug.Log("[DailyEvent] Choice popup activated: " + choiceList.name + ", activeInHierarchy=" + choiceList.gameObject.activeInHierarchy + ", options=" + choiceItems.Count, this);
                 return;
             }
             dialogue.Play(segment.lines, () => RunSegment(ev, index + 1, session, done));
@@ -111,5 +147,15 @@ namespace FirstJobber
                 result[j + 1] = key;
             }
         }
+
+#if UNITY_EDITOR
+        // Preview uses the real segment player and UI, but never calls CompleteEvent / Save.
+        public void EditorPreviewEvent(DailyEventData ev, GameSession previewSession, Action done)
+        {
+            if (!Application.isPlaying || IsWaitingForChoice) return;
+            LocalizationKeys.VisitAsset(ev, null);
+            RunSegment(ev, 0, previewSession, done);
+        }
+#endif
     }
 }

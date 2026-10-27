@@ -18,7 +18,7 @@ MonoBehaviour:
   description: 
   tags:
   - todo_confidence
-  confidencePercentage: 50
+  confidencePercentage: 77.1
   playerReaction:
   - speaker: Player
     text: 

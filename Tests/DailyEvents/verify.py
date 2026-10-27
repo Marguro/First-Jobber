@@ -53,14 +53,21 @@ assert flow['dialogue']==manager['dialogue'] and flow['dailyEvents']['fileID']==
 choice=scene[manager['choiceList']['fileID']]['MonoBehaviour'];assert choice['itemPrefab']['guid']=='0e40d531b2bffcc44b12b87cf431a6e7'
 go=scene[choice['m_GameObject']['fileID']]['GameObject'];rt=scene[go['m_Component'][0]['component']['fileID']]['RectTransform']
 assert rt['m_Father']['fileID']==1939456818
+siblings=scene[1939456818]['RectTransform']['m_Children']
+assert siblings.index({'fileID':2106000001}) > siblings.index({'fileID':1877831937}), 'Opaque EventBackground paints over the phone popup'
+viewport=scene[choice['scrollRect']['fileID']]['MonoBehaviour']['m_Viewport']['fileID']
+assert scene[viewport]['RectTransform']['m_AnchorMax']=={'x':1,'y':1}, 'Phone viewport must have visible area before layout rebuild'
+group=scene[choice['canvasGroup']['fileID']]['CanvasGroup']
+assert group['m_Alpha']==1 and group['m_Interactable']==1 and group['m_BlocksRaycasts']==1
+assert scene[1877831938]['MonoBehaviour']['m_RaycastTarget']==0
 assert scene[1172304822]['MonoBehaviour']['endingList']['fileID']==411229344
 print('PASS active scene/Production references; 13 groups, 54 exact Thai pages, 4 cues, 4 phone options, 3 endings, 4 exact previews, EN/TH/CSV keys')
 # Existing serialized assets/GUIDs are not replaced, and unrelated table entries remain intact.
-backup=R/'.utmp/daily-events-before-import'
+backup=R/'.utmp/daily-popup-fix'
 if backup.exists():
- old=asset(backup/'Assets/Resources/Localization/LocalizationTable_TH.asset')['entries']
+ old=asset(backup/'LocalizationTable_TH.asset')['entries']
  assert all(entries[e['key']]==e for e in old),'Existing translation changed'
- before=asset(backup/'Assets/Data/Production/GameDatabase_Production.asset')
+ before=asset(backup/'GameDatabase_Production.asset')
  for field in before:
   if field not in ('events','endings'):assert before[field]==db[field],field
  print('PASS existing Production fields and localization entries preserved')

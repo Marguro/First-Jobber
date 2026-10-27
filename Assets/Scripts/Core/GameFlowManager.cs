@@ -400,6 +400,40 @@ namespace FirstJobber
 
         public GameDatabase Database => database;
 
+#if UNITY_EDITOR
+        [ContextMenu("Debug/Preview Day 2 phone event (Play Mode, Main Menu only)")]
+        void PreviewDay2Phone() { PreviewPhoneEvent(2); }
+
+        [ContextMenu("Debug/Preview Day 4 phone event (Play Mode, Main Menu only)")]
+        void PreviewDay4Phone() { PreviewPhoneEvent(4); }
+
+        void PreviewPhoneEvent(int day)
+        {
+            if (!Application.isPlaying || !referencesOk || Phase != GamePhase.MainMenu || dialogue.IsPlaying || dailyEvents.IsWaitingForChoice)
+            {
+                Debug.LogWarning("[DailyEvent] Preview is available only in Play Mode at the Main Menu with no active dialogue.", this);
+                return;
+            }
+            var ev = database.events.Find(e => e != null && e.exactDay == day && e.trigger == EventTrigger.BeforeResume);
+            if (ev == null || ev.segments == null) { Debug.LogWarning("[DailyEvent] No segmented phone event configured for day " + day, this); return; }
+            var previousSession = session;
+            var previousContext = ctx;
+            session = new GameSession { day = day, applicantName = "Preview", applicantGender = Genders.Unspecified };
+            ctx = new GameContext(database, session, dialogue);
+            Phase = GamePhase.DailyEvent;
+            dailyEvents.ClearPanel();
+            ui.ShowPanelFor(Phase, true);
+            dailyEvents.EditorPreviewEvent(ev, session, () => {
+                session = previousSession;
+                ctx = previousContext;
+                Phase = GamePhase.MainMenu;
+                ui.ShowPanelFor(Phase, true);
+                mainMenu.Open(database);
+                Debug.Log("[DailyEvent] Phone preview complete; returned to Main Menu. Save data was not changed.", this);
+            });
+        }
+#endif
+
         /// <summary>
         /// Debug only: jumps straight to an ending from any phase, bypassing the state machine.
         /// Leaves the save file alone (a real ending deletes it).
