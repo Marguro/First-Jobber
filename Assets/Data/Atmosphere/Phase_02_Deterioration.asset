@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Deterioration
   startDay: 3
   enabled: 1
+  blurredBackgroundElements: 2
   useCameraColor: 1
   cameraColor: {r: 0.04, g: 0.05, b: 0.08, a: 1}
   overlayColor: {r: 0.05, g: 0.1, b: 0.2, a: 1}

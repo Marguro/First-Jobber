@@ -4,17 +4,34 @@ using UnityEngine.UI;
 
 namespace FirstJobber
 {
+    public enum BackgroundMotif { Heart, Flower, Star, Cloud }
+
+    [System.Serializable]
+    public class BackgroundMotifSlot
+    {
+        public BackgroundMotif motif;
+        [HideInInspector] public RawImage image; // one fixed full-screen layer for this motif type
+        public Sprite normalSprite;
+        public Sprite blurredSprite;
+        public bool isBlurred;
+        [HideInInspector] public Vector2 direction = new Vector2(-1f, -0.7f); // legacy serialized settings
+        [HideInInspector] public float speed = 20f;
+        public Vector2 elementSize = new Vector2(300f, 300f);
+        [Tooltip("Position inside each repeating tile, relative to its centre (-0.5 to 0.5).")]
+        public Vector2 startOffset;
+        [System.NonSerialized] public Vector2 position;
+    }
+
     /// <summary>
-    /// Endlessly scrolling, looping background. Put it on the full-screen "Background" Image.
-    /// It reads that Image's sprite and colour every frame, so Atmosphere sprite swaps and tints keep working.
-    /// The Image itself is hidden; tiles are drawn as children and clipped to this rect.
+    /// Full-screen UI background. FourMotifs keeps the base Image stationary and repeats four motif types in a GPU shader,
+    /// reacting to the existing atmosphere event. Legacy modes retain their scrolling tile behavior.
     /// </summary>
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(RectMask2D))]
     public class ScrollingBackground : MonoBehaviour
     {
         public enum ScrollAxis { Horizontal, Vertical, Diagonal }
-        public enum ScrollMode { Loop, EdgeToEdge, CornerToCorner }
+        public enum ScrollMode { Loop, EdgeToEdge, CornerToCorner, FourMotifs }
         public enum Corner { TopRight, TopLeft, BottomRight, BottomLeft }
 
         [Tooltip("CornerToCorner only: the corner the camera starts on. It pans to the opposite corner and back (e.g. TopRight -> BottomLeft).")]
@@ -22,23 +39,84 @@ namespace FirstJobber
         [Tooltip("CornerToCorner only: extra zoom so there is room to travel. 1.3 = picture is 30% larger than the screen.")]
         [SerializeField, Min(1.01f)] float cornerZoom = 1.3f;
 
-        [Tooltip("Loop: endless tiling. EdgeToEdge: one oversized picture pans to one edge, pauses, then pans back (never shows a gap).")]
+        [Tooltip("FourMotifs: infinite repeating motif wallpaper. Other modes retain the legacy single-sprite scrolling behavior.")]
         [SerializeField] ScrollMode mode = ScrollMode.Loop;
         [Tooltip("EdgeToEdge / CornerToCorner: seconds to wait at each end.")]
         [SerializeField, Min(0f)] float edgePause = 1f;
 
         [Tooltip("Horizontal: the sprite is fitted to the screen height and scrolls sideways. Vertical: fitted to width, scrolls up/down.")]
         [SerializeField] ScrollAxis axis = ScrollAxis.Horizontal;
-        [Tooltip("Diagonal axis only: which way the picture moves. (-1,-1) = toward bottom-left (looks like travelling from top-right). (1,1) = toward top-right. Any vector works; it is normalised.")]
-        [SerializeField] Vector2 diagonalDirection = new Vector2(-1f, -1f);
-        [Tooltip("Canvas units per second. Positive = left (Horizontal) / up (Vertical). Negative reverses. 0 = still.")]
-        [SerializeField] float speed = 40f;
+        [Tooltip("Normalized direction for motif wallpaper and the legacy Diagonal axis. (1,-1) = down-right. Zero pauses motion.")]
+        [SerializeField] Vector2 diagonalDirection = new Vector2(1f, -1f);
+        [Tooltip("Scroll speed in canvas units per second. Wallpaper direction is normalized. 0 = paused.")]
+        [SerializeField] float speed = 30f;
         [Tooltip("Zoom the tiles. 1 = exactly fills the screen on the cross axis.")]
         [SerializeField, Min(0.1f)] float scale = 1f;
         [Tooltip("Flip every second tile. Turn ON if the art is not seamless - the join becomes a mirror, so no visible seam.")]
         [SerializeField] bool mirrorAlternateTiles = false;
         [Tooltip("Keep scrolling while Time.timeScale is 0.")]
         [SerializeField] bool useUnscaledTime = true;
+
+        [Header("Compact GPU motif wallpaper")]
+        [SerializeField] Shader wallpaperShader;
+        [SerializeField] bool enableScrolling = true;
+        [Tooltip("Repeating pattern size in canvas units, multiplied by Pattern Spacing. Effective repeat size is at least 320x240.")]
+        [SerializeField] Vector2 patternTileSize = new Vector2(960f, 640f);
+        [SerializeField, Min(0.1f)] float patternSpacing = 1f;
+        [SerializeField, Min(0.05f)] float elementScale = 1f;
+        [SerializeField] BackgroundMotifSlot[] motifSlots = new BackgroundMotifSlot[4];
+        [SerializeField] bool enableProgressionIntegration = true;
+        [Tooltip("Delay between individual random replacements when an atmosphere phase increases the target count.")]
+        [SerializeField, Min(0.1f)] float motifDeteriorationInterval = 6f;
+        [Tooltip("0 = choose once at runtime; another value gives a repeatable random slot order.")]
+        [SerializeField] int motifRandomSeed;
+        [SerializeField, Range(0, 4)] int previewBlurredCount;
+
+        readonly int[] deteriorationOrder = { 0, 1, 2, 3 };
+        bool orderReady;
+        RectMask2D motifMask;
+        Vector4 originalMaskPadding;
+        bool motifMaskCaptured;
+        Vector2 wallpaperOffset;
+        readonly Material[] layerMaterials = new Material[4];
+        readonly Material[] originalMaterials = new Material[4];
+        readonly Texture[] originalTextures = new Texture[4];
+        readonly Sprite[] renderedSprites = new Sprite[4];
+        readonly float[] spriteAspects = { 1f, 1f, 1f, 1f };
+        struct LayerShaderState
+        {
+            public bool initialized;
+            public Vector2 area, cell, element, motif, scroll;
+        }
+        readonly LayerShaderState[] shaderStates = new LayerShaderState[4];
+        static readonly int RectSizeId = Shader.PropertyToID("_RectSize");
+        static readonly int CellSizeId = Shader.PropertyToID("_CellSize");
+        static readonly int ElementSizeId = Shader.PropertyToID("_ElementSize");
+        static readonly int MotifOffsetId = Shader.PropertyToID("_MotifOffset");
+        static readonly int ScrollOffsetId = Shader.PropertyToID("_ScrollOffset");
+        static readonly int SpriteRectId = Shader.PropertyToID("_SpriteUVRect");
+        int targetBlurredCount;
+        float deteriorationTimer;
+
+        public int BlurredCount
+        {
+            get
+            {
+                int count = 0;
+                for (int i = 0; i < 4; i++) if (Slot(i) != null && Slot(i).isBlurred) count++;
+                return count;
+            }
+        }
+        public int BlurredMask
+        {
+            get
+            {
+                int mask = 0;
+                for (int i = 0; i < 4; i++) if (Slot(i) != null && Slot(i).isBlurred) mask |= 1 << i;
+                return mask;
+            }
+        }
+        public int TargetBlurredCount => targetBlurredCount;
 
         Image source;
         readonly List<Image> tiles = new List<Image>();
@@ -49,16 +127,51 @@ namespace FirstJobber
         bool dirty = true;
 
         public float Speed { get => speed; set => speed = value; }
+        public Vector2 Direction { get => diagonalDirection; set => diagonalDirection = value; }
+        public Vector2 WallpaperOffset => wallpaperOffset;
+        public RawImage GetMotifLayer(int index) => Slot(index)?.image;
 
-        void Awake() { source = GetComponent<Image>(); }
+        void Awake()
+        {
+            source = GetComponent<Image>();
+            motifMask = GetComponent<RectMask2D>();
+            if (motifMask != null) { originalMaskPadding = motifMask.padding; motifMaskCaptured = true; }
+            if (mode == ScrollMode.FourMotifs) ResetBackgroundState(); // Inspector previews never leak into a new game.
+        }
 
-        void OnEnable() { dirty = true; }
+        void OnEnable()
+        {
+            dirty = true;
+            AtmosphereManager.PhaseChanged += ApplyStateFromProgression;
+            if (mode == ScrollMode.FourMotifs && AtmosphereManager.Instance != null)
+                ApplyStateFromProgression(AtmosphereManager.Instance.AppliedPhase);
+        }
+
+        void OnDisable()
+        {
+            AtmosphereManager.PhaseChanged -= ApplyStateFromProgression;
+            ReleaseLayerMaterials();
+        }
 
         void OnValidate() { dirty = true; }
 
         void LateUpdate()
         {
             if (source == null) source = GetComponent<Image>();
+            if (mode == ScrollMode.FourMotifs)
+            {
+                source.enabled = true; // the original Image draws the plain base, not a field of repeated tiles
+                source.raycastTarget = false;
+                SetTilesVisible(false);
+                UpdateMotifs(useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime);
+                return;
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                if (Slot(i)?.image != null) Slot(i).image.gameObject.SetActive(false);
+
+            }
+            if (motifMaskCaptured && motifMask != null) motifMask.padding = originalMaskPadding;
             if (source.enabled) source.enabled = false; // children draw instead; the Image only stores sprite + colour
 
             var rt = (RectTransform)transform;
@@ -94,6 +207,185 @@ namespace FirstJobber
                 float flip = mirrorAlternateTiles && (i % 2 == 1) ? -1f : 1f;
                 trt.localScale = horizontal ? new Vector3(flip, 1f, 1f) : new Vector3(1f, flip, 1f);
             }
+        }
+
+        BackgroundMotifSlot Slot(int i) => motifSlots != null && i < motifSlots.Length ? motifSlots[i] : null;
+
+        void PrepareOrder()
+        {
+            if (orderReady) return;
+            orderReady = true;
+            var rng = new System.Random(motifRandomSeed == 0 ? Random.Range(1, int.MaxValue) : motifRandomSeed);
+            for (int i = 3; i > 0; i--)
+            {
+                int j = rng.Next(i + 1);
+                int old = deteriorationOrder[i]; deteriorationOrder[i] = deteriorationOrder[j]; deteriorationOrder[j] = old;
+            }
+        }
+
+        [ContextMenu("Background/Reset All To Normal")]
+        public void ResetBackgroundState() { ApplyBlurredMask(0); }
+
+        /// <summary>Applies an exact saved per-slot state without rerolling motif identities or motion.</summary>
+        public void ApplyBlurredMask(int mask)
+        {
+            for (int i = 0; i < 4; i++) if (Slot(i) != null) Slot(i).isBlurred = (mask & (1 << i)) != 0;
+            targetBlurredCount = BlurredCount;
+            deteriorationTimer = 0f;
+            RenderMotifs();
+        }
+
+        /// <summary>Adjusts only the necessary slots; applying the same count again never rerolls them.</summary>
+        public void SetBlurredCount(int count)
+        {
+            count = Mathf.Clamp(count, 0, 4);
+            PrepareOrder();
+            while (BlurredCount < count) if (!BlurNext()) break;
+            for (int i = 3; i >= 0 && BlurredCount > count; i--)
+                if (Slot(deteriorationOrder[i]) != null) Slot(deteriorationOrder[i]).isBlurred = false;
+            targetBlurredCount = BlurredCount;
+            deteriorationTimer = 0f;
+            RenderMotifs();
+        }
+
+        bool BlurNext()
+        {
+            PrepareOrder();
+            foreach (int i in deteriorationOrder)
+            {
+                var slot = Slot(i);
+                if (slot == null || slot.isBlurred) continue;
+                slot.isBlurred = true;
+                return true;
+            }
+            return false;
+        }
+
+        public bool AdvanceRandomDeteriorationStep()
+        {
+            bool changed = BlurNext();
+            targetBlurredCount = BlurredCount;
+            deteriorationTimer = 0f;
+            RenderMotifs();
+            return changed;
+        }
+
+        [ContextMenu("Background/Advance One Random Slot")]
+        void AdvanceFromInspector() { AdvanceRandomDeteriorationStep(); }
+
+        [ContextMenu("Background/Apply Preview Blurred Count")]
+        void ApplyPreview() { SetBlurredCount(previewBlurredCount); }
+
+        [ContextMenu("Background/Restart Motif Positions")]
+        public void ResetMotifPositions() { wallpaperOffset = Vector2.zero; }
+
+        public void RefreshMotifPreview()
+        {
+            if (mode != ScrollMode.FourMotifs) return;
+            if (Application.isPlaying) UpdateMotifs(0f);
+            // Runtime-only material instances never dirty shared material assets during Inspector previews.
+        }
+
+        /// <summary>Called by the existing atmosphere event. Increasing targets are reached one slot at a time.</summary>
+        public void ApplyStateFromProgression(AtmospherePhaseData phase)
+        {
+            if (mode != ScrollMode.FourMotifs || !enableProgressionIntegration) return;
+            if (phase == null) { ResetBackgroundState(); return; }
+            if (phase.blurredBackgroundElements < 0) return; // this phase does not author a background change
+            int count = Mathf.Clamp(phase.blurredBackgroundElements, 0, 4);
+            if (count <= BlurredCount) { SetBlurredCount(count); return; }
+            if (targetBlurredCount == count) return;
+            targetBlurredCount = count;
+            deteriorationTimer = motifDeteriorationInterval; // first replacement on the next frame
+        }
+
+        Vector2 RepeatSize => new Vector2(Mathf.Max(320f, patternTileSize.x * Mathf.Max(0.1f, patternSpacing)),
+            Mathf.Max(240f, patternTileSize.y * Mathf.Max(0.1f, patternSpacing)));
+
+        void EnsureLayerMaterials()
+        {
+            if (!Application.isPlaying || wallpaperShader == null) return;
+            for (int i = 0; i < 4; i++)
+            {
+                var layer = Slot(i)?.image;
+                if (layer == null || layerMaterials[i] != null) continue;
+                originalMaterials[i] = layer.material;
+                originalTextures[i] = layer.texture;
+                var material = new Material(wallpaperShader);
+                material.hideFlags = HideFlags.DontSave;
+                layerMaterials[i] = material;
+                layer.material = material;
+                renderedSprites[i] = null;
+                shaderStates[i] = default;
+            }
+        }
+
+        void RenderMotifs()
+        {
+            if (!Application.isPlaying || mode != ScrollMode.FourMotifs) return;
+            EnsureLayerMaterials();
+            Vector2 area = ((RectTransform)transform).rect.size;
+            Vector2 cell = RepeatSize;
+            for (int i = 0; i < 4; i++)
+            {
+                var slot = Slot(i);
+                var material = layerMaterials[i];
+                if (slot?.image == null || material == null) continue;
+                var layer = slot.image;
+                var sprite = slot.isBlurred ? slot.blurredSprite : slot.normalSprite;
+                layer.enabled = sprite != null;
+                if (sprite == null) continue;
+                if (renderedSprites[i] != sprite)
+                {
+                    var texture = sprite.texture;
+                    var rect = sprite.textureRect;
+                    layer.texture = texture; // geometry/material dirtiness only on a sprite change, not each frame
+                    material.SetVector(SpriteRectId, new Vector4(rect.x / texture.width, rect.y / texture.height,
+                        rect.width / texture.width, rect.height / texture.height));
+                    spriteAspects[i] = rect.width / Mathf.Max(1f, rect.height);
+                    renderedSprites[i] = sprite;
+                }
+                float width = Mathf.Min(slot.elementSize.x * Mathf.Max(0.05f, elementScale), cell.x - 2f);
+                float height = Mathf.Min(slot.elementSize.y * Mathf.Max(0.05f, elementScale), cell.y - 2f);
+                float fitWidth = Mathf.Min(width, height * spriteAspects[i]);
+                float fitHeight = fitWidth / spriteAspects[i];
+                layer.color = Color.white;
+                layer.raycastTarget = false;
+                ref var state = ref shaderStates[i];
+                bool force = !state.initialized;
+                SetVectorIfChanged(material, RectSizeId, area, ref state.area, force);
+                SetVectorIfChanged(material, CellSizeId, cell, ref state.cell, force);
+                SetVectorIfChanged(material, ElementSizeId, new Vector2(Mathf.Max(1f, fitWidth), Mathf.Max(1f, fitHeight)), ref state.element, force);
+                SetVectorIfChanged(material, MotifOffsetId, new Vector2((slot.startOffset.x + 0.5f) * cell.x, (slot.startOffset.y + 0.5f) * cell.y), ref state.motif, force);
+                SetVectorIfChanged(material, ScrollOffsetId, wallpaperOffset, ref state.scroll, force);
+                state.initialized = true;
+            }
+        }
+
+        static void SetVectorIfChanged(Material material, int id, Vector2 value, ref Vector2 previous, bool force)
+        {
+            if (!force && value.x == previous.x && value.y == previous.y) return;
+            previous = value;
+            material.SetVector(id, new Vector4(value.x, value.y, 0, 0));
+        }
+
+        void UpdateMotifs(float dt)
+        {
+            if (motifMask == null) motifMask = GetComponent<RectMask2D>();
+            if (motifMask != null) motifMask.padding = Vector4.zero;
+            if (enableProgressionIntegration && BlurredCount < targetBlurredCount)
+            {
+                deteriorationTimer += dt;
+                if (deteriorationTimer >= Mathf.Max(0.1f, motifDeteriorationInterval))
+                {
+                    BlurNext();
+                    deteriorationTimer = 0f;
+                }
+            }
+            Vector2 cell = RepeatSize;
+            if (enableScrolling) wallpaperOffset += diagonalDirection.normalized * speed * dt;
+            wallpaperOffset = new Vector2(Mathf.Repeat(wallpaperOffset.x, cell.x), Mathf.Repeat(wallpaperOffset.y, cell.y));
+            RenderMotifs();
         }
 
         float travelTime; // seconds into the current back-and-forth cycle
@@ -272,8 +564,29 @@ namespace FirstJobber
 
         void OnDestroy()
         {
+            ReleaseLayerMaterials();
             foreach (var t in tiles) if (t != null) Destroy(t.gameObject);
             tiles.Clear();
+        }
+
+        void ReleaseLayerMaterials()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                var material = layerMaterials[i];
+                if (material == null) continue;
+                var layer = Slot(i)?.image;
+                if (layer != null)
+                {
+                    layer.material = originalMaterials[i];
+                    layer.texture = originalTextures[i];
+                }
+                if (Application.isPlaying) Destroy(material);
+                else DestroyImmediate(material);
+                layerMaterials[i] = null;
+                renderedSprites[i] = null;
+                shaderStates[i] = default;
+            }
         }
     }
 }

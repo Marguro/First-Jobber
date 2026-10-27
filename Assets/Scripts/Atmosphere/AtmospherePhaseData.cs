@@ -32,6 +32,10 @@ namespace FirstJobber
         [Min(1)] public int startDay = 1;
         public bool enabled = true;
 
+        [Header("Moving background motifs")]
+        [Tooltip("-1 = leave the current background state alone. 0-4 = target blurred slots, replaced individually over time.")]
+        [Range(-1, 4)] public int blurredBackgroundElements = -1;
+
         [Header("Visuals (all optional)")]
         public bool useCameraColor;
         public Color cameraColor = Color.black;

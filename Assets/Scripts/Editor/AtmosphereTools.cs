@@ -50,10 +50,12 @@ namespace FirstJobber.EditorTools
 
             var normal = Phase("Phase_01_Normal", "normal", "Normal", 1, p =>
             {
+                p.blurredBackgroundElements = 0;
                 p.fadeDuration = 1f;
             });
             var deterioration = Phase("Phase_02_Deterioration", "deterioration", "Deterioration", 3, p =>
             {
+                p.blurredBackgroundElements = 2;
                 p.useCameraColor = true; p.cameraColor = new Color(0.04f, 0.05f, 0.08f);
                 p.overlayColor = new Color(0.05f, 0.1f, 0.2f); p.overlayOpacity = 0.25f;
                 p.uiTint = new Color(0.8f, 0.85f, 0.95f);
@@ -62,6 +64,7 @@ namespace FirstJobber.EditorTools
             });
             var despair = Phase("Phase_03_Despair", "despair", "Despair", 4, p =>
             {
+                p.blurredBackgroundElements = 4;
                 p.useCameraColor = true; p.cameraColor = new Color(0.01f, 0.01f, 0.02f);
                 p.overlayColor = Color.black; p.overlayOpacity = 0.5f;
                 p.uiTint = new Color(0.55f, 0.55f, 0.6f);
