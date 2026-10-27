@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Hmm... I didn't study drawing directly, but I did learn about visual communication and digital media.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - I should be able to apply some of that to making games!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - As for drawing... I'll need a little more practice.
     emotion: 0
     autoAdvanceDelay: 0
@@ -33,4 +53,5 @@ MonoBehaviour:
     portrait: {fileID: 0}
     genderIds: []
     variantGroup: 
+  playerReactionMode: 1
   hrReactions: []

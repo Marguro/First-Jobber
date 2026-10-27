@@ -18,6 +18,8 @@ namespace FirstJobber
         [Header("Dialogue")]
         [Tooltip("Player's thoughts when this choice is clicked.")]
         public DialogueLine[] playerReaction;
+        [Tooltip("Sequential: play every block. RandomOne: pick ONE block (chunk) at random and play all its pages. Once per choice per playthrough either way.")]
+        public DialoguePlaybackMode playerReactionMode;
         [Tooltip("What HR says about this choice when reviewing the resume (speaker = HR, plus an emotion).")]
         public DialogueLine[] hrReactions;
 

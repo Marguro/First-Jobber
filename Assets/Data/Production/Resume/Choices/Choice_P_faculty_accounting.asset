@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Actually... I never wanted to study accounting that much.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - My family wanted me to study it. They said I'd have a stable job after graduation. I didn't even know what I wanted to be back then, so I went along with what everyone said.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - By the time I realized I liked drawing, designing characters, and wanted to make games... so much time had passed.
     emotion: 0
     autoAdvanceDelay: 0
@@ -33,4 +53,5 @@ MonoBehaviour:
     portrait: {fileID: 0}
     genderIds: []
     variantGroup: 
+  playerReactionMode: 1
   hrReactions: []

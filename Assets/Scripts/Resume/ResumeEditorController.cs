@@ -313,7 +313,7 @@ namespace FirstJobber
             if (!HasReaction(choice.playerReaction)) return;
             ctx.Session.MarkChoiceReactionPlayed(choice.id);
             // Replaces any reaction still playing, so rapid clicks never stack.
-            ctx.Dialogue.Play(choice.playerReaction, null, reactionAutoAdvance);
+            ctx.Dialogue.Play(choice.playerReaction, null, reactionAutoAdvance, choice.playerReactionMode);
         }
 
         static bool HasReaction(DialogueLine[] lines)

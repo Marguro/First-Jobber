@@ -31,4 +31,5 @@ MonoBehaviour:
     portrait: {fileID: 0}
     genderIds: []
     variantGroup: 
+  playerReactionMode: 1
   hrReactions: []

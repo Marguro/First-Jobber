@@ -84,6 +84,7 @@ namespace FirstJobber.EditorTools
                         // Confidence was NOT authored: keep the neutral default and make the TODO visible.
                         choice.confidencePercentage = 50f;
                         choice.tags = new[] { TodoConfidenceTag };
+                        choice.playerReactionMode = DialoguePlaybackMode.RandomOne; // add more blocks (chunks) and one is picked at random
                     }
                     ApplyReaction(choice, jch.playerReaction);
                     EditorUtility.SetDirty(choice);
