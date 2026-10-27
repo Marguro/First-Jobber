@@ -24,6 +24,16 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Hmm... That's close enough, I guess!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - At least I got plenty of practice drawing, using colors, and composing images, even if I didn't study game development directly.
     emotion: 0
     autoAdvanceDelay: 0

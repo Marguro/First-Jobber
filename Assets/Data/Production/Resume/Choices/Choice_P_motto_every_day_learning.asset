@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Hmm... That sounds like a good motto.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - I might not be good at everything yet, but learning from actual work should help me grow a lot.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - I just need a chance to try, learn, and get a little better every day...
     emotion: 0
     autoAdvanceDelay: 0

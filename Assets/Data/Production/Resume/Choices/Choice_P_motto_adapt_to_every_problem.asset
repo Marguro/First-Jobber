@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - This sounds pretty professional!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - Real work won't always involve things I like. If I want to work with others, I'll have to be adaptable.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - I hope HR appreciates someone willing to improve...
     emotion: 0
     autoAdvanceDelay: 0

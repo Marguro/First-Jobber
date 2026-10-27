@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Hmm... This is probably what HR wants to hear most, right?
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - Some tasks might not be what I'm best at, or even what I want to do. But if it makes me useful to the company, I suppose I have to try...
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - ...I just need them to hire me.
     emotion: 0
     autoAdvanceDelay: 0

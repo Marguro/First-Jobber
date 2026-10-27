@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Sigh... If only I'd figured out what I wanted sooner.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - When I chose my faculty, I didn't even know what I liked. I just picked somewhere I thought I could manage, thinking I'd figure things out after graduating.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - But I kept drawing even while studying IT! I might not be amazing, but I'm not starting from zero.
     emotion: 0
     autoAdvanceDelay: 0

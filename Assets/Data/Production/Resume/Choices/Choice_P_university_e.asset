@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Sigh... It seemed easy to get into, so I picked it without thinking much.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - Back then I just wanted to graduate. Who knew a university's name would matter this much...
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - It's not like I can turn back time and choose again.
     emotion: 0
     autoAdvanceDelay: 0

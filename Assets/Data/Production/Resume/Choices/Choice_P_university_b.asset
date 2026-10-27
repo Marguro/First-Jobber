@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - It's a private university, but it has a good reputation!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - And tuition wasn't cheap. My family invested a lot in getting me through school.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - Besides, graduating from there doesn't make me any less capable than anyone else!
     emotion: 0
     autoAdvanceDelay: 0

@@ -24,6 +24,16 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Ugh! Just thinking about the entrance exams wears me out!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - With a university name like this, at least HR should take an interest in my resume!
     emotion: 0
     autoAdvanceDelay: 0

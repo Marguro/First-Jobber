@@ -24,8 +24,38 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Honestly, I wanted to attend a more prestigious university...
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - But the tuition was just too much. I didn't want to put any more financial pressure on my family.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - It might not make my resume stand out, but it wasn't because I didn't try!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - Oh well... If my work is really good, a company should see its value!
     emotion: 0
     autoAdvanceDelay: 0

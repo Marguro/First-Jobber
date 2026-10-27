@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - I really like that phrase!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - I might only be a fresh graduate now, but someday I'll create something I can be proud of!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - All right! Let's make that dream come true!!
     emotion: 0
     autoAdvanceDelay: 0

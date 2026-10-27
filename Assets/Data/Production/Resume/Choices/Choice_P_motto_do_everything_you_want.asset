@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Whoa! That's exactly it!!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - If nobody makes what we want to see, we'll make it ourselves!
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - That's why I want to work on games!
     emotion: 0
     autoAdvanceDelay: 0

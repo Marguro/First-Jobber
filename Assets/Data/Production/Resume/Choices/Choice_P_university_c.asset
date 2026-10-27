@@ -24,7 +24,27 @@ MonoBehaviour:
     text: 
     dialogueLines:
     - Hmm... It's just an ordinary university, nothing especially prestigious.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - But I graduated through my own effort! Assignments, projects, exams... I've been through plenty.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: 
+    portrait: {fileID: 0}
+    genderIds: []
+    variantGroup: 
+  - speaker: Player
+    text: 
+    dialogueLines:
     - Surely a university's name shouldn't be the only thing that matters... right?
     emotion: 0
     autoAdvanceDelay: 0
