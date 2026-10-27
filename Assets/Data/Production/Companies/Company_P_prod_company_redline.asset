@@ -17,7 +17,22 @@ MonoBehaviour:
   jobTitle: 
   salary: 
   industry: 
-  description: "\u2022 Design characters, environments, items, and graphics as assigned.\n\u2022 Work under tight deadlines.\n\u2022 New graduates who love games are welcome.\n\n\u2022 Must have four to five years of work experience.\n\u2022 Must be able to cover multiple roles alone.\n\u2022 Must handle pressure and urgent revisions well."
+  description: 'Job Description
+
+    - Design characters, environments, items, and graphics as assigned.
+
+    - Work under tight deadlines.
+
+    - New graduates who love games are welcome.
+
+
+    Terms
+
+    - Must have four to five years of work experience.
+
+    - Must be able to cover multiple roles alone.
+
+    - Must handle pressure and urgent revisions well.'
   logo: {fileID: 0}
   tags: []
   hr: {fileID: 11400000, guid: 2060f6e82eb65674a980ad8b13aa4524, type: 2}

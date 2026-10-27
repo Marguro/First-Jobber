@@ -222,12 +222,11 @@ namespace FirstJobber
         {
             if (Phase != GamePhase.ResumeEditor) return;
             // Confidence was captured when Confirm was pressed (ResumeEditorController); it is not recalculated here.
-            var confirmedLines = database.ResolveResumeConfirmedLines(session.confirmedConfidence, out var confirmedMode);
-            dialogue.Play(confirmedLines, mode: confirmedMode, onComplete: () =>
-                dailyEvents.Run(EventTrigger.AfterResumeConfirmed, session, () =>
-                {
-                    if (ChangePhase(GamePhase.CompanySelection)) companySelection.Open(ctx);
-                }));
+            // The confidence reaction is NOT played now: it plays when the company application is confirmed (OnCompanyConfirmed).
+            dailyEvents.Run(EventTrigger.AfterResumeConfirmed, session, () =>
+            {
+                if (ChangePhase(GamePhase.CompanySelection)) companySelection.Open(ctx);
+            });
         }
 
         void OnCompanyBack()
@@ -238,12 +237,20 @@ namespace FirstJobber
 
         void OnCompanyConfirmed(string companyId)
         {
-            if (Phase != GamePhase.CompanySelection) return;
+            if (Phase != GamePhase.CompanySelection || session.applicationOpen) return; // one application = one reaction
+            var company = database.FindCompany(companyId);
+            if (company == null) return;
             session.selectedCompanyId = companyId;
             ctx.Loop.BeginApplication();
-            dialogue.Play(database.companyConfirmedLines, mode: database.companyConfirmedMode, onComplete: () =>
-                dailyEvents.Run(EventTrigger.AfterCompanySelected, session, () =>
-                    dailyEvents.Run(EventTrigger.BeforeInterview, session, StartInterview)));
+
+            // Confidence reaction (finalized value from Resume Confirmation) -> company line -> events -> interview.
+            // All of it plays while the Company Selection screen is still shown; each step starts when the previous one completed.
+            // Day and confidence are captured here, once; later refreshes cannot change the pool.
+            var confidenceLines = database.ResolveApplyReaction(session.day, session.confirmedConfidence, out var confidenceMode);
+            dialogue.Play(confidenceLines, mode: confidenceMode, onComplete: () =>
+                dialogue.Play(database.companyConfirmedLines, mode: database.companyConfirmedMode, onComplete: () =>
+                    dailyEvents.Run(EventTrigger.AfterCompanySelected, session, () =>
+                        dailyEvents.Run(EventTrigger.BeforeInterview, session, StartInterview))));
         }
 
         // ------------------------------------------------------------ interview & rejection

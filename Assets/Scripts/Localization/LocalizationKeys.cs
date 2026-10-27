@@ -33,6 +33,7 @@ namespace FirstJobber
                 case DailyEventData a: return "event/" + IdOr(a.id, a);
                 case EndingData a: return "ending/" + IdOr(a.id, a);
                 case GameDatabase _: return "database";
+                case ConfidenceDialogueDatabase _: return "confidence/apply";
                 default: return "asset/" + asset.name;
             }
         }
@@ -54,6 +55,7 @@ namespace FirstJobber
         {
             if (db == null) return;
             VisitAsset(db, add);
+            VisitAsset(db.confidenceDialogue, add);
             foreach (var a in db.categories) VisitAsset(a, add);
             foreach (var a in db.choices) VisitAsset(a, add);
             foreach (var a in db.companies) VisitAsset(a, add);
@@ -100,6 +102,16 @@ namespace FirstJobber
                     Lines(c, "hrIntro", c.hrIntro, add);
                     Lines(c, "rejection", c.rejection, add);
                     break;
+                case ConfidenceDialogueDatabase cd:
+                    foreach (var day in cd.days)
+                    {
+                        if (day == null) continue;
+                        Candidates(cd, ConfidenceDialogueDatabase.DayKey(day.day) + "/high", day.high, add);
+                        Candidates(cd, ConfidenceDialogueDatabase.DayKey(day.day) + "/low", day.low, add);
+                    }
+                    Candidates(cd, "fallback/high", cd.fallbackHigh, add);
+                    Candidates(cd, "fallback/low", cd.fallbackLow, add);
+                    break;
                 case HRCharacterData h:
                     Text(h, "hrName", h.hrName, add);
                     Lines(h, "introduction", h.introduction, add);
@@ -133,6 +145,20 @@ namespace FirstJobber
                     Lines(e, "lines", e.lines, add);
                     Text(e, "finalText", e.finalText, add);
                     break;
+            }
+        }
+
+        // key: confidence/apply/day_01/high/<candidate id>/text (pages: .../lines/<n>). Ids make keys independent of list order.
+        static void Candidates(ScriptableObject owner, string pool, System.Collections.Generic.List<ConfidenceCandidate> list, Action<string, string> add)
+        {
+            if (list == null) return;
+            for (int i = 0; i < list.Count; i++)
+            {
+                var c = list[i];
+                if (c == null || c.dialogue == null) continue;
+                string id = string.IsNullOrWhiteSpace(c.id) ? "candidate_" + i.ToString("00") : c.id;
+                c.dialogue.locKey = Of(owner, pool + "/" + id + "/text");
+                for (int p = 0; p < c.dialogue.PageCount; p++) Emit(c.dialogue.GetPageKey(p), c.dialogue.GetPage(p), add);
             }
         }
 

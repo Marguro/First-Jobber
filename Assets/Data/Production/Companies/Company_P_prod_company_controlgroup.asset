@@ -17,7 +17,7 @@ MonoBehaviour:
   jobTitle: 
   salary: 
   industry: 
-  description: "\u2022 Create artwork according to customer briefs and requirements.\n\u2022 Revise work based on feedback until it is approved.\n\u2022 Applicants with passion who want to grow with the company are welcome.\n\n\u2022 Must work on several projects at the same time.\n\u2022 Multiple rounds of revisions may be required based on client requests.\n\u2022 Must prioritize the team\u2019s success over personal preferences."
+  description: "Job Description\n- Create artwork according to customer briefs and requirements.\n- Revise work based on feedback until it is approved.\n- Applicants with passion who want to grow with the company are welcome.\n\nTerms\n- Must work on several projects at the same time.\n- Multiple rounds of revisions may be required based on client requests.\n- Must prioritize the team\u2019s success over personal preferences."
   logo: {fileID: 0}
   tags: []
   hr: {fileID: 11400000, guid: d739958cc5a2596428b15b697ac0bdb8, type: 2}

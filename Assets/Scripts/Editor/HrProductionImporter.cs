@@ -84,12 +84,13 @@ namespace FirstJobber.EditorTools
                 // ---- company (only the imported fields; logo / jobTitle / salary / tags stay as authored)
                 company.id = jc.companyId;
                 company.companyName = jc.name.english;
-                company.description = Bullets(jc.jobDescription, l => l.english) + "\n\n" + Bullets(jc.workingConditions, l => l.english);
+                if (string.IsNullOrWhiteSpace(company.description)) // hand-edited descriptions are kept
+                    company.description = Describe(jc.jobDescription, jc.workingConditions, JobHeadingEn, TermsHeadingEn, l => l.english);
                 company.hr = hr;
                 EditorUtility.SetDirty(company);
                 Translate(LocalizationKeys.Of(company, "companyName"), jc.name.english, jc.name.thai);
                 Translate(LocalizationKeys.Of(company, "description"), company.description,
-                    Bullets(jc.jobDescription, l => l.thai) + "\n\n" + Bullets(jc.workingConditions, l => l.thai));
+                    Describe(jc.jobDescription, jc.workingConditions, JobHeadingTh, TermsHeadingTh, l => l.thai));
 
                 // ---- HR identity
                 hr.id = jc.hr.hrId;
@@ -167,11 +168,76 @@ namespace FirstJobber.EditorTools
 
         static string AnswerId(int index) { return "a" + (index + 1); }
 
-        static string Bullets(List<Loc> lines, Func<Loc, string> pick)
+        const string JobHeadingEn = "Job Description", TermsHeadingEn = "Terms";
+        const string JobHeadingTh = "รายละเอียดงาน", TermsHeadingTh = "เงื่อนไขการทำงาน";
+
+        // Standard company description: two headed sections, "- " bullets, one blank line between them.
+        static string Describe(List<Loc> job, List<Loc> terms, string jobHeading, string termsHeading, Func<Loc, string> pick)
         {
-            var sb = new StringBuilder();
-            if (lines != null)
-                foreach (var l in lines) { if (sb.Length > 0) sb.Append('\n'); sb.Append("• ").Append(pick(l)); }
+            var sb = new StringBuilder(jobHeading);
+            if (job != null) foreach (var l in job) sb.Append("\n- ").Append(pick(l));
+            sb.Append("\n\n").Append(termsHeading);
+            if (terms != null) foreach (var l in terms) sb.Append("\n- ").Append(pick(l));
+            return sb.ToString();
+        }
+
+        // ------------------------------------------------------------ 22. reformat company descriptions
+
+        /// <summary>
+        /// Rewrites the description of every production company (English asset text + its Thai table entry) into
+        /// "Job Description / - bullets / blank line / Terms / - bullets". Wording is kept; bullets are never added.
+        /// Accepts old text with bullets, * or "-" (with or without a space), with or without headings
+        /// (without headings: first block = job, block after the blank line = terms).
+        /// </summary>
+        [MenuItem("Tools/First Jobber/22. Reformat Production Company Descriptions")]
+        public static void ReformatDescriptions()
+        {
+            var table = AssetDatabase.LoadAssetAtPath<LocalizationTable>(TablePath);
+            if (table == null) { Debug.LogError("[HR] Thai table not found."); return; }
+            int changed = 0;
+            foreach (var guid in AssetDatabase.FindAssets("t:CompanyData", new[] { CompanyFolder }))
+            {
+                var co = AssetDatabase.LoadAssetAtPath<CompanyData>(AssetDatabase.GUIDToAssetPath(guid));
+                string en = FormatDescription(co.description, JobHeadingEn, TermsHeadingEn);
+                if (en != co.description) { co.description = en; EditorUtility.SetDirty(co); changed++; }
+
+                string key = LocalizationKeys.Of(co, "description");
+                var entry = table.entries.Find(e => e != null && e.key == key);
+                if (entry == null) { Debug.LogWarning("[HR] No Thai description entry for " + co.id + " (English is shown in Thai mode)."); continue; }
+                entry.english = en;
+                string th = FormatDescription(entry.thai, JobHeadingTh, TermsHeadingTh);
+                if (th != entry.thai) { entry.thai = th; changed++; }
+            }
+            EditorUtility.SetDirty(table);
+            AssetDatabase.SaveAssets();
+            Debug.Log("[HR] Company descriptions reformatted (" + changed + " text(s) changed).");
+            LocalizationTools.Export();
+        }
+
+        static readonly string[] JobHeadings = { "job description", "รายละเอียดงาน" };
+        static readonly string[] TermsHeadings = { "terms", "เงื่อนไขการทำงาน", "เงื่อนไข" };
+
+        public static string FormatDescription(string text, string jobHeading, string termsHeading)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return text;
+            var job = new List<string>();
+            var terms = new List<string>();
+            int section = -1; // -1 = no heading yet
+            bool explicitHeadings = false;
+            foreach (var raw in text.Replace("\\n", "\n").Replace("\r", "").Split('\n'))
+            {
+                string line = raw.Trim();
+                if (line.Length == 0) { if (!explicitHeadings && section == 0 && job.Count > 0) section = 1; continue; }
+                if (Array.Exists(JobHeadings, h => string.Equals(h, line, StringComparison.OrdinalIgnoreCase))) { section = 0; explicitHeadings = true; continue; }
+                if (Array.Exists(TermsHeadings, h => string.Equals(h, line, StringComparison.OrdinalIgnoreCase))) { section = 1; explicitHeadings = true; continue; }
+                if (section < 0) section = 0;
+                line = line.TrimStart('•', '*', '-', ' ', '\t').Trim();
+                if (line.Length > 0) (section == 0 ? job : terms).Add(line);
+            }
+            var sb = new StringBuilder(jobHeading);
+            foreach (var l in job) sb.Append("\n- ").Append(l);
+            sb.Append("\n\n").Append(termsHeading);
+            foreach (var l in terms) sb.Append("\n- ").Append(l);
             return sb.ToString();
         }
 

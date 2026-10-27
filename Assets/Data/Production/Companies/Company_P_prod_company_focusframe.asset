@@ -17,7 +17,24 @@ MonoBehaviour:
   jobTitle: 
   salary: 
   industry: 
-  description: "\u2022 Design characters and visual elements for games.\n\u2022 Work with the development team to meet project goals.\n\u2022 Talented applicants willing to learn are welcome.\n\u2022 Video editing skills required.\n\n\u2022 Work six days a week.\n\u2022 No overtime pay; everyone is expected to finish their assigned work.\n\u2022 Flexible working hours, but you must be reachable whenever the team needs you."
+  description: 'Job Description
+
+    - Design characters and visual elements for games.
+
+    - Work with the development team to meet project goals.
+
+    - Talented applicants willing to learn are welcome.
+
+    - Video editing skills required.
+
+
+    Terms
+
+    - Work six days a week.
+
+    - No overtime pay; everyone is expected to finish their assigned work.
+
+    - Flexible working hours, but you must be reachable whenever the team needs you.'
   logo: {fileID: 0}
   tags: []
   hr: {fileID: 11400000, guid: 1951d20f2bec2f24d9e682627ec8f31a, type: 2}

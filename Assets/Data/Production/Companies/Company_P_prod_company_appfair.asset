@@ -25,13 +25,14 @@ MonoBehaviour:
 
     - Applicants of all genders are welcome; women will receive special consideration.
 
+
     Terms
 
-    -Must be able to present work to clients.
+    - Must be able to present work to clients.
 
-    -The company places importance on personality and appearance.
+    - The company places importance on personality and appearance.
 
-    -Must be willing to attend company activities and social events.'
+    - Must be willing to attend company activities and social events.'
   logo: {fileID: 0}
   tags: []
   hr: {fileID: 11400000, guid: bc657b87f3c2e37468bac55f51db7e84, type: 2}

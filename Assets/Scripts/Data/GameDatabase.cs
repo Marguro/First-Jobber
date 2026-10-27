@@ -148,6 +148,23 @@ namespace FirstJobber
         /// otherwise Low. An empty chosen pool falls back to the other pool, then to the legacy collection.
         /// The caller plays the result with the returned mode (pools are always RandomOne: one block, all its lines).
         /// </summary>
+        [Header("Confidence reaction on Apply (day + confidence). Empty = the legacy High/Low pools below are used.")]
+        public ConfidenceDialogueDatabase confidenceDialogue;
+
+        /// <summary>
+        /// Reaction played when a company application is confirmed. Uses the day-based database when it has a usable pool,
+        /// otherwise the legacy resume-confirmed pools. Always played with the returned mode (RandomOne = one candidate).
+        /// </summary>
+        public DialogueLine[] ResolveApplyReaction(int day, float confidence, out DialoguePlaybackMode mode)
+        {
+            if (confidenceDialogue != null)
+            {
+                var lines = confidenceDialogue.Resolve(day, confidence);
+                if (lines != null) { mode = DialoguePlaybackMode.RandomOne; return lines; }
+            }
+            return ResolveResumeConfirmedLines(confidence, out mode);
+        }
+
         public DialogueLine[] ResolveResumeConfirmedLines(float confidence, out DialoguePlaybackMode mode)
         {
             bool high = confidence > resumeConfirmedThreshold;

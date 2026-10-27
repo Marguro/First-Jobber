@@ -17,7 +17,7 @@ MonoBehaviour:
   jobTitle: 
   salary: 
   industry: 
-  description: "\u2022 Create visual designs and develop concepts for game projects.\n\u2022 Collaborate with the art and development teams.\n\u2022 Applicants with strong portfolios are welcome, even with limited experience.\n\n\u2022 Attractive salary and benefits.\n\u2022 Work from home three days and in the office two days per week.\n\u2022 There is a pre-employment assignment (to steal applicants\u2019 ideas)."
+  description: "Job Description\n- Create visual designs and develop concepts for game projects.\n- Collaborate with the art and development teams.\n- Applicants with strong portfolios are welcome, even with limited experience.\n\nTerms\n- Attractive salary and benefits.\n- Work from home three days and in the office two days per week.\n- There is a pre-employment assignment (to steal applicants\u2019 ideas)."
   logo: {fileID: 0}
   tags: []
   hr: {fileID: 11400000, guid: 7a950ba966bc9fc429981651f7f128dc, type: 2}
