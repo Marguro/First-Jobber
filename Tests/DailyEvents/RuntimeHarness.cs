@@ -71,7 +71,7 @@ namespace UnityEngine
 {
     public class Object {}
     public class MonoBehaviour : Object {}
-    public static class Debug { public static void Log(string message, Object context) {} }
+    public static class Debug { public static void Log(string message, Object context) {} public static void LogError(string message, Object context) {} }
     public class GameObject { public bool active; public bool activeInHierarchy => active; public void SetActive(bool v) {active=v;} }
     public class SerializeField : Attribute {}
 }

@@ -55,24 +55,31 @@ namespace FirstJobber
         public void Open(GameDatabase database)
         {
             db = database;
+            if (db == null || nameInput == null || genderDropdown == null || submitButton == null)
+                Debug.LogError("[MainMenu] Applicant form requires database, NameInput, GenderDropdown and SubmitButton references.", this);
             submitted = false;
             if (nameInput != null) nameInput.text = "";
             CreateApplicantController.PopulateGenderDropdown(genderDropdown, db);
             if (errorText != null) errorText.text = "";
             if (submitButton != null) submitButton.interactable = true;
             if (continueButton != null) continueButton.gameObject.SetActive(GameSession.HasSave());
+            Debug.Log("[MainMenu] Applicant form initialized; gender options=" + (genderDropdown != null ? genderDropdown.options.Count : 0), this);
         }
 
         void TrySubmit()
         {
-            if (submitted || db == null) return;
+            Debug.Log("[Applicant] Submit clicked.", this);
+            if (submitted) return;
+            if (db == null) { Debug.LogError("[Applicant] Main Menu has not received its GameDatabase.", this); return; }
             if (!CreateApplicantController.Validate(db, nameInput != null ? nameInput.text : "", genderDropdown,
                     out string playerName, out string genderId, out string error))
             {
+                Debug.LogWarning("[Applicant] Validation failed: " + error, this);
                 if (errorText != null) errorText.text = error;
                 return;
             }
             submitted = true;
+            Debug.Log("[Applicant] Name valid; gender ID=" + genderId + ". [MainMenu] New Game requested.", this);
             if (submitButton != null) submitButton.interactable = false;
             if (errorText != null) errorText.text = "";
             SubmitRequested?.Invoke(playerName, genderId);

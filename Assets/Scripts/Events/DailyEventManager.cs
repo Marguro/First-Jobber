@@ -68,6 +68,12 @@ namespace FirstJobber
             if (IsWaitingForChoice) throw new InvalidOperationException("Resolve the open Daily Event choice before starting another event sequence.");
             var queue = new List<DailyEventData>();
             Collect(trigger, session, queue);
+            if (session.day == 1 && trigger == EventTrigger.BeforeResume)
+            {
+                if (database.finalStoryDay > 0 && queue.Count == 0 && !session.triggeredEvents.Contains("event_day01_opening"))
+                    Debug.LogError("[DailyEvent] Production Day 1 opening event is missing or ineligible.", this);
+                else Debug.Log("[DailyEvent] Day 1 BeforeResume events found: " + queue.Count, this);
+            }
             RunFrom(queue, 0, session, onDone);
         }
 
@@ -76,6 +82,7 @@ namespace FirstJobber
             if (index >= queue.Count) { onDone?.Invoke(); return; }
 
             var ev = queue[index];
+            Debug.Log("[DailyEvent] Dialogue started: " + ev.id, this);
             if (!session.triggeredEvents.Contains(ev.id)) session.triggeredEvents.Add(ev.id);
             if (ev.setFlags != null)
                 for (int i = 0; i < ev.setFlags.Length; i++) session.SetFlag(ev.setFlags[i]);
@@ -89,6 +96,7 @@ namespace FirstJobber
 
         void CompleteEvent(List<DailyEventData> queue, int index, GameSession session, Action done)
         {
+            Debug.Log("[DailyEvent] Dialogue completed: " + queue[index].id, this);
             session.Save();
             RunFrom(queue, index + 1, session, done);
         }

@@ -42,6 +42,9 @@ namespace FirstJobber
 
         public void Show()
         {
+            // An artist may leave DialogueBox inactive in the scene. Activate BEFORE setting state:
+            // its first Awake wires the click area and calls Hide().
+            if (!gameObject.activeSelf) gameObject.SetActive(true);
             visible = true;
             if (group == null) return;
             group.alpha = 1f;

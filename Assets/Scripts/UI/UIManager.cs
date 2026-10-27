@@ -7,7 +7,8 @@ namespace FirstJobber
 {
     /// <summary>
     /// Owns panel visibility (cross-fade) and the full-screen black overlay used for sleep / day transitions.
-    /// Panels stay active in the hierarchy; only alpha / raycast / interactable change.
+    /// Activates managed roots at startup, even when hidden for scene authoring.
+    /// Panels then stay active; only alpha / raycast / interactable change.
     /// </summary>
     public class UIManager : MonoBehaviour
     {
@@ -73,6 +74,7 @@ namespace FirstJobber
         {
             var target = PanelFor(phase);
             if (target == null) return;
+            if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
             current = target;
             foreach (var p in panels)
             {
@@ -112,6 +114,8 @@ namespace FirstJobber
             g.alpha = alpha;
             g.interactable = on;
             g.blocksRaycasts = on;
+            // CanvasGroup cannot reveal a disabled GameObject. Initialize controllers before flow starts.
+            if (!g.gameObject.activeSelf) g.gameObject.SetActive(true);
         }
     }
 }

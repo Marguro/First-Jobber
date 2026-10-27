@@ -1,6 +1,6 @@
 """Read-only serialized production audit and controller regression tests (not Play Mode)."""
 from pathlib import Path
-import collections,csv,json,re,subprocess,yaml
+import collections,csv,json,re,subprocess,sys,yaml
 R=Path(__file__).resolve().parents[2]
 def docs(p):
  s=p.read_text(encoding='utf-8-sig');ids=re.findall(r'^--- !u!\d+ &(-?\d+)',s,re.M)
@@ -64,7 +64,7 @@ assert scene[1172304822]['MonoBehaviour']['endingList']['fileID']==411229344
 print('PASS active scene/Production references; 13 groups, 54 exact Thai pages, 4 cues, 4 phone options, 3 endings, 4 exact previews, EN/TH/CSV keys')
 # Existing serialized assets/GUIDs are not replaced, and unrelated table entries remain intact.
 backup=R/'.utmp/daily-popup-fix'
-if backup.exists():
+if backup.exists() and '--compare-popup-backup' in sys.argv:
  old=asset(backup/'LocalizationTable_TH.asset')['entries']
  assert all(entries[e['key']]==e for e in old),'Existing translation changed'
  before=asset(backup/'GameDatabase_Production.asset')

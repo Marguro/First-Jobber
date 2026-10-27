@@ -986,14 +986,14 @@ category/university/displayName,University,มหาวิทยาลัย
 category/university/emptyMessage,Nothing is left to choose here.,ไม่มีตัวเลือกเหลือในหมวดนี้แล้ว
 choice/faculty_accounting/displayText,Accounting,คณะบัญชี
 choice/faculty_accounting/playerReaction/0/lines/0,Actually... I never wanted to study accounting that much.,จริง ๆ แล้ว... ตอนนั้นเราไม่ได้อยากเรียนบัญชีขนาดนั้นหรอก
-choice/faculty_accounting/playerReaction/1/lines/0,"My family wanted me to study it. They said I'd have a stable job after graduation. I didn't even know what I wanted to be back then, so I went along with what everyone said.",
-choice/faculty_accounting/playerReaction/2/lines/0,"By the time I realized I liked drawing, designing characters, and wanted to make games... so much time had passed.",
+choice/faculty_accounting/playerReaction/1/lines/0,"My family wanted me to study it. They said I'd have a stable job after graduation. I didn't even know what I wanted to be back then, so I went along with what everyone said.",ที่บ้านอยากให้เรียน บอกว่าเรียนจบแล้วจะได้มีงานมั่นคง ส่วนเราตอนนั้นก็ยังไม่รู้ด้วยซ้ำว่าตัวเองอยากเป็นอะไรกันแน่ ก็เลยเรียนตามที่ทุกคนบอก
+choice/faculty_accounting/playerReaction/2/lines/0,"By the time I realized I liked drawing, designing characters, and wanted to make games... so much time had passed.",กว่าจะรู้ตัวว่าชอบวาดรูป ชอบออกแบบตัวละคร แล้วก็อยากทำเกม... เวลาก็ผ่านไปตั้งเยอะแล้ว
 choice/faculty_digital_art/displayText,Digital Art,คณะดิจิทัลอาร์ต (Digital Art)
 choice/faculty_digital_art/playerReaction/0/lines/0,This is the faculty for me! I endured all those final projects for this day!,นี้แหละคณะที่ใช่ ฉันอดทนทำไฟนอลมาก็เพื่อวันนี้!
 choice/faculty_digital_communications/displayText,Communication Arts (Digital Media),คณะนิเทศศาสตร์ (สื่อดิจิทัล)
 choice/faculty_digital_communications/playerReaction/0/lines/0,"Hmm... I didn't study drawing directly, but I did learn about visual communication and digital media.",อืม... ถึงจะไม่ได้เรียนวาดรูปโดยตรง แต่เราก็ได้เรียนเรื่องการสื่อสารด้วยภาพกับการทำสื่อมาบ้างนี่นา
-choice/faculty_digital_communications/playerReaction/1/lines/0,I should be able to apply some of that to making games!,
-choice/faculty_digital_communications/playerReaction/2/lines/0,As for drawing... I'll need a little more practice.,
+choice/faculty_digital_communications/playerReaction/1/lines/0,I should be able to apply some of that to making games!,บางอย่างก็น่าจะเอามาปรับใช้กับงานเกมได้แหละ!
+choice/faculty_digital_communications/playerReaction/2/lines/0,As for drawing... I'll need a little more practice.,ส่วนเรื่องวาดรูป... ก็ต้องฝึกเพิ่มอีกหน่อย
 choice/faculty_fine_arts/displayText,Fine Arts,คณะศิลปกรรมศาสตร์
 choice/faculty_fine_arts/playerReaction/0/lines/0,"Hmm... That's close enough, I guess!",อืมมม... ก็ถือว่าใกล้เคียงอยู่นะ!
 choice/faculty_fine_arts/playerReaction/0/lines/1,"At least I got plenty of practice drawing, using colors, and composing images, even if I didn't study game development directly.",อย่างน้อยตอนนั้นเราก็ได้ฝึกวาดรูป ฝึกใช้สี ฝึกจัดองค์ประกอบมาตั้งเยอะ ถึงจะไม่ได้เรียนทำเกมโดยตรงก็เถอะ
@@ -1190,3 +1190,26 @@ ending/ending_continue_applying/previewLines/0/lines/1,"One more try, then... Ev
 ui/daily/confirm,Confirm decision,ยืนยันการตัดสินใจ
 ui/daily/back,Back,ย้อนกลับ
 speaker/Friend,Friend,เพื่อน
+choice/faculty_fine_arts/playerReaction/1/lines/0,"At least I got plenty of practice drawing, using colors, and composing images, even if I didn't study game development directly.",อย่างน้อยตอนนั้นเราก็ได้ฝึกวาดรูป ฝึกใช้สี ฝึกจัดองค์ประกอบมาตั้งเยอะ ถึงจะไม่ได้เรียนทำเกมโดยตรงก็เถอะ
+choice/faculty_information_technology/playerReaction/1/lines/0,"When I chose my faculty, I didn't even know what I liked. I just picked somewhere I thought I could manage, thinking I'd figure things out after graduating.",ตอนเลือกคณะก็ยังไม่รู้เลยว่าตัวเองชอบอะไรกันแน่ เห็นคณะไหนพอเรียนไหวก็เลือก ๆ ไปก่อน คิดว่าเดี๋ยวเรียนจบแล้วค่อยหาทางเอา
+choice/faculty_information_technology/playerReaction/2/lines/0,"But I kept drawing even while studying IT! I might not be amazing, but I'm not starting from zero.",แต่ถึงจะเรียนไอทีมา เราก็ยังวาดรูปอยู่เรื่อย ๆ นะ! ฝีมืออาจจะไม่ได้เทพอะไร แต่ก็ไม่ได้เริ่มจากศูนย์สักหน่อย
+choice/university_a/playerReaction/1/lines/0,"With a university name like this, at least HR should take an interest in my resume!",ชื่อมหาวิทยาลัยระดับนี้ อย่างน้อย HR ก็น่าจะเปิด Resume ดูด้วยความสนใจบ้างแหละ!
+choice/university_b/playerReaction/1/lines/0,And tuition wasn't cheap. My family invested a lot in getting me through school.,ค่าเทอมแต่ละเทอมก็ไม่ใช่น้อย ๆ กว่าจะเรียนจบมาได้ ที่บ้านก็ลงทุนกับเราไปเยอะเหมือนกัน
+choice/university_b/playerReaction/2/lines/0,"Besides, graduating from there doesn't make me any less capable than anyone else!",อีกอย่าง จบจากที่นี่ก็ไม่ได้แปลว่าเราด้อยกว่าใครสักหน่อย!
+choice/university_c/playerReaction/1/lines/0,"But I graduated through my own effort! Assignments, projects, exams... I've been through plenty.",แต่เราก็เรียนจบมาได้ด้วยความสามารถของตัวเองนะ! ส่งงาน ทำโปรเจกต์ สอบผ่าน ก็ผ่านอะไรมาเยอะเหมือนกัน
+choice/university_c/playerReaction/2/lines/0,Surely a university's name shouldn't be the only thing that matters... right?,จะให้ชื่อมหาวิทยาลัยเป็นตัวตัดสินทั้งหมดก็คงไม่ใช่หรอกมั้ง...
+choice/university_d/playerReaction/1/lines/0,But the tuition was just too much. I didn't want to put any more financial pressure on my family.,แต่ค่าเทอมมันไม่ไหวจริง ๆ จะให้ที่บ้านแบกรับค่าใช้จ่ายมากกว่านี้ก็ไม่อยากแล้ว
+choice/university_d/playerReaction/2/lines/0,"It might not make my resume stand out, but it wasn't because I didn't try!",มันอาจไม่ได้ทำให้ Resume ดูโดดเด่นเท่าคนอื่น แต่เราก็ไม่ได้เลือกเพราะไม่พยายามสักหน่อย!
+choice/university_d/playerReaction/3/lines/0,"Oh well... If my work is really good, a company should see its value!",เอาเถอะ... ถ้าผลงานเราดีจริง บริษัทก็น่าจะเห็นคุณค่าได้สิ!
+choice/university_e/playerReaction/1/lines/0,Back then I just wanted to graduate. Who knew a university's name would matter this much...,ตอนนั้นแค่คิดว่าเรียนให้จบก็พอแล้วนี่นา ใครจะไปคิดว่าชื่อมหาวิทยาลัยจะมีผลขนาดนี้..
+choice/university_e/playerReaction/2/lines/0,It's not like I can turn back time and choose again.,แต่จะให้ย้อนเวลากลับไปเลือกใหม่ก็ไม่ได้แล้วนี่
+choice/motto_do_everything_you_want/playerReaction/1/lines/0,"If nobody makes what we want to see, we'll make it ourselves!",ถ้าไม่มีใครสร้างสิ่งที่เราอยากเห็น งั้นเราก็สร้างมันขึ้นมาเองสิ!
+choice/motto_do_everything_you_want/playerReaction/2/lines/0,That's why I want to work on games!,นี่แหละเหตุผลที่ฉันอยากทำงานเกม!
+choice/motto_dreams_never_expire/playerReaction/1/lines/0,"I might only be a fresh graduate now, but someday I'll create something I can be proud of!",ถึงตอนนี้ฉันจะยังเป็นแค่เด็กจบใหม่ แต่สักวันหนึ่งฉันต้องสร้างผลงานที่ตัวเองภูมิใจให้ได้!
+choice/motto_dreams_never_expire/playerReaction/2/lines/0,All right! Let's make that dream come true!!,เอาล่ะ! ไปทำให้ความฝันเป็นจริงกันเถอะ!!
+choice/motto_every_day_learning/playerReaction/1/lines/0,"I might not be good at everything yet, but learning from actual work should help me grow a lot.",เราอาจจะยังไม่ได้เก่งทุกอย่าง แต่ถ้าได้เรียนรู้จากการทำงานจริง ก็น่าจะพัฒนาตัวเองไปได้อีกเยอะ
+choice/motto_every_day_learning/playerReaction/2/lines/0,"I just need a chance to try, learn, and get a little better every day...",ขอแค่มีโอกาสได้ลอง ได้เรียนรู้ แล้วก็ทำให้ดีขึ้นในทุกวันก็พอ...
+choice/motto_adapt_to_every_problem/playerReaction/1/lines/0,"Real work won't always involve things I like. If I want to work with others, I'll have to be adaptable.",ทำงานจริงคงไม่ได้มีแต่สิ่งที่เราชอบทั้งหมดหรอก ถ้าอยากร่วมงานกับคนอื่นได้ เราก็ต้องรู้จักปรับตัวบ้าง
+choice/motto_adapt_to_every_problem/playerReaction/2/lines/0,I hope HR appreciates someone willing to improve...,หวังว่า HR จะชอบคนที่พร้อมพัฒนาตัวเองแบบนี้นะ...
+choice/motto_flexibility_key/playerReaction/1/lines/0,"Some tasks might not be what I'm best at, or even what I want to do. But if it makes me useful to the company, I suppose I have to try...",ถึงบางอย่างอาจไม่ใช่สิ่งที่เราถนัดหรืออยากทำที่สุด แต่ถ้ามันทำให้บริษัทเห็นว่าเรามีประโยชน์ ก็คงต้องลองดู..
+choice/motto_flexibility_key/playerReaction/2/lines/0,...I just need them to hire me.,...ขอแค่รับฉันเข้าทำงานก็พอแล้วล่ะ

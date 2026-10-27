@@ -167,6 +167,7 @@ namespace FirstJobber
         void NewGame(string playerName, string genderId)
         {
             if (!referencesOk || Phase != GamePhase.MainMenu) return;
+            Debug.Log("[GameFlow] Starting Day 1 with validated applicant; gender ID=" + genderId, this);
             session = new GameSession { applicantName = playerName, applicantGender = genderId };
             ctx = new GameContext(database, session, dialogue);
             ApplyAtmosphere(true);
@@ -206,6 +207,7 @@ namespace FirstJobber
             session.selectedCompanyId = null;
             session.applicationOpen = false;
             session.Save();
+            if (session.day == 1) Debug.Log("[Applicant] Day 1 profile save requested before opening story. Save failures are reported by GameSession.", this);
             resumeEditor.Refresh(ctx);
             OpenResumeEditor(playIntro, true);
         }
@@ -213,6 +215,7 @@ namespace FirstJobber
         void OpenResumeEditor(bool playIntro, bool runBeforeResume)
         {
             Action open = () => {
+                Debug.Log("[GameFlow] Opening Resume Editor after BeforeResume events; day=" + session.day, this);
                 if (Phase == GamePhase.DailyEvent) ChangePhase(GamePhase.ResumeEditor);
                 resumeEditor.Open(ctx, playIntro && database.finalStoryDay == 0, () =>
                     dailyEvents.Run(EventTrigger.OnEnterResume, session, resumeEditor.Unlock));

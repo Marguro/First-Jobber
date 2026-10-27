@@ -65,6 +65,7 @@ namespace FirstJobber
                 overlay.raycastTarget = false;
                 overlayRgb = overlay.color;
                 SetOverlay(0f);
+                if (!overlay.gameObject.activeSelf) overlay.gameObject.SetActive(true);
             }
         }
 
