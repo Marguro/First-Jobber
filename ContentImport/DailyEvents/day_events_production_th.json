@@ -1,0 +1,487 @@
+{
+  "schema_version": 1,
+  "project": "First-Jobber",
+  "purpose": "Production daily events and final decision source content. Import via existing Unity ScriptableObject/event infrastructure; this JSON is not a runtime replacement.",
+  "authoring_locale": "th",
+  "runtime_source_locale": "en",
+  "translation_locale": "th",
+  "dialogue_presentation": "Sequential, each lines_th entry is one page/advance, not a RandomOne candidate",
+  "notes": [
+    "Do not change authored game mechanics based on character claims inside dialogue.",
+    "Day2 and Day4 popup selections have no authored route-specific consequence; record chosen option and continue shared dialogue.",
+    "No audio clips specified; sound event IDs are placeholders and must be left optional.",
+    "Endings 1 and 2 have preview lines that seem semantically mismatched to the choice labels; preserve the exact provided association, flag for author decision, do not silently swap.",
+    "Source content has only Thai; create faithful English source text and Thai LocalizationTable_TH entries with existing stable LocalizationKeys.",
+    "Minor evident typos and punctuation were normalized; review against original author text before shipping.",
+    "Explicit names of timeline assets are not known; inspect existing Ending assets and Timeline references."
+  ],
+  "events": [
+    {
+      "id": "event_day01_opening",
+      "day": 1,
+      "trigger": "before_resume",
+      "description_th": "ก่อนเข้าสู่ Resume Editor ครั้งแรก",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "opening",
+          "speaker": "Player",
+          "lines_th": [
+            "เช้าวันแรกของการเป็นเฟิร์สจ๊อบแจ๊บ!",
+            "ในที่สุดก็เรียนจบแล้ว ต่อไปก็ถึงตาเราได้ทำงานจริง ๆ สักที!",
+            "ขอให้วันนี้เป็นวันที่ดี ได้เจอบริษัทเกมที่ใช่ ได้ทำงานอาร์ตที่ชอบ สร้างตัวละครที่มีชีวิตขึ้นมาจริง ๆ",
+            "คิดแล้วก็ตื่นเต้นชะมัด! เอาล่ะ บริษัทเกมในฝัน รอรับฉันได้เลย!",
+            "วันนี้ต้องเป็นวันของฉันแน่นอน!"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day01_resume_intro",
+      "day": 1,
+      "trigger": "on_enter_resume",
+      "description_th": "บทแนะนำ Resume หลังเปิดหน้า Resume ใน Day 1 ครั้งแรก",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "resume_intro",
+          "speaker": "Player",
+          "lines_th": [
+            "เอาล่ะ! ก่อนจะไปคว้างานในฝัน เรามาจัด Resume ของเราให้ปังก่อนดีกว่า!",
+            "ทั้งประวัติการเรียน มหาวิทยาลัย ไปจนถึงคติประจำใจ ทุกอย่างล้วนเป็นส่วนหนึ่งที่ทำให้บริษัทเห็นว่าเราเป็นคนแบบไหน!",
+            "แล้วก็ต้องไม่ลืมเลือกให้ดีด้วย เพราะแต่ละอย่างมีผลต่อความมั่นใจในการสมัครงานของเรา",
+            "ยิ่งข้อมูลของเราเข้ากันได้ดี ความมั่นใจก็ยิ่งเพิ่มขึ้น ถ้าเลือกได้เหมาะกับบริษัทที่สมัครล่ะก็ โอกาสได้งานก็อาจจะสูงขึ้นตามไปด้วย!",
+            "แค่นี้เอง สบายมาก! Resume ดีขนาดนี้ บริษัทเกมในฝันจะปฏิเสธฉันลงได้ยังไงกันล่ะ?"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day01_company_intro",
+      "day": 1,
+      "trigger": "on_enter_company_selection",
+      "description_th": "เข้าสู่หน้า Company Selection Day 1 ครั้งแรก",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "company_intro",
+          "speaker": "Player",
+          "lines_th": [
+            "ต่อไปก็ถึงเวลาเลือกบริษัทที่เราจะยื่น Resume แล้ว!",
+            "บริษัทแต่ละแห่งมีทั้งลักษณะงาน วันทำงาน และเงื่อนไขที่แตกต่างกัน อย่าลืมอ่านรายละเอียดให้ดีก่อนตัดสินใจนะ",
+            "บริษัทที่เราเลือกก็มีผลต่อความมั่นใจในการสมัครงานของเราด้วยนะ! ถ้าคุณสมบัติของเราเข้ากับบริษัทที่เลือก ความมั่นใจก็อาจเพิ่มขึ้น แต่ถ้าไม่เข้ากันล่ะก็... อาจลดลงได้เหมือนกัน!",
+            "เอาเถอะ งานแรกทั้งที ต้องเลือกให้ดีหน่อยแล้ว!",
+            "บริษัทเกมในฝัน... ฉันกำลังไปหาแล้วนะ!"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day01_after_rejection",
+      "day": 1,
+      "trigger": "after_rejection_before_day_advance",
+      "description_th": "หลัง HR ปฏิเสธและก่อนเพิ่ม Day",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "after_rejection",
+          "speaker": "Player",
+          "lines_th": [
+            "ไม่เป็นไร! ก็แค่บริษัทแรกเองนี่นา! ยังมีพรุ่งนี้เสมอ เดี๋ยวก็ต้องมีที่ที่เห็นความสามารถของเราบ้างแหละ!",
+            "นอนเอาแรงแล้วพรุ่งนี้มาเริ่มใหม่ดีกว่า!"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day02_before_resume",
+      "day": 2,
+      "trigger": "before_resume",
+      "description_th": "บทเปิดวัน 2 พร้อมการโทรจากเพื่อนและ Choice Popup",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "morning",
+          "speaker": "Player",
+          "lines_th": [
+            "ถึงเมื่อวาน จะไม่ได้เป็นตามหวัง แต่วันนี้ฉันมั่นใจว่าต้องเป็นวันของฉันแน่นอน!"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "cue",
+          "id": "incoming_call",
+          "description_th": "กริ๊งๆ {โทรศัพท์เข้า}",
+          "event_id": "phone_ring"
+        },
+        {
+          "type": "dialogue",
+          "id": "friend_intro",
+          "speaker": "Friend",
+          "lines_th": [
+            "ไง...{name}... ฉันว่าจะไปสอบ ก.พ. เดือนหน้า เธอจะไปด้วยมั้ย"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "dialogue",
+          "id": "player_hesitate",
+          "speaker": "Player",
+          "lines_th": [
+            "...."
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "dialogue",
+          "id": "friend_followup",
+          "speaker": "Friend",
+          "lines_th": [
+            "มันเป็นงานที่มั่นคง แกควรสอบเผื่อไว้นะ"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "choice_popup",
+          "id": "friend_reply",
+          "options": [
+            {
+              "id": "silent",
+              "label_th": "..."
+            },
+            {
+              "id": "later",
+              "label_th": "เดี๋ยวค่อยว่ากัน"
+            }
+          ],
+          "on_any_choice": "continue",
+          "record_choice": true
+        },
+        {
+          "type": "dialogue",
+          "id": "friend_outro",
+          "speaker": "Friend",
+          "lines_th": [
+            "งั้นไปคิดดูนะ ยังไงก็โทรกลับมาอย่าเกิน 5 วันล่ะ มันจะไม่ทัน"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "cue",
+          "id": "hang_up",
+          "description_th": "วางสาย",
+          "event_id": "phone_hangup"
+        },
+        {
+          "type": "dialogue",
+          "id": "resume_transition",
+          "speaker": "Player",
+          "lines_th": [
+            "เอาล่ะ! วันนี้เราลองมาแก้ Resume ดีกว่า เผื่อจะดีขึ้น!"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day02_after_rejection",
+      "day": 2,
+      "trigger": "after_rejection_before_day_advance",
+      "description_th": "Day 2 หลังถูกปฏิเสธ",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "after_rejection",
+          "speaker": "Player",
+          "lines_th": [
+            "เอ๊ะ... หรือเรายังไม่เก่งพอจริง ๆ นะ? ไม่เป็นไร กลับไปฝึกเพิ่มก็ได้ ครั้งหน้าต้องทำได้ดีกว่านี้แน่!"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day03_before_resume",
+      "day": 3,
+      "trigger": "before_resume",
+      "description_th": "Day 3 บทเปิดวัน",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "morning",
+          "speaker": "Player",
+          "lines_th": [
+            "อรุณสวัสดิ์ตัวเอง! วันที่สามแล้วสินะ...",
+            "วันนี้บริษัทไหนจะได้เห็นความสามารถของเรากันนะ หรือจะได้เห็นแค่ปุ่มปฏิเสธเหมือนเดิมก็ไม่รู้"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day03_after_rejection",
+      "day": 3,
+      "trigger": "after_rejection_before_day_advance",
+      "description_th": "Day 3 หลังถูกปฏิเสธ",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "after_rejection",
+          "speaker": "Player",
+          "lines_th": [
+            "ทำไมมันยากจังนะ... เราก็เตรียมตัวไปดีแล้วแท้ ๆ หรือสิ่งที่เรียนมามันยังไม่พอจริง ๆ? ...ช่างเถอะ พรุ่งนี้ค่อยลองใหม่"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day04_before_resume",
+      "day": 4,
+      "trigger": "before_resume",
+      "description_th": "Day 4 บทเปิดวันพร้อมโทรจากพ่อและ Choice Popup",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "morning",
+          "speaker": "Player",
+          "lines_th": [
+            "อือ... เช้าแล้วเหรอ...",
+            "ไม่อยากลุกเลยแฮะ แต่ก็ต้องลุกอยู่ดี",
+            "วันนี้จะยังเหลือบริษัทให้สมัครอีกมั้ยนะ.."
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "cue",
+          "id": "incoming_call",
+          "description_th": "กริ๊งๆ {โทรศัพท์เข้า}",
+          "event_id": "phone_ring"
+        },
+        {
+          "type": "dialogue",
+          "id": "father_intro",
+          "speaker": "Father",
+          "lines_th": [
+            "เป็นไงบ้างลูก ได้งานทำหรือยัง"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "dialogue",
+          "id": "player_reply",
+          "speaker": "Player",
+          "lines_th": [
+            "ยังเลยพ่อ...แต่คงจะเร็วๆ นี้แหละ"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "dialogue",
+          "id": "father_response",
+          "speaker": "Father",
+          "lines_th": [
+            "พ่อก็หวังแบบนั้นนะ"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "dialogue",
+          "id": "player_silence",
+          "speaker": "Player",
+          "lines_th": [
+            "..."
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "dialogue",
+          "id": "father_offer",
+          "speaker": "Father",
+          "lines_th": [
+            "ว่าแต่ ไม่คิดจะมาทำงานกับพ่อหรอ"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "choice_popup",
+          "id": "father_reply",
+          "options": [
+            {
+              "id": "silent",
+              "label_th": "..."
+            },
+            {
+              "id": "own_path",
+              "label_th": "ขอลองเดินทางที่ตัวเองเลือกก่อนนะพ่อ"
+            }
+          ],
+          "on_any_choice": "continue",
+          "record_choice": true
+        },
+        {
+          "type": "dialogue",
+          "id": "father_outro",
+          "speaker": "Father",
+          "lines_th": [
+            "งั้นลองเอากลับไปคิดดู อีก 2-3 วันพ่อจะโทรมาถามอีกทีนะ"
+          ],
+          "playback": "Sequential"
+        },
+        {
+          "type": "cue",
+          "id": "hang_up",
+          "description_th": "วางสาย",
+          "event_id": "phone_hangup"
+        },
+        {
+          "type": "dialogue",
+          "id": "resume_transition",
+          "speaker": "Player",
+          "lines_th": [
+            "ถือซะว่าให้มันเป็นเรื่องของโชคชะตานำพาไปแล้วกัน"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day04_after_rejection",
+      "day": 4,
+      "trigger": "after_rejection_before_day_advance",
+      "description_th": "Day 4 หลังถูกปฏิเสธ",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "after_rejection",
+          "speaker": "Player",
+          "lines_th": [
+            "อีกแล้วเหรอ... ต้องตอบคำถามเดิม ๆ ต้องทำเหมือนตัวเองพร้อมทุกอย่าง ทั้งที่ข้างในก็เริ่มไม่ไหวแล้ว... เราต้องโดนปฏิเสธอีกกี่ครั้งกันนะ?"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day05_before_resume",
+      "day": 5,
+      "trigger": "before_resume",
+      "description_th": "Day 5 บทเปิดวัน",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "morning",
+          "speaker": "Player",
+          "lines_th": [
+            "ไม่อยากตื่นเลย ไม่อยากเปิดเอกสาร ไม่อยากเห็นเรซูเม่ตัวเองด้วยซ้ำ",
+            "แต่ถ้าไม่ทำอะไรเลย ก็ไม่มีอะไรเปลี่ยนสินะ..."
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day05_after_rejection",
+      "day": 5,
+      "trigger": "after_rejection_before_day_advance",
+      "description_th": "Day 5 หลังถูกปฏิเสธ",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "after_rejection",
+          "speaker": "Player",
+          "lines_th": [
+            "เราแค่อยากได้งานสักงานเองนะ... ไม่ได้อยากเป็นคนเก่งที่สุด ไม่ได้อยากได้เงินเดือนเป็นแสน แค่อยากได้ทำสิ่งที่ตัวเองเรียนมาและชอบบ้าง...",
+            "มันยากขนาดนั้นเลยเหรอ?",
+            "...พรุ่งนี้ก็ต้องตื่นมาสมัครงานอีกสินะ"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    },
+    {
+      "id": "event_day06_final_story",
+      "day": 6,
+      "trigger": "day_start_story_only",
+      "description_th": "Day 6 ไม่มี Resume/Company/Interview; แสดงเนื้อเรื่องก่อนเข้าสู่ Final Decision",
+      "segments": [
+        {
+          "type": "dialogue",
+          "id": "morning",
+          "speaker": "Player",
+          "lines_th": [
+            "...เช้าแล้วเหรอ",
+            "เราทำอะไรผิด...",
+            "ตอนเรียนก็คิดมาตลอดว่า ถ้าตั้งใจเรียน ถ้าฝึกฝนตัวเองให้ดี พอเรียนจบก็จะได้ทำงานที่ชอบ ได้หาเงินด้วยตัวเอง ได้ทำอะไรที่ภูมิใจสักอย่าง",
+            "...เหนื่อยแล้วนะ",
+            "ถ้าฝืนต่อไป มันจะมีอะไรดีขึ้นจริง ๆ ไหม? หรือเรากำลังเสียเวลาไปกับอะไรที่ไม่มีวันเป็นไปได้กันแน่",
+            "ถ้าเลิกตอนนี้ ก็เหมือนยอมแพ้ความฝันตัวเอง... แต่ถ้าไปต่อ เราก็ไม่รู้ว่าจะต้องผิดหวังอีกกี่ครั้ง",
+            "แล้วเราควรทำยังไงต่อดี",
+            "...",
+            "...",
+            "...",
+            "...บางที เราอาจต้องลองคิดดูแล้วจริง ๆ ว่าจะเอายังไงกับชีวิตต่อจากนี้"
+          ],
+          "playback": "Sequential"
+        }
+      ]
+    }
+  ],
+  "day6_final_decision": {
+    "after_event": "event_day06_final_story",
+    "ui": "choice_popup_then_preview_dialogue_then_explicit_confirm",
+    "confirm_label_th": "ยืนยันการตัดสินใจ",
+    "cancel_label_th": "ย้อนกลับ",
+    "preview_does_not_execute_ending": true,
+    "confirm_only_after_preview_completed": true,
+    "options": [
+      {
+        "id": "ending_civil_service",
+        "order": 1,
+        "label_th": "ไปสอบข้าราชการ",
+        "preview_dialogue_th": [
+          "อย่างน้อย... พ่อก็คงไม่ปฏิเสธเราเหมือนบริษัทพวกนั้น"
+        ],
+        "confirmed_action": "play_existing_timeline",
+        "target": "existing_civil_service_ending",
+        "needs_script_review": true
+      },
+      {
+        "id": "ending_father_job",
+        "order": 2,
+        "label_th": "ไปทำงานกับพ่อ",
+        "preview_dialogue_th": [
+          "หรือเราควรเลือกงานที่มั่นคงไปเลยดีนะ... ถึงจะไม่ใช่สิ่งที่ฝันไว้ แต่ถ้าไม่ต้องมานั่งกังวลเรื่องงานทุกวันก็คงดี"
+        ],
+        "confirmed_action": "play_existing_timeline",
+        "target": "existing_father_job_ending",
+        "needs_script_review": true
+      },
+      {
+        "id": "ending_continue_applying",
+        "order": 3,
+        "label_th": "สมัครงานต่อไป",
+        "preview_dialogue_th": [
+          "...แต่ถ้าเราหยุดตอนนี้จริง ๆ เราคงเสียดายไปตลอดแน่",
+          "ลองอีกสักครั้งก็แล้วกัน... ถึงจะไม่รู้ว่าต้องลองอีกกี่ครั้งก็ตาม"
+        ],
+        "confirmed_action": "reset_cycle_to_day1_resume",
+        "target": "resume_editor_day1"
+      }
+    ]
+  },
+  "trigger_policy": {
+    "day_1_first_cycle_only_intro": true,
+    "before_resume": "run event before the Resume Editor becomes interactable",
+    "on_enter_resume": "Day1 tutorial when first Resume opens, once per New Game",
+    "on_enter_company_selection": "Day1 tutorial when first Company Selection opens, once per New Game",
+    "after_rejection_before_day_advance": "after HR Rejection dialogue completes; before sleeping/advancing day",
+    "day_start_story_only": "Day6 bypasses Resume Editor, Company Selection and Interview",
+    "block_ui_while_dialogue": "Use the existing dialogue/modal system and explicit completion callbacks",
+    "ending_continue_applying": "Return to Day1 Resume Editor directly without Main Menu; reset depleted options/rejected companies and day progression through the existing loop reset path; retain player name/gender; ensure no softlock"
+  }
+}

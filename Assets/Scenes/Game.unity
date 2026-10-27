@@ -15030,6 +15030,7 @@ MonoBehaviour:
     direction: {x: -1, y: -0.65}
     speed: 16
     elementSize: {x: 300, y: 300}
+    tiltAngle: -45
     startOffset: {x: -0.2, y: 0.27}
   - motif: 1
     image: {fileID: 910300014}
@@ -15039,6 +15040,7 @@ MonoBehaviour:
     direction: {x: -1, y: -0.75}
     speed: 18
     elementSize: {x: 300, y: 300}
+    tiltAngle: -45
     startOffset: {x: 0.21, y: -0.26}
   - motif: 2
     image: {fileID: 910300024}
@@ -15048,6 +15050,7 @@ MonoBehaviour:
     direction: {x: -1, y: -0.85}
     speed: 20
     elementSize: {x: 300, y: 300}
+    tiltAngle: -45
     startOffset: {x: -0.31, y: -0.28}
   - motif: 3
     image: {fileID: 910300034}
@@ -15057,6 +15060,7 @@ MonoBehaviour:
     direction: {x: -1, y: -0.95}
     speed: 22
     elementSize: {x: 340, y: 240}
+    tiltAngle: -45
     startOffset: {x: 0.32, y: 0.28}
   enableProgressionIntegration: 1
   motifDeteriorationInterval: 6

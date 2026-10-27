@@ -18,8 +18,10 @@ class BackgroundHarness
     static Vector2 MotifUV(RawImage layer,Vector2 pixel)
     {
         var cell=V(layer,"_CellSize");var offset=V(layer,"_ScrollOffset");var motif=V(layer,"_MotifOffset");var size=V(layer,"_ElementSize");
-        return new Vector2((Frac((pixel.x-offset.x-motif.x)/cell.x+.5f)-.5f)*cell.x/size.x+.5f,
-            (Frac((pixel.y-offset.y-motif.y)/cell.y+.5f)-.5f)*cell.y/size.y+.5f);
+        var rotation=V(layer,"_MotifRotation");
+        float x=(Frac((pixel.x-offset.x-motif.x)/cell.x+.5f)-.5f)*cell.x;
+        float y=(Frac((pixel.y-offset.y-motif.y)/cell.y+.5f)-.5f)*cell.y;
+        return new Vector2((rotation.x*x+rotation.y*y)/size.x+.5f,(-rotation.y*x+rotation.x*y)/size.y+.5f);
     }
     static int Bits(int mask) { int count=0;for(int i=0;i<4;i++) if((mask&(1<<i))!=0) count++;return count; }
     static void Main()
@@ -51,6 +53,7 @@ class BackgroundHarness
             }
         }
         Check(GameObject.Created==objects && Material.Created==materials,"Per-frame objects/materials created");
+        pausedTiltTest(c,slots);
         c.Speed=0;var paused=c.WallpaperOffset;Tick(c,10);Check(c.WallpaperOffset==paused,"Speed zero did not pause");
         foreach(float speed in new[] {10f,50f,150f})
         {
@@ -99,6 +102,22 @@ class BackgroundHarness
         Call(c,"OnDisable");for(int i=0;i<4;i++) Check(slots[i].image.material==originalMaterials[i],"Original material not restored");
         Console.WriteLine("PASS four fixed layers/material instances, no moving quads, 60s UV continuity, repeat seams, live speed/direction, resize without growth, normal/faded mapping and existing atmosphere APIs.");
         Console.WriteLine("GPU rendering, draw batches, native UI rebuild cost and FPS require Unity validation/Profiler.");
+    }
+    static void pausedTiltTest(ScrollingBackground c,BackgroundMotifSlot[] slots)
+    {
+        var offset=c.WallpaperOffset;
+        foreach(float angle in new[] {90f,-45f,180f})
+        {
+            slots[0].tiltAngle=angle;Tick(c,0);
+            var rotation=V(slots[0].image,"_MotifRotation");double radians=angle*Math.PI/180;
+            Check(Math.Abs(rotation.x-Math.Cos(radians))<.0001 && Math.Abs(rotation.y-Math.Sin(radians))<.0001,"Tilt was not uploaded live");
+            Check(c.WallpaperOffset==offset,"Tilt change reset scrolling");
+            var cell=V(slots[0].image,"_CellSize");var size=V(slots[0].image,"_ElementSize");
+            Check(Math.Abs(rotation.x)*size.x+Math.Abs(rotation.y)*size.y<=cell.x && Math.Abs(rotation.y)*size.x+Math.Abs(rotation.x)*size.y<=cell.y,"Rotated art crosses repeat seam");
+        }
+        c.ApplyBlurredMask(1);Check(V(slots[0].image,"_MotifRotation").x<-.99f,"Faded sprite lost tilt");
+        c.ResetBackgroundState();slots[0].tiltAngle=0;Tick(c,0);
+        Console.WriteLine("PASS live per-motif tilt, offset preservation, faded-state tilt and rotated cell bounds");
     }
 }
 

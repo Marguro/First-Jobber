@@ -17,6 +17,8 @@ namespace FirstJobber
         [HideInInspector] public Vector2 direction = new Vector2(-1f, -0.7f); // legacy serialized settings
         [HideInInspector] public float speed = 20f;
         public Vector2 elementSize = new Vector2(300f, 300f);
+        [Tooltip("Tilt of this motif in degrees. Positive = counterclockwise. Applies to both normal and faded artwork.")]
+        [Range(-180f, 180f)] public float tiltAngle;
         [Tooltip("Position inside each repeating tile, relative to its centre (-0.5 to 0.5).")]
         public Vector2 startOffset;
         [System.NonSerialized] public Vector2 position;
@@ -87,6 +89,8 @@ namespace FirstJobber
         {
             public bool initialized;
             public Vector2 area, cell, element, motif, scroll;
+            public float angle;
+            public Vector2 rotation;
         }
         readonly LayerShaderState[] shaderStates = new LayerShaderState[4];
         static readonly int RectSizeId = Shader.PropertyToID("_RectSize");
@@ -95,6 +99,7 @@ namespace FirstJobber
         static readonly int MotifOffsetId = Shader.PropertyToID("_MotifOffset");
         static readonly int ScrollOffsetId = Shader.PropertyToID("_ScrollOffset");
         static readonly int SpriteRectId = Shader.PropertyToID("_SpriteUVRect");
+        static readonly int RotationId = Shader.PropertyToID("_MotifRotation");
         int targetBlurredCount;
         float deteriorationTimer;
 
@@ -353,6 +358,20 @@ namespace FirstJobber
                 layer.raycastTarget = false;
                 ref var state = ref shaderStates[i];
                 bool force = !state.initialized;
+                if (force || state.angle != slot.tiltAngle)
+                {
+                    state.angle = slot.tiltAngle;
+                    double radians = slot.tiltAngle * (System.Math.PI / 180.0);
+                    state.rotation = new Vector2((float)System.Math.Cos(radians), (float)System.Math.Sin(radians));
+                    material.SetVector(RotationId, new Vector4(state.rotation.x, state.rotation.y, 0, 0));
+                }
+                // Keep the rotated artwork inside its repeating cell without changing its proportions.
+                float rotatedWidth = Mathf.Abs(state.rotation.x) * fitWidth + Mathf.Abs(state.rotation.y) * fitHeight;
+                float rotatedHeight = Mathf.Abs(state.rotation.y) * fitWidth + Mathf.Abs(state.rotation.x) * fitHeight;
+                float rotationFit = Mathf.Min(1f, Mathf.Min((cell.x - 2f) / Mathf.Max(1f, rotatedWidth),
+                    (cell.y - 2f) / Mathf.Max(1f, rotatedHeight)));
+                fitWidth *= rotationFit;
+                fitHeight *= rotationFit;
                 SetVectorIfChanged(material, RectSizeId, area, ref state.area, force);
                 SetVectorIfChanged(material, CellSizeId, cell, ref state.cell, force);
                 SetVectorIfChanged(material, ElementSizeId, new Vector2(Mathf.Max(1f, fitWidth), Mathf.Max(1f, fitHeight)), ref state.element, force);

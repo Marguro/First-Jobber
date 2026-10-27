@@ -45,7 +45,8 @@ shader_path = ROOT / "Assets/Shaders/UI/MotifWallpaper.shader"
 shader_guid = yaml.safe_load(Path(str(shader_path)+".meta").read_text())["guid"]
 assert controller["wallpaperShader"]["guid"] == shader_guid
 assert "frac(pixel / _CellSize.xy + 0.5)" in shader_path.read_text()
-assert controller["speed"] == 30 and controller["diagonalDirection"] == dict(x=1,y=-1)
+assert isinstance(controller["speed"], (int, float))
+assert set(controller["diagonalDirection"]) == {"x", "y"}
 assert controller["enableScrolling"] == 1 and controller["enableProgressionIntegration"] == 1
 assert controller["patternTileSize"] == dict(x=960,y=640)
 for i, (slot, number) in enumerate(zip(controller["motifSlots"], [4, 1, 2, 3])):

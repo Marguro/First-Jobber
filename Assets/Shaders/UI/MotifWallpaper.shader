@@ -10,6 +10,7 @@ Shader "FirstJobber/UI/MotifWallpaper"
         _ElementSize ("Motif Size", Vector) = (300,300,0,0)
         _MotifOffset ("Motif Offset", Vector) = (0,0,0,0)
         _ScrollOffset ("Scroll Offset", Vector) = (0,0,0,0)
+        _MotifRotation ("Motif Rotation (cos, sin)", Vector) = (1,0,0,0)
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
         _StencilOp ("Stencil Operation", Float) = 0
@@ -65,6 +66,7 @@ Shader "FirstJobber/UI/MotifWallpaper"
             sampler2D _MainTex;
             fixed4 _Color;
             float4 _SpriteUVRect, _RectSize, _CellSize, _ElementSize, _MotifOffset, _ScrollOffset, _ClipRect;
+            float4 _MotifRotation;
 
             v2f vert(appdata_t input)
             {
@@ -83,7 +85,12 @@ Shader "FirstJobber/UI/MotifWallpaper"
                 // The discontinuity lies in transparent spacing, not at an artwork edge.
                 float2 pixel = (input.texcoord - 0.5) * _RectSize.xy - _ScrollOffset.xy - _MotifOffset.xy;
                 float2 cell = frac(pixel / _CellSize.xy + 0.5) - 0.5;
-                float2 motifUV = cell * _CellSize.xy / _ElementSize.xy + 0.5;
+                float2 motifPixel = cell * _CellSize.xy;
+                // Inverse rotation samples the original art while visually tilting it about its centre.
+                float2 rotatedPixel = float2(
+                    _MotifRotation.x * motifPixel.x + _MotifRotation.y * motifPixel.y,
+                    -_MotifRotation.y * motifPixel.x + _MotifRotation.x * motifPixel.y);
+                float2 motifUV = rotatedPixel / _ElementSize.xy + 0.5;
                 clip(min(min(motifUV.x, motifUV.y), min(1.0 - motifUV.x, 1.0 - motifUV.y)));
                 float2 textureUV = _SpriteUVRect.xy + motifUV * _SpriteUVRect.zw;
                 fixed4 color = tex2D(_MainTex, textureUV) * input.color;
