@@ -46,7 +46,7 @@ namespace FirstJobber
         {
             { GamePhase.MainMenu, new[] { GamePhase.CreateApplicant, GamePhase.ResumeEditor, GamePhase.FinalDecision } },
             { GamePhase.CreateApplicant, new[] { GamePhase.ResumeEditor, GamePhase.MainMenu } },
-            { GamePhase.ResumeEditor, new[] { GamePhase.CompanySelection } },
+            { GamePhase.ResumeEditor, new[] { GamePhase.CompanySelection, GamePhase.DailyEvent } },
             { GamePhase.CompanySelection, new[] { GamePhase.InterviewIntroduction, GamePhase.ResumeEditor } },
             { GamePhase.InterviewIntroduction, new[] { GamePhase.InterviewResumeReview } },
             { GamePhase.InterviewResumeReview, new[] { GamePhase.InterviewQuestion } },
@@ -55,8 +55,8 @@ namespace FirstJobber
             { GamePhase.Rejection, new[] { GamePhase.Sleep } },
             { GamePhase.Sleep, new[] { GamePhase.DayTransition } },
             { GamePhase.DayTransition, new[] { GamePhase.DailyEvent, GamePhase.ResumeEditor, GamePhase.FinalDecision } },
-            { GamePhase.DailyEvent, new[] { GamePhase.ResumeEditor } },
-            { GamePhase.FinalDecision, new[] { GamePhase.Ending } },
+            { GamePhase.DailyEvent, new[] { GamePhase.ResumeEditor, GamePhase.FinalDecision } },
+            { GamePhase.FinalDecision, new[] { GamePhase.Ending, GamePhase.ResumeEditor } },
             { GamePhase.Ending, new[] { GamePhase.MainMenu, GamePhase.CreateApplicant } },
         };
 
@@ -181,9 +181,9 @@ namespace FirstJobber
             ctx = new GameContext(database, session, dialogue);
             ApplyAtmosphere(true);
 
-            if (ctx.Loop.IsFinalDay())
+            if (IsFinalStoryDay())
             {
-                if (ChangePhase(GamePhase.FinalDecision)) finalDecision.Open(ctx);
+                if (ChangePhase(GamePhase.FinalDecision)) OpenFinalStory();
                 return;
             }
             if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(false);
@@ -206,16 +206,25 @@ namespace FirstJobber
             session.selectedCompanyId = null;
             session.applicationOpen = false;
             session.Save();
+            resumeEditor.Refresh(ctx);
             OpenResumeEditor(playIntro, true);
         }
 
         void OpenResumeEditor(bool playIntro, bool runBeforeResume)
         {
-            resumeEditor.Open(ctx, playIntro, () =>
+            Action open = () => {
+                if (Phase == GamePhase.DailyEvent) ChangePhase(GamePhase.ResumeEditor);
+                resumeEditor.Open(ctx, playIntro && database.finalStoryDay == 0, () =>
+                    dailyEvents.Run(EventTrigger.OnEnterResume, session, resumeEditor.Unlock));
+            };
+            if (runBeforeResume && database.finalStoryDay > 0)
             {
-                if (runBeforeResume) dailyEvents.Run(EventTrigger.BeforeResume, session, resumeEditor.Unlock);
-                else resumeEditor.Unlock();
-            });
+                dailyEvents.ClearPanel();
+                ChangePhase(GamePhase.DailyEvent);
+                dailyEvents.Run(EventTrigger.BeforeResume, session, open);
+            }
+            else if (runBeforeResume) dailyEvents.Run(EventTrigger.BeforeResume, session, open);
+            else open();
         }
 
         void OnResumeConfirmed()
@@ -225,7 +234,12 @@ namespace FirstJobber
             // The confidence reaction is NOT played now: it plays when the company application is confirmed (OnCompanyConfirmed).
             dailyEvents.Run(EventTrigger.AfterResumeConfirmed, session, () =>
             {
-                if (ChangePhase(GamePhase.CompanySelection)) companySelection.Open(ctx);
+                if (ChangePhase(GamePhase.CompanySelection))
+                {
+                    companySelection.Open(ctx);
+                    companySelection.SetStoryLocked(true);
+                    dailyEvents.Run(EventTrigger.OnEnterCompanySelection, session, () => companySelection.SetStoryLocked(false));
+                }
             });
         }
 
@@ -310,8 +324,9 @@ namespace FirstJobber
                 ApplyAtmosphere(false);
                 ChangePhase(GamePhase.DayTransition);
 
-                if (ctx.Loop.IsFinalDay()) next = GamePhase.FinalDecision;
+                if (IsFinalStoryDay()) next = GamePhase.FinalDecision;
                 else if (dailyEvents.HasEligible(EventTrigger.OnDayStart, session)) next = GamePhase.DailyEvent;
+                else if (database.finalStoryDay > 0 && dailyEvents.HasEligible(EventTrigger.BeforeResume, session)) next = GamePhase.DailyEvent;
                 else next = GamePhase.ResumeEditor;
 
                 dailyEvents.ClearPanel();
@@ -322,18 +337,26 @@ namespace FirstJobber
             switch (next)
             {
                 case GamePhase.FinalDecision:
-                    finalDecision.Open(ctx);
+                    OpenFinalStory();
                     break;
                 case GamePhase.DailyEvent:
                     dailyEvents.Run(EventTrigger.OnDayStart, session, () =>
                     {
-                        if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(false);
+                        BeginDay(false);
                     });
                     break;
                 default:
                     BeginDay(false);
                     break;
             }
+        }
+
+        bool IsFinalStoryDay() => database.finalStoryDay > 0 ? session.day >= database.finalStoryDay : ctx.Loop.IsFinalDay();
+
+        void OpenFinalStory()
+        {
+            finalDecision.PrepareStory();
+            dailyEvents.Run(EventTrigger.OnDayStart, session, () => finalDecision.Open(ctx));
         }
 
         void ApplyAtmosphere(bool instant)
@@ -350,6 +373,23 @@ namespace FirstJobber
             if (data == null)
             {
                 Debug.LogError("[GameFlow] Unknown ending id '" + endingId + "'.");
+                return;
+            }
+            if (data.resetCycle)
+            {
+                // Preserve identity, history and once-per-playthrough choice reactions/tutorials.
+                session.day = 1;
+                session.consumedChoiceIds.Clear();
+                session.consumedCompanyIds.Clear();
+                session.askedQuestionIds.Clear();
+                session.flags.RemoveAll(f => f.StartsWith("event_choice/") || f == "resume_distorted" || f == "hr_strange");
+                session.triggeredEvents.RemoveAll(id => !id.StartsWith("event_day01_"));
+                session.interviewQuestionIds.Clear();
+                session.interviewIndex = 0;
+                session.confirmedConfidence = 0;
+                session.endingId = null;
+                ApplyAtmosphere(true);
+                if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(false);
                 return;
             }
             if (!ChangePhase(GamePhase.Ending)) return;

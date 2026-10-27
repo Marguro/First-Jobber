@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 780d7809f66105a4ca9bbf36c63022bc
+    type: 3
+  m_Name: event_day04_before_resume
+  m_EditorClassIdentifier: ''
+  id: event_day04_before_resume
+  trigger: 1
+  exactDay: 4
+  minDay: 0
+  repeatable: 0
+  priority: 0
+  requiredFlag: ''
+  forbiddenFlag: ''
+  setFlags: []
+  caption: ''
+  background:
+    fileID: 0
+  flickerSeconds: 0
+  lines: []
+  segments:
+  - id: morning
+    lines:
+    - speaker: Player
+      text: ''
+      dialogueLines:
+      - Mm... morning already...?
+      - I do not want to get up. But I have to anyway.
+      - Will there even be any companies left to apply to today..?
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: incoming_call
+    lines:
+    - speaker: Narrator
+      text: ''
+      dialogueLines:
+      - Ring, ring. Incoming call.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: phone_ring
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: father_intro
+    lines:
+    - speaker: Father
+      text: ''
+      dialogueLines:
+      - How is it going? Have you found a job yet?
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: player_reply
+    lines:
+    - speaker: Player
+      text: ''
+      dialogueLines:
+      - Not yet, Dad... but I am sure it will be soon.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: father_response
+    lines:
+    - speaker: Father
+      text: ''
+      dialogueLines:
+      - I hope so too.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: player_silence
+    lines:
+    - speaker: Player
+      text: ''
+      dialogueLines:
+      - '...'
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: father_offer
+    lines:
+    - speaker: Father
+      text: ''
+      dialogueLines:
+      - By the way, have you thought about coming to work with me?
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: father_reply
+    lines: []
+    options:
+    - id: silent
+      label: '...'
+    - id: own_path
+      label: Let me try the path I chose first, Dad.
+  - id: father_outro
+    lines:
+    - speaker: Father
+      text: ''
+      dialogueLines:
+      - Think it over, then. I will call again in two or three days.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: hang_up
+    lines:
+    - speaker: Narrator
+      text: ''
+      dialogueLines:
+      - The call ends.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: phone_hangup
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []
+  - id: resume_transition
+    lines:
+    - speaker: Player
+      text: ''
+      dialogueLines:
+      - I guess I will just leave it to fate.
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []

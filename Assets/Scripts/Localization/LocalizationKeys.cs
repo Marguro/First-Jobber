@@ -138,8 +138,15 @@ namespace FirstJobber
                 case DailyEventData e:
                     Text(e, "caption", e.caption, add);
                     Lines(e, "lines", e.lines, add);
+                    if (e.segments != null) foreach (var segment in e.segments)
+                    {
+                        Lines(e, "segments/" + segment.id + "/lines", segment.lines, add);
+                        if (segment.options != null) foreach (var option in segment.options)
+                            Text(e, "segments/" + segment.id + "/options/" + option.id + "/label", option.label, add);
+                    }
                     break;
                 case EndingData e:
+                    Lines(e, "previewLines", e.previewLines, add);
                     Text(e, "title", e.title, add);
                     Text(e, "optionLabel", e.optionLabel, add);
                     Text(e, "optionDescription", e.optionDescription, add);

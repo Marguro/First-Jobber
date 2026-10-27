@@ -27,6 +27,8 @@ namespace FirstJobber
         BeforeInterview,
         AfterInterview,
         AfterRejection,
-        BeforeSleep
+        BeforeSleep,
+        OnEnterResume,
+        OnEnterCompanySelection
     }
 }

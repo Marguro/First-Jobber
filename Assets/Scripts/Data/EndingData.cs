@@ -19,6 +19,8 @@ namespace FirstJobber
 
         [Header("Final decision button")]
         public string optionLabel;
+        public DialogueLine[] previewLines;
+        public bool resetCycle;
         [TextArea] public string optionDescription;
 
         [Header("Ending scene")]

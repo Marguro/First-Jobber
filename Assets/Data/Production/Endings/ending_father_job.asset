@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 6474aa4e35df6414790e1a4810b18960
+    type: 3
+  m_Name: ending_father_job
+  m_EditorClassIdentifier: ''
+  id: ending_father_job
+  title: Go to work with Dad
+  optionLabel: Go to work with Dad
+  optionDescription: ''
+  previewLines:
+  - speaker: Player
+    text: ''
+    dialogueLines:
+    - Maybe I should choose a stable job... Even if it is not what I dreamed of, it would be nice not to worry about work every day.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: ''
+    portrait:
+      fileID: 0
+    genderIds: []
+    variantGroup: ''
+  resetCycle: 0
+  lines: []
+  background:
+    fileID: 0
+  backgroundColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  finalText: ''
+  sound:
+    fileID: 0
+  cutscenePrefab:
+    fileID: 8057347664958140945
+    guid: 4fd6f73861b6cce408d94eb4116497eb
+    type: 3
+  timeline:
+    fileID: 11400000
+    guid: ba55e47f69ad22a48958eb8f20cb1f43
+    type: 2
+  timelineMode: 1
+  timelineSkippable: 1

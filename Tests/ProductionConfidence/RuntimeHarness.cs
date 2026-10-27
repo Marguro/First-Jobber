@@ -186,6 +186,8 @@ namespace FirstJobber
     public class InterviewQuestionData : ScriptableObject
     { public string id, questionText; public List<InterviewAnswer> answers; public ResumeChoiceData linkedChoice; public ResumeCategoryData linkedCategory; }
     public class InterviewAnswer { public string id, text; public DialogueLine[] playerReaction, hrResponse; }
-    public class DailyEventData : ScriptableObject { public string id, caption; public DialogueLine[] lines; }
-    public class EndingData : ScriptableObject { public string id, optionLabel, title, optionDescription, finalText; public DialogueLine[] lines; }
+    public class DailyEventOption { public string id, label; }
+    public class DailyEventSegment { public string id; public DialogueLine[] lines; public DailyEventOption[] options; }
+    public class DailyEventData : ScriptableObject { public string id, caption; public DialogueLine[] lines; public DailyEventSegment[] segments; }
+    public class EndingData : ScriptableObject { public string id, optionLabel, title, optionDescription, finalText; public DialogueLine[] lines, previewLines; }
 }

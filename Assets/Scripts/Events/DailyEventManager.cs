@@ -13,6 +13,8 @@ namespace FirstJobber
         [SerializeField] GameDatabase database;
         [SerializeField] DialogueManager dialogue;
         [SerializeField] DailyEventPanelUI eventPanel;
+        [SerializeField] ChoiceListUI choiceList;
+        int choiceGeneration;
 
         readonly List<DailyEventData> scratch = new List<DailyEventData>();
 
@@ -43,7 +45,46 @@ namespace FirstJobber
 
             if (ev.trigger == EventTrigger.OnDayStart && eventPanel != null) eventPanel.Show(LocalizationManager.Get(ev, "caption", ev.caption), ev.background);
             if (ev.flickerSeconds > 0f && AtmosphereManager.Instance != null) AtmosphereManager.Instance.PulseFlicker(ev.flickerSeconds);
-            dialogue.Play(ev.lines, () => RunFrom(queue, index + 1, session, onDone));
+            if (ev.segments != null && ev.segments.Length > 0)
+                RunSegment(ev, 0, session, () => CompleteEvent(queue, index, session, onDone));
+            else dialogue.Play(ev.lines, () => CompleteEvent(queue, index, session, onDone));
+        }
+
+        void CompleteEvent(List<DailyEventData> queue, int index, GameSession session, Action done)
+        {
+            session.Save();
+            RunFrom(queue, index + 1, session, done);
+        }
+
+        void RunSegment(DailyEventData ev, int index, GameSession session, Action done)
+        {
+            if (index >= ev.segments.Length) { done?.Invoke(); return; }
+            var segment = ev.segments[index];
+            if (segment.options != null && segment.options.Length > 0)
+            {
+                if (choiceList == null) throw new InvalidOperationException("DailyEventManager.choiceList is not assigned.");
+                var items = new List<ChoiceItem>();
+                foreach (var option in segment.options) items.Add(new ChoiceItem {
+                    id = option.id, title = LocalizationManager.Get(ev, "segments/" + segment.id + "/options/" + option.id + "/label", option.label),
+                    state = ChoiceState.Available });
+                int generation = ++choiceGeneration;
+                Action<string> selected = null;
+                selected = id => {
+                    if (generation != choiceGeneration || !items.Exists(item => item.id == id)) return;
+                    choiceGeneration++;
+                    choiceList.ItemChosen -= selected;
+                    choiceList.SetInteractable(false);
+                    choiceList.gameObject.SetActive(false);
+                    session.SetFlag("event_choice/" + ev.id + "/" + segment.id + "/" + id);
+                    RunSegment(ev, index + 1, session, done);
+                };
+                choiceList.ItemChosen += selected;
+                choiceList.gameObject.SetActive(true);
+                choiceList.SetItems(items, resetScroll: true);
+                choiceList.SetInteractable(true);
+                return;
+            }
+            dialogue.Play(segment.lines, () => RunSegment(ev, index + 1, session, done));
         }
 
         void Collect(EventTrigger trigger, GameSession session, List<DailyEventData> result)

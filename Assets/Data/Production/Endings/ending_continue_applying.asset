@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 6474aa4e35df6414790e1a4810b18960
+    type: 3
+  m_Name: ending_continue_applying
+  m_EditorClassIdentifier: ''
+  id: ending_continue_applying
+  title: Keep applying for jobs
+  optionLabel: Keep applying for jobs
+  optionDescription: ''
+  previewLines:
+  - speaker: Player
+    text: ''
+    dialogueLines:
+    - '...But if I really stop now, I will regret it forever.'
+    - One more try, then... Even if I have no idea how many more tries it will take.
+    emotion: 0
+    autoAdvanceDelay: 0
+    delayBefore: 0
+    eventId: ''
+    portrait:
+      fileID: 0
+    genderIds: []
+    variantGroup: ''
+  resetCycle: 1
+  lines: []
+  background:
+    fileID: 0
+  backgroundColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 1
+  finalText: ''
+  sound:
+    fileID: 0
+  cutscenePrefab:
+    fileID: 0
+  timeline:
+    fileID: 0
+  timelineMode: 1
+  timelineSkippable: 1

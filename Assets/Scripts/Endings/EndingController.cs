@@ -58,6 +58,8 @@ namespace FirstJobber
 
         public void Show(GameContext ctx, EndingData ending)
         {
+            if (ctx.Database.finalStoryDay > 0 && !ending.resetCycle && ending.cutscenePrefab == null && ending.timeline == null)
+                Debug.LogWarning("[Ending] Production ending '" + ending.id + "' needs its authored Timeline or Cutscene Prefab assigned.", ending);
             clicked = false;
             if (background != null)
             {

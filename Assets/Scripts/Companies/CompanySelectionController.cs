@@ -50,6 +50,14 @@ namespace FirstJobber
             if (backButton != null) backButton.interactable = true;
         }
 
+        public void SetStoryLocked(bool value)
+        {
+            locked = value;
+            companyList.SetInteractable(!value);
+            if (backButton != null) backButton.interactable = !value;
+            Refresh();
+        }
+
         void Refresh()
         {
             itemBuffer.Clear();

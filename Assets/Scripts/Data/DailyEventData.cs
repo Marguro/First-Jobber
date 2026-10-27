@@ -2,6 +2,21 @@ using UnityEngine;
 
 namespace FirstJobber
 {
+    [System.Serializable]
+    public class DailyEventOption
+    {
+        public string id;
+        public string label;
+    }
+
+    [System.Serializable]
+    public class DailyEventSegment
+    {
+        public string id;
+        public DialogueLine[] lines;
+        public DailyEventOption[] options;
+    }
+
     [CreateAssetMenu(menuName = "First Jobber/Daily Event", fileName = "Event_New")]
     public class DailyEventData : ScriptableObject
     {
@@ -29,5 +44,6 @@ namespace FirstJobber
         [Tooltip("Optional temporary screen flicker (seconds). Does not change the atmosphere phase.")]
         public float flickerSeconds;
         public DialogueLine[] lines;
+        public DailyEventSegment[] segments;
     }
 }

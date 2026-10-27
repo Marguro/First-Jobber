@@ -3230,3 +3230,228 @@ MonoBehaviour:
   - key: confidence/apply/day_05/low/candidate_02/text
     english: ...But if I don't send it, I'll just have to come back and do this again tomorrow.
     thai: "...\u0E41\u0E15\u0E48\u0E16\u0E49\u0E32\u0E44\u0E21\u0E48\u0E2A\u0E48\u0E07 \u0E1E\u0E23\u0E38\u0E48\u0E07\u0E19\u0E35\u0E49\u0E01\u0E47\u0E04\u0E07\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E25\u0E31\u0E1A\u0E21\u0E32\u0E19\u0E31\u0E48\u0E07\u0E17\u0E33\u0E41\u0E1A\u0E1A\u0E19\u0E35\u0E49\u0E2D\u0E22\u0E39\u0E48\u0E14\u0E35"
+  - key: event/event_day01_opening/segments/opening/lines/0/lines/0
+    english: "The first morning of life as a fresh grad!"
+    thai: "เช้าวันแรกของการเป็นเฟิร์สจ๊อบแจ๊บ!"
+  - key: event/event_day01_opening/segments/opening/lines/0/lines/1
+    english: "Finally graduated! Now it is my turn to get out there and work for real!"
+    thai: "ในที่สุดก็เรียนจบแล้ว ต่อไปก็ถึงตาเราได้ทำงานจริง ๆ สักที!"
+  - key: event/event_day01_opening/segments/opening/lines/0/lines/2
+    english: "Here is hoping for a good day: the right game studio, art I love making, and characters I can really bring to life."
+    thai: "ขอให้วันนี้เป็นวันที่ดี ได้เจอบริษัทเกมที่ใช่ ได้ทำงานอาร์ตที่ชอบ สร้างตัวละครที่มีชีวิตขึ้นมาจริง ๆ"
+  - key: event/event_day01_opening/segments/opening/lines/0/lines/3
+    english: "Just thinking about it is exciting! All right, dream game studio, get ready for me!"
+    thai: "คิดแล้วก็ตื่นเต้นชะมัด! เอาล่ะ บริษัทเกมในฝัน รอรับฉันได้เลย!"
+  - key: event/event_day01_opening/segments/opening/lines/0/lines/4
+    english: "Today is definitely going to be my day!"
+    thai: "วันนี้ต้องเป็นวันของฉันแน่นอน!"
+  - key: event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/0
+    english: "All right! Before I land my dream job, let us make this resume shine!"
+    thai: "เอาล่ะ! ก่อนจะไปคว้างานในฝัน เรามาจัด Resume ของเราให้ปังก่อนดีกว่า!"
+  - key: event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/1
+    english: "From my studies and university to my personal motto, everything helps a company see who I am!"
+    thai: "ทั้งประวัติการเรียน มหาวิทยาลัย ไปจนถึงคติประจำใจ ทุกอย่างล้วนเป็นส่วนหนึ่งที่ทำให้บริษัทเห็นว่าเราเป็นคนแบบไหน!"
+  - key: event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/2
+    english: "And I cannot forget to choose carefully. Each part affects how confident I feel about applying."
+    thai: "แล้วก็ต้องไม่ลืมเลือกให้ดีด้วย เพราะแต่ละอย่างมีผลต่อความมั่นใจในการสมัครงานของเรา"
+  - key: event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/3
+    english: "The better my details fit together, the more confident I will feel. If they suit the company, maybe my chances will go up too!"
+    thai: "ยิ่งข้อมูลของเราเข้ากันได้ดี ความมั่นใจก็ยิ่งเพิ่มขึ้น ถ้าเลือกได้เหมาะกับบริษัทที่สมัครล่ะก็ โอกาสได้งานก็อาจจะสูงขึ้นตามไปด้วย!"
+  - key: event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/4
+    english: "Easy enough! With a resume this good, how could my dream game studio turn me down?"
+    thai: "แค่นี้เอง สบายมาก! Resume ดีขนาดนี้ บริษัทเกมในฝันจะปฏิเสธฉันลงได้ยังไงกันล่ะ?"
+  - key: event/event_day01_company_intro/segments/company_intro/lines/0/lines/0
+    english: "Next, it is time to choose where to send my resume!"
+    thai: "ต่อไปก็ถึงเวลาเลือกบริษัทที่เราจะยื่น Resume แล้ว!"
+  - key: event/event_day01_company_intro/segments/company_intro/lines/0/lines/1
+    english: "Every company has different work, working days and conditions. Better read the details before deciding."
+    thai: "บริษัทแต่ละแห่งมีทั้งลักษณะงาน วันทำงาน และเงื่อนไขที่แตกต่างกัน อย่าลืมอ่านรายละเอียดให้ดีก่อนตัดสินใจนะ"
+  - key: event/event_day01_company_intro/segments/company_intro/lines/0/lines/2
+    english: "The company I choose affects my confidence too! If my qualifications fit, I might feel more confident. If they do not... it could go down instead!"
+    thai: "บริษัทที่เราเลือกก็มีผลต่อความมั่นใจในการสมัครงานของเราด้วยนะ! ถ้าคุณสมบัติของเราเข้ากับบริษัทที่เลือก ความมั่นใจก็อาจเพิ่มขึ้น แต่ถ้าไม่เข้ากันล่ะก็... อาจลดลงได้เหมือนกัน!"
+  - key: event/event_day01_company_intro/segments/company_intro/lines/0/lines/3
+    english: "Well, it is my first job. I had better choose carefully!"
+    thai: "เอาเถอะ งานแรกทั้งที ต้องเลือกให้ดีหน่อยแล้ว!"
+  - key: event/event_day01_company_intro/segments/company_intro/lines/0/lines/4
+    english: "Dream game studio... here I come!"
+    thai: "บริษัทเกมในฝัน... ฉันกำลังไปหาแล้วนะ!"
+  - key: event/event_day01_after_rejection/segments/after_rejection/lines/0/lines/0
+    english: "It is fine! That was only the first company! There is always tomorrow. Someone out there has to recognize what I can do!"
+    thai: "ไม่เป็นไร! ก็แค่บริษัทแรกเองนี่นา! ยังมีพรุ่งนี้เสมอ เดี๋ยวก็ต้องมีที่ที่เห็นความสามารถของเราบ้างแหละ!"
+  - key: event/event_day01_after_rejection/segments/after_rejection/lines/0/lines/1
+    english: "Better get some sleep and start fresh tomorrow!"
+    thai: "นอนเอาแรงแล้วพรุ่งนี้มาเริ่มใหม่ดีกว่า!"
+  - key: event/event_day02_before_resume/segments/morning/lines/0/lines/0
+    english: "Yesterday did not go as I hoped, but I am sure today will be my day!"
+    thai: "ถึงเมื่อวาน จะไม่ได้เป็นตามหวัง แต่วันนี้ฉันมั่นใจว่าต้องเป็นวันของฉันแน่นอน!"
+  - key: event/event_day02_before_resume/segments/incoming_call/lines/0/lines/0
+    english: "Ring, ring. Incoming call."
+    thai: "กริ๊งๆ {โทรศัพท์เข้า}"
+  - key: event/event_day02_before_resume/segments/friend_intro/lines/0/lines/0
+    english: "Hey...{name}... I am taking the civil-service exam next month. Want to come along?"
+    thai: "ไง...{name}... ฉันว่าจะไปสอบ ก.พ. เดือนหน้า เธอจะไปด้วยมั้ย"
+  - key: event/event_day02_before_resume/segments/player_hesitate/lines/0/lines/0
+    english: "...."
+    thai: "...."
+  - key: event/event_day02_before_resume/segments/friend_followup/lines/0/lines/0
+    english: "It is a stable job. You should take the exam as a backup."
+    thai: "มันเป็นงานที่มั่นคง แกควรสอบเผื่อไว้นะ"
+  - key: event/event_day02_before_resume/segments/friend_reply/options/silent/label
+    english: "..."
+    thai: "..."
+  - key: event/event_day02_before_resume/segments/friend_reply/options/later/label
+    english: "Let us talk about it later."
+    thai: "เดี๋ยวค่อยว่ากัน"
+  - key: event/event_day02_before_resume/segments/friend_outro/lines/0/lines/0
+    english: "Give it some thought, then. Call me back within five days, or it will be too late."
+    thai: "งั้นไปคิดดูนะ ยังไงก็โทรกลับมาอย่าเกิน 5 วันล่ะ มันจะไม่ทัน"
+  - key: event/event_day02_before_resume/segments/hang_up/lines/0/lines/0
+    english: "The call ends."
+    thai: "วางสาย"
+  - key: event/event_day02_before_resume/segments/resume_transition/lines/0/lines/0
+    english: "All right! Let us try revising my resume today. Maybe that will help!"
+    thai: "เอาล่ะ! วันนี้เราลองมาแก้ Resume ดีกว่า เผื่อจะดีขึ้น!"
+  - key: event/event_day02_after_rejection/segments/after_rejection/lines/0/lines/0
+    english: "Huh... am I really still not good enough? It is fine. I can practice more. I will do better next time!"
+    thai: "เอ๊ะ... หรือเรายังไม่เก่งพอจริง ๆ นะ? ไม่เป็นไร กลับไปฝึกเพิ่มก็ได้ ครั้งหน้าต้องทำได้ดีกว่านี้แน่!"
+  - key: event/event_day03_before_resume/segments/morning/lines/0/lines/0
+    english: "Good morning, me! Day three already..."
+    thai: "อรุณสวัสดิ์ตัวเอง! วันที่สามแล้วสินะ..."
+  - key: event/event_day03_before_resume/segments/morning/lines/0/lines/1
+    english: "Which company gets to see what I can do today? Or maybe all they will see is the reject button again."
+    thai: "วันนี้บริษัทไหนจะได้เห็นความสามารถของเรากันนะ หรือจะได้เห็นแค่ปุ่มปฏิเสธเหมือนเดิมก็ไม่รู้"
+  - key: event/event_day03_after_rejection/segments/after_rejection/lines/0/lines/0
+    english: "Why is this so hard... I really did prepare. Was everything I learned still not enough? ...Whatever. I will try again tomorrow."
+    thai: "ทำไมมันยากจังนะ... เราก็เตรียมตัวไปดีแล้วแท้ ๆ หรือสิ่งที่เรียนมามันยังไม่พอจริง ๆ? ...ช่างเถอะ พรุ่งนี้ค่อยลองใหม่"
+  - key: event/event_day04_before_resume/segments/morning/lines/0/lines/0
+    english: "Mm... morning already...?"
+    thai: "อือ... เช้าแล้วเหรอ..."
+  - key: event/event_day04_before_resume/segments/morning/lines/0/lines/1
+    english: "I do not want to get up. But I have to anyway."
+    thai: "ไม่อยากลุกเลยแฮะ แต่ก็ต้องลุกอยู่ดี"
+  - key: event/event_day04_before_resume/segments/morning/lines/0/lines/2
+    english: "Will there even be any companies left to apply to today..?"
+    thai: "วันนี้จะยังเหลือบริษัทให้สมัครอีกมั้ยนะ.."
+  - key: event/event_day04_before_resume/segments/incoming_call/lines/0/lines/0
+    english: "Ring, ring. Incoming call."
+    thai: "กริ๊งๆ {โทรศัพท์เข้า}"
+  - key: event/event_day04_before_resume/segments/father_intro/lines/0/lines/0
+    english: "How is it going? Have you found a job yet?"
+    thai: "เป็นไงบ้างลูก ได้งานทำหรือยัง"
+  - key: event/event_day04_before_resume/segments/player_reply/lines/0/lines/0
+    english: "Not yet, Dad... but I am sure it will be soon."
+    thai: "ยังเลยพ่อ...แต่คงจะเร็วๆ นี้แหละ"
+  - key: event/event_day04_before_resume/segments/father_response/lines/0/lines/0
+    english: "I hope so too."
+    thai: "พ่อก็หวังแบบนั้นนะ"
+  - key: event/event_day04_before_resume/segments/player_silence/lines/0/lines/0
+    english: "..."
+    thai: "..."
+  - key: event/event_day04_before_resume/segments/father_offer/lines/0/lines/0
+    english: "By the way, have you thought about coming to work with me?"
+    thai: "ว่าแต่ ไม่คิดจะมาทำงานกับพ่อหรอ"
+  - key: event/event_day04_before_resume/segments/father_reply/options/silent/label
+    english: "..."
+    thai: "..."
+  - key: event/event_day04_before_resume/segments/father_reply/options/own_path/label
+    english: "Let me try the path I chose first, Dad."
+    thai: "ขอลองเดินทางที่ตัวเองเลือกก่อนนะพ่อ"
+  - key: event/event_day04_before_resume/segments/father_outro/lines/0/lines/0
+    english: "Think it over, then. I will call again in two or three days."
+    thai: "งั้นลองเอากลับไปคิดดู อีก 2-3 วันพ่อจะโทรมาถามอีกทีนะ"
+  - key: event/event_day04_before_resume/segments/hang_up/lines/0/lines/0
+    english: "The call ends."
+    thai: "วางสาย"
+  - key: event/event_day04_before_resume/segments/resume_transition/lines/0/lines/0
+    english: "I guess I will just leave it to fate."
+    thai: "ถือซะว่าให้มันเป็นเรื่องของโชคชะตานำพาไปแล้วกัน"
+  - key: event/event_day04_after_rejection/segments/after_rejection/lines/0/lines/0
+    english: "Again...? The same questions, acting like I have everything together when I am barely holding on inside... How many more times do I have to be rejected?"
+    thai: "อีกแล้วเหรอ... ต้องตอบคำถามเดิม ๆ ต้องทำเหมือนตัวเองพร้อมทุกอย่าง ทั้งที่ข้างในก็เริ่มไม่ไหวแล้ว... เราต้องโดนปฏิเสธอีกกี่ครั้งกันนะ?"
+  - key: event/event_day05_before_resume/segments/morning/lines/0/lines/0
+    english: "I do not want to wake up. I do not want to open any documents. I do not even want to look at my own resume."
+    thai: "ไม่อยากตื่นเลย ไม่อยากเปิดเอกสาร ไม่อยากเห็นเรซูเม่ตัวเองด้วยซ้ำ"
+  - key: event/event_day05_before_resume/segments/morning/lines/0/lines/1
+    english: "But if I do nothing, nothing will change..."
+    thai: "แต่ถ้าไม่ทำอะไรเลย ก็ไม่มีอะไรเปลี่ยนสินะ..."
+  - key: event/event_day05_after_rejection/segments/after_rejection/lines/0/lines/0
+    english: "I just want a job... I am not asking to be the best or earn hundreds of thousands. I just want a chance to do something I studied and enjoy..."
+    thai: "เราแค่อยากได้งานสักงานเองนะ... ไม่ได้อยากเป็นคนเก่งที่สุด ไม่ได้อยากได้เงินเดือนเป็นแสน แค่อยากได้ทำสิ่งที่ตัวเองเรียนมาและชอบบ้าง..."
+  - key: event/event_day05_after_rejection/segments/after_rejection/lines/0/lines/1
+    english: "Is that really so much to ask?"
+    thai: "มันยากขนาดนั้นเลยเหรอ?"
+  - key: event/event_day05_after_rejection/segments/after_rejection/lines/0/lines/2
+    english: "...Tomorrow I have to wake up and apply again, do I not?"
+    thai: "...พรุ่งนี้ก็ต้องตื่นมาสมัครงานอีกสินะ"
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/0
+    english: "...Morning already?"
+    thai: "...เช้าแล้วเหรอ"
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/1
+    english: "What did I do wrong..."
+    thai: "เราทำอะไรผิด..."
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/2
+    english: "All through school, I thought that if I studied hard and kept practicing, I would graduate, do work I loved, earn my own money and make something I could be proud of."
+    thai: "ตอนเรียนก็คิดมาตลอดว่า ถ้าตั้งใจเรียน ถ้าฝึกฝนตัวเองให้ดี พอเรียนจบก็จะได้ทำงานที่ชอบ ได้หาเงินด้วยตัวเอง ได้ทำอะไรที่ภูมิใจสักอย่าง"
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/3
+    english: "...I am tired."
+    thai: "...เหนื่อยแล้วนะ"
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/4
+    english: "Will pushing on really make anything better? Or am I wasting time on something that will never happen?"
+    thai: "ถ้าฝืนต่อไป มันจะมีอะไรดีขึ้นจริง ๆ ไหม? หรือเรากำลังเสียเวลาไปกับอะไรที่ไม่มีวันเป็นไปได้กันแน่"
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/5
+    english: "Quitting now would mean giving up on my dream... But if I keep going, I do not know how many more disappointments I can take."
+    thai: "ถ้าเลิกตอนนี้ ก็เหมือนยอมแพ้ความฝันตัวเอง... แต่ถ้าไปต่อ เราก็ไม่รู้ว่าจะต้องผิดหวังอีกกี่ครั้ง"
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/6
+    english: "What am I supposed to do now?"
+    thai: "แล้วเราควรทำยังไงต่อดี"
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/7
+    english: "..."
+    thai: "..."
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/8
+    english: "..."
+    thai: "..."
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/9
+    english: "..."
+    thai: "..."
+  - key: event/event_day06_final_story/segments/morning/lines/0/lines/10
+    english: "...Maybe it really is time to think about what I want to do with my life."
+    thai: "...บางที เราอาจต้องลองคิดดูแล้วจริง ๆ ว่าจะเอายังไงกับชีวิตต่อจากนี้"
+  - key: ending/ending_civil_service/title
+    english: "Take the civil-service exam"
+    thai: "ไปสอบข้าราชการ"
+  - key: ending/ending_civil_service/optionLabel
+    english: "Take the civil-service exam"
+    thai: "ไปสอบข้าราชการ"
+  - key: ending/ending_civil_service/previewLines/0/lines/0
+    english: "At least... Dad probably will not reject me like those companies."
+    thai: "อย่างน้อย... พ่อก็คงไม่ปฏิเสธเราเหมือนบริษัทพวกนั้น"
+  - key: ending/ending_father_job/title
+    english: "Go to work with Dad"
+    thai: "ไปทำงานกับพ่อ"
+  - key: ending/ending_father_job/optionLabel
+    english: "Go to work with Dad"
+    thai: "ไปทำงานกับพ่อ"
+  - key: ending/ending_father_job/previewLines/0/lines/0
+    english: "Maybe I should choose a stable job... Even if it is not what I dreamed of, it would be nice not to worry about work every day."
+    thai: "หรือเราควรเลือกงานที่มั่นคงไปเลยดีนะ... ถึงจะไม่ใช่สิ่งที่ฝันไว้ แต่ถ้าไม่ต้องมานั่งกังวลเรื่องงานทุกวันก็คงดี"
+  - key: ending/ending_continue_applying/title
+    english: "Keep applying for jobs"
+    thai: "สมัครงานต่อไป"
+  - key: ending/ending_continue_applying/optionLabel
+    english: "Keep applying for jobs"
+    thai: "สมัครงานต่อไป"
+  - key: ending/ending_continue_applying/previewLines/0/lines/0
+    english: "...But if I really stop now, I will regret it forever."
+    thai: "...แต่ถ้าเราหยุดตอนนี้จริง ๆ เราคงเสียดายไปตลอดแน่"
+  - key: ending/ending_continue_applying/previewLines/0/lines/1
+    english: "One more try, then... Even if I have no idea how many more tries it will take."
+    thai: "ลองอีกสักครั้งก็แล้วกัน... ถึงจะไม่รู้ว่าต้องลองอีกกี่ครั้งก็ตาม"
+  - key: ui/daily/confirm
+    english: "Confirm decision"
+    thai: "ยืนยันการตัดสินใจ"
+  - key: ui/daily/back
+    english: "Back"
+    thai: "ย้อนกลับ"
+  - key: speaker/Friend
+    english: "Friend"
+    thai: "เพื่อน"

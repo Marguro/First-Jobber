@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 780d7809f66105a4ca9bbf36c63022bc
+    type: 3
+  m_Name: event_day01_resume_intro
+  m_EditorClassIdentifier: ''
+  id: event_day01_resume_intro
+  trigger: 8
+  exactDay: 1
+  minDay: 0
+  repeatable: 0
+  priority: 0
+  requiredFlag: ''
+  forbiddenFlag: ''
+  setFlags: []
+  caption: ''
+  background:
+    fileID: 0
+  flickerSeconds: 0
+  lines: []
+  segments:
+  - id: resume_intro
+    lines:
+    - speaker: Player
+      text: ''
+      dialogueLines:
+      - All right! Before I land my dream job, let us make this resume shine!
+      - From my studies and university to my personal motto, everything helps a company see who I am!
+      - And I cannot forget to choose carefully. Each part affects how confident I feel about applying.
+      - The better my details fit together, the more confident I will feel. If they suit the company, maybe my chances will go up too!
+      - Easy enough! With a resume this good, how could my dream game studio turn me down?
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []

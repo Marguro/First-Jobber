@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace FirstJobber
 {
-    /// <summary>The father's offer, then a list of all endings (all always selectable).</summary>
+    /// <summary>Final choices with a sequential preview and a separate confirmation for production story.</summary>
     public class FinalDecisionController : MonoBehaviour
     {
         [SerializeField] TMP_Text titleText;
@@ -15,6 +15,8 @@ namespace FirstJobber
 
         GameContext ctx;
         bool chosen;
+        string pendingId;
+        bool confirming;
         readonly List<ChoiceItem> items = new List<ChoiceItem>();
 
         void Awake()
@@ -35,11 +37,23 @@ namespace FirstJobber
             endingList.gameObject.SetActive(false);
             if (titleText != null) titleText.text = "";
 
-            ctx.Dialogue.Play(ctx.Database.fatherOfferLines, ShowOptions, 0f, ctx.Database.fatherOfferMode);
+            if (ctx.Database.finalStoryDay > 0) ShowOptions();
+            else ctx.Dialogue.Play(ctx.Database.fatherOfferLines, ShowOptions, 0f, ctx.Database.fatherOfferMode);
+        }
+
+        public void PrepareStory()
+        {
+            chosen = true;
+            endingList.Clear();
+            endingList.gameObject.SetActive(false);
+            if (titleText != null) titleText.text = "";
         }
 
         void ShowOptions()
         {
+            chosen = false;
+            confirming = false;
+            pendingId = null;
             items.Clear();
             foreach (var e in ctx.Database.endings)
             {
@@ -61,9 +75,32 @@ namespace FirstJobber
         void OnChosen(string id)
         {
             if (chosen) return;
+            if (confirming)
+            {
+                if (id == "back") { ShowOptions(); return; }
+                if (id != "confirm" || string.IsNullOrEmpty(pendingId)) return;
+                chosen = true;
+                endingList.SetInteractable(false);
+                EndingChosen?.Invoke(pendingId);
+                return;
+            }
+            var ending = ctx.Database.FindEnding(id);
+            if (ending == null) return;
+            if (ctx.Database.finalStoryDay == 0) { chosen = true; EndingChosen?.Invoke(id); return; }
+            pendingId = id;
             chosen = true;
             endingList.SetInteractable(false);
-            EndingChosen?.Invoke(id);
+            endingList.gameObject.SetActive(false);
+            ctx.Dialogue.Play(ending.previewLines, () => {
+                confirming = true;
+                chosen = false;
+                items.Clear();
+                items.Add(new ChoiceItem { id = "confirm", title = UiText.ConfirmDecision.Text, state = ChoiceState.Available });
+                items.Add(new ChoiceItem { id = "back", title = UiText.BackToDecisions.Text, state = ChoiceState.Available });
+                endingList.gameObject.SetActive(true);
+                endingList.SetItems(items, resetScroll: true);
+                endingList.SetInteractable(true);
+            });
         }
     }
 }

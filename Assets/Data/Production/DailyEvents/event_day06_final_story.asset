@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 780d7809f66105a4ca9bbf36c63022bc
+    type: 3
+  m_Name: event_day06_final_story
+  m_EditorClassIdentifier: ''
+  id: event_day06_final_story
+  trigger: 0
+  exactDay: 6
+  minDay: 0
+  repeatable: 0
+  priority: 0
+  requiredFlag: ''
+  forbiddenFlag: ''
+  setFlags: []
+  caption: ''
+  background:
+    fileID: 0
+  flickerSeconds: 0
+  lines: []
+  segments:
+  - id: morning
+    lines:
+    - speaker: Player
+      text: ''
+      dialogueLines:
+      - '...Morning already?'
+      - What did I do wrong...
+      - All through school, I thought that if I studied hard and kept practicing, I would graduate, do work I loved, earn my own money and make something I could be proud of.
+      - '...I am tired.'
+      - Will pushing on really make anything better? Or am I wasting time on something that will never happen?
+      - Quitting now would mean giving up on my dream... But if I keep going, I do not know how many more disappointments I can take.
+      - What am I supposed to do now?
+      - '...'
+      - '...'
+      - '...'
+      - '...Maybe it really is time to think about what I want to do with my life.'
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []

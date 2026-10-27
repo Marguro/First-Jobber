@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 780d7809f66105a4ca9bbf36c63022bc
+    type: 3
+  m_Name: event_day01_opening
+  m_EditorClassIdentifier: ''
+  id: event_day01_opening
+  trigger: 1
+  exactDay: 1
+  minDay: 0
+  repeatable: 0
+  priority: 0
+  requiredFlag: ''
+  forbiddenFlag: ''
+  setFlags: []
+  caption: ''
+  background:
+    fileID: 0
+  flickerSeconds: 0
+  lines: []
+  segments:
+  - id: opening
+    lines:
+    - speaker: Player
+      text: ''
+      dialogueLines:
+      - The first morning of life as a fresh grad!
+      - Finally graduated! Now it is my turn to get out there and work for real!
+      - 'Here is hoping for a good day: the right game studio, art I love making, and characters I can really bring to life.'
+      - Just thinking about it is exciting! All right, dream game studio, get ready for me!
+      - Today is definitely going to be my day!
+      emotion: 0
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: ''
+      portrait:
+        fileID: 0
+      genderIds: []
+      variantGroup: ''
+    options: []

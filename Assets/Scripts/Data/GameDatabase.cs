@@ -19,6 +19,8 @@ namespace FirstJobber
         public List<InterviewQuestionData> questions = new List<InterviewQuestionData>();
         public List<DailyEventData> events = new List<DailyEventData>();
         public List<EndingData> endings = new List<EndingData>();
+        [Header("Production daily story (0 = legacy exhaustion flow)")]
+        public int finalStoryDay;
 
         [Header("HR characters (one per company - see CompanyData.hr)")]
         public List<HRCharacterData> hrCharacters = new List<HRCharacterData>();

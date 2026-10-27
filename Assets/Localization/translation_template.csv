@@ -1115,3 +1115,78 @@ confidence/apply/day_05/high/candidate_02/text,"...Yeah, forget it. Just send it
 confidence/apply/day_05/low/candidate_00/text,"Do I have to do this again?... Pick a company, attach my portfolio, write my resume, and then sit and wait...",ต้องทำอีกแล้วเหรอ... เลือกบริษัท แนบพอร์ต เขียนเรซูเม่ แล้วก็นั่งรอ...
 confidence/apply/day_05/low/candidate_01/text,I don't even know if anyone will open it once I send it.,ไม่รู้ด้วยซ้ำว่าถ้าส่งไปแล้วจะมีใครเปิดดูไหม
 confidence/apply/day_05/low/candidate_02/text,"...But if I don't send it, I'll just have to come back and do this again tomorrow.",...แต่ถ้าไม่ส่ง พรุ่งนี้ก็คงต้องกลับมานั่งทำแบบนี้อยู่ดี
+event/event_day01_opening/segments/opening/lines/0/lines/0,The first morning of life as a fresh grad!,เช้าวันแรกของการเป็นเฟิร์สจ๊อบแจ๊บ!
+event/event_day01_opening/segments/opening/lines/0/lines/1,Finally graduated! Now it is my turn to get out there and work for real!,ในที่สุดก็เรียนจบแล้ว ต่อไปก็ถึงตาเราได้ทำงานจริง ๆ สักที!
+event/event_day01_opening/segments/opening/lines/0/lines/2,"Here is hoping for a good day: the right game studio, art I love making, and characters I can really bring to life.",ขอให้วันนี้เป็นวันที่ดี ได้เจอบริษัทเกมที่ใช่ ได้ทำงานอาร์ตที่ชอบ สร้างตัวละครที่มีชีวิตขึ้นมาจริง ๆ
+event/event_day01_opening/segments/opening/lines/0/lines/3,"Just thinking about it is exciting! All right, dream game studio, get ready for me!",คิดแล้วก็ตื่นเต้นชะมัด! เอาล่ะ บริษัทเกมในฝัน รอรับฉันได้เลย!
+event/event_day01_opening/segments/opening/lines/0/lines/4,Today is definitely going to be my day!,วันนี้ต้องเป็นวันของฉันแน่นอน!
+event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/0,"All right! Before I land my dream job, let us make this resume shine!",เอาล่ะ! ก่อนจะไปคว้างานในฝัน เรามาจัด Resume ของเราให้ปังก่อนดีกว่า!
+event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/1,"From my studies and university to my personal motto, everything helps a company see who I am!",ทั้งประวัติการเรียน มหาวิทยาลัย ไปจนถึงคติประจำใจ ทุกอย่างล้วนเป็นส่วนหนึ่งที่ทำให้บริษัทเห็นว่าเราเป็นคนแบบไหน!
+event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/2,And I cannot forget to choose carefully. Each part affects how confident I feel about applying.,แล้วก็ต้องไม่ลืมเลือกให้ดีด้วย เพราะแต่ละอย่างมีผลต่อความมั่นใจในการสมัครงานของเรา
+event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/3,"The better my details fit together, the more confident I will feel. If they suit the company, maybe my chances will go up too!",ยิ่งข้อมูลของเราเข้ากันได้ดี ความมั่นใจก็ยิ่งเพิ่มขึ้น ถ้าเลือกได้เหมาะกับบริษัทที่สมัครล่ะก็ โอกาสได้งานก็อาจจะสูงขึ้นตามไปด้วย!
+event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/4,"Easy enough! With a resume this good, how could my dream game studio turn me down?",แค่นี้เอง สบายมาก! Resume ดีขนาดนี้ บริษัทเกมในฝันจะปฏิเสธฉันลงได้ยังไงกันล่ะ?
+event/event_day01_company_intro/segments/company_intro/lines/0/lines/0,"Next, it is time to choose where to send my resume!",ต่อไปก็ถึงเวลาเลือกบริษัทที่เราจะยื่น Resume แล้ว!
+event/event_day01_company_intro/segments/company_intro/lines/0/lines/1,"Every company has different work, working days and conditions. Better read the details before deciding.",บริษัทแต่ละแห่งมีทั้งลักษณะงาน วันทำงาน และเงื่อนไขที่แตกต่างกัน อย่าลืมอ่านรายละเอียดให้ดีก่อนตัดสินใจนะ
+event/event_day01_company_intro/segments/company_intro/lines/0/lines/2,"The company I choose affects my confidence too! If my qualifications fit, I might feel more confident. If they do not... it could go down instead!",บริษัทที่เราเลือกก็มีผลต่อความมั่นใจในการสมัครงานของเราด้วยนะ! ถ้าคุณสมบัติของเราเข้ากับบริษัทที่เลือก ความมั่นใจก็อาจเพิ่มขึ้น แต่ถ้าไม่เข้ากันล่ะก็... อาจลดลงได้เหมือนกัน!
+event/event_day01_company_intro/segments/company_intro/lines/0/lines/3,"Well, it is my first job. I had better choose carefully!",เอาเถอะ งานแรกทั้งที ต้องเลือกให้ดีหน่อยแล้ว!
+event/event_day01_company_intro/segments/company_intro/lines/0/lines/4,Dream game studio... here I come!,บริษัทเกมในฝัน... ฉันกำลังไปหาแล้วนะ!
+event/event_day01_after_rejection/segments/after_rejection/lines/0/lines/0,It is fine! That was only the first company! There is always tomorrow. Someone out there has to recognize what I can do!,ไม่เป็นไร! ก็แค่บริษัทแรกเองนี่นา! ยังมีพรุ่งนี้เสมอ เดี๋ยวก็ต้องมีที่ที่เห็นความสามารถของเราบ้างแหละ!
+event/event_day01_after_rejection/segments/after_rejection/lines/0/lines/1,Better get some sleep and start fresh tomorrow!,นอนเอาแรงแล้วพรุ่งนี้มาเริ่มใหม่ดีกว่า!
+event/event_day02_before_resume/segments/morning/lines/0/lines/0,"Yesterday did not go as I hoped, but I am sure today will be my day!",ถึงเมื่อวาน จะไม่ได้เป็นตามหวัง แต่วันนี้ฉันมั่นใจว่าต้องเป็นวันของฉันแน่นอน!
+event/event_day02_before_resume/segments/incoming_call/lines/0/lines/0,"Ring, ring. Incoming call.",กริ๊งๆ {โทรศัพท์เข้า}
+event/event_day02_before_resume/segments/friend_intro/lines/0/lines/0,Hey...{name}... I am taking the civil-service exam next month. Want to come along?,ไง...{name}... ฉันว่าจะไปสอบ ก.พ. เดือนหน้า เธอจะไปด้วยมั้ย
+event/event_day02_before_resume/segments/player_hesitate/lines/0/lines/0,....,....
+event/event_day02_before_resume/segments/friend_followup/lines/0/lines/0,It is a stable job. You should take the exam as a backup.,มันเป็นงานที่มั่นคง แกควรสอบเผื่อไว้นะ
+event/event_day02_before_resume/segments/friend_reply/options/silent/label,...,...
+event/event_day02_before_resume/segments/friend_reply/options/later/label,Let us talk about it later.,เดี๋ยวค่อยว่ากัน
+event/event_day02_before_resume/segments/friend_outro/lines/0/lines/0,"Give it some thought, then. Call me back within five days, or it will be too late.",งั้นไปคิดดูนะ ยังไงก็โทรกลับมาอย่าเกิน 5 วันล่ะ มันจะไม่ทัน
+event/event_day02_before_resume/segments/hang_up/lines/0/lines/0,The call ends.,วางสาย
+event/event_day02_before_resume/segments/resume_transition/lines/0/lines/0,All right! Let us try revising my resume today. Maybe that will help!,เอาล่ะ! วันนี้เราลองมาแก้ Resume ดีกว่า เผื่อจะดีขึ้น!
+event/event_day02_after_rejection/segments/after_rejection/lines/0/lines/0,Huh... am I really still not good enough? It is fine. I can practice more. I will do better next time!,เอ๊ะ... หรือเรายังไม่เก่งพอจริง ๆ นะ? ไม่เป็นไร กลับไปฝึกเพิ่มก็ได้ ครั้งหน้าต้องทำได้ดีกว่านี้แน่!
+event/event_day03_before_resume/segments/morning/lines/0/lines/0,"Good morning, me! Day three already...",อรุณสวัสดิ์ตัวเอง! วันที่สามแล้วสินะ...
+event/event_day03_before_resume/segments/morning/lines/0/lines/1,Which company gets to see what I can do today? Or maybe all they will see is the reject button again.,วันนี้บริษัทไหนจะได้เห็นความสามารถของเรากันนะ หรือจะได้เห็นแค่ปุ่มปฏิเสธเหมือนเดิมก็ไม่รู้
+event/event_day03_after_rejection/segments/after_rejection/lines/0/lines/0,Why is this so hard... I really did prepare. Was everything I learned still not enough? ...Whatever. I will try again tomorrow.,ทำไมมันยากจังนะ... เราก็เตรียมตัวไปดีแล้วแท้ ๆ หรือสิ่งที่เรียนมามันยังไม่พอจริง ๆ? ...ช่างเถอะ พรุ่งนี้ค่อยลองใหม่
+event/event_day04_before_resume/segments/morning/lines/0/lines/0,Mm... morning already...?,อือ... เช้าแล้วเหรอ...
+event/event_day04_before_resume/segments/morning/lines/0/lines/1,I do not want to get up. But I have to anyway.,ไม่อยากลุกเลยแฮะ แต่ก็ต้องลุกอยู่ดี
+event/event_day04_before_resume/segments/morning/lines/0/lines/2,Will there even be any companies left to apply to today..?,วันนี้จะยังเหลือบริษัทให้สมัครอีกมั้ยนะ..
+event/event_day04_before_resume/segments/incoming_call/lines/0/lines/0,"Ring, ring. Incoming call.",กริ๊งๆ {โทรศัพท์เข้า}
+event/event_day04_before_resume/segments/father_intro/lines/0/lines/0,How is it going? Have you found a job yet?,เป็นไงบ้างลูก ได้งานทำหรือยัง
+event/event_day04_before_resume/segments/player_reply/lines/0/lines/0,"Not yet, Dad... but I am sure it will be soon.",ยังเลยพ่อ...แต่คงจะเร็วๆ นี้แหละ
+event/event_day04_before_resume/segments/father_response/lines/0/lines/0,I hope so too.,พ่อก็หวังแบบนั้นนะ
+event/event_day04_before_resume/segments/player_silence/lines/0/lines/0,...,...
+event/event_day04_before_resume/segments/father_offer/lines/0/lines/0,"By the way, have you thought about coming to work with me?",ว่าแต่ ไม่คิดจะมาทำงานกับพ่อหรอ
+event/event_day04_before_resume/segments/father_reply/options/silent/label,...,...
+event/event_day04_before_resume/segments/father_reply/options/own_path/label,"Let me try the path I chose first, Dad.",ขอลองเดินทางที่ตัวเองเลือกก่อนนะพ่อ
+event/event_day04_before_resume/segments/father_outro/lines/0/lines/0,"Think it over, then. I will call again in two or three days.",งั้นลองเอากลับไปคิดดู อีก 2-3 วันพ่อจะโทรมาถามอีกทีนะ
+event/event_day04_before_resume/segments/hang_up/lines/0/lines/0,The call ends.,วางสาย
+event/event_day04_before_resume/segments/resume_transition/lines/0/lines/0,I guess I will just leave it to fate.,ถือซะว่าให้มันเป็นเรื่องของโชคชะตานำพาไปแล้วกัน
+event/event_day04_after_rejection/segments/after_rejection/lines/0/lines/0,"Again...? The same questions, acting like I have everything together when I am barely holding on inside... How many more times do I have to be rejected?",อีกแล้วเหรอ... ต้องตอบคำถามเดิม ๆ ต้องทำเหมือนตัวเองพร้อมทุกอย่าง ทั้งที่ข้างในก็เริ่มไม่ไหวแล้ว... เราต้องโดนปฏิเสธอีกกี่ครั้งกันนะ?
+event/event_day05_before_resume/segments/morning/lines/0/lines/0,I do not want to wake up. I do not want to open any documents. I do not even want to look at my own resume.,ไม่อยากตื่นเลย ไม่อยากเปิดเอกสาร ไม่อยากเห็นเรซูเม่ตัวเองด้วยซ้ำ
+event/event_day05_before_resume/segments/morning/lines/0/lines/1,"But if I do nothing, nothing will change...",แต่ถ้าไม่ทำอะไรเลย ก็ไม่มีอะไรเปลี่ยนสินะ...
+event/event_day05_after_rejection/segments/after_rejection/lines/0/lines/0,I just want a job... I am not asking to be the best or earn hundreds of thousands. I just want a chance to do something I studied and enjoy...,เราแค่อยากได้งานสักงานเองนะ... ไม่ได้อยากเป็นคนเก่งที่สุด ไม่ได้อยากได้เงินเดือนเป็นแสน แค่อยากได้ทำสิ่งที่ตัวเองเรียนมาและชอบบ้าง...
+event/event_day05_after_rejection/segments/after_rejection/lines/0/lines/1,Is that really so much to ask?,มันยากขนาดนั้นเลยเหรอ?
+event/event_day05_after_rejection/segments/after_rejection/lines/0/lines/2,"...Tomorrow I have to wake up and apply again, do I not?",...พรุ่งนี้ก็ต้องตื่นมาสมัครงานอีกสินะ
+event/event_day06_final_story/segments/morning/lines/0/lines/0,...Morning already?,...เช้าแล้วเหรอ
+event/event_day06_final_story/segments/morning/lines/0/lines/1,What did I do wrong...,เราทำอะไรผิด...
+event/event_day06_final_story/segments/morning/lines/0/lines/2,"All through school, I thought that if I studied hard and kept practicing, I would graduate, do work I loved, earn my own money and make something I could be proud of.",ตอนเรียนก็คิดมาตลอดว่า ถ้าตั้งใจเรียน ถ้าฝึกฝนตัวเองให้ดี พอเรียนจบก็จะได้ทำงานที่ชอบ ได้หาเงินด้วยตัวเอง ได้ทำอะไรที่ภูมิใจสักอย่าง
+event/event_day06_final_story/segments/morning/lines/0/lines/3,...I am tired.,...เหนื่อยแล้วนะ
+event/event_day06_final_story/segments/morning/lines/0/lines/4,Will pushing on really make anything better? Or am I wasting time on something that will never happen?,ถ้าฝืนต่อไป มันจะมีอะไรดีขึ้นจริง ๆ ไหม? หรือเรากำลังเสียเวลาไปกับอะไรที่ไม่มีวันเป็นไปได้กันแน่
+event/event_day06_final_story/segments/morning/lines/0/lines/5,"Quitting now would mean giving up on my dream... But if I keep going, I do not know how many more disappointments I can take.",ถ้าเลิกตอนนี้ ก็เหมือนยอมแพ้ความฝันตัวเอง... แต่ถ้าไปต่อ เราก็ไม่รู้ว่าจะต้องผิดหวังอีกกี่ครั้ง
+event/event_day06_final_story/segments/morning/lines/0/lines/6,What am I supposed to do now?,แล้วเราควรทำยังไงต่อดี
+event/event_day06_final_story/segments/morning/lines/0/lines/7,...,...
+event/event_day06_final_story/segments/morning/lines/0/lines/8,...,...
+event/event_day06_final_story/segments/morning/lines/0/lines/9,...,...
+event/event_day06_final_story/segments/morning/lines/0/lines/10,...Maybe it really is time to think about what I want to do with my life.,...บางที เราอาจต้องลองคิดดูแล้วจริง ๆ ว่าจะเอายังไงกับชีวิตต่อจากนี้
+ending/ending_civil_service/title,Take the civil-service exam,ไปสอบข้าราชการ
+ending/ending_civil_service/optionLabel,Take the civil-service exam,ไปสอบข้าราชการ
+ending/ending_civil_service/previewLines/0/lines/0,At least... Dad probably will not reject me like those companies.,อย่างน้อย... พ่อก็คงไม่ปฏิเสธเราเหมือนบริษัทพวกนั้น
+ending/ending_father_job/title,Go to work with Dad,ไปทำงานกับพ่อ
+ending/ending_father_job/optionLabel,Go to work with Dad,ไปทำงานกับพ่อ
+ending/ending_father_job/previewLines/0/lines/0,"Maybe I should choose a stable job... Even if it is not what I dreamed of, it would be nice not to worry about work every day.",หรือเราควรเลือกงานที่มั่นคงไปเลยดีนะ... ถึงจะไม่ใช่สิ่งที่ฝันไว้ แต่ถ้าไม่ต้องมานั่งกังวลเรื่องงานทุกวันก็คงดี
+ending/ending_continue_applying/title,Keep applying for jobs,สมัครงานต่อไป
+ending/ending_continue_applying/optionLabel,Keep applying for jobs,สมัครงานต่อไป
+ending/ending_continue_applying/previewLines/0/lines/0,"...But if I really stop now, I will regret it forever.",...แต่ถ้าเราหยุดตอนนี้จริง ๆ เราคงเสียดายไปตลอดแน่
+ending/ending_continue_applying/previewLines/0/lines/1,"One more try, then... Even if I have no idea how many more tries it will take.",ลองอีกสักครั้งก็แล้วกัน... ถึงจะไม่รู้ว่าต้องลองอีกกี่ครั้งก็ตาม
+ui/daily/confirm,Confirm decision,ยืนยันการตัดสินใจ
+ui/daily/back,Back,ย้อนกลับ
+speaker/Friend,Friend,เพื่อน
