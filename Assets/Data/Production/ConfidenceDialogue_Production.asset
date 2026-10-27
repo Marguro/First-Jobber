@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0383af20d1cbac8468f048d0c2659b5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 623a3d2527136184fa4ea8e3453ea0b8, type: 3}
   m_Name: ConfidenceDialogue_Production
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ConfidenceDialogueDatabase
   threshold: 50

@@ -1091,3 +1091,27 @@ ui/label/GameCanvas/InterviewPanel/HRArea/HRPortrait/PlaceholderLabel,Neutral,�
 ui/label/GameCanvas/EndingPanel/Buttons/RestartButton/Label,Restart,เริ่มใหม่
 ui/label/GameCanvas/EndingPanel/Buttons/MenuButton/Label,Main Menu,เมนูหลัก
 ui/label/GameCanvas/DialogueBox/SpeakerText,Speaker,ผู้พูด
+confidence/apply/day_01/high/candidate_00/text,Wow! Look at my profile! How could a game company possibly pass up someone as talented as me?!,โอ้โห! ดูโปรไฟล์ของฉันสิ! แบบนี้บริษัทเกมจะพลาดคนเก่งอย่างฉันไปได้ยังไงกันล่ะ?!
+confidence/apply/day_01/high/candidate_01/text,"All right, this is the one! My first job is going to be great!",เอาล่ะ บริษัทนี้แหละ! งานแรกของฉันต้องดีแน่นอน!
+confidence/apply/day_01/high/candidate_02/text,Just send it already!!,ส่งเลยแล้วกันนนน!!
+confidence/apply/day_01/low/candidate_00/text,"Uh... come to think of it, my profile doesn't really stand out that much...",เอ่อ... จะว่าไป โปรไฟล์ของเราก็ยังดูไม่ได้โดดเด่นขนาดนั้นแฮะ...
+confidence/apply/day_01/low/candidate_01/text,Would this company even be interested in me? Or will they open my resume and close it right away...,บริษัทนี้จะสนใจเราจริง ๆ เหรอนะ? หรือเขาจะเปิด Resume มาแล้วก็ปิดทิ้งเลย...
+confidence/apply/day_01/low/candidate_02/text,But you never know until you try!,แต่ถ้าไม่ลองก็ไม่รู้!
+confidence/apply/day_01/low/candidate_03/text,"I may not be fully confident, but I really do want to work in games!",ถึงจะยังไม่มั่นใจเต็มร้อย แต่ฉันก็อยากทำงานเกมจริง ๆ นี่นา!
+confidence/apply/day_01/low/candidate_04/text,Let's go! At least I have to give myself a chance first!,ลุยเลย! อย่างน้อยก็ต้องให้โอกาสตัวเองก่อน!
+confidence/apply/day_02/high/candidate_00/text,All right! Maybe the last company just wasn't the right place for me! My skills aren't bad at all. This company must have something good for me!,เอาล่ะ! บริษัทที่แล้วอาจแค่ไม่ใช่ที่ของเราก็ได้! ฝีมือเราก็ไม่ได้แย่สักหน่อย บริษัทนี้ต้องมีอะไรดี ๆ บ้างแหละ!
+confidence/apply/day_02/low/candidate_00/text,"Ah... I have to send it again, huh. I hope I don't get rejected too quickly this time...",อ่า... ต้องส่งอีกแล้วสินะ หวังว่าคราวนี้จะไม่โดนปฏิเสธเร็วเกินไปนะ...
+confidence/apply/day_02/low/candidate_01/text,"Oh well, let's give it a try.",เอาเถอะ ลองดูก็ได้
+confidence/apply/day_03/high/candidate_00/text,"My work isn't bad, and I have the skills. So what's still missing?",ผลงานเราก็ไม่ได้แย่ เราก็มีความสามารถ แล้วมันยังขาดอะไรอีกล่ะ?
+confidence/apply/day_03/high/candidate_01/text,"Whatever, just send it for now. Soon I'll find out what excuse they come up with this time to turn me down.",ช่างเถอะ ส่งไปก่อนละกัน เดี๋ยวค่อยรู้ว่าคราวนี้เขาจะหาเหตุผลอะไรมาไม่รับเรา
+confidence/apply/day_03/low/candidate_00/text,"Same resume, same portfolio, same questions... It feels like I'm doing everything over and over. The only differences are the company name and the rejection I'm about to get...",เรซูเม่เดิม ผลงานเดิม คำถามเดิม... เหมือนทำทุกอย่างซ้ำไปซ้ำมาเลยแฮะ ต่างกันแค่ชื่อบริษัทกับคำปฏิเสธที่กำลังจะได้รับ...
+confidence/apply/day_04/high/candidate_00/text,"Yeah, I'm good, and I know it... So what? In the end I still have to sit here applying for jobs like always. Ha ha...",เออ ฝีมือเราก็ดี เราก็รู้ตัวดี... แล้วไงต่อล่ะ? สุดท้ายก็ต้องมานั่งสมัครงานเหมือนเดิมอยู่ดีนี่นา ฮะ ๆ...
+confidence/apply/day_04/high/candidate_01/text,"Fine, just send it so the day can be over.",เอาเถอะ ส่ง ๆ ไป จะได้จบอีกวัน
+confidence/apply/day_04/low/candidate_00/text,...I don't even want to look at my resume anymore.,...ไม่อยากเปิดดูเรซูเม่แล้วด้วยซ้ำ
+confidence/apply/day_04/low/candidate_01/text,"But if I don't send it, there's no job, no money, and I'll keep worrying about the same things... I'm so tired.",แต่ถ้าไม่ส่ง ก็ไม่มีงาน ไม่มีเงิน แล้วก็ต้องนั่งกังวลเรื่องเดิม ๆ ต่อไป... เหนื่อยจังวะ
+confidence/apply/day_05/high/candidate_00/text,"I've done well all along... I studied hard, built my portfolio, trained myself for so many years.",เราก็ทำได้ดีมาตลอดนี่นา... ตั้งใจเรียน ทำพอร์ต ฝึกฝนตัวเองมาตั้งกี่ปี
+confidence/apply/day_05/high/candidate_01/text,So why is it so hard just to find a job somewhere?,แล้วทำไมแค่จะหางานทำสักที่ มันถึงยากขนาดนี้กันนะ?
+confidence/apply/day_05/high/candidate_02/text,"...Yeah, forget it. Just send it, so I finally find out what reason they'll reject me for this time.",...เออ ช่างมัน ส่งไปเถอะ จะได้รู้กันสักทีว่าคราวนี้จะโดนปฏิเสธด้วยเหตุผลอะไร
+confidence/apply/day_05/low/candidate_00/text,"Do I have to do this again?... Pick a company, attach my portfolio, write my resume, and then sit and wait...",ต้องทำอีกแล้วเหรอ... เลือกบริษัท แนบพอร์ต เขียนเรซูเม่ แล้วก็นั่งรอ...
+confidence/apply/day_05/low/candidate_01/text,I don't even know if anyone will open it once I send it.,ไม่รู้ด้วยซ้ำว่าถ้าส่งไปแล้วจะมีใครเปิดดูไหม
+confidence/apply/day_05/low/candidate_02/text,"...But if I don't send it, I'll just have to come back and do this again tomorrow.",...แต่ถ้าไม่ส่ง พรุ่งนี้ก็คงต้องกลับมานั่งทำแบบนี้อยู่ดี

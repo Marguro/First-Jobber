@@ -301,4 +301,5 @@ MonoBehaviour:
     portrait: {fileID: 0}
     genderIds: []
     variantGroup: 
+  requireDayBasedConfidence: 1
   confidenceDialogue: {fileID: 11400000, guid: 67cc31a615551034cb8c63dcc8414d61, type: 2}

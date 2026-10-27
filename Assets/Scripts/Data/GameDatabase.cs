@@ -50,7 +50,7 @@ namespace FirstJobber
         [Tooltip("Played when the resume first slides into the editor.")]
         public DialoguePlaybackMode resumeIntroMode;
         public DialogueLine[] resumeIntroLines;
-        [Header("Resume confirmed (depends on resume confidence)")]
+        [Header("Legacy Apply reactions (ignored when day-based confidence is required)")]
         [Tooltip("Overall confidence ABOVE this value plays the High pool. Equal to it or below plays the Low pool.")]
         [Range(0f, 100f)] public float resumeConfirmedThreshold = 50f;
         [Tooltip("Played when the confirmed confidence is above the threshold. ONE random block is played.")]
@@ -144,23 +144,34 @@ namespace FirstJobber
         }
 
         /// <summary>
-        /// Chooses the dialogue collection for Confirm Resume. Confidence is NOT random: above the threshold = High,
-        /// otherwise Low. An empty chosen pool falls back to the other pool, then to the legacy collection.
-        /// The caller plays the result with the returned mode (pools are always RandomOne: one block, all its lines).
+        /// Optional day-based Apply reactions. Databases without this reference retain their legacy pools.
         /// </summary>
-        [Header("Confidence reaction on Apply (day + confidence). Empty = the legacy High/Low pools below are used.")]
+        [Header("Confidence reaction on Company Apply")]
+        [Tooltip("Require the day-based configuration. If its reference is missing or broken, skip with a warning instead of playing legacy content. Enabled for Production; off for legacy/demo databases.")]
+        public bool requireDayBasedConfidence;
+        [Tooltip("Authoritative day + finalized-confidence dialogue configuration. Played only after Company Apply, before Interview.")]
         public ConfidenceDialogueDatabase confidenceDialogue;
 
         /// <summary>
-        /// Reaction played when a company application is confirmed. Uses the day-based database when it has a usable pool,
-        /// otherwise the legacy resume-confirmed pools. Always played with the returned mode (RandomOne = one candidate).
+        /// Reaction played when a company application is confirmed. A configured day database is authoritative:
+        /// if all its authored fallbacks are empty, skip the reaction rather than substitute legacy/demo dialogue.
+        /// Only databases that do not require a day configuration retain the legacy behavior.
         /// </summary>
         public DialogueLine[] ResolveApplyReaction(int day, float confidence, out DialoguePlaybackMode mode)
         {
             if (confidenceDialogue != null)
             {
                 var lines = confidenceDialogue.Resolve(day, confidence);
-                if (lines != null) { mode = DialoguePlaybackMode.RandomOne; return lines; }
+                mode = confidenceDialogue.PlaybackMode;
+                if (lines == null)
+                    Debug.LogWarning("[Confidence] No usable Apply reaction for day " + day + ". Skipping the reaction.", confidenceDialogue);
+                return lines; // DialogueManager completes empty collections immediately, so Apply cannot stall.
+            }
+            if (requireDayBasedConfidence)
+            {
+                mode = DialoguePlaybackMode.RandomOne;
+                Debug.LogWarning("[Confidence] Required day-based Apply configuration is missing or has a missing script. Repair the confidenceDialogue reference. Legacy reactions are disabled for this database.", this);
+                return null;
             }
             return ResolveResumeConfirmedLines(confidence, out mode);
         }
@@ -251,10 +262,15 @@ namespace FirstJobber
             if (companies.Count == 0) problems.Add("No companies.");
             if (endings.Count == 0) problems.Add("No endings. The final decision needs at least one.");
             else if (endings.Count != 3) problems.Add("Endings count is " + endings.Count + " (design expects 3).");
-            if (!HasUsableBlock(highConfidenceConfirmedLines) && !HasUsableBlock(lowConfidenceConfirmedLines) && !HasUsableBlock(resumeConfirmedLines))
-                problems.Add("No Resume Confirmed dialogue (high, low and legacy are all empty): confirming a resume will be silent.");
-            else if (!HasUsableBlock(highConfidenceConfirmedLines) || !HasUsableBlock(lowConfidenceConfirmedLines))
-                problems.Add("Only one Resume Confirmed confidence pool has dialogue; the other confidence level reuses it.");
+            if (requireDayBasedConfidence && confidenceDialogue == null)
+                problems.Add("Required day-based Apply configuration is missing or has a missing script. Legacy confidence dialogue will not be used.");
+            if (!requireDayBasedConfidence && confidenceDialogue == null)
+            {
+                if (!HasUsableBlock(highConfidenceConfirmedLines) && !HasUsableBlock(lowConfidenceConfirmedLines) && !HasUsableBlock(resumeConfirmedLines))
+                    problems.Add("No legacy Apply dialogue (high, low and legacy are all empty): Apply will be silent.");
+                else if (!HasUsableBlock(highConfidenceConfirmedLines) || !HasUsableBlock(lowConfidenceConfirmedLines))
+                    problems.Add("Only one legacy Apply confidence pool has dialogue; the other confidence level reuses it.");
+            }
             if (fatherOfferLines == null || fatherOfferLines.Length == 0) problems.Add("fatherOfferLines is empty.");
             if (rejectionHR == null || rejectionHR.Length == 0) problems.Add("rejectionHR is empty (companies without their own rejection will be silent).");
 

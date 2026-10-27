@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -80,6 +81,11 @@ namespace FirstJobber.EditorTools
             var asset = AssetDatabase.LoadAssetAtPath<ConfidenceDialogueDatabase>(AssetPath);
             if (asset == null)
             {
+                if (File.Exists(AssetPath))
+                {
+                    Debug.LogError("[Confidence] The existing asset cannot be loaded. Repair its MonoScript reference or compilation errors before importing; serialized content was left untouched.");
+                    return;
+                }
                 asset = ScriptableObject.CreateInstance<ConfidenceDialogueDatabase>();
                 AssetDatabase.CreateAsset(asset, AssetPath);
             }
@@ -96,6 +102,7 @@ namespace FirstJobber.EditorTools
             EditorUtility.SetDirty(asset);
 
             db.confidenceDialogue = asset;
+            db.requireDayBasedConfidence = true;
             EditorUtility.SetDirty(db);
 
             // Register Thai under the exact keys the game looks up.

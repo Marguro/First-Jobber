@@ -1,0 +1,10 @@
+You are continuing the existing Unity project First-Jobber, previously developed with Claude Code and planned in ChatGPT.
+
+Read FIRSTJOBBER_HANDOFF.md and DAY_CONFIDENCE_DIALOGUE_TH.md first, and inspect any reference packages (do not automatically import them). Then read existing CLAUDE.md, NEXT_STEPS.md, and AGENTS.md if present. Inspect the real Unity project scripts, ScriptableObject assets, scenes, prefab references, localization infrastructure, Git working tree, and the most recent actual changes.
+
+IMPORTANT:
+- FIRSTJOBBER_HANDOFF.md documents product decisions from a ChatGPT conversation. Treat its claimed implementation status as UNVERIFIED until you inspect the repo.
+- Reuse the architecture actually present and preserve GUIDs, existing IDs, all authored production/test assets, English-source + Thai-table localization, and other developers' work.
+- Do not reimplement features from scratch or change code yet.
+- First, provide a concise Thai report listing (1) systems implemented and confirmed by files, (2) missing/unverified features, (3) conflicts between handoff and current repo, (4) latest work and recommended next small task, and (5) any Inspector/Play Mode checks I should perform.
+- I will then give you the next coding task.

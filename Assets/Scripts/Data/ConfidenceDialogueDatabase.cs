@@ -38,21 +38,26 @@ namespace FirstJobber
         public List<ConfidenceCandidate> fallbackHigh = new List<ConfidenceCandidate>();
         public List<ConfidenceCandidate> fallbackLow = new List<ConfidenceCandidate>();
 
+        // A pool contains alternatives; pages inside the selected block remain sequential.
+        public DialoguePlaybackMode PlaybackMode => DialoguePlaybackMode.RandomOne;
+
         public static string DayKey(int day) { return "day_" + day.ToString("00"); }
 
         /// <summary>
         /// Candidates for this day and confidence, as blocks to play with RandomOne. Day lookup: the exact day, then the nearest
         /// PREVIOUS configured day, then later days, then the general fallback. A day whose chosen pool is empty falls through
-        /// to the next one. Returns null when nothing is usable (the caller then uses the legacy confirmed-resume lines).
+        /// to the next one. Returns null when nothing is usable (the caller skips the reaction and continues Apply).
         /// </summary>
         public DialogueLine[] Resolve(int day, float confidence)
         {
             bool high = confidence > threshold;
             var ordered = new List<ConfidenceDayConfig>();
-            foreach (var d in days) if (d != null && d.day <= day) ordered.Add(d);
+            if (days != null)
+                foreach (var d in days) if (d != null && d.day <= day) ordered.Add(d);
             ordered.Sort((a, b) => b.day.CompareTo(a.day));           // exact day first, then nearest previous
             var later = new List<ConfidenceDayConfig>();
-            foreach (var d in days) if (d != null && d.day > day) later.Add(d);
+            if (days != null)
+                foreach (var d in days) if (d != null && d.day > day) later.Add(d);
             later.Sort((a, b) => a.day.CompareTo(b.day));
             ordered.AddRange(later);
 

@@ -103,12 +103,13 @@ namespace FirstJobber
                     Lines(c, "rejection", c.rejection, add);
                     break;
                 case ConfidenceDialogueDatabase cd:
-                    foreach (var day in cd.days)
-                    {
-                        if (day == null) continue;
-                        Candidates(cd, ConfidenceDialogueDatabase.DayKey(day.day) + "/high", day.high, add);
-                        Candidates(cd, ConfidenceDialogueDatabase.DayKey(day.day) + "/low", day.low, add);
-                    }
+                    if (cd.days != null)
+                        foreach (var day in cd.days)
+                        {
+                            if (day == null) continue;
+                            Candidates(cd, ConfidenceDialogueDatabase.DayKey(day.day) + "/high", day.high, add);
+                            Candidates(cd, ConfidenceDialogueDatabase.DayKey(day.day) + "/low", day.low, add);
+                        }
                     Candidates(cd, "fallback/high", cd.fallbackHigh, add);
                     Candidates(cd, "fallback/low", cd.fallbackLow, add);
                     break;
