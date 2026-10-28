@@ -101,9 +101,11 @@ namespace FirstJobber
                 if (nurse == null)
                 {
                     nurse = t.gameObject.AddComponent<ThaiTextNurse>();
-                    nurse.IsTokenize = true;
+                    nurse.IsTokenize = policy == null || policy.tokenizeThai;
                     nurse.NotifyChange();
                 }
+                bool tokenize = policy == null || policy.tokenizeThai;
+                if (nurse.IsTokenize != tokenize) nurse.IsTokenize = tokenize;
                 var correction = keepAuthoredFont && t.font != thaiFont ? ThaiGlyphCorrection.None : table.correction;
                 if (nurse.Correction != correction) nurse.Correction = correction;
                 if (!nurse.enabled)

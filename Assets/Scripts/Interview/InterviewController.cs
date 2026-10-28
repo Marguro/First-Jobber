@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FirstJobber
 {
@@ -17,6 +18,10 @@ namespace FirstJobber
         [SerializeField] ChoiceListUI answerList;
         [SerializeField] HRReactionController hr;
         [SerializeField] float neutralDelay = 0.4f;
+        [Header("Inspector-authored question scroll area")]
+        [SerializeField] ScrollRect questionScroll;
+        [SerializeField] RectTransform questionContent;
+        InterviewQuestionData currentQuestion;
 
         public event Action Finished;
         /// <summary>Raised for the interview sub-phases (introduction, resume review, question, reaction).</summary>
@@ -56,6 +61,7 @@ namespace FirstJobber
             if (routine != null) StopCoroutine(routine);
             routine = null;
             awaitingAnswer = false;
+            currentQuestion = null;
             if (answerList != null) { answerList.SetInteractable(false); answerList.Clear(); }
             if (questionText != null) questionText.text = "";
         }
@@ -104,16 +110,13 @@ namespace FirstJobber
             for (int i = 0; i < questionBuffer.Count; i++)
             {
                 var question = questionBuffer[i];
+                currentQuestion = question;
                 ctx.Session.interviewIndex = i;
 
                 PhaseRequested?.Invoke(GamePhase.InterviewQuestion);
-                string formatted = ctx.Dialogue.Format(LocalizationManager.Get(question, "questionText", question.questionText));
-                if (HasLines(question.questionDialogue))
-                {
-                    string shown = ctx.Dialogue.FirstText(question.questionDialogue);
-                    if (!string.IsNullOrEmpty(shown)) formatted = shown;
-                }
+                string formatted = QuestionLabel(question);
                 if (questionText != null) questionText.text = formatted;
+                ResetQuestionScroll();
                 if (HasLines(question.questionDialogue)) yield return PlayAndWait(question.questionDialogue);
                 else yield return PlayAndWait(new[] { new DialogueLine(Speakers.HR, formatted, question.hrEmotion) });
 
@@ -126,6 +129,7 @@ namespace FirstJobber
                 while (chosenAnswerId == null) yield return null;
                 awaitingAnswer = false;
                 answerList.SetInteractable(false);
+                answerList.Clear(); // Previous options must not remain behind response/next-question dialogue.
 
                 // Reactions
                 PhaseRequested?.Invoke(GamePhase.InterviewReaction);
@@ -142,12 +146,40 @@ namespace FirstJobber
             }
 
             answerList.Clear();
+            currentQuestion = null;
             if (questionText != null) questionText.text = "";
             routine = null;
             Finished?.Invoke();
         }
 
         static bool HasLines(DialogueLine[] lines) => lines != null && lines.Length > 0;
+
+        string QuestionLabel(InterviewQuestionData question)
+        {
+            string formatted = ctx.Dialogue.Format(LocalizationManager.Get(question, "questionText", question.questionText));
+            if (HasLines(question.questionDialogue))
+            {
+                string shown = ctx.Dialogue.FirstText(question.questionDialogue);
+                if (!string.IsNullOrEmpty(shown)) formatted = shown;
+            }
+            return formatted;
+        }
+        void ResetQuestionScroll()
+        {
+            if (questionScroll == null || questionContent == null) return;
+            Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(questionContent);
+            questionScroll.verticalNormalizedPosition = 1f;
+        }
+        public void RefreshLanguage()
+        {
+            if (ctx == null || currentQuestion == null) return;
+            if (questionText != null) questionText.text = QuestionLabel(currentQuestion);
+            ResetQuestionScroll();
+            if (!awaitingAnswer || chosenAnswerId != null) return;
+            BuildAnswerItems(currentQuestion);
+            answerList.SetItems(itemBuffer, "", false);
+        }
 
         IEnumerator PlayHrResponse(InterviewAnswer answer)
         {

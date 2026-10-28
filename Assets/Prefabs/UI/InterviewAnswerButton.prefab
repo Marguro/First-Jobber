@@ -141,7 +141,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 6628760647033495509, guid: 3ad17ea0730254d469dc1f60dd0c2288, type: 3}
-  m_Type: 2
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5.76
+  m_PixelsPerUnitMultiplier: 8
 --- !u!1 &2814294375776402929
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,8 +184,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0, y: 0}
-  m_SizeDelta: {x: -32, y: -24}
+  m_AnchoredPosition: {x: 28, y: 0}
+  m_SizeDelta: {x: -88, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5640374346786804911
 GameObject:
@@ -396,10 +396,8 @@ MonoBehaviour:
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4280228378
-  m_fontColor: {r: 0.1, g: 0.1, b: 0.12, a: 1}
+  m_fontColor32: {serializedVersion: 2, rgba: 4280228378}
+  m_fontColor: {r: 0.28, g: 0.19, b: 0.06, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -413,18 +411,16 @@ MonoBehaviour:
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_faceColor: {serializedVersion: 2, rgba: 4294967295}
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -455,7 +451,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -61.54297, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -506,7 +502,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 96}
+  m_SizeDelta: {x: 585, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &450245967780818654
 MonoBehaviour:
@@ -566,9 +562,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 76
+  m_MinHeight: 80
   m_PreferredWidth: -1
-  m_PreferredHeight: 96
+  m_PreferredHeight: 90
   m_FlexibleWidth: -1
   m_FlexibleHeight: 0
   m_LayoutPriority: 0
@@ -590,7 +586,7 @@ MonoBehaviour:
   background: {fileID: 5205809760930852328}
   titleText: {fileID: 5557010667304815370}
   subtitleText: {fileID: 8128964132670604171}
-  iconImage: {fileID: 2562384706026232010}
+  iconImage: {fileID: 0}
   badgeText: {fileID: 3556140069722006281}
   showBadge: 0
   confidenceStar: {fileID: 910100004}
@@ -599,6 +595,8 @@ MonoBehaviour:
   selectedColor: {r: 0.98, g: 0.82, b: 0.35, a: 1}
   consumedColor: {r: 0.35, g: 0.35, b: 0.35, a: 1}
   useProjectLocalizationFont: 0
+  useAuthoredBackgroundColor: 1
+  tintSelectedBackground: 0
 --- !u!114 &7783337574798386231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,12 +664,12 @@ GameObject:
   - component: {fileID: 6701590301886632446}
   - component: {fileID: 2562384706026232010}
   m_Layer: 0
-  m_Name: Icon
+  m_Name: DecorativeStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6480838925560998162
 RectTransform:
   m_ObjectHideFlags: 0
@@ -688,8 +686,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: 0}
-  m_SizeDelta: {x: 64, y: 64}
+  m_AnchoredPosition: {x: 36, y: 0}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6701590301886632446
 CanvasRenderer:
@@ -719,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5653626284197273718, guid: 45b1d4d2153f1d148bac2d1fe94a7ace, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

@@ -145,6 +145,9 @@ namespace FirstJobber
             if (!referencesOk || ctx == null) return;
             if (Phase == GamePhase.ResumeEditor) resumeEditor.RefreshLanguage();
             else if (Phase == GamePhase.CompanySelection) companySelection.RefreshLanguage();
+            else if (Phase == GamePhase.InterviewIntroduction || Phase == GamePhase.InterviewResumeReview
+                || Phase == GamePhase.InterviewQuestion || Phase == GamePhase.InterviewReaction || Phase == GamePhase.Rejection)
+                interview.RefreshLanguage();
         }
 
         // ------------------------------------------------------------ state machine

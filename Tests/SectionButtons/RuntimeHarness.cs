@@ -50,6 +50,14 @@ class SectionHarness
         own.Policy.useProjectFont=false;Call(manager,"ApplyAll");Check(own.font==fontA,"Returning to authored font lost its original assignment");
         LocalizationManager.Switch(false);Check(own.font==fontA && sceneButton.font==fontB,"Language switch overwrote authored font");
         Console.WriteLine("PASS actual font policy: independent section fonts, inactive preview sections, scene buttons, opt-in/restore, EN/TH changes and safe custom-font correction");
+        var speakerName=new TMP_Text{font=projectFont,Policy=new UIFontPolicy{useProjectFont=true,tokenizeThai=false}};
+        var dialogueBody=new TMP_Text{font=projectFont};
+        LocalizationManager.Switch(true);ThaiTextApplier.Register(speakerName);ThaiTextApplier.Register(dialogueBody);Call(manager,"ApplyAll");
+        Check(!speakerName.GetComponent<PhEngine.ThaiTextCare.ThaiTextNurse>().IsTokenize && dialogueBody.GetComponent<PhEngine.ThaiTextCare.ThaiTextNurse>().IsTokenize,"Name-specific policy disabled body tokenization or failed to disable speaker breaks");
+        Check(speakerName.GetComponent<PhEngine.ThaiTextCare.ThaiTextNurse>().Correction==PhEngine.ThaiTextCare.ThaiGlyphCorrection.FullC90,"Speaker glyph correction was lost");
+        LocalizationManager.Switch(false);LocalizationManager.Switch(true);Call(manager,"ApplyAll");
+        Check(!speakerName.GetComponent<PhEngine.ThaiTextCare.ThaiTextNurse>().IsTokenize,"Language/safety scan reset speaker tokenization");
+        Console.WriteLine("PASS speaker-only tokenization opt-out, retained Thai glyph correction/body word breaks and EN/TH switching");
     }
 }
 namespace UnityEngine

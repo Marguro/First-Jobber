@@ -21,6 +21,8 @@ namespace FirstJobber
         [SerializeField] CanvasGroup dailyEvent;
         [SerializeField] CanvasGroup finalDecision;
         [SerializeField] CanvasGroup ending;
+        [Tooltip("Optional artist-authored interview preset for the existing shared DialogueBox. Other screens restore their original layout.")]
+        [SerializeField] InterviewDialogueLayout interviewDialogueLayout;
 
         [Header("Transition overlay")]
         [SerializeField] CanvasGroup overlay;
@@ -74,6 +76,7 @@ namespace FirstJobber
         {
             var target = PanelFor(phase);
             if (target == null) return;
+            if (interviewDialogueLayout != null) interviewDialogueLayout.SetInterviewActive(target == interview);
             if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
             current = target;
             foreach (var p in panels)

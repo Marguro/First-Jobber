@@ -39,6 +39,7 @@ namespace UnityEngine
     public class RectTransform:Object { }
     public class MonoBehaviour:Object { public T GetComponentInParent<T>()where T:class=>null; }
     public class SerializeField:Attribute { }
+    public class TooltipAttribute:Attribute {public TooltipAttribute(string value){} }
     public class HeaderAttribute:Attribute { public HeaderAttribute(string value){} }
     public static class Debug {public static void LogError(string message,Object context) {throw new Exception(message);} }
     public static class Canvas { public static void ForceUpdateCanvases(){} }

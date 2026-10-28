@@ -82,13 +82,15 @@ class ResponseHarness
             var q=new InterviewQuestionData{id="question"+i,questionText="Question "+i,hrEmotion=HREmotion.Interested};
             q.answers.Add(new InterviewAnswer{id="first",applyHrReactionEmotion=true,hrReactionEmotion=HREmotion.Uncomfortable,portraitOnlyDuration=.8f});
             q.answers.Add(new InterviewAnswer{id="second",applyHrReactionEmotion=true,hrReactionEmotion=HREmotion.Disappointed});
+            for(int extra=0;extra<i;extra++)q.answers.Add(new InterviewAnswer{id="extra"+extra,text="Additional authored answer"});
             if(i<2)a.fixedQuestions.Add(q);else{q.linkedChoice=choice;a.resumeLinkedQuestions.Add(q);}
         }
         var list=new ChoiceListUI{AutoAnswer=true};Set(controller,"answerList",list);Call(controller,"Awake");
         int finished=0;controller.Finished+=()=>finished++;int silentHolds=0;
         controller.Begin(ctx);
-        waits=Run(controller.Pending,player,seconds=>{if(seconds==.8f){silentHolds++;Check(reaction.Current==HREmotion.Uncomfortable && !ui.Visible,"Silent reaction did not persist with dialogue closed");}});
+        waits=Run(controller.Pending,player,seconds=>{if(seconds==.8f){silentHolds++;Check(reaction.Current==HREmotion.Uncomfortable && !ui.Visible && list.VisibleCount==0,"Silent reaction did not persist with dialogue/old answers closed");}});
         Check(finished==1 && silentHolds==4 && ctx.Session.askedQuestionIds.Count==4 && list.Submissions==4,"Four-question interview failed to advance or double answer triggered extra reactions");
+        list.DisplayedCounts.Sort();Check(string.Join(",",list.DisplayedCounts)=="2,3,4,5","Interview hardcoded answer count instead of authored data");
         Console.WriteLine("PASS actual response/interview coroutines: silent hold without dialogue/input, shared HR switch, spoken multipage, legacy empty blocks, opt-in pacing, gender filtering, phase/fallback, next Neutral, non-HR preservation, four questions and rapid duplicate submission guards. No native Play Mode timing/rendering claim.");
     }
 }
@@ -99,7 +101,8 @@ namespace FirstJobber
     public class ChoiceListUI
     {
         public bool AutoAnswer;public int Submissions;public event Action<string> ItemChosen;List<ChoiceItem> items;
-        public void Clear(){}public void SetItems(List<ChoiceItem> values,string empty="",bool reset=false){items=new List<ChoiceItem>(values);}
+        public List<int> DisplayedCounts=new List<int>();public int VisibleCount=>items==null?0:items.Count;
+        public void Clear(){items=null;}public void SetItems(List<ChoiceItem> values,string empty="",bool reset=false){items=new List<ChoiceItem>(values);DisplayedCounts.Add(items.Count);}
         public void SetInteractable(bool value){if(value&&AutoAnswer){Submissions++;ItemChosen?.Invoke(items[0].id);ItemChosen?.Invoke(items[1].id);}}
     }
     public class ChoiceManager{public List<ResumeChoiceData> Selected=new List<ResumeChoiceData>();public void GetSelectedChoices(List<ResumeChoiceData> result){result.Clear();result.AddRange(Selected);}}

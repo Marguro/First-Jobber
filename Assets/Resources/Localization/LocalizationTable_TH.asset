@@ -3528,3 +3528,4 @@ MonoBehaviour:
   - {key: ui/company/salary_not_specified, english: Salary not specified, thai: ไม่ระบุเงินเดือน}
   - {key: ui/label/GameCanvas/CompanyPanel/DetailsCard/BackButton/Label, english: Back, thai: กลับ}
   - {key: ui/label/GameCanvas/CompanyPanel/DetailsCard/ApplyButton/Label, english: Apply, thai: สมัคร}
+  - {key: ui/label/GameCanvas/InterviewPanel/QuestionCard/AnswerHeading, english: Answers, thai: คำตอบ}
