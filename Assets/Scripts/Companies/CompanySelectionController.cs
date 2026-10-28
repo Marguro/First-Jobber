@@ -10,6 +10,16 @@ namespace FirstJobber
     {
         [SerializeField] ChoiceListUI companyList;
         [SerializeField] TMP_Text detailsText;
+        [SerializeField] TMP_Text companyNameText;
+        [SerializeField] TMP_Text headingText;
+        [Header("Session-stable company paper variants")]
+        [Tooltip("Runtime paper sprite source. Shuffled without repeats and cached per company ID/session. The prefab Background sprite is only a fallback/preview; positions and dimensions always come from the prefab.")]
+        [SerializeField] Sprite[] backgroundVariants;
+        readonly Dictionary<string, Sprite> assignedBackgrounds = new Dictionary<string, Sprite>();
+        readonly List<Sprite> variantDeck = new List<Sprite>();
+        readonly System.Random visualRandom = new System.Random();
+        GameSession visualSession;
+        int nextVariant;
         [SerializeField] Button applyButton;
         [SerializeField] Button backButton;
         [SerializeField] float reactionAutoAdvance = 2.5f;
@@ -44,6 +54,13 @@ namespace FirstJobber
         public void Open(GameContext context)
         {
             ctx = context;
+            if (!ReferenceEquals(visualSession, context.Session))
+            {
+                visualSession = context.Session;
+                assignedBackgrounds.Clear();
+                variantDeck.Clear();
+                nextVariant = 0;
+            }
             pendingId = null;
             locked = false;
             Refresh();
@@ -61,6 +78,7 @@ namespace FirstJobber
 
         void Refresh()
         {
+            if (headingText != null) headingText.text = UiText.ChooseCompany.Text;
             itemBuffer.Clear();
             var list = ctx.Database.companies;
             for (int i = 0; i < list.Count; i++)
@@ -73,21 +91,21 @@ namespace FirstJobber
                 {
                     id = c.id,
                     title = LocalizationManager.Get(c, "companyName", c.companyName),
-                    subtitle = consumed ? UiText.Rejected.Text : Summary(c),
-                    icon = c.logo,
+                    badge = Salary(c),
+                    backgroundSprite = BackgroundFor(c.id),
                     state = consumed ? ChoiceState.Consumed : c.id == pendingId ? ChoiceState.Selected : ChoiceState.Available
                 });
             }
             companyList.SetItems(itemBuffer, UiText.NoCompaniesLeft.Text, pendingId == null);
 
             var pending = ctx.Database.FindCompany(pendingId);
+            if (companyNameText != null) companyNameText.text = pending == null ? "" : LocalizationManager.Get(pending, "companyName", pending.companyName);
             if (detailsText != null)
             {
                 string description = pending != null ? LocalizationManager.Get(pending, "description", pending.description) : null;
                 detailsText.text = pending == null
                     ? UiText.SelectCompany.Text
-                    : LocalizationManager.Get(pending, "companyName", pending.companyName) + "\n" + Summary(pending)
-                      + (string.IsNullOrEmpty(description) ? "" : "\n\n" + description);
+                    : description;
             }
             if (applyButton != null) applyButton.interactable = !locked && pending != null && !ctx.Choices.IsConsumed(pending);
             ResetDetailsScroll();
@@ -123,12 +141,31 @@ namespace FirstJobber
             if (ctx != null) Refresh();
         }
 
-        /// <summary>"job title \n salary | industry", localized.</summary>
-        static string Summary(CompanyData c)
+        static string Salary(CompanyData c)
         {
-            return LocalizationManager.Get(c, "jobTitle", c.jobTitle) + "\n"
-                + LocalizationManager.Get(c, "salary", c.salary) + "  |  "
-                + LocalizationManager.Get(c, "industry", c.industry);
+            return string.IsNullOrWhiteSpace(c.salary) ? UiText.SalaryNotSpecified.Text
+                : LocalizationManager.Get(c, "salary", c.salary);
+        }
+
+        Sprite BackgroundFor(string companyId)
+        {
+            if (assignedBackgrounds.TryGetValue(companyId, out var sprite)) return sprite;
+            if (nextVariant >= variantDeck.Count)
+            {
+                variantDeck.Clear();
+                if (backgroundVariants != null)
+                    foreach (var variant in backgroundVariants)
+                        if (variant != null && !variantDeck.Contains(variant)) variantDeck.Add(variant);
+                for (int i = variantDeck.Count - 1; i > 0; i--)
+                {
+                    int j = visualRandom.Next(i + 1);
+                    var swap = variantDeck[i]; variantDeck[i] = variantDeck[j]; variantDeck[j] = swap;
+                }
+                nextVariant = 0;
+            }
+            sprite = variantDeck.Count == 0 ? null : variantDeck[nextVariant++];
+            assignedBackgrounds[companyId] = sprite;
+            return sprite;
         }
 
         void OnCompanyChosen(string id)

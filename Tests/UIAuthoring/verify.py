@@ -23,7 +23,7 @@ for fid in [2107588836,925286099,1623757146]:assert scene[fid]['RectTransform'][
 if 685225767 in scene:
  sample=scene[685225767]['PrefabInstance']['m_Modification']['m_Modifications']
  assert any(x['target']['fileID']==6690180372980020888 and x['propertyPath']=='m_IsActive' and int(x['value'])==0 for x in sample)
-roles={1192156551:'ResumeCategoryButton',2107588837:'ResumeChoiceButton',103586512:'CompanyChoiceButton',1385924648:'InterviewAnswerButton',2106000002:'EventChoiceButton',411229344:'EndingChoiceButton'}
+roles={1192156551:'ResumeCategoryButton',2107588837:'ResumeChoiceButton',103586512:'CompanySelectionButton',1385924648:'InterviewAnswerButton',2106000002:'EventChoiceButton',411229344:'EndingChoiceButton'}
 for fid,role in roles.items():
  assert scene[fid]['MonoBehaviour']['itemPrefab']['guid']==guid(ROOT/f'Assets/Prefabs/UI/{role}.prefab')
 preview=documents(ROOT/'Assets/Editor/UI/ChoiceButtonPreview.unity')

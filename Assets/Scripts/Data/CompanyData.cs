@@ -8,6 +8,7 @@ namespace FirstJobber
         public string id;
         public string companyName;
         public string jobTitle;
+        [Tooltip("Authored monthly salary display, e.g. THB 15,000–20,000. Localized with the existing company salary key. Leave empty when unspecified.")]
         public string salary;
         public string industry;
         [TextArea] public string description;

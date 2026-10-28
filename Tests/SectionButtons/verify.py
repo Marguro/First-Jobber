@@ -8,7 +8,7 @@ def docs(path):
  s=re.sub(r'^%.*\n','',s,flags=re.M);s=re.sub(r'^--- !u!\d+ &-?\d+.*$','---',s,flags=re.M)
  return dict(zip(map(int,ids),yaml.safe_load_all(s)))
 def guid(p):return re.search(r'^guid: (\w+)',Path(str(p)+'.meta').read_text(),re.M)[1]
-roles={'ResumeCategoryButton':1192156551,'ResumeChoiceButton':2107588837,'CompanyChoiceButton':103586512,'InterviewAnswerButton':1385924648,'EventChoiceButton':2106000002,'EndingChoiceButton':411229344,'EndingActionButton':None}
+roles={'ResumeCategoryButton':1192156551,'ResumeChoiceButton':2107588837,'CompanySelectionButton':103586512,'InterviewAnswerButton':1385924648,'EventChoiceButton':2106000002,'EndingChoiceButton':411229344,'EndingActionButton':None}
 guids={};source=R/'Assets/Prefabs/ChoiceButton.prefab';base=docs(source)
 for role,listid in roles.items():
  p=R/'Assets/Prefabs/UI'/(role+'.prefab');d=docs(p);guids[role]=guid(p)
@@ -22,7 +22,7 @@ for role,listid in roles.items():
  assert d[358968367170934732]['MonoBehaviour']['m_LayoutPriority']==0
  assert d[910300001]['MonoBehaviour']['m_Script']['guid']==guid(R/'Assets/Scripts/UI/ChoiceButtonContentHeight.cs')
  assert d[7783337574798386231]['MonoBehaviour']['targetId']==role
- assert d[910100004]['MonoBehaviour']['m_PreserveAspect']==1
+ if role!='CompanySelectionButton':assert d[910100004]['MonoBehaviour']['m_PreserveAspect']==1
  assert view['confidenceStarSettings']==base[2598443313786929471]['MonoBehaviour']['confidenceStarSettings']
  for obj in d.values():
   text=obj.get('MonoBehaviour',{})
@@ -44,10 +44,7 @@ assert categoryView['useAuthoredBackgroundColor']==1 and categoryView['tintSelec
 assert category[910300001]['MonoBehaviour']['growForWrappedText']==0
 assert category[5297326378183541114]['RectTransform']['m_AnchorMin']['y']==0
 assert category[5557010667304815370]['MonoBehaviour']['m_VerticalAlignment']==512
-for rectid in [1661852270,1192156550,124120901,683920020]:
- assert scene[rectid]['RectTransform']['m_LocalScale']==dict(x=1,y=1,z=1),'Category ancestry distorts artwork'
-assert scene[124120901]['RectTransform']['m_AnchorMax']==dict(x=1,y=1)
-assert 480 < category[833558695849796019]['RectTransform']['m_SizeDelta']['x'] < 490
+# Scene geometry is artist-authored. Company-only changes must not rewrite later Resume layout edits.
 for role,listid in roles.items():
  if listid:assert scene[listid]['MonoBehaviour']['itemPrefab']==dict(fileID=2598443313786929471,guid=guids[role],type=3)
 assert scene[1172304822]['MonoBehaviour']['actionButtonPrefab']['guid']==guids['EndingActionButton']

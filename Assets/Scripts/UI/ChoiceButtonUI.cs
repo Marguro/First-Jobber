@@ -14,6 +14,7 @@ namespace FirstJobber
         public string title;
         public string subtitle;
         public Sprite icon;
+        public Sprite backgroundSprite;
         public ChoiceState state;
         [Tooltip("Optional small label on the right (e.g. confidence '85%'). Empty = hidden.")]
         public string badge;
@@ -27,6 +28,8 @@ namespace FirstJobber
     {
         [SerializeField] Button button;
         [SerializeField] Image background;
+        [Tooltip("Optional section-authored selection outline. Does not tint or replace paper artwork.")]
+        [SerializeField] GameObject selectionIndicator;
         [SerializeField] TMP_Text titleText;
         [SerializeField] TMP_Text subtitleText;
         [SerializeField] Image iconImage;
@@ -118,6 +121,7 @@ namespace FirstJobber
             }
             if (background != null)
             {
+                if (item.backgroundSprite != null) background.sprite = item.backgroundSprite;
                 switch (item.state)
                 {
                     case ChoiceState.Selected:
@@ -127,6 +131,7 @@ namespace FirstJobber
                     default: background.color = useAuthoredBackgroundColor ? authoredBackgroundColor : availableColor; break;
                 }
             }
+            if (selectionIndicator != null) selectionIndicator.SetActive(item.state == ChoiceState.Selected);
             if (button != null)
                 button.interactable = item.state == ChoiceState.Available || item.state == ChoiceState.Selected;
         }

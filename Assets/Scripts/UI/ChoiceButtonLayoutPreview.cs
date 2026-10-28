@@ -98,7 +98,7 @@ namespace FirstJobber.EditorTools
                         if (background.sprite != null && background.type == Image.Type.Sliced &&
                             (background.rectTransform.rect.height < background.minHeight - .1f || background.rectTransform.rect.width < background.minWidth - .1f))
                             throw new InvalidOperationException("Button is smaller than its sprite borders. Increase Minimum Height/available width.");
-                        if (star.gameObject.activeSelf)
+                        if (star != null && star.gameObject.activeSelf)
                         {
                             var a = new Vector3[4]; var b = new Vector3[4];
                             texts.GetWorldCorners(a); star.GetWorldCorners(b);

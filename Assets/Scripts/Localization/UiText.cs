@@ -30,6 +30,8 @@ namespace FirstJobber
         public static readonly UiString Rejected = new UiString("ui/company/rejected", "REJECTED");
         public static readonly UiString NoCompaniesLeft = new UiString("ui/company/none_left", "No companies left.");
         public static readonly UiString SelectCompany = new UiString("ui/company/select_prompt", "Select a company to see its details.");
+        public static readonly UiString ChooseCompany = new UiString("ui/company/choose", "Choose a company");
+        public static readonly UiString SalaryNotSpecified = new UiString("ui/company/salary_not_specified", "Salary not specified");
         public static readonly UiString WhatWillYouDo = new UiString("ui/final/title", "What will you do?");
         public static readonly UiString NoEndings = new UiString("ui/final/no_endings", "No endings configured.");
         public static readonly UiString ConfirmDecision = new UiString("ui/daily/confirm", "Confirm decision");
@@ -48,7 +50,7 @@ namespace FirstJobber
         {
             Day, Gender, NothingLeft, NothingToChoose, Rejected, NoCompaniesLeft, SelectCompany, WhatWillYouDo, NoEndings,
             DayOver, TokenCompany, TokenJob, NameRequired, NameTooLong, GenderRequired, ConfidenceEmpty, ConfidenceCategories,
-            ConfirmDecision, BackToDecisions
+            ConfirmDecision, BackToDecisions, ChooseCompany, SalaryNotSpecified
         };
 
         public static string Format(string format, string englishFormat, params object[] args)

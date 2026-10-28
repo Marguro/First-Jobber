@@ -84,6 +84,13 @@ class ConfidenceStarHarness
         Field(paperView, "selectedColor", selectedPaper);
         paperView.Setup(new ChoiceItem {state=ChoiceState.Selected},null);
         Check(paper.color.Equals(selectedPaper), "Optional Selected Color is ignored");
+        var paperSprite = new Sprite();
+        var selectionOutline = new GameObject();
+        Field(paperView, "selectionIndicator", selectionOutline);
+        paperView.Setup(new ChoiceItem {state=ChoiceState.Selected,backgroundSprite=paperSprite},null);
+        Check(paper.sprite==paperSprite && selectionOutline.activeSelf, "Company sprite or selected outline was not bound");
+        paperView.Setup(new ChoiceItem {state=ChoiceState.Available,backgroundSprite=paperSprite},null);
+        Check(paper.sprite==paperSprite && !selectionOutline.activeSelf, "Unselecting replaced the paper or retained outline");
         Console.WriteLine("PASS authored category paper color, disabled/rebind restoration, optional selected tint");
         Check(ResumeConfidenceCalculator.Average(new[] {100f, 80f, 30f}) == 70f, "Overall average changed");
         var choices = new[] { new ResumeChoiceData { confidencePercentage = 100 }, new ResumeChoiceData { confidencePercentage = 80 }, null };

@@ -259,7 +259,7 @@ namespace FirstJobber.EditorTools
         {
             var panel = NewPanel(canvas, "CompanyPanel");
             NewText(panel, "Header", "Choose a company", 44, Accent, TextAlignmentOptions.MidlineLeft, FontStyles.Bold, 0.03f, 0.92f, 0.58f, 0.99f);
-            var list = NewChoiceList(panel, "CompanyList", SectionButton("CompanyChoiceButton"), Card, 0.03f, 0.28f, 0.58f, 0.92f);
+            var list = NewChoiceList(panel, "CompanyList", SectionButton("CompanySelectionButton"), Card, 0.03f, 0.28f, 0.58f, 0.92f);
 
             var details = NewRect("DetailsCard", panel);
             Anchor(details, 0.62f, 0.4f, 0.97f, 0.97f);
