@@ -26,6 +26,9 @@ MonoBehaviour:
     text: "Uh... maybe I\u2019m not quite suited for that."
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse:
     - speaker: 

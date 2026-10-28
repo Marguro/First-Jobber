@@ -30,6 +30,7 @@ namespace FirstJobber
         readonly List<ResumeChoiceData> selectedBuffer = new List<ResumeChoiceData>();
         readonly List<InterviewQuestionData> questionBuffer = new List<InterviewQuestionData>();
         readonly List<ChoiceItem> itemBuffer = new List<ChoiceItem>();
+        readonly List<DialogueLine> responseBuffer = new List<DialogueLine>();
 
         void Awake()
         {
@@ -132,11 +133,11 @@ namespace FirstJobber
                 if (answer != null)
                 {
                     yield return PlayAndWait(answer.playerReaction, answer.playerReactionMode);
-                    yield return PlayAndWait(answer.hrResponse, answer.hrResponseMode);
+                    yield return PlayHrResponse(answer);
                 }
+                else yield return new WaitForSecondsRealtime(neutralDelay);
                 if (!ctx.Session.askedQuestionIds.Contains(question.id)) ctx.Session.askedQuestionIds.Add(question.id);
 
-                yield return new WaitForSecondsRealtime(neutralDelay);
                 hr.ResetToNeutral();
             }
 
@@ -147,6 +148,51 @@ namespace FirstJobber
         }
 
         static bool HasLines(DialogueLine[] lines) => lines != null && lines.Length > 0;
+
+        IEnumerator PlayHrResponse(InterviewAnswer answer)
+        {
+            // Resolve gender before deciding whether text exists. Empty blocks must never open a blank box.
+            var applicable = ctx.Dialogue.ResolveGender(answer.hrResponse);
+            responseBuffer.Clear();
+            DialogueLine legacySilent = null;
+            int silentCount = 0;
+            if (applicable != null)
+                for (int i = 0; i < applicable.Count; i++)
+                {
+                    var line = applicable[i];
+                    if (line == null) continue;
+                    if (line.HasContent) responseBuffer.Add(line);
+                    else if (line.speaker == Speakers.HR)
+                    {
+                        silentCount++;
+                        legacySilent = line; // legacy Sequential ends on its final expression
+                    }
+                }
+
+            if (responseBuffer.Count == 0 && silentCount > 0 && answer.hrResponseMode == DialoguePlaybackMode.RandomOne)
+            {
+                int pick = UnityEngine.Random.Range(0, silentCount);
+                for (int i = 0; i < applicable.Count; i++)
+                {
+                    var line = applicable[i];
+                    if (line != null && !line.HasContent && line.speaker == Speakers.HR && pick-- == 0)
+                    { legacySilent = line; break; }
+                }
+            }
+
+            bool silentReaction = responseBuffer.Count == 0 && (answer.applyHrReactionEmotion || legacySilent != null);
+            if (answer.applyHrReactionEmotion) hr.SetEmotion(answer.hrReactionEmotion);
+            else if (silentReaction) hr.SetEmotion(legacySilent.emotion);
+
+            if (responseBuffer.Count > 0)
+                yield return PlayAndWait(responseBuffer, answer.hrResponseMode);
+            else
+                ctx.Dialogue.Stop(); // Only the dialogue box hides; the independent HR portrait remains visible.
+
+            // This is the existing post-answer pause, not an extra delay on every response.
+            float hold = silentReaction ? Mathf.Max(0.05f, answer.portraitOnlyDuration) : neutralDelay;
+            yield return new WaitForSecondsRealtime(hold);
+        }
 
         void BuildAnswerItems(InterviewQuestionData question)
         {

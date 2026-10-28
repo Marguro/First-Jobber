@@ -25,6 +25,7 @@ class ResumeLocalizationHarness
         Check(keys.Count==63,"Expected 63 active production resume keys");
         var table=ResumeFixture.Table;
         var multiQuestion=new InterviewQuestionData {id="test_shared",questionDialogue=new[]{new DialogueLine {speaker="HR",dialogueLines=new List<string>{"Question page one","Question page two"}}}};
+        multiQuestion.answers=new List<InterviewAnswer>{new InterviewAnswer {id="test_answer",hrResponse=new[]{new DialogueLine {speaker="HR",emotion=HREmotion.Disappointed,dialogueLines=new List<string>{"Response page one","Response page two"}}}}};
         var questionHr=new HRCharacterData {hrName="Test HR"};questionHr.resumeLinkedQuestions.Add(multiQuestion);
         LocalizationKeys.VisitAsset(questionHr,(k,en)=>{if(k.StartsWith("question/"))table.entries.Add(new LocalizationTable.Entry {key=k,english=en,thai="TH:"+en});});
         Check(multiQuestion.questionDialogue[0].GetPageKey(1)=="question/test_shared/questionDialogue/0/lines/1","HR-owned shared question pages must receive startup keys");
@@ -39,6 +40,8 @@ class ResumeLocalizationHarness
             LocalizationManager.SetLanguage(language);
             var questionPage=multiQuestion.questionDialogue[0];
             Check(LocalizationManager.Get(questionPage.GetPageKey(1),questionPage.GetPage(1))==(language==Language.Thai?"TH:Question page two":"Question page two"),"Question dialogue locale");
+            var responsePage=multiQuestion.answers[0].hrResponse[0];
+            Check(responsePage.GetPageKey(1)=="question/test_shared/answers/test_answer/hrResponse/0/lines/1" && LocalizationManager.Get(responsePage.GetPageKey(1),responsePage.GetPage(1))==(language==Language.Thai?"TH:Response page two":"Response page two"),"HR response dialogue locale");
             foreach(var pair in keys)
             {
                 table.TryGet(pair.Key,out var thai);

@@ -12,8 +12,16 @@ namespace FirstJobber
         [Tooltip("Player's reaction after choosing this answer.")]
         public DialoguePlaybackMode playerReactionMode;
         public DialogueLine[] playerReaction;
+        [Header("HR Reaction (optional)")]
+        [Tooltip("Apply this answer's HR emotion even when HR Response is empty. Off preserves existing dialogue-block emotions and pacing.")]
+        public bool applyHrReactionEmotion;
+        [Tooltip("Resolved through the current company's HRCharacterData. Authored HR dialogue blocks can request their own subsequent emotions.")]
+        public HREmotion hrReactionEmotion = HREmotion.Neutral;
+        [Min(0.05f), Tooltip("Seconds to show a silent HR reaction. Replaces the normal reaction pause only when no applicable response text exists; no invisible Continue click is required.")]
+        public float portraitOnlyDuration = 0.8f;
         [Tooltip("HR response. Set speaker = HR and an emotion on each line.")]
         public DialoguePlaybackMode hrResponseMode;
+        [Tooltip("Optional response dialogue. Empty entries are not opened as dialogue pages. For a portrait-only reaction, enable Apply HR Reaction Emotion above and leave this array empty. Authored text blocks retain their individual emotions.")]
         public DialogueLine[] hrResponse;
     }
 
