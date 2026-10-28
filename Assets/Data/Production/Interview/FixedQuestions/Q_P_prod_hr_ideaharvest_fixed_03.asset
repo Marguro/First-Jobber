@@ -26,5 +26,8 @@ MonoBehaviour:
     text: ...
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_motto_flexibility_key
   questionText: Flexibility is the key to success? Does that mean you'll do absolutely anything the company asks?
-  hrEmotion: 0
+  hrEmotion: 2
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: 63919e4ac51e73349b38f412aaa8ab1f, type: 2}
   linkedCategory: {fileID: 0}
@@ -26,11 +26,17 @@ MonoBehaviour:
     text: If it helps the company succeed, I'm willing!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 0
+    hrReactionEmotion: 0
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_motto_flexibility_key_2
     text: Uh... If it's necessary work, I'll give it a try.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

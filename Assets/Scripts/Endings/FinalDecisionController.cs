@@ -10,6 +10,8 @@ namespace FirstJobber
     {
         [SerializeField] TMP_Text titleText;
         [SerializeField] ChoiceListUI endingList;
+        [Tooltip("Independent Confirm/Back button prefab. Ending choices use endingList's own prefab.")]
+        [SerializeField] ChoiceButtonUI actionButtonPrefab;
 
         public event Action<string> EndingChosen;
 
@@ -92,13 +94,19 @@ namespace FirstJobber
             endingList.SetInteractable(false);
             endingList.gameObject.SetActive(false);
             ctx.Dialogue.Play(ending.previewLines, () => {
+                if (actionButtonPrefab == null)
+                {
+                    Debug.LogError("[FinalDecision] Assign Action Button Prefab for Confirm/Back.", this);
+                    ShowOptions();
+                    return;
+                }
                 confirming = true;
                 chosen = false;
                 items.Clear();
                 items.Add(new ChoiceItem { id = "confirm", title = UiText.ConfirmDecision.Text, state = ChoiceState.Available });
                 items.Add(new ChoiceItem { id = "back", title = UiText.BackToDecisions.Text, state = ChoiceState.Available });
                 endingList.gameObject.SetActive(true);
-                endingList.SetItems(items, resetScroll: true);
+                endingList.SetItemsUsingPrefab(items, actionButtonPrefab, resetScroll: true);
                 endingList.SetInteractable(true);
             });
         }

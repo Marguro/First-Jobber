@@ -18,6 +18,7 @@ namespace FirstJobber
         static ThaiTextApplier instance;
 
         readonly Dictionary<TMP_Text, TMP_FontAsset> originalFonts = new Dictionary<TMP_Text, TMP_FontAsset>();
+        readonly HashSet<TMP_Text> authoredFonts = new HashSet<TMP_Text>();
         float nextScan;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -42,9 +43,12 @@ namespace FirstJobber
         }
 
         /// <summary>Applies the current language's font to one text (call after creating TMP_Texts at runtime).</summary>
-        public static void Register(TMP_Text text)
+        public static void Register(TMP_Text text, bool useProjectFont = true)
         {
-            if (instance != null) instance.Apply(text);
+            if (instance == null || text == null) return;
+            if (useProjectFont) instance.authoredFonts.Remove(text);
+            else instance.authoredFonts.Add(text);
+            instance.Apply(text);
         }
 
         void ApplyAll()
@@ -53,6 +57,7 @@ namespace FirstJobber
             var dead = new List<TMP_Text>();
             foreach (var pair in originalFonts) if (pair.Key == null) dead.Add(pair.Key);
             foreach (var key in dead) originalFonts.Remove(key);
+            authoredFonts.RemoveWhere(text => text == null);
 
             foreach (var t in FindObjectsByType<TMP_Text>(FindObjectsInactive.Include, FindObjectsSortMode.None))
                 Apply(t);
@@ -66,10 +71,22 @@ namespace FirstJobber
             var thaiFont = fontTable != null ? fontTable.font : null;
             var nurse = t.GetComponent<ThaiTextNurse>();
 
-            if (thaiFont != null)
+            var choice = t.GetComponentInParent<ChoiceButtonUI>(true);
+            var policy = t.GetComponentInParent<UIFontPolicy>(true);
+            bool keepAuthoredFont = policy != null ? !policy.useProjectFont
+                : choice != null ? !choice.UsesProjectLocalizationFont : authoredFonts.Contains(t);
+            if (keepAuthoredFont && originalFonts.TryGetValue(t, out var authored))
             {
-                if (!originalFonts.ContainsKey(t)) originalFonts[t] = t.font;
-                if (t.font != thaiFont) t.font = thaiFont;
+                if (t.font == thaiFont) t.font = authored;
+                originalFonts.Remove(t);
+            }
+            if (thaiFont != null || keepAuthoredFont)
+            {
+                if (!keepAuthoredFont)
+                {
+                    if (!originalFonts.ContainsKey(t)) originalFonts[t] = t.font;
+                    if (t.font != thaiFont) t.font = thaiFont;
+                }
 
                 if (table == null) // English: same font, no Thai word-break processing
                 {
@@ -87,7 +104,8 @@ namespace FirstJobber
                     nurse.IsTokenize = true;
                     nurse.NotifyChange();
                 }
-                if (nurse.Correction != table.correction) nurse.Correction = table.correction;
+                var correction = keepAuthoredFont && t.font != thaiFont ? ThaiGlyphCorrection.None : table.correction;
+                if (nurse.Correction != correction) nurse.Correction = correction;
                 if (!nurse.enabled)
                 {
                     nurse.enabled = true;

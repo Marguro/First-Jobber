@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Q_P_q_university_b
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_b
-  questionText: "You graduated from Ho Kan Chang University? With tuition that expensive, I imagine you expect a lot from yourself?"
-  hrEmotion: 0
+  questionText: You graduated from Ho Kan Chang University? With tuition that expensive, I imagine you expect a lot from yourself?
+  hrEmotion: 2
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: fc83de0d7de256f4198a331a9010db40, type: 2}
   linkedCategory: {fileID: 0}
@@ -26,17 +26,26 @@ MonoBehaviour:
     text: Of course! My family invested a lot in me. I have to make it worthwhile!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_university_b_2
     text: It's a private university, but it's well regarded!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 0
+    hrReactionEmotion: 0
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_university_b_3
     text: Yes.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 0
+    hrReactionEmotion: 0
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

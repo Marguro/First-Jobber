@@ -26,17 +26,26 @@ MonoBehaviour:
     text: Yes.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 0
+    hrReactionEmotion: 0
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a2
     text: I think I can.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a3
     text: No.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

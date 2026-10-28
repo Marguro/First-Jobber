@@ -54,7 +54,7 @@ class Harness
         list.Click("own_path"); while(dialogue.Next!=null) dialogue.Complete();
         Check(done==3 && session.flags.Count==2,"Day4 common outro");
         var final = new FinalDecisionController(); var endings = new ChoiceListUI();
-        Set(final,"endingList",endings); Invoke(final,"Awake");
+        Set(final,"endingList",endings); Set(final,"actionButtonPrefab",new ChoiceButtonUI()); Invoke(final,"Awake");
         var ctx = new GameContext { Database=db,Dialogue=dialogue }; int fired=0; string endingId=null;
         final.EndingChosen += id=>{ fired++; endingId=id; };
         final.Open(ctx); Check(endings.Items.Count==3,"Three endings");
@@ -74,6 +74,7 @@ namespace UnityEngine
     public static class Debug { public static void Log(string message, Object context) {} public static void LogError(string message, Object context) {} }
     public class GameObject { public bool active; public bool activeInHierarchy => active; public void SetActive(bool v) {active=v;} }
     public class SerializeField : Attribute {}
+    public class TooltipAttribute : Attribute {public TooltipAttribute(string text){}}
 }
 namespace TMPro { public class TMP_Text { public string text; } }
 namespace FirstJobber
@@ -91,7 +92,8 @@ namespace FirstJobber
     public class GameSession {public int day;public List<string> triggeredEvents=new List<string>(),flags=new List<string>();public void SetFlag(string f){if(!flags.Contains(f))flags.Add(f);}public bool HasFlag(string f)=>flags.Contains(f);public void Save(){} }
     public class GameContext { public GameDatabase Database; public DialogueManager Dialogue; }
     public class DialogueManager { public Action Next;public int Stops;public void Stop(){Stops++;Next=null;}public void Play(DialogueLine[] lines,Action done,float delay=0,DialoguePlaybackMode mode=DialoguePlaybackMode.Sequential) { Next=done; } public void Complete(){var next=Next;Next=null;next?.Invoke();} }
-    public class ChoiceListUI {public string name="PhoneChoices";public UnityEngine.GameObject gameObject=new UnityEngine.GameObject();public event Action<string> ItemChosen;public List<ChoiceItem> Items=new List<ChoiceItem>();bool enabled=true;public void SetItems(IList<ChoiceItem> items,string emptyMessage=null,bool resetScroll=false){Items=new List<ChoiceItem>(items);}public void ShowPopup(IList<ChoiceItem> items){gameObject.SetActive(true);SetItems(items);SetInteractable(true);}public void HidePopup(){SetInteractable(false);gameObject.SetActive(false);}public void Clear(){Items.Clear();}public void SetInteractable(bool value){enabled=value;}public void Click(string id){if(enabled)ItemChosen?.Invoke(id);} }
+    public class ChoiceButtonUI {}
+    public class ChoiceListUI {public string name="PhoneChoices";public UnityEngine.GameObject gameObject=new UnityEngine.GameObject();public event Action<string> ItemChosen;public List<ChoiceItem> Items=new List<ChoiceItem>();bool enabled=true;public void SetItems(IList<ChoiceItem> items,string emptyMessage=null,bool resetScroll=false){Items=new List<ChoiceItem>(items);}public void SetItemsUsingPrefab(IList<ChoiceItem> items,ChoiceButtonUI prefab,string emptyMessage=null,bool resetScroll=false){SetItems(items,emptyMessage,resetScroll);}public void ShowPopup(IList<ChoiceItem> items){gameObject.SetActive(true);SetItems(items);SetInteractable(true);}public void HidePopup(){SetInteractable(false);gameObject.SetActive(false);}public void Clear(){Items.Clear();}public void SetInteractable(bool value){enabled=value;}public void Click(string id){if(enabled)ItemChosen?.Invoke(id);} }
     public class DailyEventPanelUI { public void Clear(){} public void Show(string caption,object background){} }
     public class AtmosphereManager {public static AtmosphereManager Instance;public void PulseFlicker(float f){} }
     public static class LocalizationManager {public static event Action LanguageChanged;public static bool Thai;public static void Change(){Thai=!Thai;LanguageChanged?.Invoke();}public static string Get(object owner,string field,string english)=>Thai ? "TH:"+english:english;public static string Get(string key,string english)=>english;}

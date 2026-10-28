@@ -115,5 +115,5 @@ namespace TMPro
 namespace FirstJobber
 {
     public class ResumeCategoryData : ScriptableObject { }
-    public static class ThaiTextApplier { public static void Register(TMPro.TMP_Text text) { } }
+    public static class ThaiTextApplier { public static void Register(TMPro.TMP_Text text, bool useProjectFont = true) { } }
 }

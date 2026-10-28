@@ -30,20 +30,13 @@ MonoBehaviour:
     hrReactionEmotion: 2
     portraitOnlyDuration: 0.8
     hrResponseMode: 0
-    hrResponse:
-    - speaker: 
-      text: 
-      dialogueLines: []
-      emotion: 2
-      autoAdvanceDelay: 0
-      delayBefore: 0
-      eventId: 
-      portrait: {fileID: 0}
-      genderIds: []
-      variantGroup: 
+    hrResponse: []
   - id: a2
     text: "I think I\u2019m more suited to working at a computer."
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

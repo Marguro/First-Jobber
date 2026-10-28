@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Q_P_q_university_c
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_c
-  questionText: "Ratchakon Nakhon University? It's not especially well known. So why should we choose you?"
-  hrEmotion: 0
+  questionText: Ratchakon Nakhon University? It's not especially well known. So why should we choose you?
+  hrEmotion: 2
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: 8cef5fcb92f834c4cb01b8f97c40f3f3, type: 2}
   linkedCategory: {fileID: 0}
@@ -26,17 +26,26 @@ MonoBehaviour:
     text: My work speaks for itself!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_university_c_2
     text: Uh... My university may not be famous, but I worked hard there!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_university_c_3
     text: Yes...
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

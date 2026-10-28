@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_d
   questionText: "You graduated from Pracham Changwat Suwichana University? Why didn\u2019t you choose a more prestigious university?"
-  hrEmotion: 0
+  hrEmotion: 2
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: 993d1a2743dafc64086574eb76298135, type: 2}
   linkedCategory: {fileID: 0}
@@ -26,17 +26,26 @@ MonoBehaviour:
     text: I couldn't afford the tuition back then, but I did my best!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_university_d_2
     text: A university's name isn't the only measure of ability!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_university_d_3
     text: ...Yes.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

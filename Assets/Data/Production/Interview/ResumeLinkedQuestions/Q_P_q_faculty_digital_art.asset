@@ -26,17 +26,26 @@ MonoBehaviour:
     text: I'm confident I can do it!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 0
+    hrReactionEmotion: 0
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_faculty_digital_art_2
     text: Uh... I think I can do it.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_faculty_digital_art_3
     text: Of course I can.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

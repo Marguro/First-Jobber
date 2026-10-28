@@ -44,7 +44,7 @@ assert 910100006 not in prefab, "Text mask would clip long wrapped labels; reser
 view = prefab[2598443313786929471]["MonoBehaviour"]
 assert view["confidenceStar"]["fileID"] == 910100004 and view["confidenceStarSettings"]["guid"] == guid(settings_path)
 scene = (ROOT / "Assets/Scenes/Game.unity").read_text()
-assert "guid: " + guid(prefab_path) in scene
+assert "guid: " + guid(ROOT / "Assets/Prefabs/UI/ResumeChoiceButton.prefab") in scene
 controller = (ROOT / "Assets/Scripts/Resume/ResumeEditorController.cs").read_text()
 assert "showConfidenceStar = true" in controller and "confidence = c.Confidence" in controller
 print("PASS script/asset GUIDs, all six main sprite subassets, single star, reserved columns/wrapping, alpha/aspect/raycast and Production prefab binding", flush=True)

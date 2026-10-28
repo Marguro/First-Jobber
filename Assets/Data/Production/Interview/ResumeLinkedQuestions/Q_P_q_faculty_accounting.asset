@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_faculty_accounting
   questionText: You studied accounting. Do you really think you can work in this field?
-  hrEmotion: 0
+  hrEmotion: 2
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: af038982550807143ba0015f7f938af9, type: 2}
   linkedCategory: {fileID: 0}
@@ -26,17 +26,26 @@ MonoBehaviour:
     text: I'm sure I can!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 0
+    hrReactionEmotion: 0
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_faculty_accounting_2
     text: Uh... well, I think I can.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_faculty_accounting_3
     text: Of course I can.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

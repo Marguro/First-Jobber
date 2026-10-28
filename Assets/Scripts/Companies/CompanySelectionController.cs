@@ -22,8 +22,9 @@ namespace FirstJobber
         bool locked;
         readonly List<ChoiceItem> itemBuffer = new List<ChoiceItem>();
 
-        ScrollRect detailsScroll;
-        RectTransform detailsContent;
+        [Header("Authored description scroll area")]
+        [SerializeField] ScrollRect detailsScroll;
+        [SerializeField] RectTransform detailsContent;
 
         void Awake()
         {
@@ -93,45 +94,18 @@ namespace FirstJobber
         }
 
         /// <summary>
-        /// Puts the details text into a masked, vertically scrolling viewport (mouse wheel + drag) inside its card.
-        /// The viewport keeps the text's old rect, so the Company Selection layout does not change. Runs once.
+        /// Uses the Inspector-authored scroll area. Runtime updates content/scroll position, never geometry.
         /// </summary>
         void EnsureDetailsScroll()
         {
-            if (detailsText == null || detailsScroll != null) return;
-            detailsScroll = detailsText.GetComponentInParent<ScrollRect>();
-            if (detailsScroll != null) { detailsContent = detailsScroll.content; return; }
-
-            var textRt = detailsText.rectTransform;
-            var card = textRt.parent as RectTransform;
-            if (card == null) return;
-
-            var viewport = new GameObject("DescriptionViewport", typeof(RectTransform), typeof(RectMask2D)).GetComponent<RectTransform>();
-            viewport.SetParent(card, false);
-            viewport.anchorMin = textRt.anchorMin; viewport.anchorMax = textRt.anchorMax;
-            viewport.offsetMin = textRt.offsetMin; viewport.offsetMax = textRt.offsetMax;
-
-            detailsContent = new GameObject("DescriptionContent", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter)).GetComponent<RectTransform>();
-            detailsContent.SetParent(viewport, false);
-            detailsContent.anchorMin = new Vector2(0, 1); detailsContent.anchorMax = new Vector2(1, 1);
-            detailsContent.pivot = new Vector2(0.5f, 1); detailsContent.sizeDelta = Vector2.zero;
-            var layout = detailsContent.GetComponent<VerticalLayoutGroup>();
-            layout.childControlWidth = true; layout.childControlHeight = true;
-            layout.childForceExpandWidth = true; layout.childForceExpandHeight = false;
-            detailsContent.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-            textRt.SetParent(detailsContent, false);
-            textRt.anchorMin = new Vector2(0, 1); textRt.anchorMax = new Vector2(1, 1); textRt.pivot = new Vector2(0.5f, 1);
-            textRt.offsetMin = Vector2.zero; textRt.offsetMax = Vector2.zero;
-            detailsText.textWrappingMode = TextWrappingModes.Normal;
-            detailsText.overflowMode = TextOverflowModes.Overflow;
-
-            detailsScroll = card.gameObject.GetComponent<ScrollRect>() ?? card.gameObject.AddComponent<ScrollRect>();
-            detailsScroll.viewport = viewport;
-            detailsScroll.content = detailsContent;
-            detailsScroll.horizontal = false; detailsScroll.vertical = true;
-            detailsScroll.movementType = ScrollRect.MovementType.Clamped;
-            detailsScroll.scrollSensitivity = 40f;
+            if (detailsText == null) return;
+            if (detailsScroll == null) detailsScroll = detailsText.GetComponentInParent<ScrollRect>();
+            if (detailsScroll == null)
+            {
+                Debug.LogError("[Company UI] Assign an authored Details Scroll/Content. Runtime no longer creates or repositions description UI.", this);
+                return;
+            }
+            if (detailsContent == null) detailsContent = detailsScroll.content;
         }
 
         // New company or new language: recalculate the content height, then show the top.

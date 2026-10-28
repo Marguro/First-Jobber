@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_motto_dreams_never_expire
   questionText: '''Dreams never expire,'' huh? If you get rejected over and over, will you still keep dreaming?'
-  hrEmotion: 0
+  hrEmotion: 2
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: ef476c60d3c378142ad34bdbcb9760a0, type: 2}
   linkedCategory: {fileID: 0}
@@ -26,11 +26,17 @@ MonoBehaviour:
     text: Of course! Someday I will make it!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 0
+    hrReactionEmotion: 0
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_motto_dreams_never_expire_2
     text: Uh... I'll keep trying.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

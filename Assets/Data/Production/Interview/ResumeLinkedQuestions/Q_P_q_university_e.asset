@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Q_P_q_university_e
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: q_university_e
-  questionText: "You graduated from Kakinang Ban Nong Khuem University? I don't recognize that name. Why should this company hire you?"
-  hrEmotion: 0
+  questionText: You graduated from Kakinang Ban Nong Khuem University? I don't recognize that name. Why should this company hire you?
+  hrEmotion: 3
   questionDialogue: []
   linkedChoice: {fileID: 11400000, guid: 03bc3aae74f4d4c40bf19b28f84479f3, type: 2}
   linkedCategory: {fileID: 0}
@@ -26,17 +26,26 @@ MonoBehaviour:
     text: Yes... but I have skills too!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_university_e_2
     text: ...I'll prove myself!
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 2
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []
   - id: a_university_e_3
     text: Yes.
     playerReactionMode: 0
     playerReaction: []
+    applyHrReactionEmotion: 1
+    hrReactionEmotion: 3
+    portraitOnlyDuration: 0.8
     hrResponseMode: 0
     hrResponse: []

@@ -11,6 +11,7 @@ namespace FirstJobber
     {
         [SerializeField] ScrollRect scrollRect;
         [SerializeField] RectTransform content;
+        [Tooltip("This section's independent button prefab. Its LayoutElement owns item height; this container's layout owns list padding/spacing/width.")]
         [SerializeField] ChoiceButtonUI itemPrefab;
         [SerializeField] GameObject emptyState;
         [SerializeField] TMP_Text emptyText;
@@ -18,20 +19,36 @@ namespace FirstJobber
 
         public event Action<string> ItemChosen;
 
-        readonly List<ChoiceButtonUI> pool = new List<ChoiceButtonUI>();
+        readonly Dictionary<ChoiceButtonUI, List<ChoiceButtonUI>> pools = new Dictionary<ChoiceButtonUI, List<ChoiceButtonUI>>();
+        List<ChoiceButtonUI> pool;
 
         public void SetItems(IList<ChoiceItem> items, string emptyMessage = null, bool resetScroll = false)
         {
-            if (itemPrefab == null || content == null)
+            SetItemsUsingPrefab(items, itemPrefab, emptyMessage, resetScroll);
+        }
+
+        /// <summary>For a distinct role in this section, e.g. Ending Confirm/Back. Pools stay separate and reusable.</summary>
+        public void SetItemsUsingPrefab(IList<ChoiceItem> items, ChoiceButtonUI prefab, string emptyMessage = null, bool resetScroll = false)
+        {
+            if (prefab == null || content == null)
             {
-                Debug.LogError("[ChoiceListUI] Missing itemPrefab/content on " + name, this);
+                if (pool != null) for (int i = 0; i < pool.Count; i++) pool[i].gameObject.SetActive(false);
+                Debug.LogError("[ChoiceListUI] Missing section-specific button prefab/content on " + name + ". Assign the section prefab; no generic fallback is used.", this);
                 return;
             }
+            if (!pools.TryGetValue(prefab, out var nextPool))
+            {
+                nextPool = new List<ChoiceButtonUI>();
+                pools.Add(prefab, nextPool);
+            }
+            if (pool != nextPool && pool != null)
+                for (int i = 0; i < pool.Count; i++) pool[i].gameObject.SetActive(false);
+            pool = nextPool;
 
             int count = items != null ? items.Count : 0;
             for (int i = 0; i < count; i++)
             {
-                if (i >= pool.Count) pool.Add(Instantiate(itemPrefab, content));
+                if (i >= pool.Count) pool.Add(Instantiate(prefab, content));
                 var entry = pool[i];
                 entry.gameObject.SetActive(true);
                 entry.transform.SetSiblingIndex(i);
@@ -44,6 +61,8 @@ namespace FirstJobber
                 emptyState.SetActive(count == 0);
                 if (emptyText != null && !string.IsNullOrEmpty(emptyMessage)) emptyText.text = emptyMessage;
             }
+
+            LayoutRebuilder.MarkLayoutForRebuild(content); // Data changed; manual child RectTransforms remain untouched.
 
             if (resetScroll && scrollRect != null)
             {

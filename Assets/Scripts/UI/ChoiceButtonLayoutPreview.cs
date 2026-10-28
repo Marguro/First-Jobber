@@ -13,7 +13,11 @@ namespace FirstJobber.EditorTools
     [ExecuteAlways]
     public class ChoiceButtonLayoutPreview : MonoBehaviour
     {
-        public const string ScenePath = "Assets/Editor/UI/ChoiceButtonPreview.unity";
+        public const string ScenePath = "Assets/Editor/UI/SectionButtonsPreview.unity";
+        public enum Section { ResumeCategory, ResumeChoice, CompanyChoice, InterviewAnswer, EventChoice, EndingChoice, EndingAction }
+        [Tooltip("Choose the section to preview at its actual Production container size.")]
+        public Section selectedSection = Section.ResumeChoice;
+        public GameObject[] sectionContainers;
         [Serializable]
         public class Sample
         {
@@ -28,18 +32,21 @@ namespace FirstJobber.EditorTools
         public Sample[] samples;
 
         [MenuItem("Tools/First Jobber/UI/Open ChoiceButton Layout Preview")]
+        [MenuItem("Tools/First Jobber/UI/Open Section Button Layout Preview")]
         static void OpenPreview()
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode) return;
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             EditorSceneManager.OpenScene(ScenePath);
             EditorApplication.delayCall += RefreshLoaded;
+            foreach (var preview in Resources.FindObjectsOfTypeAll<ChoiceButtonLayoutPreview>())
+                if (preview.gameObject.scene.path == ScenePath) { Selection.activeGameObject = preview.gameObject; break; }
         }
 
-        [MenuItem("Tools/First Jobber/UI/Edit Original ChoiceButton Prefab")]
+        [MenuItem("Tools/First Jobber/UI/Edit Resume Choice Button Prefab")]
         static void EditPrefab()
         {
-            AssetDatabase.OpenAsset(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ChoiceButton.prefab"));
+            AssetDatabase.OpenAsset(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/UI/ResumeChoiceButton.prefab"));
         }
 
         [MenuItem("Tools/First Jobber/UI/Validate ChoiceButton Layout")]
@@ -58,7 +65,14 @@ namespace FirstJobber.EditorTools
                 if (preview == null || preview.samples == null || preview.samples.Length < 6)
                     throw new InvalidOperationException("Preview samples were not loaded.");
                 preview.Refresh();
-                var first = preview.samples[0].view;
+                for (int section = 0; section < preview.sectionContainers.Length; section++)
+                {
+                preview.selectedSection = (Section)section;
+                preview.Refresh();
+                ChoiceButtonUI first = null;
+                foreach (var sample in preview.samples)
+                    if (sample.view != null && sample.view.gameObject.activeInHierarchy) { first = sample.view; break; }
+                if (first == null) throw new InvalidOperationException("No samples in section " + section);
                 var content = first.transform.parent as RectTransform;
                 var viewport = content.parent as RectTransform;
                 var list = viewport.parent as RectTransform;
@@ -71,6 +85,7 @@ namespace FirstJobber.EditorTools
                     float previousBottom = float.PositiveInfinity;
                     foreach (var sample in preview.samples)
                     {
+                        if (!sample.view.gameObject.activeInHierarchy) continue;
                         var rt = (RectTransform)sample.view.transform;
                         if (rt.localScale != Vector3.one || rt.rect.height < LayoutUtility.GetMinHeight(rt) - .1f)
                             throw new InvalidOperationException("Scale/minimum height failed at width " + width);
@@ -97,7 +112,8 @@ namespace FirstJobber.EditorTools
                 LayoutRebuilder.ForceRebuildLayoutImmediate(content);
                 if (((RectTransform)first.transform).rect.height < targetHeight - .1f)
                     throw new InvalidOperationException("Parent list did not honor authored Preferred Height.");
-                Debug.Log("[UI Preview] PASS native layout: 340/823/1200 widths, six rows, text/star separation, unit scales, Preferred Height. Mouse/hover and visual artwork still need Game View review.");
+                }
+                Debug.Log("[UI Preview] PASS all seven section layouts: 340/823/1200 widths, row separation, text/star regions, unit scales and Preferred Height. Mouse/hover and visual artwork still need Game View review.");
             }
             finally { EditorSceneManager.ClosePreviewScene(scene); }
         }
@@ -131,6 +147,9 @@ namespace FirstJobber.EditorTools
         [ContextMenu("Refresh Preview Samples")]
         public void Refresh()
         {
+            if (sectionContainers != null)
+                for (int i = 0; i < sectionContainers.Length; i++)
+                    if (sectionContainers[i] != null) sectionContainers[i].SetActive(i == (int)selectedSection);
             if (samples == null) return;
             for (int i = 0; i < samples.Length; i++)
             {
@@ -145,6 +164,8 @@ namespace FirstJobber.EditorTools
                     confidence = sample.confidence,
                     state = sample.state
                 }, id => Debug.Log("[UI Preview] Clicked " + id + " (no gameplay action)."));
+                var parent = sample.view.transform.parent as RectTransform;
+                if (parent != null) LayoutRebuilder.MarkLayoutForRebuild(parent);
             }
             Canvas.ForceUpdateCanvases();
         }

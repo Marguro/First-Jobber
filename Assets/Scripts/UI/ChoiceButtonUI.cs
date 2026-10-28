@@ -33,6 +33,8 @@ namespace FirstJobber
         [SerializeField] TMP_Text badgeText;
         [Tooltip("Show badge data when supplied. Off removes the badge from the layout, including its spacing.")]
         [SerializeField] bool showBadge = true;
+        [Tooltip("On uses the project's shared localization font. Off preserves each text's authored font; use a font containing both English and Thai glyphs.")]
+        [SerializeField] bool useProjectLocalizationFont = true;
         [Header("Confidence Star")]
         [SerializeField] Image confidenceStar;
         [SerializeField] ConfidenceStarSettings confidenceStarSettings;
@@ -43,6 +45,7 @@ namespace FirstJobber
         [SerializeField] Color consumedColor = new Color(0.35f, 0.35f, 0.35f);
 
         public string Id { get; private set; }
+        public bool UsesProjectLocalizationFont => useProjectLocalizationFont;
 
         Action<string> onClick;
 
@@ -51,9 +54,9 @@ namespace FirstJobber
             if (button == null) button = GetComponent<Button>();
             if (button != null) button.onClick.AddListener(HandleClick);
             // Pooled buttons are created at runtime: give them the current language's font right away.
-            ThaiTextApplier.Register(titleText);
-            ThaiTextApplier.Register(subtitleText);
-            ThaiTextApplier.Register(badgeText);
+            ThaiTextApplier.Register(titleText, useProjectLocalizationFont);
+            ThaiTextApplier.Register(subtitleText, useProjectLocalizationFont);
+            ThaiTextApplier.Register(badgeText, useProjectLocalizationFont);
         }
 
         void OnDestroy()

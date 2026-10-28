@@ -50,7 +50,7 @@ assert ending_assets[1]['cutscenePrefab']['guid']=='4fd6f73861b6cce408d94eb41164
 scene=docs(R/'Assets/Scenes/Game.unity');flow=scene[217966938]['MonoBehaviour'];manager=scene[217966939]['MonoBehaviour']
 assert flow['database']['guid']==guid(dbpath)==manager['database']['guid']
 assert flow['dialogue']==manager['dialogue'] and flow['dailyEvents']['fileID']==217966939
-choice=scene[manager['choiceList']['fileID']]['MonoBehaviour'];assert choice['itemPrefab']['guid']=='0e40d531b2bffcc44b12b87cf431a6e7'
+choice=scene[manager['choiceList']['fileID']]['MonoBehaviour'];assert choice['itemPrefab']['guid']==guid(R/'Assets/Prefabs/UI/EventChoiceButton.prefab')
 go=scene[choice['m_GameObject']['fileID']]['GameObject'];rt=scene[go['m_Component'][0]['component']['fileID']]['RectTransform']
 assert rt['m_Father']['fileID']==1939456818
 siblings=scene[1939456818]['RectTransform']['m_Children']

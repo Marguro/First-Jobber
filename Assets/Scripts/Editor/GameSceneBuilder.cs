@@ -81,7 +81,7 @@ namespace FirstJobber.EditorTools
             Set(resumeEditor, "introStartFrom", mainMenu.PaperRect); // the editor zooms out from the menu paper
             var companyPanel = BuildCompany(canvasRt, choicePrefab, out var companyController);
             var interviewPanel = BuildInterview(canvasRt, choicePrefab, out var interview, out var hr);
-            var eventPanel = BuildDailyEvent(canvasRt, out var eventPanelUI);
+            var eventPanel = BuildDailyEvent(canvasRt, out var eventPanelUI, out var eventChoices);
             var finalPanel = BuildFinalDecision(canvasRt, choicePrefab, out var finalDecision);
             var endingPanel = BuildEnding(canvasRt, out var endingController);
 
@@ -110,6 +110,7 @@ namespace FirstJobber.EditorTools
             Set(events, "database", db);
             Set(events, "dialogue", dialogue);
             Set(events, "eventPanel", eventPanelUI);
+            Set(events, "choiceList", eventChoices);
 
             Set(hr, "dialogue", dialogue);
 
@@ -225,7 +226,7 @@ namespace FirstJobber.EditorTools
             previewRt.gameObject.AddComponent<Image>().color = Paper;
             var nameText = NewText(previewRt, "NameText", "Name", 56, Ink, TextAlignmentOptions.MidlineLeft, FontStyles.Bold, 0.05f, 0.86f, 0.95f, 0.97f);
             var genderText = NewText(previewRt, "GenderText", "Gender", 32, new Color(0.3f, 0.3f, 0.3f), TextAlignmentOptions.MidlineLeft, FontStyles.Normal, 0.05f, 0.79f, 0.95f, 0.86f);
-            var categoryList = NewChoiceList(previewRt, "CategoryList", prefab, new Color(0, 0, 0, 0), 0.04f, 0.04f, 0.96f, 0.77f);
+            var categoryList = NewChoiceList(previewRt, "CategoryList", SectionButton("ResumeCategoryButton"), new Color(0, 0, 0, 0), 0.04f, 0.04f, 0.96f, 0.77f);
             var previewUI = previewRt.gameObject.AddComponent<ResumePreviewUI>();
             Set(previewUI, "nameText", nameText);
             Set(previewUI, "genderText", genderText);
@@ -237,7 +238,7 @@ namespace FirstJobber.EditorTools
             var editorGroup = editorRt.gameObject.AddComponent<CanvasGroup>();
             var dayText = NewText(editorRt, "DayText", "Day 1", 36, Color.gray, TextAlignmentOptions.MidlineLeft, FontStyles.Normal, 0f, 0.93f, 0.4f, 1f);
             var title = NewText(editorRt, "CategoryTitle", "Category", 46, Accent, TextAlignmentOptions.MidlineLeft, FontStyles.Bold, 0f, 0.84f, 1f, 0.93f);
-            var choiceList = NewChoiceList(editorRt, "ChoiceList", prefab, Card, 0f, 0.12f, 1f, 0.83f);
+            var choiceList = NewChoiceList(editorRt, "ChoiceList", SectionButton("ResumeChoiceButton"), Card, 0f, 0.12f, 1f, 0.83f);
             var confirm = NewButton(editorRt, "ConfirmButton", "Confirm Resume", ButtonGreen, 0.55f, 0f, 1f, 0.1f);
 
             var confidenceUI = ConfidenceTools.BuildConfidencePanel(panel);
@@ -258,13 +259,29 @@ namespace FirstJobber.EditorTools
         {
             var panel = NewPanel(canvas, "CompanyPanel");
             NewText(panel, "Header", "Choose a company", 44, Accent, TextAlignmentOptions.MidlineLeft, FontStyles.Bold, 0.03f, 0.92f, 0.58f, 0.99f);
-            var list = NewChoiceList(panel, "CompanyList", prefab, Card, 0.03f, 0.28f, 0.58f, 0.92f);
+            var list = NewChoiceList(panel, "CompanyList", SectionButton("CompanyChoiceButton"), Card, 0.03f, 0.28f, 0.58f, 0.92f);
 
             var details = NewRect("DetailsCard", panel);
             Anchor(details, 0.62f, 0.4f, 0.97f, 0.97f);
             details.gameObject.AddComponent<Image>().color = Card;
             var detailsText = NewText(details, "DetailsText", "Select a company to see its details.", 34, Color.white,
                 TextAlignmentOptions.TopLeft, FontStyles.Normal, 0.05f, 0.05f, 0.95f, 0.95f);
+            var viewport = NewRect("DescriptionViewport", details);
+            Anchor(viewport, .05f, .05f, .95f, .95f);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var content = NewRect("DescriptionContent", viewport);
+            content.anchorMin = new Vector2(0, 1); content.anchorMax = new Vector2(1, 1);
+            content.pivot = new Vector2(.5f, 1); content.sizeDelta = Vector2.zero;
+            var descriptionLayout = content.gameObject.AddComponent<VerticalLayoutGroup>();
+            descriptionLayout.childControlWidth = descriptionLayout.childControlHeight = true;
+            descriptionLayout.childForceExpandWidth = true; descriptionLayout.childForceExpandHeight = false;
+            content.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            detailsText.rectTransform.SetParent(content, false);
+            var descriptionScroll = details.gameObject.AddComponent<ScrollRect>();
+            descriptionScroll.viewport = viewport; descriptionScroll.content = content;
+            descriptionScroll.horizontal = false; descriptionScroll.vertical = true;
+            descriptionScroll.movementType = ScrollRect.MovementType.Clamped;
+            descriptionScroll.scrollSensitivity = 40;
 
             var back = NewButton(panel, "BackButton", "Back", ButtonGrey, 0.62f, 0.28f, 0.78f, 0.37f);
             var apply = NewButton(panel, "ApplyButton", "Apply", ButtonGreen, 0.8f, 0.28f, 0.97f, 0.37f);
@@ -272,6 +289,8 @@ namespace FirstJobber.EditorTools
             controller = panel.gameObject.AddComponent<CompanySelectionController>();
             Set(controller, "companyList", list);
             Set(controller, "detailsText", detailsText);
+            Set(controller, "detailsScroll", descriptionScroll);
+            Set(controller, "detailsContent", content);
             Set(controller, "applyButton", apply);
             Set(controller, "backButton", back);
             return panel.GetComponent<CanvasGroup>();
@@ -286,7 +305,7 @@ namespace FirstJobber.EditorTools
             Anchor(questionCard, 0.03f, 0.62f, 0.55f, 0.97f);
             questionCard.gameObject.AddComponent<Image>().color = Card;
             var questionText = NewText(questionCard, "QuestionText", "", 40, Color.white, TextAlignmentOptions.MidlineLeft, FontStyles.Normal, 0.04f, 0.05f, 0.96f, 0.95f);
-            var answers = NewChoiceList(panel, "AnswerList", prefab, Card, 0.03f, 0.28f, 0.55f, 0.6f);
+            var answers = NewChoiceList(panel, "AnswerList", SectionButton("InterviewAnswerButton"), Card, 0.03f, 0.28f, 0.55f, 0.6f);
 
             // RIGHT: HR
             var hrArea = NewRect("HRArea", panel);
@@ -344,7 +363,7 @@ namespace FirstJobber.EditorTools
             return panel.GetComponent<CanvasGroup>();
         }
 
-        static CanvasGroup BuildDailyEvent(RectTransform canvas, out DailyEventPanelUI ui)
+        static CanvasGroup BuildDailyEvent(RectTransform canvas, out DailyEventPanelUI ui, out ChoiceListUI choices)
         {
             var panel = NewPanel(canvas, "DailyEventPanel");
             var bg = NewRect("EventBackground", panel);
@@ -357,6 +376,8 @@ namespace FirstJobber.EditorTools
             ui = panel.gameObject.AddComponent<DailyEventPanelUI>();
             Set(ui, "background", bgImg);
             Set(ui, "captionText", caption);
+            choices = NewChoiceList(panel, "DailyEventChoices", SectionButton("EventChoiceButton"), Card, .2f, .28f, .8f, .83f);
+            choices.gameObject.SetActive(false);
             return panel.GetComponent<CanvasGroup>();
         }
 
@@ -364,11 +385,12 @@ namespace FirstJobber.EditorTools
         {
             var panel = NewPanel(canvas, "FinalDecisionPanel");
             var title = NewText(panel, "Title", "", 60, Accent, TextAlignmentOptions.Center, FontStyles.Bold, 0.15f, 0.85f, 0.85f, 0.97f);
-            var list = NewChoiceList(panel, "EndingList", prefab, Card, 0.2f, 0.28f, 0.8f, 0.83f);
+            var list = NewChoiceList(panel, "EndingList", SectionButton("EndingChoiceButton"), Card, 0.2f, 0.28f, 0.8f, 0.83f);
 
             controller = panel.gameObject.AddComponent<FinalDecisionController>();
             Set(controller, "titleText", title);
             Set(controller, "endingList", list);
+            Set(controller, "actionButtonPrefab", SectionButton("EndingActionButton"));
             return panel.GetComponent<CanvasGroup>();
         }
 
@@ -444,6 +466,14 @@ namespace FirstJobber.EditorTools
         }
 
         // ============================================================ prefab + shared widgets
+
+        static ChoiceButtonUI SectionButton(string role)
+        {
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/UI/" + role + ".prefab");
+            var view = asset != null ? asset.GetComponent<ChoiceButtonUI>() : null;
+            if (view == null) throw new System.InvalidOperationException("Missing section button: " + role + ". Repair its existing prefab reference.");
+            return view;
+        }
 
         static ChoiceButtonUI BuildChoicePrefab()
         {
