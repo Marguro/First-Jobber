@@ -138,6 +138,7 @@ namespace TMPro
 }
 namespace FirstJobber
 {
+    public class AtmosphereSpriteBinding {public Sprite BaseSprite;public Color BaseColor;public void SetAuthoredVisual(Sprite sprite,Color color){} }
     public class ResumeCategoryData : ScriptableObject { }
     public static class ThaiTextApplier { public static void Register(TMPro.TMP_Text text, bool useProjectFont = true) { } }
 }

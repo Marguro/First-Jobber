@@ -43,6 +43,7 @@ namespace FirstJobber
         AudioSource activeSource;
         Coroutine audioRoutine;
         AudioClip activeClip;
+        Material originalOverlayMaterial, coverageOverlayMaterial;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics()
@@ -63,6 +64,13 @@ namespace FirstJobber
             if (overlay != null)
             {
                 overlay.raycastTarget = false;
+                originalOverlayMaterial=overlay.material;
+                coverageOverlayMaterial=new Material(overlay.material){name="Atmosphere overlay (phase art excluded)"};
+                coverageOverlayMaterial.SetInt("_Stencil",AtmosphereOverlayMask.ProtectionBit);
+                coverageOverlayMaterial.SetInt("_StencilReadMask",AtmosphereOverlayMask.ProtectionBit);
+                coverageOverlayMaterial.SetInt("_StencilWriteMask",0);
+                coverageOverlayMaterial.SetInt("_StencilComp",(int)UnityEngine.Rendering.CompareFunction.NotEqual);
+                overlay.material=coverageOverlayMaterial;
                 overlayRgb = overlay.color;
                 SetOverlay(0f);
                 if (!overlay.gameObject.activeSelf) overlay.gameObject.SetActive(true);
@@ -77,6 +85,8 @@ namespace FirstJobber
 
         void OnDestroy()
         {
+            if (overlay!=null && overlay.material==coverageOverlayMaterial) overlay.material=originalOverlayMaterial;
+            if (coverageOverlayMaterial!=null) Destroy(coverageOverlayMaterial);
             if (Instance == this) Instance = null;
         }
 
@@ -99,6 +109,8 @@ namespace FirstJobber
         }
 
         public void ClearPreview() { Apply(lastDay); }
+        /// <summary>Inspector mapping refresh only. Does not change phase/day, audio, progression or UI lists.</summary>
+        public void RefreshUIBindings() { foreach (var binding in Bindings) if (binding!=null) binding.Apply(AppliedPhase,0f); }
 
         /// <summary>Temporary flicker (e.g. from a daily event). Does not change the active phase.</summary>
         public void PulseFlicker(float seconds, float intensity = 0.25f)

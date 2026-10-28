@@ -18,10 +18,38 @@ namespace FirstJobber
         [SerializeField] bool applyUiTint = true;
         [Tooltip("Only swap the sprite; never touch the Image colour. Use on buttons and anything whose colour is driven by another script.")]
         [SerializeField] bool spriteOnly;
+        [Header("Phase-authored UI artwork")]
+        [SerializeField] PhaseUISpriteLibrary uiSprites;
+        [Tooltip("Authoritative original/normal artwork. Edit this field when changing a phase-controlled Image's base sprite; the visible Image.sprite is the rendered phase result.")]
+        [SerializeField] Sprite baseSprite;
+        [SerializeField] AtmosphereOverlayMask overlayMask;
+        public bool DedicatedSpriteActive { get; private set; }
+        public bool AtmosphereFallbackActive => !DedicatedSpriteActive;
+        public Sprite BaseSprite { get { Capture(); return originalSprite; } }
+        public Color BaseColor { get { Capture(); return originalColor; } }
+        public void ConfigureUI(PhaseUISpriteLibrary library, Sprite original, AtmosphereOverlayMask mask)
+        { uiSprites=library; baseSprite=original; overlayMask=mask; }
+        public void RefreshAuthoredMapping()
+        {
+            Capture();
+            if (baseSprite!=configuredBaseSnapshot)
+            {
+                if (baseSprite!=null) originalSprite=baseSprite;
+                configuredBaseSnapshot=baseSprite;
+            }
+            Apply(AtmosphereManager.Instance!=null ? AtmosphereManager.Instance.AppliedPhase : null,0f);
+        }
+        /// <summary>Data/interaction owner updates its authored variant or state color, not the phase-rendered sprite.</summary>
+        public void SetAuthoredVisual(Sprite sprite, Color color)
+        {
+            Capture(); originalSprite=sprite; originalColor=color; captured=true;
+            Apply(AtmosphereManager.Instance != null ? AtmosphereManager.Instance.AppliedPhase : null,0f);
+        }
 
         public string TargetId => targetId;
 
         Sprite originalSprite;
+        Sprite configuredBaseSnapshot;
         Color originalColor = Color.white;
         Coroutine routine;
         bool captured;
@@ -41,12 +69,12 @@ namespace FirstJobber
             if (manager != null && manager.AppliedPhase != null) Apply(manager.AppliedPhase, 0f);
         }
 
-        void OnDisable() { AtmosphereManager.Unregister(this); }
+        void OnDisable() { AtmosphereManager.Unregister(this); if (routine!=null) StopCoroutine(routine); routine=null; }
 
         void Capture()
         {
             if (captured) return;
-            if (image != null) { originalSprite = image.sprite; originalColor = image.color; captured = true; }
+            if (image != null) { originalSprite = baseSprite != null ? baseSprite : image.sprite; configuredBaseSnapshot=baseSprite; originalColor = image.color; captured = true; }
             else if (spriteRenderer != null) { originalSprite = spriteRenderer.sprite; originalColor = spriteRenderer.color; captured = true; }
         }
 
@@ -65,11 +93,15 @@ namespace FirstJobber
             Capture();
             if (!captured) return;
 
-            Sprite targetSprite = phase != null ? phase.GetSprite(targetId) : null;
+            Sprite dedicated=null;
+            bool mapped=uiSprites!=null && uiSprites.TryResolve(originalSprite,phase,out dedicated);
+            bool wasDedicated=DedicatedSpriteActive;
+            DedicatedSpriteActive=dedicated!=null;
+            Sprite targetSprite = DedicatedSpriteActive ? dedicated : mapped ? originalSprite : phase != null ? phase.GetSprite(targetId) : null;
             if (targetSprite == null) targetSprite = originalSprite;
 
             Color targetColor = originalColor;
-            if (phase != null && applyUiTint)
+            if (!DedicatedSpriteActive && phase != null && applyUiTint && !spriteOnly)
             {
                 targetColor = new Color(originalColor.r * phase.uiTint.r, originalColor.g * phase.uiTint.g,
                     originalColor.b * phase.uiTint.b, originalColor.a);
@@ -78,6 +110,12 @@ namespace FirstJobber
             if (routine != null) StopCoroutine(routine);
             routine = null;
 
+            if (overlayMask!=null) overlayMask.Refresh();
+            if (DedicatedSpriteActive || wasDedicated)
+            {
+                SetVisual(targetSprite,targetColor,true); // No atmosphere alpha dip/tint on authored phase art.
+                return;
+            }
             if (spriteOnly)
             {
                 SetVisual(targetSprite, CurrentColor, true);

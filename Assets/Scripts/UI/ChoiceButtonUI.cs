@@ -28,6 +28,7 @@ namespace FirstJobber
     {
         [SerializeField] Button button;
         [SerializeField] Image background;
+        [SerializeField] AtmosphereSpriteBinding backgroundAtmosphere;
         [Tooltip("Optional section-authored selection outline. Does not tint or replace paper artwork.")]
         [SerializeField] GameObject selectionIndicator;
         [SerializeField] TMP_Text titleText;
@@ -79,7 +80,7 @@ namespace FirstJobber
         {
             if (!capturedBackgroundColor && background != null)
             {
-                authoredBackgroundColor = background.color;
+                authoredBackgroundColor = backgroundAtmosphere != null ? backgroundAtmosphere.BaseColor : background.color;
                 capturedBackgroundColor = true;
             }
             Id = item.id;
@@ -121,7 +122,9 @@ namespace FirstJobber
             }
             if (background != null)
             {
-                if (item.backgroundSprite != null) background.sprite = item.backgroundSprite;
+                Sprite authoredSprite=item.backgroundSprite != null ? item.backgroundSprite
+                    : backgroundAtmosphere != null ? backgroundAtmosphere.BaseSprite : background.sprite;
+                if (backgroundAtmosphere==null && item.backgroundSprite != null) background.sprite = item.backgroundSprite;
                 switch (item.state)
                 {
                     case ChoiceState.Selected:
@@ -130,6 +133,7 @@ namespace FirstJobber
                     case ChoiceState.Disabled: background.color = consumedColor; break;
                     default: background.color = useAuthoredBackgroundColor ? authoredBackgroundColor : availableColor; break;
                 }
+                if (backgroundAtmosphere!=null) backgroundAtmosphere.SetAuthoredVisual(authoredSprite,background.color);
             }
             if (selectionIndicator != null) selectionIndicator.SetActive(item.state == ChoiceState.Selected);
             if (button != null)

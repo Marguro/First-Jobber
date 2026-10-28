@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1ccef2da264ebda2fa5bf8333f88b5, type: 3}
+  m_Name: PhaseUISprites
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.PhaseUISpriteLibrary
+  phase2: {fileID: 11400000, guid: ef3a72f0e572aff47a49db8f334c5659, type: 2}
+  phase3: {fileID: 11400000, guid: 7e3f538d0a60ad84e8c507ff9987917d, type: 2}
+  answerPhase3: {fileID: 5796291265165071095, guid: be995ab46772a9746b624a8506d7fd7b, type: 3}
+  companyPhase3: {fileID: 1559604493009539286, guid: a3e7842d04d56fe4aae8eaac83cd9d80, type: 3}
+  entries:
+  - original: {fileID: 8789881516686121123, guid: c442915eb38ea664c954f091854270ea, type: 3}
+    phase2Sprite: {fileID: -7560841521395941431, guid: d00df126d153b1e45b1866e7e2087f7a, type: 3}
+    phase3Sprite: {fileID: 4915158082147374750, guid: 631b501d2ecd2a448ba360e640edfb04, type: 3}
+    family: 0
+  - original: {fileID: -6418197560114053629, guid: 726899eeb05053e49810923f7b0d9a09, type: 3}
+    phase2Sprite: {fileID: 4172283194786279813, guid: 37ac80e75e0d4e04b82a108d5e4bb9ee, type: 3}
+    phase3Sprite: {fileID: -2457706947365033436, guid: 2de56c4ded9da1e41b9f554981254850, type: 3}
+    family: 0
+  - original: {fileID: -705755749498355031, guid: 733000cf02a9030479d1dfc6b511c9e1, type: 3}
+    phase2Sprite: {fileID: 0}
+    phase3Sprite: {fileID: 5796291265165071095, guid: be995ab46772a9746b624a8506d7fd7b, type: 3}
+    family: 1
+  - original: {fileID: 1527826125662034720, guid: c288c2e086ddfd84a91220caa7337d6e, type: 3}
+    phase2Sprite: {fileID: -3990350816756242531, guid: 4d04cae194e26294badba5ce29731059, type: 3}
+    phase3Sprite: {fileID: 5796291265165071095, guid: be995ab46772a9746b624a8506d7fd7b, type: 3}
+    family: 1
+  - original: {fileID: 3104638351779260631, guid: 63ec3e80abb09a8429f160b4b79d251d, type: 3}
+    phase2Sprite: {fileID: 0}
+    phase3Sprite: {fileID: 5796291265165071095, guid: be995ab46772a9746b624a8506d7fd7b, type: 3}
+    family: 1
+  - original: {fileID: -3324399802888926358, guid: dcce17f4114892c4b8c717d55eb15062, type: 3}
+    phase2Sprite: {fileID: -8331460187915861186, guid: 7f480e20a130e36499a1116a519ab245, type: 3}
+    phase3Sprite: {fileID: 5796291265165071095, guid: be995ab46772a9746b624a8506d7fd7b, type: 3}
+    family: 1
+  - original: {fileID: 6628760647033495509, guid: 3ad17ea0730254d469dc1f60dd0c2288, type: 3}
+    phase2Sprite: {fileID: -2812926724734092802, guid: 9d4b40664800c1041a1c9366f454029b, type: 3}
+    phase3Sprite: {fileID: 5796291265165071095, guid: be995ab46772a9746b624a8506d7fd7b, type: 3}
+    family: 1
+  - original: {fileID: 5061522151169849197, guid: 22738dab79dedde49843fff7d409627b, type: 3}
+    phase2Sprite: {fileID: 0}
+    phase3Sprite: {fileID: 4881950424008648095, guid: 015205bf6716bc84f89d2ddfe1ca3507, type: 3}
+    family: 0
+  - original: {fileID: -6781158114000595508, guid: e57cca4f68551584bb13930a3d97392e, type: 3}
+    phase2Sprite: {fileID: -2148093647806597051, guid: efe6088d8b969fc4790c3135bfcaddd2, type: 3}
+    phase3Sprite: {fileID: -3455302631837080486, guid: 13fc6f1b92c056040a298304d0d4d2f0, type: 3}
+    family: 0
+  - original: {fileID: -4151076759655549378, guid: b1f84d208cab5e74ca41ec5eef90fdcd, type: 3}
+    phase2Sprite: {fileID: -4297963934077223684, guid: 4a59182c916d836469b1098187f0bb60, type: 3}
+    phase3Sprite: {fileID: -5511869950180044940, guid: 8a94a9aeea7688a448107b585c147e40, type: 3}
+    family: 0
+  - original: {fileID: 91087165214252064, guid: f26c12dbd083765478adc98308758e6e, type: 3}
+    phase2Sprite: {fileID: -9147875195128146253, guid: d7fb5b986ff8e3f49ab783aff40820e2, type: 3}
+    phase3Sprite: {fileID: 2695512467661887404, guid: 14f13ac45dd949346af2f4781d7f8598, type: 3}
+    family: 0
+  - original: {fileID: -30850385630997769, guid: 4a6c1c3c1eb0db54c87a4c41356e60c4, type: 3}
+    phase2Sprite: {fileID: 2075596769229690752, guid: 63038cd1517f8814e9436e7614eaadf6, type: 3}
+    phase3Sprite: {fileID: 1559604493009539286, guid: a3e7842d04d56fe4aae8eaac83cd9d80, type: 3}
+    family: 2
+  - original: {fileID: -996666792701754357, guid: 2379b08e87db93a4382ae4c98d261dac, type: 3}
+    phase2Sprite: {fileID: 17238640541441417, guid: 45bba1845dbc8354f8b0b5ccb7e2f3c1, type: 3}
+    phase3Sprite: {fileID: 1559604493009539286, guid: a3e7842d04d56fe4aae8eaac83cd9d80, type: 3}
+    family: 2
+  - original: {fileID: -4553429183488114240, guid: f8a5edf96855040429d4bdadb21574b2, type: 3}
+    phase2Sprite: {fileID: 4285446341834721462, guid: b774280a26499824da0b1be2a65d1b13, type: 3}
+    phase3Sprite: {fileID: 1559604493009539286, guid: a3e7842d04d56fe4aae8eaac83cd9d80, type: 3}
+    family: 2
+  - original: {fileID: -5234428195447791835, guid: 8effa9abe18169b4f96765a37ceae741, type: 3}
+    phase2Sprite: {fileID: 4818248384647018384, guid: ffae41fb7d0ee2148a3b979fa6e83af3, type: 3}
+    phase3Sprite: {fileID: 1559604493009539286, guid: a3e7842d04d56fe4aae8eaac83cd9d80, type: 3}
+    family: 2
+  - original: {fileID: 2319010728302674786, guid: c3f91feb9ce58b541852f2e448905f00, type: 3}
+    phase2Sprite: {fileID: 7345130180807197154, guid: 77164d0c0fb98cb4eb9efffc6a6db939, type: 3}
+    phase3Sprite: {fileID: 1559604493009539286, guid: a3e7842d04d56fe4aae8eaac83cd9d80, type: 3}
+    family: 2
+  - original: {fileID: -1472643556192696157, guid: 4cb984412926e214d9ae5fa606751d5f, type: 3}
+    phase2Sprite: {fileID: 0}
+    phase3Sprite: {fileID: -4917223104139143795, guid: ed911cce2e891d143a16f98188b85051, type: 3}
+    family: 0
+  - original: {fileID: -4299722072358492870, guid: dc9243a9a3f9f5e49a24c0a369277dff, type: 3}
+    phase2Sprite: {fileID: -4846404463158357501, guid: a2dc75e256c498a44b61568ac902ed83, type: 3}
+    phase3Sprite: {fileID: -8951008785150011238, guid: 501c4690bb30b294286307825775a1ee, type: 3}
+    family: 0
+  - original: {fileID: 5296390209611786723, guid: 0c8e29ad1461c544998f811c4ce704fe, type: 3}
+    phase2Sprite: {fileID: -1971384169989194201, guid: c51e02d5b4732044699785bd9030ef88, type: 3}
+    phase3Sprite: {fileID: 1052839773113052994, guid: b1184eeb70c5b3a449b7f931db2f7f07, type: 3}
+    family: 0

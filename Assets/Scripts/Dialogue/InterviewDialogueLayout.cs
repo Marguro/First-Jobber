@@ -71,16 +71,9 @@ namespace FirstJobber
                 }
                 if (bodyText != null) { bodyOriginal=new Pose(bodyText.rectTransform); originalBody=bodyText.color; originalBodySize=bodyText.fontSize; }
                 if (continueIndicator != null) continueOriginal=new Pose(continueIndicator);
-                if (background != null) { originalSprite=background.sprite; originalBackground=background.color; originalType=background.type; originalAspect=background.preserveAspect; }
+                if (background != null) { originalSprite=backgroundBinding != null ? backgroundBinding.BaseSprite : background.sprite; originalBackground=backgroundBinding != null ? backgroundBinding.BaseColor : background.color; originalType=background.type; originalAspect=background.preserveAspect; }
                 bindingEnabled=backgroundBinding != null && backgroundBinding.enabled;
                 captured=true; applied=true;
-                if (backgroundBinding != null)
-                {
-                    // Capture before the shared box's first Awake and stop an in-flight phase fade.
-                    // Disabling a MonoBehaviour alone does not stop its existing coroutine.
-                    backgroundBinding.Apply(null, 0f);
-                    backgroundBinding.enabled=false;
-                }
                 new Pose(rootLayout).Apply(dialogueRoot);
                 if (speakerText != null && speakerLayout != null) { new Pose(speakerLayout).Apply(speakerText.rectTransform); speakerText.color=speakerColor; speakerText.fontSize=speakerFontSize; }
                 if (speakerText != null && speakerLayout != null)
@@ -97,6 +90,7 @@ namespace FirstJobber
                 if (bodyText != null && bodyLayout != null) { new Pose(bodyLayout).Apply(bodyText.rectTransform); bodyText.color=bodyColor; bodyText.fontSize=bodyFontSize; }
                 if (continueIndicator != null && continueLayout != null) new Pose(continueLayout).Apply(continueIndicator);
                 if (background != null) { background.sprite=paperSprite; background.color=paperColor; background.type=Image.Type.Simple; background.preserveAspect=true; }
+                if (backgroundBinding != null) backgroundBinding.SetAuthoredVisual(paperSprite,paperColor);
             }
             else if (captured)
             {
@@ -112,7 +106,7 @@ namespace FirstJobber
                 if (bodyText != null) { bodyOriginal.Apply(bodyText.rectTransform); bodyText.color=originalBody; bodyText.fontSize=originalBodySize; }
                 if (continueIndicator != null) continueOriginal.Apply(continueIndicator);
                 if (background != null) { background.sprite=originalSprite; background.color=originalBackground; background.type=originalType; background.preserveAspect=originalAspect; }
-                if (backgroundBinding != null) backgroundBinding.enabled=bindingEnabled;
+                if (backgroundBinding != null) { backgroundBinding.SetAuthoredVisual(originalSprite,originalBackground); backgroundBinding.enabled=bindingEnabled; }
                 captured=applied=false;
             }
         }

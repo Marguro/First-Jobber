@@ -16,7 +16,7 @@ class LayoutHarness
         speaker.margin=new Vector4(0,0,486.85376f,0);speaker.textWrappingMode=TextWrappingModes.Normal;
         speaker.fontSizeMin=18;speaker.fontSizeMax=72;body.textWrappingMode=TextWrappingModes.Normal;
         var arrow=new RectTransform{sizeDelta=new Vector2(162,68)};var image=new Image{sprite=new Sprite(),color=new Color(.2f,.3f,.4f),type=Image.Type.Sliced,preserveAspect=false};var originalSprite=image.sprite;
-        var rootMarker=new RectTransform{sizeDelta=new Vector2(1840,293),anchoredPosition=new Vector2(40,20)};var speakerMarker=new RectTransform{anchoredPosition=new Vector2(20,30)};var bodyMarker=new RectTransform{anchoredPosition=new Vector2(40,50)};var arrowMarker=new RectTransform{sizeDelta=new Vector2(60,34)};var paper=new Sprite();var binding=new AtmosphereSpriteBinding{enabled=true};
+        var rootMarker=new RectTransform{sizeDelta=new Vector2(1840,293),anchoredPosition=new Vector2(40,20)};var speakerMarker=new RectTransform{anchoredPosition=new Vector2(20,30)};var bodyMarker=new RectTransform{anchoredPosition=new Vector2(40,50)};var arrowMarker=new RectTransform{sizeDelta=new Vector2(60,34)};var paper=new Sprite();var binding=new AtmosphereSpriteBinding{enabled=true,BaseSprite=image.sprite,BaseColor=image.color,Target=image};
         Set(preset,"dialogueRoot",root);Set(preset,"speakerText",speaker);Set(preset,"bodyText",body);Set(preset,"continueIndicator",arrow);Set(preset,"background",image);Set(preset,"backgroundBinding",binding);
         Set(preset,"rootLayout",rootMarker);Set(preset,"speakerLayout",speakerMarker);Set(preset,"bodyLayout",bodyMarker);Set(preset,"continueLayout",arrowMarker);Set(preset,"paperSprite",paper);
         for(int cycle=0;cycle<4;cycle++)
@@ -24,7 +24,7 @@ class LayoutHarness
             root.sizeDelta=new Vector2(100+cycle,200);
             preset.SetInterviewActive(true);
             Check(root.sizeDelta.x==1840 && root.anchoredPosition.x==40 && speaker.rectTransform.anchoredPosition.x==20 && body.rectTransform.anchoredPosition.x==40 && arrow.sizeDelta.x==60,"Authored marker layout not applied");
-            Check(image.sprite==paper && image.type==Image.Type.Simple && image.preserveAspect && !binding.enabled && speaker.fontSize==32 && body.fontSize==28,"Interview paper style not applied");
+            Check(image.sprite==paper && image.type==Image.Type.Simple && image.preserveAspect && binding.enabled && speaker.fontSize==32 && body.fontSize==28,"Interview paper style not applied or phase binding was disabled");
             Check(speaker.margin.z==0 && speaker.textWrappingMode==TextWrappingModes.NoWrap && speaker.enableAutoSizing && speaker.fontSizeMin==26 && speaker.fontSizeMax==32,"Old speaker margin/wrapping still collapses the name area");
             Check(speaker.horizontalAlignment==HorizontalAlignmentOptions.Left && body.textWrappingMode==TextWrappingModes.Normal,"Speaker alignment or body wrapping changed incorrectly");
             // Phase changes inside one interview must not snap an artist's live Rect Tool adjustments back.
@@ -57,4 +57,4 @@ namespace TMPro{
  public enum TextWrappingModes{NoWrap,Normal}public enum TextOverflowModes{Overflow,Ellipsis}public enum HorizontalAlignmentOptions{Left,Right}public enum VerticalAlignmentOptions{Top,Middle}
  public class TMP_Text{public RectTransform rectTransform=new RectTransform();public Color color;public float fontSize,fontSizeMin,fontSizeMax;public string text;public Vector4 margin;public TextWrappingModes textWrappingMode;public TextOverflowModes overflowMode;public HorizontalAlignmentOptions horizontalAlignment;public VerticalAlignmentOptions verticalAlignment;public bool enableAutoSizing;}}
 namespace UnityEngine.UI{public class Image {public enum Type{Simple,Sliced}public Sprite sprite;public Color color;public Type type;public bool preserveAspect;}}
-namespace FirstJobber{public class AtmosphereSpriteBinding {public bool enabled;public void Apply(object phase,float fade){}}}
+namespace FirstJobber{public class AtmosphereSpriteBinding {public bool enabled;public Sprite BaseSprite;public Color BaseColor;public Image Target;public void SetAuthoredVisual(Sprite sprite,Color color){BaseSprite=sprite;BaseColor=color;if(Target!=null){Target.sprite=sprite;Target.color=color;}}public void Apply(object phase,float fade){}}}
