@@ -1,14 +1,16 @@
-using System;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace FirstJobber
 {
-    /// <summary>One reusable ending screen: background, dialogue, final text, restart / menu buttons.</summary>
+    /// <summary>One shared ending presenter. FinalDecision confirmation remains the only Production entry point.</summary>
     public class EndingController : MonoBehaviour
     {
         [SerializeField] Image background;
@@ -18,214 +20,304 @@ namespace FirstJobber
         [SerializeField] Button restartButton;
         [SerializeField] Button menuButton;
         [SerializeField] AudioSource audioSource;
-
-        [Header("Timeline (optional)")]
+        [Header("Timeline scene bindings")]
         [SerializeField] PlayableDirector director;
-        [Tooltip("Timeline tracks are matched to these by track name. Audio tracks with no entry use the AudioSource above.")]
         [SerializeField] TimelineBinding[] timelineBindings;
+        [SerializeField] Transform cutsceneRoot;
+        [Header("Fullscreen video and fades")]
+        [SerializeField] GameObject videoRoot;
+        [SerializeField] RawImage videoImage;
+        [SerializeField] AspectRatioFitter videoAspect;
+        [SerializeField] CanvasGroup fadeOverlay;
+        [SerializeField] VideoPlayer videoPlayer;
+        [Min(1), SerializeField] float prepareTimeout = 20f;
+        [Min(1), SerializeField] float playbackGrace = 30f;
 
         [Serializable]
         public class TimelineBinding
         {
-            [Tooltip("Leave empty to use this entry for every ending. Fill in (e.g. ending_my_own_terms) to use it only for that ending; an ending-specific entry wins over a general one.")]
+            [Tooltip("Empty = all endings. An ending-specific entry wins.")]
             public string endingId;
             public string trackName;
-            [Tooltip("A GameObject or component. If the track needs a different type (e.g. an Animator), it is looked up on this object automatically.")]
             public UnityEngine.Object target;
         }
-
         public event Action RestartRequested;
         public event Action MenuRequested;
-
-        bool clicked;
+        public event Action<EndingData> PresentationCompleted;
+        bool clicked, presenting, completed, skipRequested, videoDone, videoFailed, timelineDone;
+        EndingData current;
+        bool previewOnly;
+        Coroutine runner;
+        PlayableDirector active;
+        GameObject spawned;
+        RenderTexture videoTexture;
+        readonly Dictionary<UnityEngine.Object, UnityEngine.Object> originalBindings = new Dictionary<UnityEngine.Object, UnityEngine.Object>();
 
         void Awake()
         {
             if (director == null) director = GetComponent<PlayableDirector>();
             if (director == null) director = gameObject.AddComponent<PlayableDirector>();
             director.playOnAwake = false;
-            if (restartButton != null) restartButton.onClick.AddListener(() => Press(RestartRequested));
-            if (menuButton != null) menuButton.onClick.AddListener(() => Press(MenuRequested));
+            if (restartButton != null) restartButton.onClick.AddListener(OnRestart);
+            if (menuButton != null) menuButton.onClick.AddListener(OnMenu);
+            HidePresentation();
         }
-
+        void OnRestart() { Press(RestartRequested); }
+        void OnMenu() { Press(MenuRequested); }
         void Press(Action action)
         {
-            if (clicked) return;
+            if (clicked || presenting || !completed) return;
             clicked = true;
-            DestroySpawned();
+            CleanupPlayback();
             action?.Invoke();
         }
-
-        public void Show(GameContext ctx, EndingData ending)
+        public void Show(GameContext ctx, EndingData ending, bool previewOnly = false)
         {
-            if (ctx.Database.finalStoryDay > 0 && !ending.resetCycle && ending.cutscenePrefab == null && ending.timeline == null)
-                Debug.LogWarning("[Ending] Production ending '" + ending.id + "' needs its authored Timeline or Cutscene Prefab assigned.", ending);
-            clicked = false;
-            if (background != null)
-            {
-                background.sprite = ending.background;
-                background.color = ending.background != null ? Color.white : ending.backgroundColor;
-            }
-            if (titleText != null) titleText.text = LocalizationManager.Get(ending, "title", ending.title);
-            if (finalText != null) finalText.text = "";
+            if (presenting) { Debug.LogWarning("[Ending] A presentation is already running; duplicate request ignored.", this); return; }
+            if (ending == null || ctx == null) { Debug.LogError("[Ending] Missing ending/context.", this); return; }
+            CleanupPlayback();
+            this.previewOnly = previewOnly;
+            current = ending; clicked = completed = skipRequested = false; presenting = true;
+            if (background != null) { background.sprite = ending.background; background.color = ending.background != null ? Color.white : ending.backgroundColor; }
+            if (titleText != null) { titleText.text = LocalizationManager.Get(ending, "title", ending.title); titleText.gameObject.SetActive(false); }
+            if (finalText != null) { finalText.text = ""; finalText.gameObject.SetActive(false); }
             if (buttonsRoot != null) buttonsRoot.SetActive(false);
             if (audioSource != null && ending.sound != null) audioSource.PlayOneShot(ending.sound);
-
-            StopTimeline();
-            DestroySpawned();
-            if (runner != null) StopCoroutine(runner);
-            bool useTimeline = (ending.cutscenePrefab != null || ending.timeline != null) && ending.timelineMode != EndingTimelineMode.None;
-            if (useTimeline && ending.cutscenePrefab == null && director == null)
-            {
-                Debug.LogError("[Ending] '" + ending.id + "' has a timeline but the EndingController has no PlayableDirector. Falling back to dialogue only.");
-                useTimeline = false;
-            }
-            runner = StartCoroutine(Run(ctx, ending, useTimeline));
+            // Run yields once first, so a Confirm click cannot also skip its presentation.
+            runner = StartCoroutine(Run(ctx, ending));
         }
-
-        Coroutine runner;
-
-        IEnumerator Run(GameContext ctx, EndingData ending, bool useTimeline)
+        IEnumerator Run(GameContext ctx, EndingData ending)
         {
-            var mode = useTimeline ? ending.timelineMode : EndingTimelineMode.None;
-
-            if (mode == EndingTimelineMode.BeforeDialogue || mode == EndingTimelineMode.InsteadOfDialogue)
-                yield return PlayTimeline(ending, ending.timelineSkippable);
-
-            if (mode != EndingTimelineMode.InsteadOfDialogue)
+            yield return null;
+            var mode = ending.presentationMode;
+            bool withDialogue = mode == EndingPresentationMode.Timeline && ending.timelineMode == EndingTimelineMode.WithDialogue;
+            bool instead = mode == EndingPresentationMode.Timeline && ending.timelineMode == EndingTimelineMode.InsteadOfDialogue;
+            bool dialoguePlayed = false;
+            if (mode != EndingPresentationMode.None)
             {
-                bool dialogueDone = false;
-                if (mode == EndingTimelineMode.WithDialogue) StartTimeline(ending);
-                ctx.Dialogue.Play(ending.lines, () => dialogueDone = true);
-                while (!dialogueDone) yield return null;
-                while (mode == EndingTimelineMode.WithDialogue && TimelineRunning) yield return null;
+                SetFade(1f);
+                if (mode == EndingPresentationMode.Video)
+                    yield return PlayVideo(ending);
+                else
+                {
+                    bool started = StartTimeline(ending);
+                    if (started)
+                    {
+                        yield return Fade(1f, 0f, ending.fadeInDuration);
+                        if (withDialogue)
+                        {
+                            bool done = false;
+                            dialoguePlayed = true;
+                            ctx.Dialogue.Play(ending.lines, () => done = true);
+                            while (!done)
+                            {
+                                if (WantsSkip() && active != null && !timelineDone) active.Stop();
+                                yield return null;
+                            }
+                        }
+                        yield return WaitTimeline(ending, !withDialogue);
+                        yield return Fade(0f, 1f, ending.fadeOutDuration);
+                    }
+                }
+                CleanupPlayback();
+                HidePresentation();
             }
-
-            StopTimeline();
-            if (finalText != null) finalText.text = LocalizationManager.Get(ending, "finalText", ending.finalText);
-            if (buttonsRoot != null) buttonsRoot.SetActive(true);
+            if (!dialoguePlayed && !instead)
+            {
+                bool done = false;
+                ctx.Dialogue.Play(ending.lines, () => done = true);
+                while (!done) yield return null;
+            }
+            if (titleText != null) titleText.gameObject.SetActive(true);
+            if (finalText != null) { finalText.text = LocalizationManager.Get(ending, "finalText", ending.finalText); finalText.gameObject.SetActive(true); }
+            if (buttonsRoot != null) buttonsRoot.SetActive(previewOnly || !ending.RestartsCycle);
+            presenting = false;
             runner = null;
+            if (!completed)
+            {
+                completed = true;
+                PresentationCompleted?.Invoke(ending); // listeners may switch phase and disable this panel
+            }
         }
-
-        PlayableDirector active; // the director currently playing (own director, or the one inside a spawned prefab)
-        GameObject spawned;
-
-        bool TimelineRunning => active != null && active.playableAsset != null && active.state == PlayState.Playing;
-
-        void DestroySpawned()
+        public void RequestSkip()
         {
-            active = null;
-            if (spawned != null) Destroy(spawned);
-            spawned = null;
+            if (presenting && current != null && current.allowSkip) skipRequested = true;
         }
+        bool WantsSkip() => current != null && current.allowSkip && (skipRequested || SkipPressed());
+        static bool SkipPressed()
+        {
+            var kb = Keyboard.current; var mouse = Mouse.current;
+            return (kb != null && (kb.escapeKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame || kb.enterKey.wasPressedThisFrame))
+                || (mouse != null && mouse.leftButton.wasPressedThisFrame);
+        }
+        IEnumerator PlayVideo(EndingData ending)
+        {
+            if (ending.videoClip == null || videoRoot == null || videoImage == null || videoAspect == null)
+            { Debug.LogWarning("[Ending] '" + ending.id + "': Video clip/fullscreen UI missing; continuing to ending action.", this); yield break; }
+            if (videoPlayer == null) videoPlayer = GetComponent<VideoPlayer>();
+            if (videoPlayer == null) videoPlayer = gameObject.AddComponent<VideoPlayer>();
+            videoPlayer.playOnAwake = false; videoPlayer.isLooping = false; videoPlayer.waitForFirstFrame = true;
+            videoPlayer.source = VideoSource.VideoClip; videoPlayer.clip = ending.videoClip;
+            videoPlayer.renderMode = VideoRenderMode.RenderTexture;
+            videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
+            videoPlayer.controlledAudioTrackCount = ending.videoClip.audioTrackCount;
+            for (ushort track = 0; track < videoPlayer.controlledAudioTrackCount; track++)
+            {
+                videoPlayer.EnableAudioTrack(track, true);
+                videoPlayer.SetDirectAudioMute(track, false);
+                videoPlayer.SetDirectAudioVolume(track, 1f);
+            }
+            videoPlayer.timeUpdateMode = VideoTimeUpdateMode.UnscaledGameTime;
+            videoPlayer.loopPointReached += OnVideoEnd; videoPlayer.errorReceived += OnVideoError;
+            videoDone = videoFailed = false;
+            videoPlayer.Prepare();
+            float started = Time.realtimeSinceStartup;
+            while (!videoPlayer.isPrepared && !videoFailed)
+            {
+                if (WantsSkip()) yield break;
+                if (Time.realtimeSinceStartup - started > Mathf.Max(1, prepareTimeout)) { Debug.LogWarning("[Ending] Video preparation timed out: " + ending.id, this); yield break; }
+                yield return null;
+            }
+            if (videoFailed) yield break;
+            int width = Mathf.Max(1, (int)videoPlayer.width), height = Mathf.Max(1, (int)videoPlayer.height);
+            float ratio = width / (float)height;
+            float scale = Mathf.Min(1f, 4096f / Mathf.Max(width, height));
+            videoTexture = new RenderTexture(Mathf.Max(1, Mathf.RoundToInt(width * scale)), Mathf.Max(1, Mathf.RoundToInt(height * scale)), 0, RenderTextureFormat.ARGB32);
+            if (!videoTexture.Create()) { Debug.LogWarning("[Ending] Unable to allocate video render texture.", this); yield break; }
+            videoPlayer.targetTexture = videoTexture; videoImage.texture = videoTexture;
+            videoAspect.aspectMode = AspectRatioFitter.AspectMode.FitInParent; videoAspect.aspectRatio = ratio;
+            videoRoot.SetActive(true); videoPlayer.Play();
+            yield return Fade(1f, 0f, ending.fadeInDuration);
+            double length = videoPlayer.length;
+            double budget = length > 0 && !double.IsInfinity(length) && !double.IsNaN(length) ? length + Mathf.Max(1, playbackGrace) : 300;
+            started = Time.realtimeSinceStartup;
+            while (!videoDone && !videoFailed)
+            {
+                if (WantsSkip()) break;
+                if (Time.realtimeSinceStartup - started > budget) { Debug.LogWarning("[Ending] Video playback stalled: " + ending.id, this); break; }
+                yield return null;
+            }
+            yield return Fade(0f, 1f, ending.fadeOutDuration);
+        }
+        void OnVideoEnd(VideoPlayer player) { if (player == videoPlayer) videoDone = true; }
+        void OnVideoError(VideoPlayer player, string error)
+        { if (player != videoPlayer) return; videoFailed = true; Debug.LogWarning("[Ending] Video failed: " + error, this); }
 
-        void StartTimeline(EndingData ending)
+        bool StartTimeline(EndingData ending)
         {
             if (ending.cutscenePrefab != null)
             {
-                spawned = Instantiate(ending.cutscenePrefab, transform);
-                spawned.name = ending.cutscenePrefab.name;
-                int index = background != null ? background.transform.GetSiblingIndex() + 1 : 0;
-                spawned.transform.SetSiblingIndex(index); // above the ending background, below title / buttons
-                active = spawned.GetComponentInChildren<PlayableDirector>(true);
-                if (active == null || active.playableAsset == null)
-                {
-                    Debug.LogError("[Ending] Cutscene prefab '" + spawned.name + "' needs a PlayableDirector with a timeline assigned.", spawned);
-                    active = null;
-                    return;
-                }
-                active.playOnAwake = false;
-                active.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
-                active.extrapolationMode = DirectorWrapMode.None;
-                active.time = 0;
-                active.Play();
-                return;
+                if (cutsceneRoot == null) { Debug.LogWarning("[Ending] Assign Cutscene Root for bound prefabs.", this); return false; }
+                cutsceneRoot.gameObject.SetActive(false);
+                spawned = Instantiate(ending.cutscenePrefab, cutsceneRoot);
+                var directors = spawned.GetComponentsInChildren<PlayableDirector>(true);
+                foreach (var d in directors) d.playOnAwake = false;
+                active = directors.Length > 0 ? directors[0] : null;
+                cutsceneRoot.gameObject.SetActive(true);
             }
-
-            active = director;
-            director.Stop();
-            director.playableAsset = ending.timeline;
-            director.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
-            director.extrapolationMode = DirectorWrapMode.None;
-            foreach (var track in ending.timeline.GetOutputTracks())
+            else { active = director; if (active != null) active.playableAsset = ending.timeline; }
+            if (active == null || active.playableAsset == null)
+            { Debug.LogWarning("[Ending] '" + ending.id + "': Timeline/Director missing; continuing to ending action.", this); return false; }
+            active.playOnAwake = false; active.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime; active.extrapolationMode = DirectorWrapMode.None;
+            double duration = active.playableAsset.duration;
+            if (double.IsNaN(duration) || double.IsInfinity(duration) || duration <= 0)
+            { Debug.LogWarning("[Ending] Timeline must have a finite positive duration: " + ending.id, this); return false; }
+            foreach (var output in active.playableAsset.outputs)
             {
-                UnityEngine.Object target = null;
+                var key = output.sourceObject;
+                if (key == null) continue;
+                var original = active.GetGenericBinding(key); originalBindings[key] = original;
+                UnityEngine.Object target = original;
                 if (timelineBindings != null)
-                {
-                    foreach (var b in timelineBindings)
+                    foreach (var binding in timelineBindings)
                     {
-                        if (b == null || b.trackName != track.name) continue;
-                        bool specific = !string.IsNullOrEmpty(b.endingId);
-                        if (specific && b.endingId != ending.id) continue;
-                        target = b.target;
-                        if (specific) break; // ending-specific entry wins
+                        if (binding == null || binding.trackName != key.name) continue;
+                        bool specific = !string.IsNullOrEmpty(binding.endingId);
+                        if (specific && binding.endingId != ending.id) continue;
+                        target = binding.target; if (specific) break;
                     }
-                }
-                if (target == null && track is UnityEngine.Timeline.AudioTrack) target = audioSource;
-                target = Coerce(track, target);
-                if (target != null) director.SetGenericBinding(track, target);
-            }
-            director.time = 0;
-            director.Play();
-        }
-
-        /// <summary>Converts the dragged object to what the track needs (GameObject for Activation, Animator for Animation...).</summary>
-        static UnityEngine.Object Coerce(UnityEngine.Timeline.TrackAsset track, UnityEngine.Object target)
-        {
-            if (target == null) return null;
-            foreach (var output in track.outputs)
-            {
-                var type = output.outputTargetType;
-                if (type == null || type.IsInstanceOfType(target)) return target;
-                GameObject go = target as GameObject;
-                if (go == null && target is Component c) go = c.gameObject;
-                if (go == null) continue;
-                if (type == typeof(GameObject)) return go;
-                if (typeof(Component).IsAssignableFrom(type))
+                if (target == null && key is UnityEngine.Timeline.AudioTrack) target = audioSource;
+                target = Coerce(output.outputTargetType, target);
+                if (target != null) active.SetGenericBinding(key, target);
+                else
                 {
-                    var comp = go.GetComponent(type);
-                    if (comp != null) return comp;
-                    Debug.LogWarning("[Ending] Track '" + track.name + "' needs a " + type.Name + " but '" + go.name + "' has none.", go);
+                    active.ClearGenericBinding(key);
+                    if (output.outputTargetType != null)
+                        Debug.LogWarning("[Ending] Unbound track '" + key.name + "' for " + ending.id + ". Assign Timeline Bindings or bind it inside the cutscene prefab.", this);
                 }
             }
-            return target;
+            timelineDone = false; active.stopped += OnTimelineStopped; active.time = 0; active.Play();
+            return true;
         }
-
-        IEnumerator PlayTimeline(EndingData ending, bool skippable)
+        static UnityEngine.Object Coerce(Type type, UnityEngine.Object target)
         {
-            StartTimeline(ending);
-            yield return null; // let the director enter Playing
-            while (TimelineRunning)
+            if (target == null || type == null || type.IsInstanceOfType(target)) return target;
+            var go = target as GameObject;
+            if (go == null && target is Component component) go = component.gameObject;
+            if (go == null) return null;
+            if (type == typeof(GameObject)) return go;
+            return typeof(Component).IsAssignableFrom(type) ? go.GetComponent(type) : null;
+        }
+        void OnTimelineStopped(PlayableDirector value) { if (value == active) timelineDone = true; }
+        IEnumerator WaitTimeline(EndingData ending, bool maySkip)
+        {
+            yield return null;
+            float started = Time.realtimeSinceStartup;
+            double budget = active != null ? active.duration + Mathf.Max(1, playbackGrace) : 0;
+            while (active != null && !timelineDone)
             {
-                if (skippable && SkipPressed())
-                {
-                    active.time = active.duration;
-                    active.Evaluate(); // land every track on its final state
-                    break;
-                }
+                if (maySkip && WantsSkip()) break;
+                if (Time.realtimeSinceStartup - started > budget) { Debug.LogWarning("[Ending] Timeline stalled: " + ending.id, this); break; }
                 yield return null;
             }
-            if (active != null) active.Stop();
         }
-
-        static bool SkipPressed()
+        IEnumerator Fade(float from, float to, float duration)
         {
-            var kb = Keyboard.current;
-            var mouse = Mouse.current;
-            return (kb != null && (kb.spaceKey.wasPressedThisFrame || kb.enterKey.wasPressedThisFrame))
-                || (mouse != null && mouse.leftButton.wasPressedThisFrame);
+            if (fadeOverlay == null || duration <= 0) { SetFade(to); yield break; }
+            for (float t = 0; t < duration; t += Time.unscaledDeltaTime)
+            { SetFade(Mathf.Lerp(from, to, t / duration)); yield return null; }
+            SetFade(to);
         }
-
-        void StopTimeline()
+        void SetFade(float value)
         {
-            if (active != null && active.playableAsset != null) active.Stop();
+            if (fadeOverlay == null) return;
+            fadeOverlay.alpha = value;
+            fadeOverlay.blocksRaycasts = presenting;
         }
-
+        void HidePresentation()
+        {
+            if (videoRoot != null) videoRoot.SetActive(false);
+            SetFade(0);
+            if (fadeOverlay != null) fadeOverlay.blocksRaycasts = false;
+        }
+        void CleanupPlayback()
+        {
+            if (videoPlayer != null)
+            {
+                videoPlayer.loopPointReached -= OnVideoEnd; videoPlayer.errorReceived -= OnVideoError;
+                videoPlayer.Stop(); videoPlayer.targetTexture = null; videoPlayer.clip = null;
+            }
+            if (videoImage != null) videoImage.texture = null;
+            if (videoTexture != null) { videoTexture.Release(); Destroy(videoTexture); videoTexture = null; }
+            if (active != null)
+            {
+                active.stopped -= OnTimelineStopped; active.Stop();
+                foreach (var pair in originalBindings)
+                    if (pair.Value != null) active.SetGenericBinding(pair.Key, pair.Value); else active.ClearGenericBinding(pair.Key);
+            }
+            originalBindings.Clear(); active = null;
+            if (spawned != null) Destroy(spawned); spawned = null;
+            if (cutsceneRoot != null) cutsceneRoot.gameObject.SetActive(false);
+        }
         void OnDisable()
         {
             if (runner != null) { StopCoroutine(runner); runner = null; }
-            StopTimeline();
-            DestroySpawned();
+            CleanupPlayback(); presenting = false; HidePresentation();
+        }
+        void OnDestroy()
+        {
+            if (restartButton != null) restartButton.onClick.RemoveListener(OnRestart);
+            if (menuButton != null) menuButton.onClick.RemoveListener(OnMenu);
         }
     }
 }

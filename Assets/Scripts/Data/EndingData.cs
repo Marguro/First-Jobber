@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.Timeline;
+using UnityEngine.Playables;
+using UnityEngine.Video;
 
 namespace FirstJobber
 {
+    public enum EndingPresentationMode { None, Video, Timeline }
+    public enum EndingAfterCutsceneAction { CompleteEnding, RestartDay1 }
     public enum EndingTimelineMode
     {
         [Tooltip("Ignore the timeline.")] None,
@@ -20,7 +24,7 @@ namespace FirstJobber
         [Header("Final decision button")]
         public string optionLabel;
         public DialogueLine[] previewLines;
-        public bool resetCycle;
+        [HideInInspector] public bool resetCycle; // Preserved for legacy authored assets/imports.
         [TextArea] public string optionDescription;
 
         [Header("Ending scene")]
@@ -30,13 +34,23 @@ namespace FirstJobber
         [TextArea] public string finalText;
         public AudioClip sound;
 
+        [Header("Presentation after confirmation")]
+        public EndingPresentationMode presentationMode = EndingPresentationMode.Timeline;
+        public VideoClip videoClip;
+        // Reuse the existing serialized skip flag so older endings keep their authored setting.
+        public bool allowSkip { get => timelineSkippable; set => timelineSkippable = value; }
+        [Min(0)] public float fadeInDuration = .25f;
+        [Min(0)] public float fadeOutDuration = .25f;
+        public EndingAfterCutsceneAction actionAfterCutscene;
+        public bool RestartsCycle => resetCycle || actionAfterCutscene == EndingAfterCutsceneAction.RestartDay1;
+
         [Header("Timeline (optional)")]
         [Tooltip("EASIEST: a prefab that contains its own PlayableDirector, its timeline and the objects it animates (bind the tracks once, inside the prefab). Spawned under the ending panel when this ending plays. When set, 'Timeline' below is not needed.")]
         public GameObject cutscenePrefab;
         [Tooltip("Advanced: a bare Timeline asset. Tracks are bound by NAME using the EndingController's Timeline Bindings list. Ignored when a Cutscene Prefab is set.")]
-        public TimelineAsset timeline;
+        public PlayableAsset timeline;
         public EndingTimelineMode timelineMode = EndingTimelineMode.BeforeDialogue;
-        [Tooltip("Space / Enter / click skips the timeline (only when it plays alone, i.e. not With Dialogue).")]
+        [Tooltip("Shared Video/Timeline skip setting, shown as Allow Skip by the Ending inspector.")]
         public bool timelineSkippable = true;
     }
 }

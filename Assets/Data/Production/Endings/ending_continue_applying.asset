@@ -55,3 +55,8 @@ MonoBehaviour:
     fileID: 0
   timelineMode: 1
   timelineSkippable: 1
+  presentationMode: 0
+  videoClip: {fileID: 0}
+  fadeInDuration: 0.25
+  fadeOutDuration: 0.25
+  actionAfterCutscene: 1

@@ -62,7 +62,7 @@ namespace FirstJobber
             {
                 var e = endings[i];
                 if (e == null) continue;
-                string timeline = (e.timeline != null || e.cutscenePrefab != null) && e.timelineMode != EndingTimelineMode.None ? "  [timeline]" : "";
+                string timeline = e.presentationMode == EndingPresentationMode.None ? "" : "  [" + e.presentationMode + "]";
                 if (GUILayout.Button((i + 1) + ". " + e.title + "  (" + e.id + ")" + timeline, GUILayout.Height(30)))
                     Run("ending " + e.id);
             }

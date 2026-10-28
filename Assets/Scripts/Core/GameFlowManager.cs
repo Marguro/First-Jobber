@@ -40,6 +40,7 @@ namespace FirstJobber
         GameSession session;
         GameContext ctx;
         bool referencesOk;
+        bool debugEndingPreview;
 
         // Allowed transitions. Add a phase here to extend the flow.
         static readonly Dictionary<GamePhase, GamePhase[]> Transitions = new Dictionary<GamePhase, GamePhase[]>
@@ -57,7 +58,7 @@ namespace FirstJobber
             { GamePhase.DayTransition, new[] { GamePhase.DailyEvent, GamePhase.ResumeEditor, GamePhase.FinalDecision } },
             { GamePhase.DailyEvent, new[] { GamePhase.ResumeEditor, GamePhase.FinalDecision } },
             { GamePhase.FinalDecision, new[] { GamePhase.Ending, GamePhase.ResumeEditor } },
-            { GamePhase.Ending, new[] { GamePhase.MainMenu, GamePhase.CreateApplicant } },
+            { GamePhase.Ending, new[] { GamePhase.MainMenu, GamePhase.CreateApplicant, GamePhase.ResumeEditor } },
         };
 
         // ------------------------------------------------------------ lifecycle
@@ -70,7 +71,7 @@ namespace FirstJobber
             if (companySelection != null) { companySelection.CompanyConfirmed += OnCompanyConfirmed; companySelection.BackRequested += OnCompanyBack; }
             if (interview != null) { interview.PhaseRequested += OnInterviewPhase; interview.Finished += OnInterviewFinished; }
             if (finalDecision != null) finalDecision.EndingChosen += OnEndingChosen;
-            if (ending != null) { ending.RestartRequested += OnEndingMenu; ending.MenuRequested += OnEndingMenu; }
+            if (ending != null) { ending.RestartRequested += OnEndingMenu; ending.MenuRequested += OnEndingMenu; ending.PresentationCompleted += OnEndingPresentationCompleted; }
             LocalizationManager.LanguageChanged += OnLanguageChanged;
         }
 
@@ -83,7 +84,7 @@ namespace FirstJobber
             if (companySelection != null) { companySelection.CompanyConfirmed -= OnCompanyConfirmed; companySelection.BackRequested -= OnCompanyBack; }
             if (interview != null) { interview.PhaseRequested -= OnInterviewPhase; interview.Finished -= OnInterviewFinished; }
             if (finalDecision != null) finalDecision.EndingChosen -= OnEndingChosen;
-            if (ending != null) { ending.RestartRequested -= OnEndingMenu; ending.MenuRequested -= OnEndingMenu; }
+            if (ending != null) { ending.RestartRequested -= OnEndingMenu; ending.MenuRequested -= OnEndingMenu; ending.PresentationCompleted -= OnEndingPresentationCompleted; }
         }
 
         void Start()
@@ -374,13 +375,35 @@ namespace FirstJobber
         void OnEndingChosen(string endingId)
         {
             if (Phase != GamePhase.FinalDecision) return;
+            debugEndingPreview = false;
             var data = database.FindEnding(endingId);
             if (data == null)
             {
                 Debug.LogError("[GameFlow] Unknown ending id '" + endingId + "'.");
                 return;
             }
-            if (data.resetCycle)
+            if (!ChangePhase(GamePhase.Ending)) return;
+            session.endingId = endingId;
+            if (!data.RestartsCycle) GameSession.DeleteSave();
+            ending.Show(ctx, data);
+        }
+
+        void OnEndingPresentationCompleted(EndingData data)
+        {
+            if (Phase != GamePhase.Ending || data == null || session.endingId != data.id) return;
+            if (debugEndingPreview) { debugEndingPreview = false; return; } // Existing debug command never writes/reset saves.
+#if UNITY_EDITOR
+            if (editorEndingPreview)
+            {
+                editorEndingPreview = false;
+                session = editorSavedSession; ctx = editorSavedContext;
+                Phase = GamePhase.MainMenu;
+                ui.ShowPanelFor(Phase, true); mainMenu.Open(database);
+                Debug.Log("[Ending] Presentation preview complete. Original session/save untouched; ending action was not executed.", this);
+                return;
+            }
+#endif
+            if (data.RestartsCycle)
             {
                 // Preserve identity, history and once-per-playthrough choice reactions/tutorials.
                 session.day = 1;
@@ -397,15 +420,28 @@ namespace FirstJobber
                 if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(false);
                 return;
             }
-            if (!ChangePhase(GamePhase.Ending)) return;
-            session.endingId = endingId;
-            GameSession.DeleteSave();
-            ending.Show(ctx, data);
         }
 
         public GameDatabase Database => database;
 
 #if UNITY_EDITOR
+        [Header("Editor-only ending presentation preview")]
+        [SerializeField] EndingData editorPreviewEnding;
+        bool editorEndingPreview;
+        GameSession editorSavedSession;
+        GameContext editorSavedContext;
+        [ContextMenu("Debug/Preview assigned ending presentation (Play Mode, Main Menu only)")]
+        void PreviewEndingPresentation()
+        {
+            if (!Application.isPlaying || !referencesOk || Phase != GamePhase.MainMenu || dialogue.IsPlaying || editorPreviewEnding == null)
+            { Debug.LogWarning("[Ending] Assign Editor Preview Ending, then use preview in Play Mode at Main Menu.", this); return; }
+            editorSavedSession = session; editorSavedContext = ctx; editorEndingPreview = true;
+            session = new GameSession { applicantName = "Preview", applicantGender = Genders.Unspecified, day = 6, endingId = editorPreviewEnding.id, phase = GamePhase.Ending };
+            ctx = new GameContext(database, session, dialogue);
+            Phase = GamePhase.Ending; ui.ShowPanelFor(Phase, true);
+            ending.Show(ctx, editorPreviewEnding);
+        }
+
         [ContextMenu("Debug/Preview Day 2 phone event (Play Mode, Main Menu only)")]
         void PreviewDay2Phone() { PreviewPhoneEvent(2); }
 
@@ -460,7 +496,8 @@ namespace FirstJobber
             session.phase = GamePhase.Ending;
             session.endingId = endingId;
             ui.ShowPanelFor(GamePhase.Ending, true);
-            ending.Show(ctx, data);
+            debugEndingPreview = true;
+            ending.Show(ctx, data, true);
             Debug.Log("[Debug] Triggered ending '" + endingId + "'.");
             return true;
         }

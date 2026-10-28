@@ -423,6 +423,25 @@ namespace FirstJobber.EditorTools
             Set(controller, "restartButton", restart);
             Set(controller, "menuButton", menu);
             Set(controller, "audioSource", audio);
+            var cutsceneRoot = NewRect("CutsceneRoot", panel);
+            Stretch(cutsceneRoot); cutsceneRoot.SetSiblingIndex(1); cutsceneRoot.gameObject.SetActive(false);
+            var videoRoot = NewRect("FullscreenVideo", panel);
+            Stretch(videoRoot);
+            videoRoot.gameObject.AddComponent<Image>().color = Color.black;
+            var videoRect = NewRect("VideoImage", videoRoot);
+            Stretch(videoRect);
+            var videoImage = videoRect.gameObject.AddComponent<RawImage>(); videoImage.raycastTarget = false;
+            var videoAspect = videoRect.gameObject.AddComponent<AspectRatioFitter>();
+            videoAspect.aspectMode = AspectRatioFitter.AspectMode.FitInParent; videoAspect.aspectRatio = 16f / 9f;
+            videoRoot.gameObject.SetActive(false);
+            var fade = NewRect("PresentationFade", panel);
+            Stretch(fade); fade.gameObject.AddComponent<Image>().color = Color.black;
+            var fadeGroup = fade.gameObject.AddComponent<CanvasGroup>(); fadeGroup.alpha = 0; fadeGroup.blocksRaycasts = false;
+            Set(controller, "cutsceneRoot", cutsceneRoot);
+            Set(controller, "videoRoot", videoRoot.gameObject);
+            Set(controller, "videoImage", videoImage);
+            Set(controller, "videoAspect", videoAspect);
+            Set(controller, "fadeOverlay", fadeGroup);
             return panel.GetComponent<CanvasGroup>();
         }
 
