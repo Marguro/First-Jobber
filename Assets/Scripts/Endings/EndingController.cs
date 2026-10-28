@@ -45,7 +45,7 @@ namespace FirstJobber
         public event Action RestartRequested;
         public event Action MenuRequested;
         public event Action<EndingData> PresentationCompleted;
-        bool clicked, presenting, completed, skipRequested, videoDone, videoFailed, timelineDone;
+        bool clicked, presenting, completed, skipRequested, videoDone, videoFailed, videoPrepared, timelineDone;
         EndingData current;
         bool previewOnly;
         Coroutine runner;
@@ -170,11 +170,14 @@ namespace FirstJobber
                 videoPlayer.SetDirectAudioVolume(track, 1f);
             }
             videoPlayer.timeUpdateMode = VideoTimeUpdateMode.UnscaledGameTime;
+            // A zero-area UV rect samples one pixel and looks like a solid gray screen.
+            videoImage.uvRect = new Rect(0f, 0f, 1f, 1f);
+            videoPlayer.prepareCompleted += OnVideoPrepared;
             videoPlayer.loopPointReached += OnVideoEnd; videoPlayer.errorReceived += OnVideoError;
-            videoDone = videoFailed = false;
+            videoDone = videoFailed = videoPrepared = false;
             videoPlayer.Prepare();
             float started = Time.realtimeSinceStartup;
-            while (!videoPlayer.isPrepared && !videoFailed)
+            while (!videoPrepared && !videoPlayer.isPrepared && !videoFailed)
             {
                 if (WantsSkip()) yield break;
                 if (Time.realtimeSinceStartup - started > Mathf.Max(1, prepareTimeout)) { Debug.LogWarning("[Ending] Video preparation timed out: " + ending.id, this); yield break; }
@@ -188,7 +191,9 @@ namespace FirstJobber
             if (!videoTexture.Create()) { Debug.LogWarning("[Ending] Unable to allocate video render texture.", this); yield break; }
             videoPlayer.targetTexture = videoTexture; videoImage.texture = videoTexture;
             videoAspect.aspectMode = AspectRatioFitter.AspectMode.FitInParent; videoAspect.aspectRatio = ratio;
+            // Both consumers share the same live target; reveal only after preparation succeeds.
             videoRoot.SetActive(true); videoPlayer.Play();
+            Debug.Log("[Ending] Video prepared: " + ending.id + " (" + width + "x" + height + "), shared RenderTexture bound.", this);
             yield return Fade(1f, 0f, ending.fadeInDuration);
             double length = videoPlayer.length;
             double budget = length > 0 && !double.IsInfinity(length) && !double.IsNaN(length) ? length + Mathf.Max(1, playbackGrace) : 300;
@@ -201,6 +206,7 @@ namespace FirstJobber
             }
             yield return Fade(0f, 1f, ending.fadeOutDuration);
         }
+        void OnVideoPrepared(VideoPlayer player) { if (player == videoPlayer) videoPrepared = true; }
         void OnVideoEnd(VideoPlayer player) { if (player == videoPlayer) videoDone = true; }
         void OnVideoError(VideoPlayer player, string error)
         { if (player != videoPlayer) return; videoFailed = true; Debug.LogWarning("[Ending] Video failed: " + error, this); }
@@ -294,8 +300,10 @@ namespace FirstJobber
         }
         void CleanupPlayback()
         {
+            if (videoRoot != null) videoRoot.SetActive(false);
             if (videoPlayer != null)
             {
+                videoPlayer.prepareCompleted -= OnVideoPrepared;
                 videoPlayer.loopPointReached -= OnVideoEnd; videoPlayer.errorReceived -= OnVideoError;
                 videoPlayer.Stop(); videoPlayer.targetTexture = null; videoPlayer.clip = null;
             }

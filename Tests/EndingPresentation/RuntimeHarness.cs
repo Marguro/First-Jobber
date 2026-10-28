@@ -30,6 +30,9 @@ class Harness
         var v=Data(EndingPresentationMode.Video);v.videoClip=new VideoClip{width=640,height=480,audioTrackCount=2};c.Show(ctx,v);Tick(3);
         Check(video.isPlaying && !video.isLooping && !video.playOnAwake && video.AudioEnabled==2,"Video/audio configuration wrong");
         Check(Math.Abs(aspect.aspectRatio-4f/3)<.001f,"Video aspect ratio wrong");
+        var raw=(RawImage)c.GetType().GetField("videoImage",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(c);
+        Check(raw.texture==video.targetTexture && raw.texture!=null,"RawImage and VideoPlayer must share the live target");
+        Check(raw.uvRect.width==1 && raw.uvRect.height==1,"Video UVs must sample the whole frame");
         video.End();video.End();Tick(5);Check(done==3 && video.targetTexture==null && RenderTexture.Alive==0,"Video natural completion/cleanup duplicated or leaked");
         c.Show(ctx,v);Tick(3);c.RequestSkip();c.RequestSkip();Tick(5);Check(done==4 && !video.isPlaying,"Skip completion duplicated");
         v.allowSkip=false;c.Show(ctx,v);Tick(3);c.RequestSkip();Tick(3);Check(done==4 && video.isPlaying,"Allow Skip=false ignored");video.Error();Tick(5);Check(done==5,"Video error softlocked");
@@ -84,14 +87,15 @@ namespace UnityEngine
     public struct Color {public static Color black=>new Color();public static Color white=>new Color();}
     public static class Time {public static float realtimeSinceStartup;public static float unscaledDeltaTime=.1f;}
     public static class Mathf {public static int Max(int a,int b)=>Math.Max(a,b);public static float Max(float a,float b)=>Math.Max(a,b);public static float Min(float a,float b)=>Math.Min(a,b);public static int RoundToInt(float v)=>(int)Math.Round(v);public static float Lerp(float a,float b,float t)=>a+(b-a)*t;}
-    public static class Debug {public static void LogWarning(string s,Object o){}public static void LogError(string s,Object o){throw new Exception(s);}}
+    public static class Debug {public static void Log(string s,Object o){}public static void LogWarning(string s,Object o){}public static void LogError(string s,Object o){throw new Exception(s);}}
     public class SerializeField:Attribute {}public class HeaderAttribute:Attribute {public HeaderAttribute(string s){}}public class TooltipAttribute:Attribute {public TooltipAttribute(string s){}}public class MinAttribute:Attribute {public MinAttribute(float n){}}public class TextAreaAttribute:Attribute {}public class HideInInspector:Attribute {}public class CreateAssetMenuAttribute:Attribute {public string menuName,fileName;}
 }
 namespace TMPro {public class TMP_Text:Component {public string text;}}
 namespace UnityEngine.UI
 {
     public class Image:Component {public Sprite sprite;public Color color;}
-    public class RawImage:Component {public Texture texture;}
+    public struct Rect {public float x,y,width,height;public Rect(float x,float y,float w,float h){this.x=x;this.y=y;width=w;height=h;}}
+    public class RawImage:Component {public Texture texture;public Rect uvRect;}
     public class AspectRatioFitter:Component {public enum AspectMode{FitInParent}public AspectMode aspectMode;public float aspectRatio;}
     public class ClickEvent {public void AddListener(Action a){}public void RemoveListener(Action a){}}
     public class Button:Component {public ClickEvent onClick=new ClickEvent();}
@@ -124,8 +128,9 @@ namespace UnityEngine.Video
         public bool AutoPrepare=true,isPrepared,isPlaying,playOnAwake,isLooping,waitForFirstFrame;public VideoClip clip;public uint width=>clip.width;public uint height=>clip.height;public double length=1;
         public VideoSource source;public VideoRenderMode renderMode;public VideoAudioOutputMode audioOutputMode;public VideoTimeUpdateMode timeUpdateMode;public ushort controlledAudioTrackCount;public int AudioEnabled;public RenderTexture targetTexture;
         Action<VideoPlayer> end;Action<VideoPlayer,string> error;public int EndListeners=>end?.GetInvocationList().Length??0;public int ErrorListeners=>error?.GetInvocationList().Length??0;
+        public event Action<VideoPlayer> prepareCompleted;
         public event Action<VideoPlayer> loopPointReached {add{end+=value;}remove{end-=value;}}public event Action<VideoPlayer,string> errorReceived {add{error+=value;}remove{error-=value;}}
-        public void Prepare(){isPrepared=AutoPrepare;AudioEnabled=controlledAudioTrackCount;}public void Play(){isPlaying=true;}public void Stop(){isPlaying=false;isPrepared=false;}public void End()=>end?.Invoke(this);public void Error()=>error?.Invoke(this,"test decoder error");public void EnableAudioTrack(ushort i,bool v){}public void SetDirectAudioMute(ushort i,bool v){}public void SetDirectAudioVolume(ushort i,float v){}
+        public void Prepare(){isPrepared=AutoPrepare;AudioEnabled=controlledAudioTrackCount;if(isPrepared)prepareCompleted?.Invoke(this);}public void Play(){isPlaying=true;}public void Stop(){isPlaying=false;isPrepared=false;}public void End()=>end?.Invoke(this);public void Error()=>error?.Invoke(this,"test decoder error");public void EnableAudioTrack(ushort i,bool v){}public void SetDirectAudioMute(ushort i,bool v){}public void SetDirectAudioVolume(ushort i,float v){}
     }
 }
 namespace FirstJobber
