@@ -306,82 +306,45 @@ MonoBehaviour:
 --- !u!1 &350000022
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component:
-      fileID: 350000023
-  - component:
-      fileID: 350000028
-  - component:
-      fileID: 350000027
-  - component:
-      fileID: 350000026
-  - component:
-      fileID: 350000025
+  - component: {fileID: 350000023}
+  - component: {fileID: 350000028}
+  - component: {fileID: 350000027}
+  - component: {fileID: 350000026}
+  - component: {fileID: 350000025}
   m_Layer: 0
   m_Name: ResumeCategoryButton — Production Container
   m_TagString: Untagged
-  m_Icon:
-    fileID: 0
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &350000023
 RectTransform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 350000022
-  m_LocalRotation:
-    x: 0
-    y: 0
-    z: 0
-    w: 1
-  m_LocalPosition:
-    x: 0
-    y: 0
-    z: 0
-  m_LocalScale:
-    x: 1
-    y: 1
-    z: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350000022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - fileID: 350000001
-  - fileID: 350000006
-  - fileID: 350000019
-  m_Father:
-    fileID: 627569008
-  m_LocalEulerAnglesHint:
-    x: 0
-    y: 0
-    z: 0
-  m_AnchorMin:
-    x: 0.1517352986666667
-    y: 0.0792628644862817
-  m_AnchorMax:
-    x: 0.4247230346666668
-    y: 0.5434494128707552
-  m_AnchoredPosition:
-    x: 0
-    y: 0
-  m_SizeDelta:
-    x: 0
-    y: 0
-  m_Pivot:
-    x: 0.5
-    y: 0.5
+  - {fileID: 350000001}
+  - {fileID: 350000006}
+  - {fileID: 350000019}
+  m_Father: {fileID: 627569008}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.1517352986666667, y: 0.07926286448628174}
+  m_AnchorMax: {x: 0.4247230346666668, y: 0.5434494128707553}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &350000025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,51 +911,23 @@ GameObject:
 --- !u!224 &350000001
 RectTransform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 350000000
-  m_LocalRotation:
-    x: 0
-    y: 0
-    z: 0
-    w: 1
-  m_LocalPosition:
-    x: 0
-    y: 0
-    z: 0
-  m_LocalScale:
-    x: 1.05
-    y: 0.8
-    z: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350000000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - fileID: 350000015
-  m_Father:
-    fileID: 350000023
-  m_LocalEulerAnglesHint:
-    x: 0
-    y: 0
-    z: 0
-  m_AnchorMin:
-    x: 0
-    y: 0
-  m_AnchorMax:
-    x: 1
-    y: 1
-  m_AnchoredPosition:
-    x: 0
-    y: 0
-  m_SizeDelta:
-    x: -11
-    y: 0
-  m_Pivot:
-    x: 0.5
-    y: 0.5
+  - {fileID: 350000015}
+  m_Father: {fileID: 350000023}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -7, y: 0}
+  m_SizeDelta: {x: -14, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &350000002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,32 +2181,23 @@ RectTransform:
 --- !u!1 &350001024
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component:
-      fileID: 350001025
-  - component:
-      fileID: 350001030
-  - component:
-      fileID: 350001029
-  - component:
-      fileID: 350001028
-  - component:
-      fileID: 350001027
+  - component: {fileID: 350001025}
+  - component: {fileID: 350001030}
+  - component: {fileID: 350001029}
+  - component: {fileID: 350001028}
+  - component: {fileID: 350001027}
   m_Layer: 0
   m_Name: ResumeChoiceButton — Production Container
   m_TagString: Untagged
-  m_Icon:
-    fileID: 0
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &350001025
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8335,200 +8261,172 @@ Transform:
 --- !u!114 &330000002
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 330000000
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330000000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: 51b4d0e0f6fe4f08a18b681ef951aa19
-    type: 3
+  m_Script: {fileID: 11500000, guid: 51b4d0e0f6fe4f08a18b681ef951aa19, type: 3}
   m_Name: ''
   m_EditorClassIdentifier: ''
   samples:
-  - view:
-      fileID: 400000002
-    title: ResumeCategory
-    subtitle: มหาวิทยาลัยประจำจังหวัดสุวิชนา
+  - view: {fileID: 400000002}
+    title: Faculty / คณะ
+    subtitle: ''
     badge: ''
     star: 0
     confidence: 95
     state: 0
-  - view:
-      fileID: 400000012
-    title: มหาวิทยาลัยกากินัง บ้านหนองขึ่ม — ตัวเลือกภาษาไทยสำหรับตรวจการตัดบรรทัด
-    subtitle: Long English subtitle wraps inside the artist-authored text region.
+  - view: {fileID: 400000012}
+    title: Personal Motto / คติประจำใจ
+    subtitle: ''
     badge: ''
     star: 0
     confidence: 65
     state: 1
-  - view:
-      fileID: 400000022
-    title: Unavailable / ไม่พร้อมใช้งาน
-    subtitle: Disabled example
+  - view: {fileID: 400000022}
+    title: University / มหาวิทยาลัย
+    subtitle: ''
     badge: ''
     star: 0
     confidence: 35
     state: 3
-  - view:
-      fileID: 400001002
+  - view: {fileID: 400001002}
     title: Digital Art
     subtitle: ''
     badge: 95%
     star: 1
     confidence: 95
     state: 0
-  - view:
-      fileID: 400001012
+  - view: {fileID: 400001012}
     title: มหาวิทยาลัยกากินัง บ้านหนองขึ่ม — ตัวเลือกภาษาไทยสำหรับตรวจการตัดบรรทัด
     subtitle: ''
     badge: 95%
     star: 1
     confidence: 65
     state: 1
-  - view:
-      fileID: 400001022
+  - view: {fileID: 400001022}
     title: Unavailable / ไม่พร้อมใช้งาน
     subtitle: ''
     badge: 95%
     star: 1
     confidence: 35
     state: 3
-  - view:
-      fileID: 400002002
+  - view: {fileID: 400002002}
     title: CompanyChoice
     subtitle: มหาวิทยาลัยประจำจังหวัดสุวิชนา
     badge: ''
     star: 0
     confidence: 95
     state: 0
-  - view:
-      fileID: 400002012
+  - view: {fileID: 400002012}
     title: มหาวิทยาลัยกากินัง บ้านหนองขึ่ม — ตัวเลือกภาษาไทยสำหรับตรวจการตัดบรรทัด
     subtitle: Long English subtitle wraps inside the artist-authored text region.
     badge: ''
     star: 0
     confidence: 65
     state: 1
-  - view:
-      fileID: 400002022
+  - view: {fileID: 400002022}
     title: Unavailable / ไม่พร้อมใช้งาน
     subtitle: Disabled example
     badge: ''
     star: 0
     confidence: 35
     state: 3
-  - view:
-      fileID: 400003002
+  - view: {fileID: 400003002}
     title: InterviewAnswer
     subtitle: ''
     badge: ''
     star: 0
     confidence: 95
     state: 0
-  - view:
-      fileID: 400003012
+  - view: {fileID: 400003012}
     title: มหาวิทยาลัยกากินัง บ้านหนองขึ่ม — ตัวเลือกภาษาไทยสำหรับตรวจการตัดบรรทัด
     subtitle: ''
     badge: ''
     star: 0
     confidence: 65
     state: 1
-  - view:
-      fileID: 400003022
+  - view: {fileID: 400003022}
     title: Unavailable / ไม่พร้อมใช้งาน
     subtitle: ''
     badge: ''
     star: 0
     confidence: 35
     state: 3
-  - view:
-      fileID: 400004002
+  - view: {fileID: 400004002}
     title: EventChoice
     subtitle: ''
     badge: ''
     star: 0
     confidence: 95
     state: 0
-  - view:
-      fileID: 400004012
+  - view: {fileID: 400004012}
     title: มหาวิทยาลัยกากินัง บ้านหนองขึ่ม — ตัวเลือกภาษาไทยสำหรับตรวจการตัดบรรทัด
     subtitle: ''
     badge: ''
     star: 0
     confidence: 65
     state: 1
-  - view:
-      fileID: 400004022
+  - view: {fileID: 400004022}
     title: Unavailable / ไม่พร้อมใช้งาน
     subtitle: ''
     badge: ''
     star: 0
     confidence: 35
     state: 3
-  - view:
-      fileID: 400005002
+  - view: {fileID: 400005002}
     title: EndingChoice
     subtitle: ''
     badge: ''
     star: 0
     confidence: 95
     state: 0
-  - view:
-      fileID: 400005012
+  - view: {fileID: 400005012}
     title: มหาวิทยาลัยกากินัง บ้านหนองขึ่ม — ตัวเลือกภาษาไทยสำหรับตรวจการตัดบรรทัด
     subtitle: ''
     badge: ''
     star: 0
     confidence: 65
     state: 1
-  - view:
-      fileID: 400005022
+  - view: {fileID: 400005022}
     title: Unavailable / ไม่พร้อมใช้งาน
     subtitle: ''
     badge: ''
     star: 0
     confidence: 35
     state: 3
-  - view:
-      fileID: 400006002
+  - view: {fileID: 400006002}
     title: EndingAction
     subtitle: ''
     badge: ''
     star: 0
     confidence: 95
     state: 0
-  - view:
-      fileID: 400006012
+  - view: {fileID: 400006012}
     title: มหาวิทยาลัยกากินัง บ้านหนองขึ่ม — ตัวเลือกภาษาไทยสำหรับตรวจการตัดบรรทัด
     subtitle: ''
     badge: ''
     star: 0
     confidence: 65
     state: 1
-  - view:
-      fileID: 400006022
+  - view: {fileID: 400006022}
     title: Unavailable / ไม่พร้อมใช้งาน
     subtitle: ''
     badge: ''
     star: 0
     confidence: 35
     state: 3
-  selectedSection: 1
+  selectedSection: 0
   sectionContainers:
-  - fileID: 350000022
-  - fileID: 350001024
-  - fileID: 350002000
-  - fileID: 350003011
-  - fileID: 350004000
-  - fileID: 350005000
-  - fileID: 350006000
+  - {fileID: 350000022}
+  - {fileID: 350001024}
+  - {fileID: 350002000}
+  - {fileID: 350003011}
+  - {fileID: 350004000}
+  - {fileID: 350005000}
+  - {fileID: 350006000}
 --- !u!1 &320000000
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,6 +38,16 @@ for role,listid in roles.items():
  check(d)
 assert len(set(guids.values()))==7 and guid(source) not in guids.values()
 scene=docs(R/'Assets/Scenes/Game.unity')
+category=docs(R/'Assets/Prefabs/UI/ResumeCategoryButton.prefab')
+categoryView=category[2598443313786929471]['MonoBehaviour']
+assert categoryView['useAuthoredBackgroundColor']==1 and categoryView['tintSelectedBackground']==0
+assert category[910300001]['MonoBehaviour']['growForWrappedText']==0
+assert category[5297326378183541114]['RectTransform']['m_AnchorMin']['y']==0
+assert category[5557010667304815370]['MonoBehaviour']['m_VerticalAlignment']==512
+for rectid in [1661852270,1192156550,124120901,683920020]:
+ assert scene[rectid]['RectTransform']['m_LocalScale']==dict(x=1,y=1,z=1),'Category ancestry distorts artwork'
+assert scene[124120901]['RectTransform']['m_AnchorMax']==dict(x=1,y=1)
+assert 480 < category[833558695849796019]['RectTransform']['m_SizeDelta']['x'] < 490
 for role,listid in roles.items():
  if listid:assert scene[listid]['MonoBehaviour']['itemPrefab']==dict(fileID=2598443313786929471,guid=guids[role],type=3)
 assert scene[1172304822]['MonoBehaviour']['actionButtonPrefab']['guid']==guids['EndingActionButton']

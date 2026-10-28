@@ -39,6 +39,10 @@ namespace FirstJobber
         [SerializeField] Image confidenceStar;
         [SerializeField] ConfidenceStarSettings confidenceStarSettings;
         [Header("Background state colors")]
+        [Tooltip("Use Background Image.color as the normal color instead of Available Color.")]
+        [SerializeField] bool useAuthoredBackgroundColor;
+        [Tooltip("Apply Selected Color to gameplay selection. Off preserves the authored/normal paper color; Button transitions still work.")]
+        [SerializeField] bool tintSelectedBackground = true;
         [Tooltip("Authoritative normal background color. Button Colors controls hover/pressed tint on top of this.")]
         [SerializeField] Color availableColor = new Color(0.88f, 0.88f, 0.84f);
         [SerializeField] Color selectedColor = new Color(0.98f, 0.82f, 0.35f);
@@ -48,6 +52,8 @@ namespace FirstJobber
         public bool UsesProjectLocalizationFont => useProjectLocalizationFont;
 
         Action<string> onClick;
+        Color authoredBackgroundColor;
+        bool capturedBackgroundColor;
 
         void Awake()
         {
@@ -68,6 +74,11 @@ namespace FirstJobber
 
         public void Setup(ChoiceItem item, Action<string> clicked)
         {
+            if (!capturedBackgroundColor && background != null)
+            {
+                authoredBackgroundColor = background.color;
+                capturedBackgroundColor = true;
+            }
             Id = item.id;
             onClick = clicked;
 
@@ -109,10 +120,11 @@ namespace FirstJobber
             {
                 switch (item.state)
                 {
-                    case ChoiceState.Selected: background.color = selectedColor; break;
+                    case ChoiceState.Selected:
+                        background.color = tintSelectedBackground ? selectedColor : (useAuthoredBackgroundColor ? authoredBackgroundColor : availableColor); break;
                     case ChoiceState.Consumed:
                     case ChoiceState.Disabled: background.color = consumedColor; break;
-                    default: background.color = availableColor; break;
+                    default: background.color = useAuthoredBackgroundColor ? authoredBackgroundColor : availableColor; break;
                 }
             }
             if (button != null)

@@ -68,6 +68,23 @@ class ConfidenceStarHarness
                 Check(image.sprite == settings.GetSprite(choice.Confidence), "Authored Production value not used after refresh");
             }
         Check(GameObject.Created == created, "Refresh allocated extra star objects");
+        var paperView = new ChoiceButtonUI();
+        var paper = new Image { color = new Color(.9f, .95f, 1f) };
+        Field(paperView, "background", paper);
+        Field(paperView, "useAuthoredBackgroundColor", true);
+        Field(paperView, "tintSelectedBackground", false);
+        var authoredPaper = paper.color;
+        paperView.Setup(new ChoiceItem {state=ChoiceState.Selected},null);
+        Check(paper.color.Equals(authoredPaper), "Category selection overwrote authored paper color");
+        paperView.Setup(new ChoiceItem {state=ChoiceState.Disabled},null);
+        paperView.Setup(new ChoiceItem {state=ChoiceState.Available},null);
+        Check(paper.color.Equals(authoredPaper), "Pooled category did not restore authored paper color");
+        Field(paperView, "tintSelectedBackground", true);
+        var selectedPaper = new Color(.2f,.3f,.4f);
+        Field(paperView, "selectedColor", selectedPaper);
+        paperView.Setup(new ChoiceItem {state=ChoiceState.Selected},null);
+        Check(paper.color.Equals(selectedPaper), "Optional Selected Color is ignored");
+        Console.WriteLine("PASS authored category paper color, disabled/rebind restoration, optional selected tint");
         Check(ResumeConfidenceCalculator.Average(new[] {100f, 80f, 30f}) == 70f, "Overall average changed");
         var choices = new[] { new ResumeChoiceData { confidencePercentage = 100 }, new ResumeChoiceData { confidencePercentage = 80 }, null };
         Check(ResumeConfidenceCalculator.Calculate(choices, out var count) == 90 && count == 2, "Selected mean/null handling changed");
