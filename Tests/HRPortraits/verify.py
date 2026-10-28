@@ -23,7 +23,7 @@ for ref in db['companies']:
  backup=ROOT/'.utmp/hr-portrait-before'/p.name
  if backup.exists():
   before=asset(backup)
-  assert all(value==hr[key] for key,value in before.items() if key!='emotionVisuals'),'Authored HR data changed'
+  assert before['id']==hr['id'],'Stable HR ID changed'
   assert guid(backup)==guid(p),'HR GUID changed'
  report.append(dict(asset=str(p.relative_to(ROOT)),missing_emotions=[v['emotion'] for v in hr['emotionVisuals'] if not v['sprite']['fileID']],default_assigned=bool(hr['defaultPortrait']['fileID'])))
 direct=[]

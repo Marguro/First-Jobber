@@ -94,3 +94,7 @@ MonoBehaviour:
     fixedQuestion: {fileID: 0}
   fixedPickMode: 1
   resumeLinkedPickMode: 1
+  alignPortraitToBottom: 1
+  portraitOffsetX: 0
+  portraitOffsetY: 0
+  portraitScale: 1

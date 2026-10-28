@@ -63,6 +63,15 @@ namespace FirstJobber
         [Tooltip("Optional. Assigned to the Animator of the HR portrait while this HR is shown.")]
         public RuntimeAnimatorController animatorController;
 
+        [Header("Interview portrait presentation")]
+        [Tooltip("Align this HR's Image pivot/anchors to the room's bottom center. Preserve Aspect then places wide sprites at the bottom instead of centering them vertically. Other HRs keep the authored scene layout unless enabled.")]
+        public bool alignPortraitToBottom;
+        [Tooltip("Canvas units, relative to the authored portrait placement (or the room bottom center when bottom alignment is enabled).")]
+        public float portraitOffsetX;
+        public float portraitOffsetY;
+        [Min(.01f), Tooltip("Uniform multiplier relative to the original scene portrait scale. Does not stretch the sprite.")]
+        public float portraitScale = 1f;
+
         [Header("Dialogue (empty = falls back to the company / shared dialogue)")]
         public DialoguePlaybackMode introMode;
         public DialogueLine[] introduction;

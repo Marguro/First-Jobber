@@ -44,6 +44,7 @@ namespace FirstJobber
         /// <summary>Switches to another HR; null clears the portrait. Keeps no visual/animator from the previous HR.</summary>
         public void SetCharacter(HRCharacterData character)
         {
+            CapturePortraitLayout();
             Character = character;
             if (animator != null)
                 animator.runtimeAnimatorController = character != null ? character.animatorController : null;
@@ -53,10 +54,68 @@ namespace FirstJobber
         Vector2 swayBase;
         float nextFlicker;
         float flickerLeft;
+        RectTransform portraitRect;
+        Vector2 baseAnchorMin, baseAnchorMax, basePivot, basePosition, baseSize;
+        Vector3 baseScale;
+        Vector2 portraitRestPosition;
+        bool portraitLayoutCaptured, applyingPortraitLayout;
+
+        void CapturePortraitLayout()
+        {
+            if (portraitLayoutCaptured || portrait == null) return;
+            portraitRect=portrait.rectTransform;
+            if (portraitRect == null) return;
+            baseAnchorMin=portraitRect.anchorMin; baseAnchorMax=portraitRect.anchorMax;
+            basePivot=portraitRect.pivot; basePosition=portraitRect.anchoredPosition;
+            baseSize=portraitRect.sizeDelta; baseScale=portraitRect.localScale;
+            portraitLayoutCaptured=true;
+        }
+
+        [ContextMenu("Reapply current HR portrait settings")]
+        public void ApplyPortraitPresentation()
+        {
+            if (applyingPortraitLayout) return;
+            CapturePortraitLayout();
+            if (!portraitLayoutCaptured) return;
+            applyingPortraitLayout=true;
+            try
+            {
+                // Always start from the scene's original pose, never the previous HR's transformed pose.
+                portraitRect.anchorMin=baseAnchorMin; portraitRect.anchorMax=baseAnchorMax;
+                portraitRect.pivot=basePivot; portraitRect.sizeDelta=baseSize;
+                portraitRect.anchoredPosition=basePosition; portraitRect.localScale=baseScale;
+                if (Character != null)
+                {
+                    if (Character.alignPortraitToBottom)
+                    {
+                        var parent=portraitRect.parent as RectTransform;
+                        Vector2 area=parent != null ? parent.rect.size : Vector2.zero;
+                        Vector2 size=new Vector2(area.x*(baseAnchorMax.x-baseAnchorMin.x)+baseSize.x,
+                            area.y*(baseAnchorMax.y-baseAnchorMin.y)+baseSize.y);
+                        float centerX=area.x*(baseAnchorMin.x+(baseAnchorMax.x-baseAnchorMin.x)*basePivot.x-.5f)
+                            +basePosition.x+size.x*(.5f-basePivot.x);
+                        portraitRect.anchorMin=portraitRect.anchorMax=new Vector2(.5f,0f);
+                        portraitRect.pivot=new Vector2(.5f,0f);
+                        portraitRect.sizeDelta=size;
+                        portraitRect.anchoredPosition=new Vector2(centerX,0f);
+                    }
+                    portraitRect.anchoredPosition+=new Vector2(Character.portraitOffsetX,Character.portraitOffsetY);
+                    float scale=System.Math.Max(.01f,Character.portraitScale);
+                    portraitRect.localScale=new Vector3(baseScale.x*scale,baseScale.y*scale,baseScale.z*scale);
+                }
+                portrait.preserveAspect=true;
+                portraitRestPosition=portraitRect.anchoredPosition;
+                if (Character != null && Character.alignPortraitToBottom && swayTarget != null && swayTarget!=portraitRect)
+                    swayTarget.anchoredPosition=new Vector2(swayTarget.anchoredPosition.x,swayBase.y);
+            }
+            finally { applyingPortraitLayout=false; }
+        }
+        void OnRectTransformDimensionsChange() { if (portraitLayoutCaptured) ApplyPortraitPresentation(); }
 
         void Awake()
         {
             if (swayTarget != null) swayBase = swayTarget.anchoredPosition;
+            CapturePortraitLayout();
             SetEmotion(HREmotion.Neutral);
         }
 
@@ -79,6 +138,7 @@ namespace FirstJobber
         public void SetEmotion(HREmotion emotion)
         {
             Current = emotion;
+            ApplyPortraitPresentation();
             if (Character != null) { ShowCharacter(emotion); return; }
             if (portrait != null)
             {
@@ -116,7 +176,9 @@ namespace FirstJobber
                 float t = Time.unscaledTime;
                 var offset = new Vector2(Mathf.Sin(t * 0.7f) * swayAmount, Mathf.Sin(t * 1.1f) * swayAmount * 0.5f);
                 if (StrangeMode) offset += new Vector2(UnityEngine.Random.Range(-3f, 3f), UnityEngine.Random.Range(-2f, 2f));
-                swayTarget.anchoredPosition = swayBase + offset;
+                if (Character != null && Character.alignPortraitToBottom) offset.y=0f;
+                var origin=portraitLayoutCaptured && swayTarget==portraitRect ? portraitRestPosition : swayBase;
+                swayTarget.anchoredPosition = origin + offset;
             }
 
             if (flickerOverlay != null)

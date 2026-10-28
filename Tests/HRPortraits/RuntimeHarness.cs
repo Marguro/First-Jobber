@@ -75,6 +75,31 @@ class Harness
                 Check(new HashSet<InterviewQuestionData>(result).Count==4,"Duplicate questions");
             }
         }
+        var room=new RectTransform{sizeDelta=new Vector2(1040,727)};
+        var motion=new RectTransform{parent=room,anchorMax=new Vector2(1,1)};
+        var alignedImage=new Image();var bounds=alignedImage.rectTransform;
+        bounds.parent=motion;bounds.anchorMin=new Vector2(.12f,.015f);bounds.anchorMax=new Vector2(.88f,.87f);
+        var aligned=new HRReactionController();Set(aligned,"portrait",alignedImage);Set(aligned,"swayTarget",motion);Call(aligned,"Awake");
+        var warden=new HRCharacterData{alignPortraitToBottom=true,defaultPortrait=an};
+        aligned.SetCharacter(warden);
+        Check(bounds.pivot.y==0 && bounds.anchorMin.y==0 && bounds.anchorMax.y==0 && bounds.anchoredPosition.y==0 && alignedImage.preserveAspect,"Bottom alignment did not eliminate centered Preserve Aspect gap");
+        Check(Math.Abs(bounds.sizeDelta.x-790.4f)<.01 && Math.Abs(bounds.sizeDelta.y-621.585f)<.01,"Bottom alignment resized the authored portrait bounds");
+        warden.portraitOffsetX=10;warden.portraitOffsetY=-3;warden.portraitScale=1.2f;
+        var otherPortrait=new HRCharacterData{defaultPortrait=bn,portraitOffsetX=-7,portraitOffsetY=9,portraitScale=.8f};
+        for(int n=0;n<20;n++)
+        {
+            aligned.SetCharacter(otherPortrait);Check(bounds.anchorMin.y==.015f && bounds.pivot.y==.5f && bounds.anchoredPosition.x==-7 && bounds.anchoredPosition.y==9 && bounds.localScale.x==.8f,"Other HR did not restore original scene layout/settings");
+            aligned.SetCharacter(warden);aligned.SetEmotion(HREmotion.Uncomfortable);
+            Check(Math.Abs(bounds.anchoredPosition.x-10)<.001 && bounds.anchoredPosition.y==-3 && bounds.localScale.x==1.2f && bounds.localScale.y==1.2f,"HR pose accumulated when switching/emoting");
+        }
+        warden.atmosphereVariants.Add(new HRAtmosphereVariant{phase=phase,sprites=new List<AtmosphereHrSpriteOverride>{new AtmosphereHrSpriteOverride{emotion=HREmotion.Interested,sprite=ap}}});
+        AtmosphereManager.Instance=new AtmosphereManager{AppliedPhase=phase};aligned.SetEmotion(HREmotion.Interested);
+        Check(alignedImage.sprite==ap && bounds.pivot.y==0 && bounds.anchoredPosition.y==-3,"Atmosphere emotion reset alignment");
+        Time.unscaledTime=1;Call(aligned,"Update");Check(motion.anchoredPosition.y==0,"Vertical sway made a bottom-aligned HR float");
+        room.sizeDelta=new Vector2(1200,800);aligned.ApplyPortraitPresentation();Check(Math.Abs(bounds.sizeDelta.x-912)<.01 && bounds.anchoredPosition.y==-3,"Responsive bounds lost bottom alignment");
+        aligned.SetCharacter(null);Check(bounds.anchorMin.y==.015f && bounds.pivot.y==.5f && bounds.localScale.x==1 && bounds.anchoredPosition.y==0,"Clearing HR retained previous presentation settings");
+        Check(room.sizeDelta.x==1200 && room.anchoredPosition.x==0,"Character settings moved the shared room");
+        Console.WriteLine("PASS per-HR alignment: bottom anchor/pivot, original fitted bounds, uniform scale/offset, 20 character switches without accumulation, emotion/phase changes, pinned vertical sway, resize and null reset; shared room untouched");
         Console.WriteLine("PASS A-J logic: same shared question/current HR, fixed emotions, per-block/multipage, Neutral/Default/empty, company change/animator clear, per-HR phase, non-HR preservation, gender filtering, warnings once, no mutation and real planner 2+2 (40 runs). Native rendering/Play Mode not executed.");
     }
 }
@@ -87,17 +112,20 @@ namespace UnityEngine
     public class Animator{public RuntimeAnimatorController runtimeAnimatorController;}
     public class Coroutine{}
     public class MonoBehaviour:Object{public System.Collections.IEnumerator Pending;public Coroutine StartCoroutine(System.Collections.IEnumerator r){Pending=r;return new Coroutine();}public void StopCoroutine(Coroutine r){Pending=null;}}
-    public class RectTransform {public Vector2 anchoredPosition;public void Rotate(float x,float y,float z){}}
-    public struct Vector2 {public float x,y;public Vector2(float a,float b){x=a;y=b;}public static Vector2 operator+(Vector2 a,Vector2 b)=>new Vector2(a.x+b.x,a.y+b.y);}
+    public class RectTransform {public RectTransform parent;public Vector2 anchoredPosition,anchorMin,anchorMax,sizeDelta,pivot=new Vector2(.5f,.5f);public Vector3 localScale=new Vector3(1,1,1);public Rect rect=>new Rect(parent==null?sizeDelta:new Vector2(parent.rect.size.x*(anchorMax.x-anchorMin.x)+sizeDelta.x,parent.rect.size.y*(anchorMax.y-anchorMin.y)+sizeDelta.y));public void Rotate(float x,float y,float z){}}
+    public struct Rect {public Vector2 size;public Rect(Vector2 value){size=value;}}
+    public struct Vector3 {public float x,y,z;public Vector3(float a,float b,float c){x=a;y=b;z=c;}}
+    public struct Vector2 {public float x,y;public Vector2(float a,float b){x=a;y=b;}public static Vector2 zero=>new Vector2();public static Vector2 operator+(Vector2 a,Vector2 b)=>new Vector2(a.x+b.x,a.y+b.y);}
     public struct Color {public float r,g,b,a;public static Color white=>new Color{r=1,g=1,b=1,a=1};public static Color operator*(Color a,Color b)=>new Color{r=a.r*b.r,g=a.g*b.g,b=a.b*b.b,a=a.a*b.a};}
     public class SerializeField:Attribute{}public class HideInInspector:Attribute{}public class HeaderAttribute:Attribute{public HeaderAttribute(string s){}}public class TooltipAttribute:Attribute{public TooltipAttribute(string s){}}public class MinAttribute:Attribute{public MinAttribute(float n){}}public class TextAreaAttribute:Attribute{public TextAreaAttribute(int a=0,int b=0){}}public class CreateAssetMenuAttribute:Attribute{public string menuName,fileName;}
+    public class ContextMenuAttribute:Attribute{public ContextMenuAttribute(string s){}}
     public static class Debug {public static int Warnings;public static void LogWarning(string s,Object c=null){Warnings++;}}
     public class WaitForSecondsRealtime{public WaitForSecondsRealtime(float n){}}
     public static class Time{public static float unscaledDeltaTime=1,unscaledTime=0;}
     public static class Mathf {public static int Min(int a,int b)=>Math.Min(a,b);public static int FloorToInt(float n)=>(int)Math.Floor(n);public static float Sin(float f)=>(float)Math.Sin(f);}
     public static class Random{static System.Random r=new System.Random(123);public static int Range(int a,int b)=>r.Next(a,b);public static float Range(float a,float b)=>a;}
 }
-namespace UnityEngine.UI{public class Image {public Sprite sprite;public Color color;public bool enabled=true;}}
+namespace UnityEngine.UI{public class Image {public Sprite sprite;public Color color;public bool enabled=true,preserveAspect;public RectTransform rectTransform=new RectTransform();}}
 namespace TMPro{public class TMP_Text{public string text;}}
 namespace FirstJobber
 {
