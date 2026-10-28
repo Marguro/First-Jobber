@@ -16,7 +16,7 @@ MonoBehaviour:
   hrName: CCTV-Head HR
   company: {fileID: 11400000, guid: 9fbfe959a8083604c9f616c6b9b24917, type: 2}
   description: Production HR of FocusFrame Interactive. Portrait / emotions not authored yet.
-  defaultPortrait: {fileID: 0}
+  defaultPortrait: {fileID: -5410925433111747143, guid: 1ee61048506b64442b8b8a49caaf9dca, type: 3}
   defaultEmotion: 0
   emotionVisuals:
   - emotion: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
     sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 2
-    sprite: {fileID: 0}
+    sprite: {fileID: 4184190038497452778, guid: 779072161e3be834583a453a509febcb, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 3
-    sprite: {fileID: 0}
+    sprite: {fileID: 4242733932210218562, guid: 14d170784ca95164c9272e309b7e0297, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   atmosphereVariants: []
   animatorController: {fileID: 0}

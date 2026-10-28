@@ -16,7 +16,7 @@ MonoBehaviour:
   hrName: Ogre HR
   company: {fileID: 11400000, guid: 0cee115ee9fa0ea419058f55a5d170db, type: 2}
   description: Production HR of Redline Studio. Portrait / emotions not authored yet.
-  defaultPortrait: {fileID: 0}
+  defaultPortrait: {fileID: -2245735030752905766, guid: 24abfd669bb3f7f429fa1cd999799e3c, type: 3}
   defaultEmotion: 0
   emotionVisuals:
   - emotion: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
     sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 2
-    sprite: {fileID: 0}
+    sprite: {fileID: 3982120548018562571, guid: 03db1340cf4b88141a374af5e6e2a62d, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 3
-    sprite: {fileID: 0}
+    sprite: {fileID: -2803790937554859234, guid: 3fb2384d963524e4fa79ff6f954b7a32, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   atmosphereVariants: []
   animatorController: {fileID: 0}

@@ -16,7 +16,7 @@ MonoBehaviour:
   hrName: Soul Warden HR
   company: {fileID: 11400000, guid: 35bf29986df9eca46814de314e677ad3, type: 2}
   description: Production HR of Control Group. Portrait / emotions not authored yet.
-  defaultPortrait: {fileID: 0}
+  defaultPortrait: {fileID: -6465995436207050073, guid: 7d26a8b1cc7029f46a017fd0eb286bb9, type: 3}
   defaultEmotion: 0
   emotionVisuals:
   - emotion: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
     sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 2
-    sprite: {fileID: 0}
+    sprite: {fileID: 1612062759512685267, guid: cbec3e7dde0a3a0468a19d62468ed2c1, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 3
-    sprite: {fileID: 0}
+    sprite: {fileID: -7001787220950028472, guid: ee0bdd12108ef7e43aefd8e669d70cb2, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   atmosphereVariants: []
   animatorController: {fileID: 0}

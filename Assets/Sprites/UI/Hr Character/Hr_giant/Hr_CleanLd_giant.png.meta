@@ -1,0 +1,379 @@
+fileFormatVersion: 2
+guid: 0f1fa0534b2839e4399b0cec2e650ad9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6336367534546214017
+    second: Hr_CleanLd_giant_0
+  - first:
+      213: -5491309535907943335
+    second: Hr_CleanLd_giant_1
+  - first:
+      213: 5237311752424669864
+    second: Hr_CleanLd_giant_2
+  - first:
+      213: 7116023375996562356
+    second: Hr_CleanLd_giant_3
+  - first:
+      213: -3134735532315280544
+    second: Hr_CleanLd_giant_4
+  - first:
+      213: -5836016020692626539
+    second: Hr_CleanLd_giant_5
+  - first:
+      213: -2721172285904688182
+    second: Hr_CleanLd_giant_6
+  - first:
+      213: 6757211147345623137
+    second: Hr_CleanLd_giant_7
+  - first:
+      213: 2154283211858289893
+    second: Hr_CleanLd_giant_8
+  - first:
+      213: 3237636474636839144
+    second: Hr_CleanLd_giant_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_0
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 488
+        width: 101
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f732e018c43b018a0800000000000000
+      internalID: -6336367534546214017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_1
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 513
+        width: 41
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95ced704213fac3b0800000000000000
+      internalID: -5491309535907943335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_2
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 507
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a240455a4baea840800000000000000
+      internalID: 5237311752424669864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_3
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 507
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bba6a3ee8131c260800000000000000
+      internalID: 7116023375996562356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_4
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 513
+        width: 41
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b7d8354ae2f74d0800000000000000
+      internalID: -3134735532315280544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_5
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 428
+        width: 168
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5939027895e420fa0800000000000000
+      internalID: -5836016020692626539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_6
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 396
+        width: 31
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb630e29347c3ad0800000000000000
+      internalID: -2721172285904688182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_7
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 332
+        width: 118
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16878ddbcbf66cd50800000000000000
+      internalID: 6757211147345623137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_8
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 397
+        width: 31
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e4a664da2d85ed10800000000000000
+      internalID: 2154283211858289893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hr_CleanLd_giant_9
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 330
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e8a39e48356eec20800000000000000
+      internalID: 3237636474636839144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Hr_CleanLd_giant_0: -6336367534546214017
+      Hr_CleanLd_giant_1: -5491309535907943335
+      Hr_CleanLd_giant_2: 5237311752424669864
+      Hr_CleanLd_giant_3: 7116023375996562356
+      Hr_CleanLd_giant_4: -3134735532315280544
+      Hr_CleanLd_giant_5: -5836016020692626539
+      Hr_CleanLd_giant_6: -2721172285904688182
+      Hr_CleanLd_giant_7: 6757211147345623137
+      Hr_CleanLd_giant_8: 2154283211858289893
+      Hr_CleanLd_giant_9: 3237636474636839144
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

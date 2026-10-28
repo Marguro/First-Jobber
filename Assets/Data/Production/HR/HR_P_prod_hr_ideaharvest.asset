@@ -16,7 +16,7 @@ MonoBehaviour:
   hrName: Ghost HR
   company: {fileID: 11400000, guid: acb992d3f8241844c9aa6eeffe4bf808, type: 2}
   description: Production HR of IdeaHarvest Interactive. Portrait / emotions not authored yet.
-  defaultPortrait: {fileID: 0}
+  defaultPortrait: {fileID: 8446412517838743416, guid: 17972163a5610c042a57126809bf025d, type: 3}
   defaultEmotion: 0
   emotionVisuals:
   - emotion: 0
@@ -26,10 +26,10 @@ MonoBehaviour:
     sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 2
-    sprite: {fileID: 0}
+    sprite: {fileID: 7118118286213646575, guid: d3da52679f79e5247a7a1fc04cfcb6a4, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 3
-    sprite: {fileID: 0}
+    sprite: {fileID: 3645010891548103241, guid: 1b1ff293c71a6464bafc8a39de6f0b17, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   atmosphereVariants: []
   animatorController: {fileID: 0}
