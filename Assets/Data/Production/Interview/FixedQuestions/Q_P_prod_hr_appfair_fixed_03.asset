@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewQuestionData
   id: prod_hr_appfair_fixed_03
   questionText: Do you think your personality and appearance make you a good representative of the company?
-  hrEmotion: 0
+  hrEmotion: 3
   questionDialogue: []
   linkedChoice: {fileID: 0}
   linkedCategory: {fileID: 0}
@@ -27,7 +27,17 @@ MonoBehaviour:
     playerReactionMode: 0
     playerReaction: []
     hrResponseMode: 0
-    hrResponse: []
+    hrResponse:
+    - speaker: 
+      text: 
+      dialogueLines: []
+      emotion: 2
+      autoAdvanceDelay: 0
+      delayBefore: 0
+      eventId: 
+      portrait: {fileID: 0}
+      genderIds: []
+      variantGroup: 
   - id: a2
     text: "I think I\u2019m more suited to working at a computer."
     playerReactionMode: 0

@@ -26,10 +26,10 @@ MonoBehaviour:
     sprite: {fileID: 0}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 2
-    sprite: {fileID: 0}
+    sprite: {fileID: 7376286362715105337, guid: 2d88cdf3d2772224ea229e549224eb3a, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   - emotion: 3
-    sprite: {fileID: 0}
+    sprite: {fileID: 5653626284197273718, guid: 45b1d4d2153f1d148bac2d1fe94a7ace, type: 3}
     tint: {r: 1, g: 1, b: 1, a: 1}
   atmosphereVariants: []
   animatorController: {fileID: 0}
