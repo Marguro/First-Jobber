@@ -540,6 +540,7 @@ GameObject:
   - component: {fileID: 2141000001}
   - component: {fileID: 850000000000000002}
   - component: {fileID: 850000000000000003}
+  - component: {fileID: 850000000000000010}
   m_Layer: 0
   m_Name: EventChoiceButton
   m_TagString: Untagged
@@ -662,6 +663,7 @@ MonoBehaviour:
   availableColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0.98, g: 0.82, b: 0.35, a: 1}
   consumedColor: {r: 0.35, g: 0.35, b: 0.35, a: 1}
+  corruption: {fileID: 850000000000000010}
 --- !u!114 &7783337574798386231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,3 +1061,23 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
   visual: {fileID: 850000000000000001}
   entranceGroup: {fileID: 850000000000000003}
+--- !u!114 &850000000000000010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690180372980020888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccf4b5f24d4e18894c4ee479b90ac4, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSurface
+  settings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
+  role: 0
+  inkHost: {fileID: 850000000000000001}
+  textSource: {fileID: 5557010667304815370}
+  intensityMultiplier: 1
+  stableId: EventChoiceButton
+  inkRegion: {x: 0.07, y: 0.2, width: 0.62, height: 0.6}
+  motionSource: {fileID: 0}

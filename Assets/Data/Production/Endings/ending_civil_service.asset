@@ -3,59 +3,43 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: 6474aa4e35df6414790e1a4810b18960
-    type: 3
+  m_Script: {fileID: 11500000, guid: 6474aa4e35df6414790e1a4810b18960, type: 3}
   m_Name: ending_civil_service
-  m_EditorClassIdentifier: ''
+  m_EditorClassIdentifier: 
   id: ending_civil_service
   title: Take the civil-service exam
   optionLabel: Take the civil-service exam
-  optionDescription: ''
   previewLines:
   - speaker: Player
-    text: ''
+    text: 
     dialogueLines:
     - At least... Dad probably will not reject me like those companies.
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0
-    eventId: ''
-    portrait:
-      fileID: 0
+    eventId: 
+    portrait: {fileID: 0}
     genderIds: []
-    variantGroup: ''
+    variantGroup: 
   resetCycle: 0
+  optionDescription: 
   lines: []
-  background:
-    fileID: 0
-  backgroundColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  finalText: ''
-  sound:
-    fileID: 0
-  cutscenePrefab:
-    fileID: 0
-  timeline:
-    fileID: 0
-  timelineMode: 1
-  timelineSkippable: 1
-  presentationMode: 0
-  videoClip: {fileID: 0}
+  background: {fileID: 0}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  finalText: 
+  sound: {fileID: 0}
+  presentationMode: 1
+  videoClip: {fileID: 32900000, guid: 251b908389c337d4d906041868860451, type: 3}
   fadeInDuration: 0.25
   fadeOutDuration: 0.25
   actionAfterCutscene: 0
+  cutscenePrefab: {fileID: 0}
+  timeline: {fileID: 0}
+  timelineMode: 1
+  timelineSkippable: 1

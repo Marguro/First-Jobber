@@ -42,6 +42,8 @@ namespace FirstJobber
         [Header("Confidence Star")]
         [SerializeField] Image confidenceStar;
         [SerializeField] ConfidenceStarSettings confidenceStarSettings;
+        [Header("Visual corruption (reads state only)")]
+        [SerializeField] UICorruptionSurface corruption;
         [Header("Background state colors")]
         [Tooltip("Use Background Image.color as the normal color instead of Available Color.")]
         [SerializeField] bool useAuthoredBackgroundColor;
@@ -138,6 +140,7 @@ namespace FirstJobber
             if (selectionIndicator != null) selectionIndicator.SetActive(item.state == ChoiceState.Selected);
             if (button != null)
                 button.interactable = item.state == ChoiceState.Available || item.state == ChoiceState.Selected;
+            if (corruption != null) corruption.BindChoice(item.id, item.state);
         }
     }
 }

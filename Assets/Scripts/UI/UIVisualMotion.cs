@@ -14,6 +14,8 @@ namespace FirstJobber
         [Tooltip("Optional Pro Scale animation supplies duration/ease. Keep Auto Generate/Auto Play off. Scale endpoints are derived from the authored pose and factor below.")]
         [SerializeField] DOTweenAnimation proEntrance;
         [SerializeField, Range(.8f, 1f)] float proEntranceScale = .985f;
+        /// <summary>Foreground motion notification; delay until the incoming surface is becoming visible.</summary>
+        public event System.Action<float> PresentationStarted;
         Vector2 restPosition;
         Vector3 restScale;
         Tween movement, feedback;
@@ -33,6 +35,7 @@ namespace FirstJobber
         public void Enter(float delay = 0)
         {
             Capture(); ResetVisual();
+            PresentationStarted?.Invoke(delay + (settings != null && settings.animationsEnabled ? settings.entranceDuration * .35f : 0f));
             if (!captured || settings == null || !settings.animationsEnabled || !isActiveAndEnabled) return;
             if (move)
             {
@@ -54,6 +57,7 @@ namespace FirstJobber
         public void Exit()
         {
             Capture(); StopOwned();
+            PresentationStarted?.Invoke(0f);
             if (!captured) return;
             if (settings == null || !settings.animationsEnabled || !move) { ResetVisual(); return; }
             movement = visual.DOAnchorPos(restPosition - Vector2.Scale(settings.entranceOffset, offsetMultiplier) * settings.MotionAmount, settings.exitDuration)

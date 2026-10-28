@@ -8327,6 +8327,7 @@ GameObject:
   - component: {fileID: 977193196}
   - component: {fileID: 977193195}
   - component: {fileID: 977193199}
+  - component: {fileID: 2189200006}
   m_Layer: 0
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -8799,6 +8800,7 @@ GameObject:
   - component: {fileID: 1007951758}
   - component: {fileID: 1007951757}
   - component: {fileID: 2141000053}
+  - component: {fileID: 2189200007}
   m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
@@ -11605,6 +11607,7 @@ MonoBehaviour:
   reactionAutoAdvance: 2
   previewFeedback: {fileID: 2189100010}
   paperPresentation: {fileID: 2189100022}
+  corruptionSettings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
 --- !u!1 &1385924646
 GameObject:
   m_ObjectHideFlags: 0
@@ -11967,6 +11970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1420842803}
+  - component: {fileID: 2189200002}
   m_Layer: 0
   m_Name: VerticalConfidenceBar
   m_TagString: Untagged
@@ -13527,6 +13531,7 @@ GameObject:
   - component: {fileID: 2119000107}
   - component: {fileID: 2141000082}
   - component: {fileID: 2189100005}
+  - component: {fileID: 2189200004}
   m_Layer: 0
   m_Name: DetailsCard
   m_TagString: Untagged
@@ -13706,6 +13711,7 @@ GameObject:
   - component: {fileID: 2141000083}
   - component: {fileID: 2141000135}
   - component: {fileID: 2189100006}
+  - component: {fileID: 2189200005}
   m_Layer: 0
   m_Name: QuestionCard
   m_TagString: Untagged
@@ -13926,6 +13932,7 @@ GameObject:
   - component: {fileID: 1661852274}
   - component: {fileID: 2141000085}
   - component: {fileID: 2189100022}
+  - component: {fileID: 2189200001}
   m_Layer: 0
   m_Name: ResumePreview
   m_TagString: Untagged
@@ -19084,6 +19091,7 @@ GameObject:
   - component: {fileID: 2141000119}
   - component: {fileID: 2141000139}
   - component: {fileID: 2189100004}
+  - component: {fileID: 2189200003}
   m_Layer: 0
   m_Name: LeftBoard
   m_TagString: Untagged
@@ -23121,3 +23129,143 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+--- !u!114 &2189200001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661852269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccf4b5f24d4e18894c4ee479b90ac4, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSurface
+  settings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
+  role: 1
+  inkHost: {fileID: 1661852270}
+  textSource: {fileID: 1270481811}
+  intensityMultiplier: 0.9
+  stableId: production-ui/1661852270
+  inkRegion: {x: 0.05, y: 0.08, width: 0.8, height: 0.78}
+  motionSource: {fileID: 2189100022}
+--- !u!114 &2189200002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420842802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccf4b5f24d4e18894c4ee479b90ac4, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSurface
+  settings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
+  role: 2
+  inkHost: {fileID: 1420842803}
+  textSource: {fileID: 0}
+  intensityMultiplier: 0.45
+  stableId: production-ui/1420842803
+  inkRegion: {x: 0.05, y: 0.06, width: 0.9, height: 0.05}
+  motionSource: {fileID: 0}
+--- !u!114 &2189200003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccf4b5f24d4e18894c4ee479b90ac4, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSurface
+  settings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
+  role: 1
+  inkHost: {fileID: 2120000001}
+  textSource: {fileID: 1243443729}
+  intensityMultiplier: 0.75
+  stableId: production-ui/2120000001
+  inkRegion: {x: 0.07, y: 0.055, width: 0.82, height: 0.04}
+  motionSource: {fileID: 2189100004}
+--- !u!114 &2189200004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617775024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccf4b5f24d4e18894c4ee479b90ac4, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSurface
+  settings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
+  role: 1
+  inkHost: {fileID: 1617775025}
+  textSource: {fileID: 2120000033}
+  intensityMultiplier: 0.8
+  stableId: production-ui/1617775025
+  inkRegion: {x: 0.08, y: 0.06, width: 0.8, height: 0.04}
+  motionSource: {fileID: 2189100005}
+--- !u!114 &2189200005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633187479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccf4b5f24d4e18894c4ee479b90ac4, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSurface
+  settings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
+  role: 1
+  inkHost: {fileID: 1633187480}
+  textSource: {fileID: 0}
+  intensityMultiplier: 0.8
+  stableId: production-ui/1633187480
+  inkRegion: {x: 0.08, y: 0.05, width: 0.8, height: 0.05}
+  motionSource: {fileID: 2189100008}
+--- !u!114 &2189200006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977193193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccf4b5f24d4e18894c4ee479b90ac4, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSurface
+  settings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
+  role: 3
+  inkHost: {fileID: 977193194}
+  textSource: {fileID: 0}
+  intensityMultiplier: 1
+  stableId: production-ui/977193194
+  inkRegion: {x: 0.03, y: 0.04, width: 0.92, height: 0.02}
+  motionSource: {fileID: 0}
+--- !u!114 &2189200007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007951755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faccf4b5f24d4e18894c4ee479b90ac4, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSurface
+  settings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
+  role: 2
+  inkHost: {fileID: 1007951756}
+  textSource: {fileID: 1007951757}
+  intensityMultiplier: 0.8
+  stableId: production-ui/1007951756
+  inkRegion: {x: 0.08, y: 0.08, width: 0.8, height: 0.04}
+  motionSource: {fileID: 0}

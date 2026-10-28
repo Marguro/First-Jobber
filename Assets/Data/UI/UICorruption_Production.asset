@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 98b41fcb8a5b4c85970634f5c0cc306c
+    type: 3
+  m_Name: UICorruption_Production
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UICorruptionSettings
+  enableCorruption: 1
+  masterIntensity: 1
+  enableTransientGlitches: 1
+  reduceMotion: 0
+  maximumGlitchFrequency: 0.65
+  inkColor:
+    r: 0.055
+    g: 0.035
+    b: 0.03
+    a: 1
+  availableMultiplier: 0.28
+  selectedMultiplier: 0.5
+  consumedMultiplier: 1.35
+  disabledMultiplier: 0.55
+  showConsumedRemnants: 1
+  consumedRemnantOpacity: 0.78
+  phases:
+  - phase:
+      fileID: 11400000
+      guid: 1b09e75dbfa737f48ac43bd64d81b6d5
+      type: 2
+    intensity: 0
+    burstInterval:
+      x: 18
+      y: 28
+    burstDuration: 0.12
+    textOffset: 0
+    ghostOpacity: 0
+    jitterPixels: 0
+    redactionStrength: 0
+  - phase:
+      fileID: 11400000
+      guid: ef3a72f0e572aff47a49db8f334c5659
+      type: 2
+    intensity: 0.35
+    burstInterval:
+      x: 11
+      y: 19
+    burstDuration: 0.18
+    textOffset: 1.5
+    ghostOpacity: 0.12
+    jitterPixels: 1
+    redactionStrength: 0.32
+  - phase:
+      fileID: 11400000
+      guid: 7e3f538d0a60ad84e8c507ff9987917d
+      type: 2
+    intensity: 0.85
+    burstInterval:
+      x: 4
+      y: 8
+    burstDuration: 0.28
+    textOffset: 5
+    ghostOpacity: 0.28
+    jitterPixels: 3
+    redactionStrength: 0.85

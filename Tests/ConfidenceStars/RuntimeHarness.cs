@@ -142,3 +142,6 @@ namespace FirstJobber
     public class ResumeCategoryData : ScriptableObject { }
     public static class ThaiTextApplier { public static void Register(TMPro.TMP_Text text, bool useProjectFont = true) { } }
 }
+
+// Corruption rendering is covered independently in Tests/UICorruption.
+namespace FirstJobber { public class UICorruptionSurface : UnityEngine.MonoBehaviour { public void BindChoice(string id, ChoiceState state) {} } }

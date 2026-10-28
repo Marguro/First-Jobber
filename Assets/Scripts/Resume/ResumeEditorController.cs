@@ -17,6 +17,7 @@ namespace FirstJobber
         [SerializeField] ResumePreviewUI preview;
         [SerializeField] UIVisualMotion previewFeedback;
         [SerializeField] UIVisualMotion paperPresentation;
+        [SerializeField] UICorruptionSettings corruptionSettings;
         [SerializeField] RectTransform previewRect;
         [SerializeField] CanvasGroup editorGroup;
         [SerializeField] TMP_Text dayText;
@@ -80,8 +81,14 @@ namespace FirstJobber
             if (preview != null && preview.CategoryList != null) preview.CategoryList.ItemChosen -= OnCategoryChosen;
         }
 
+        void OnEnable() { UICorruptionSettings.Changed += OnCorruptionSettingsChanged; }
+        void OnCorruptionSettingsChanged(UICorruptionSettings changed)
+        {
+            if (changed == corruptionSettings && ctx != null) RefreshChoices(false);
+        }
         void OnDisable()
         {
+            UICorruptionSettings.Changed -= OnCorruptionSettingsChanged;
             if (introRoutine != null) StopCoroutine(introRoutine);
             introRoutine = null;
             introTween?.Kill(); introTween = null;
@@ -261,6 +268,7 @@ namespace FirstJobber
                 string selectedId = ctx.Session.GetSelectedChoiceId(current.id);
                 ctx.Choices.GetVisibleChoices(current, choiceBuffer);
                 if (shuffleChoices) ApplyShuffledOrder(current, choiceBuffer);
+                ApplyRemnantPresentation(); // AFTER existing shuffle: never changes its gameplay RNG consumption.
                 for (int i = 0; i < choiceBuffer.Count; i++)
                 {
                     var c = choiceBuffer[i];
@@ -279,6 +287,22 @@ namespace FirstJobber
             }
             else if (categoryTitleText != null) categoryTitleText.text = "";
             choiceList.SetItems(itemBuffer, message, resetScroll);
+        }
+
+        void ApplyRemnantPresentation()
+        {
+            if (corruptionSettings == null) return; // Preserve legacy database visibility when unconfigured.
+            if (!corruptionSettings.showConsumedRemnants)
+            {
+                for (int i = choiceBuffer.Count - 1; i >= 0; i--)
+                    if (ctx.Choices.IsConsumed(choiceBuffer[i])) choiceBuffer.RemoveAt(i);
+                return;
+            }
+            // Read-only disabled visual entries, even when the legacy database hides depleted choices.
+            // Availability, CanConfirm, ending eligibility and save state still belong to ChoiceManager.
+            foreach (var choice in ctx.Database.choices)
+                if (choice != null && choice.category == current && ctx.Choices.IsConsumed(choice) && !choiceBuffer.Contains(choice))
+                    choiceBuffer.Add(choice);
         }
 
         /// <summary>Reorders the buffer by a per-category random order that is re-rolled only when the day or the set of choices changes.</summary>

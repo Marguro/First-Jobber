@@ -22,7 +22,7 @@ namespace FirstJobber
         [SerializeField] CanvasGroup dailyEvent;
         [SerializeField] CanvasGroup finalDecision;
         [SerializeField] CanvasGroup ending;
-        [Tooltip("Optional artist-authored interview preset for the existing shared DialogueBox. Other screens restore their original layout.")]
+        [Tooltip("Legacy reference retained for restoring an already-applied preset only. All sections, including interviews, use the shared DialogueBox's authored layout and typography.")]
         [SerializeField] InterviewDialogueLayout interviewDialogueLayout;
 
         [Header("Transition overlay")]
@@ -106,7 +106,8 @@ namespace FirstJobber
             var target = PanelFor(phase);
             if (target == null) return;
             if (lastPresentedPhase != phase) { lastPresentedPhase = phase; PhasePresented?.Invoke(phase); }
-            if (interviewDialogueLayout != null) interviewDialogueLayout.SetInterviewActive(target == interview);
+            // One authored DialogueBox for every section: never apply interview-only style overrides.
+            if (interviewDialogueLayout != null) interviewDialogueLayout.SetInterviewActive(false);
             if (!target.gameObject.activeSelf) target.gameObject.SetActive(true);
             if (current == target) return; // Interview sub-phases never restart entrance/SFX.
             var previous = current;
