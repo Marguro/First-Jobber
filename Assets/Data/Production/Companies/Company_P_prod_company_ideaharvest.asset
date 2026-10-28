@@ -15,7 +15,7 @@ MonoBehaviour:
   id: prod_company_ideaharvest
   companyName: IdeaHarvest Interactive
   jobTitle: 
-  salary: 
+  salary: 5,000-10,000
   industry: 
   description: "Job Description\n- Create visual designs and develop concepts for game projects.\n- Collaborate with the art and development teams.\n- Applicants with strong portfolios are welcome, even with limited experience.\n\nTerms\n- Attractive salary and benefits.\n- Work from home three days and in the office two days per week.\n- There is a pre-employment assignment (to steal applicants\u2019 ideas)."
   logo: {fileID: 0}

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: prod_company_controlgroup
   companyName: Control Group
   jobTitle: 
-  salary: 
+  salary: 23,000-29,000
   industry: 
   description: "Job Description\n- Create artwork according to customer briefs and requirements.\n- Revise work based on feedback until it is approved.\n- Applicants with passion who want to grow with the company are welcome.\n\nTerms\n- Must work on several projects at the same time.\n- Multiple rounds of revisions may be required based on client requests.\n- Must prioritize the team\u2019s success over personal preferences."
   logo: {fileID: 0}

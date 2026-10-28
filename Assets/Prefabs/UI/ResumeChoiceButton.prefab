@@ -416,8 +416,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -588,6 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ChoiceButtonUI
   button: {fileID: 450245967780818654}
   background: {fileID: 5205809760930852328}
+  selectionIndicator: {fileID: 0}
   titleText: {fileID: 5557010667304815370}
   subtitleText: {fileID: 8128964132670604171}
   iconImage: {fileID: 2562384706026232010}
