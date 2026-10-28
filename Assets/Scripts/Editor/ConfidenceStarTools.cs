@@ -44,6 +44,7 @@ namespace FirstJobber.EditorTools
             EditorUtility.SetDirty(settings);
 
             var child = root.transform.Find("ConfidenceStar");
+            bool created = child == null;
             if (child == null)
             {
                 child = new GameObject("ConfidenceStar", typeof(RectTransform), typeof(Image), typeof(LayoutElement)).transform;
@@ -55,19 +56,22 @@ namespace FirstJobber.EditorTools
             image.raycastTarget = false;
             image.preserveAspect = true;
             image.type = Image.Type.Simple;
-            var layout = child.GetComponent<LayoutElement>() ?? child.gameObject.AddComponent<LayoutElement>();
-            layout.minWidth = layout.preferredWidth = 48f;
-            layout.minHeight = layout.preferredHeight = 48f;
-            layout.flexibleWidth = layout.flexibleHeight = 0f;
+            var layout = child.GetComponent<LayoutElement>();
+            if (layout == null || created)
+            {
+                if (layout == null) layout = child.gameObject.AddComponent<LayoutElement>();
+                layout.minWidth = layout.preferredWidth = 48f;
+                layout.minHeight = layout.preferredHeight = 48f;
+                layout.flexibleWidth = layout.flexibleHeight = 0f;
+            }
             child.SetAsLastSibling();
-            child.gameObject.SetActive(false); // Setup activates it only for Resume Choice items.
+            if (created) child.gameObject.SetActive(false); // Preserve authored preview state on existing stars.
 
             var texts = root.transform.Find("Texts");
             if (texts != null)
             {
-                var textLayout = texts.GetComponent<LayoutElement>() ?? texts.gameObject.AddComponent<LayoutElement>();
-                textLayout.minWidth = 0f; // allow wrapping after reserving the badge and star columns
-                if (texts.GetComponent<RectMask2D>() == null) texts.gameObject.AddComponent<RectMask2D>();
+                if (texts.GetComponent<LayoutElement>() == null)
+                    texts.gameObject.AddComponent<LayoutElement>().minWidth = 0f;
             }
             var button = root.GetComponent<ChoiceButtonUI>();
             var so = new SerializedObject(button);

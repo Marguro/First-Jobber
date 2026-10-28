@@ -447,6 +447,14 @@ namespace FirstJobber.EditorTools
 
         static ChoiceButtonUI BuildChoicePrefab()
         {
+            // Scene rebuilding must not overwrite the artist-authored shared prefab.
+            var existing = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
+            if (existing != null)
+            {
+                var view = existing.GetComponent<ChoiceButtonUI>();
+                if (view == null) Debug.LogError("[SceneBuilder] Existing ChoiceButton is missing ChoiceButtonUI. Repair it in place.", existing);
+                return view;
+            }
             var root = new GameObject("ChoiceButton", typeof(RectTransform), typeof(Image), typeof(Button),
                 typeof(HorizontalLayoutGroup), typeof(LayoutElement), typeof(ChoiceButtonUI));
             var bg = root.GetComponent<Image>();

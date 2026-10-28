@@ -31,9 +31,13 @@ namespace FirstJobber
         [SerializeField] TMP_Text subtitleText;
         [SerializeField] Image iconImage;
         [SerializeField] TMP_Text badgeText;
+        [Tooltip("Show badge data when supplied. Off removes the badge from the layout, including its spacing.")]
+        [SerializeField] bool showBadge = true;
         [Header("Confidence Star")]
         [SerializeField] Image confidenceStar;
         [SerializeField] ConfidenceStarSettings confidenceStarSettings;
+        [Header("Background state colors")]
+        [Tooltip("Authoritative normal background color. Button Colors controls hover/pressed tint on top of this.")]
         [SerializeField] Color availableColor = new Color(0.88f, 0.88f, 0.84f);
         [SerializeField] Color selectedColor = new Color(0.98f, 0.82f, 0.35f);
         [SerializeField] Color consumedColor = new Color(0.35f, 0.35f, 0.35f);
@@ -67,7 +71,9 @@ namespace FirstJobber
             if (titleText != null)
             {
                 titleText.text = item.title;
-                titleText.fontStyle = item.state == ChoiceState.Consumed ? FontStyles.Strikethrough : FontStyles.Normal;
+                titleText.fontStyle = item.state == ChoiceState.Consumed
+                    ? titleText.fontStyle | FontStyles.Strikethrough
+                    : titleText.fontStyle & ~FontStyles.Strikethrough;
             }
             if (subtitleText != null)
             {
@@ -77,7 +83,7 @@ namespace FirstJobber
             }
             if (badgeText != null)
             {
-                bool has = !string.IsNullOrEmpty(item.badge);
+                bool has = showBadge && !string.IsNullOrEmpty(item.badge);
                 badgeText.gameObject.SetActive(has);
                 if (has) badgeText.text = item.badge;
             }

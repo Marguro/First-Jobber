@@ -40,14 +40,14 @@ layout = prefab[910100005]["MonoBehaviour"]
 assert layout["m_MinWidth"] == layout["m_PreferredWidth"] == 48 and layout["m_FlexibleWidth"] == 0
 assert prefab[833558695849796019]["RectTransform"]["m_Children"][-1]["fileID"] == 910100002
 assert prefab[4329057189700137429]["MonoBehaviour"]["m_MinWidth"] == 0
-assert prefab[910100006]["MonoBehaviour"]["m_EditorClassIdentifier"].endswith("::UnityEngine.UI.RectMask2D")
+assert 910100006 not in prefab, "Text mask would clip long wrapped labels; reserved columns provide separation"
 view = prefab[2598443313786929471]["MonoBehaviour"]
 assert view["confidenceStar"]["fileID"] == 910100004 and view["confidenceStarSettings"]["guid"] == guid(settings_path)
 scene = (ROOT / "Assets/Scenes/Game.unity").read_text()
 assert "guid: " + guid(prefab_path) in scene
 controller = (ROOT / "Assets/Scripts/Resume/ResumeEditorController.cs").read_text()
 assert "showConfidenceStar = true" in controller and "confidence = c.Confidence" in controller
-print("PASS script/asset GUIDs, all six main sprite subassets, single star, reserved layout/mask, alpha/aspect/raycast and Production prefab binding", flush=True)
+print("PASS script/asset GUIDs, all six main sprite subassets, single star, reserved columns/wrapping, alpha/aspect/raycast and Production prefab binding", flush=True)
 
 temp = ROOT / "Temp/ConfidenceStarTests"
 temp.mkdir(parents=True, exist_ok=True)

@@ -28,8 +28,11 @@ class ConfidenceStarHarness
         var image = new Image();
         var button = new Button();
         var title = new TMPro.TMP_Text();
+        var badge = new TMPro.TMP_Text();
+        title.fontStyle = (TMPro.FontStyles)4; // an authored style flag unrelated to depletion
         Field(view, "confidenceStar", image); Field(view, "confidenceStarSettings", settings);
         Field(view, "button", button); Field(view, "titleText", title);
+        Field(view, "badgeText", badge);
         typeof(ChoiceButtonUI).GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(view, null);
         int created = GameObject.Created;
         foreach (float value in values)
@@ -43,12 +46,21 @@ class ConfidenceStarHarness
             button.onClick.Invoke(); Check(clicks == 1, "Star blocked click or duplicate listeners");
             item.state = ChoiceState.Selected;
             view.Setup(item, null); Check(image.sprite == sprite, "Selection changed the authored star");
+            Check((title.fontStyle & (TMPro.FontStyles)4) != 0, "Selection overwrote the artist's title style");
             item.state = ChoiceState.Consumed;
             view.Setup(item, null); Check(image.sprite == sprite && !button.interactable, "Depletion behavior changed");
             Check(title.text == item.title, "Choice label was replaced");
             view.Setup(new ChoiceItem { id = "company", state = ChoiceState.Available }, null);
             Check(image.sprite == null && !image.gameObject.activeSelf, "Pooled non-resume item retained a star");
         }
+        Field(view, "showBadge", false);
+        view.Setup(new ChoiceItem {badge="95%",state=ChoiceState.Available},null);
+        Check(!badge.gameObject.activeSelf,"Inspector badge visibility was ignored");
+        Field(view, "showBadge", true);
+        view.Setup(new ChoiceItem {badge="95%",state=ChoiceState.Available},null);
+        Check(badge.gameObject.activeSelf && badge.text=="95%","Badge data was not restored");
+        view.Setup(new ChoiceItem {state=ChoiceState.Available},null);
+        Check(!badge.gameObject.activeSelf,"An empty badge must not reserve layout space");
         for (int day = 1; day <= 5; day++)
             foreach (var choice in AuthoredChoices.Create())
             {
