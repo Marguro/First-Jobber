@@ -21,6 +21,7 @@ namespace FirstJobber
         [SerializeField] DailyEventManager dailyEvents;
         [Tooltip("Optional. Applies the atmosphere phase that matches the current day.")]
         [SerializeField] AtmosphereManager atmosphere;
+        [SerializeField] DayBgmController dayMusic;
 
         [Header("Controllers")]
         [SerializeField] MainMenuController mainMenu;
@@ -108,6 +109,7 @@ namespace FirstJobber
             Phase = GamePhase.MainMenu;
             ui.ShowPanelFor(GamePhase.MainMenu, true);
             mainMenu.Open(database);
+            if (dayMusic != null) dayMusic.PlayDay(1); // Applicant/menu uses Day 1; Submit keeps the same playback.
         }
 
         bool CheckReferences()
@@ -162,6 +164,7 @@ namespace FirstJobber
             }
             dialogue.Stop(); // drops any pending dialogue callbacks from the old phase
             Phase = next;
+            if (next == GamePhase.MainMenu && dayMusic != null) dayMusic.PlayDay(1);
             session.phase = next;
             ui.ShowPanelFor(next, instantPanel);
             return true;
@@ -209,6 +212,7 @@ namespace FirstJobber
         /// <summary>Phase is already ResumeEditor. Clears temporary state, autosaves, opens the editor.</summary>
         void BeginDay(bool playIntro)
         {
+            if (dayMusic != null) dayMusic.PlayDay(session.day);
             session.selections.Clear();
             session.selectedCompanyId = null;
             session.applicationOpen = false;
@@ -330,6 +334,7 @@ namespace FirstJobber
             yield return ui.Blackout(UiText.DayOver.Format(session.day), sleepHold, () =>
             {
                 ctx.Loop.AdvanceDay();
+                if (dayMusic != null) dayMusic.PlayDay(session.day);
                 ApplyAtmosphere(false);
                 ChangePhase(GamePhase.DayTransition);
 
@@ -364,6 +369,7 @@ namespace FirstJobber
 
         void OpenFinalStory()
         {
+            if (dayMusic != null) dayMusic.PlayDay(session.day);
             finalDecision.PrepareStory();
             dailyEvents.Run(EventTrigger.OnDayStart, session, () => finalDecision.Open(ctx));
         }

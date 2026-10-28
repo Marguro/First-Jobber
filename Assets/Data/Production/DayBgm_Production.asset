@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435bdf048e0e458c888caf1f0bc4efe9, type: 3}
+  m_Name: DayBgm_Production
+  m_EditorClassIdentifier: 
+  masterBgmVolume: 1
+  defaultFadeDuration: 1.5
+  enableCrossfade: 1
+  missingClipBehavior: 0
+  playDuringPause: 0
+  outputMixerGroup: {fileID: 0}
+  days:
+  - day: 1
+    enabled: 1
+    audioClip: {fileID: 8300000, guid: 41a03d00cc40ecb4ca3c1e3ca4c677a9, type: 3}
+    volumeMultiplier: 1
+    loop: 1
+  - day: 2
+    enabled: 1
+    audioClip: {fileID: 8300000, guid: 7a4f47bc593695745b0be0854acacc21, type: 3}
+    volumeMultiplier: 1
+    loop: 1
+  - day: 3
+    enabled: 1
+    audioClip: {fileID: 8300000, guid: 3febc683b029a6641a03d0215a021b6a, type: 3}
+    volumeMultiplier: 1
+    loop: 1
+  - day: 4
+    enabled: 1
+    audioClip: {fileID: 8300000, guid: 90467ebc3fde1194d967c3b8f0fd0e6f, type: 3}
+    volumeMultiplier: 1
+    loop: 1
+  - day: 5
+    enabled: 1
+    audioClip: {fileID: 8300000, guid: 90467ebc3fde1194d967c3b8f0fd0e6f, type: 3}
+    volumeMultiplier: 1
+    loop: 1
+  - day: 6
+    enabled: 1
+    audioClip: {fileID: 8300000, guid: 06777413a9ce7974f86322aca97e7129, type: 3}
+    volumeMultiplier: 1
+    loop: 1

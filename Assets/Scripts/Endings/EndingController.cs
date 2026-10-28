@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,6 +20,7 @@ namespace FirstJobber
         [SerializeField] Button restartButton;
         [SerializeField] Button menuButton;
         [SerializeField] AudioSource audioSource;
+        [SerializeField] DayBgmController dayMusic;
         [Header("Timeline scene bindings")]
         [SerializeField] PlayableDirector director;
         [SerializeField] TimelineBinding[] timelineBindings;
@@ -82,13 +83,14 @@ namespace FirstJobber
             if (titleText != null) { titleText.text = LocalizationManager.Get(ending, "title", ending.title); titleText.gameObject.SetActive(false); }
             if (finalText != null) { finalText.text = ""; finalText.gameObject.SetActive(false); }
             if (buttonsRoot != null) buttonsRoot.SetActive(false);
-            if (audioSource != null && ending.sound != null) audioSource.PlayOneShot(ending.sound);
             // Run yields once first, so a Confirm click cannot also skip its presentation.
             runner = StartCoroutine(Run(ctx, ending));
         }
         IEnumerator Run(GameContext ctx, EndingData ending)
         {
             yield return null;
+            if (dayMusic != null) yield return dayMusic.SilenceAndWait();
+            if (audioSource != null && ending.sound != null) audioSource.PlayOneShot(ending.sound);
             var mode = ending.presentationMode;
             bool withDialogue = mode == EndingPresentationMode.Timeline && ending.timelineMode == EndingTimelineMode.WithDialogue;
             bool instead = mode == EndingPresentationMode.Timeline && ending.timelineMode == EndingTimelineMode.InsteadOfDialogue;
