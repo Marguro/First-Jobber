@@ -25,6 +25,31 @@ namespace FirstJobber
         public Func<string> GenderIdProvider;
         /// <summary>Name shown for speaker "HR" (the HR of the selected company). Null/empty keeps "HR".</summary>
         public Func<string> HrNameProvider;
+        /// <summary>CompanyData.hr for the active application. HR lines never use their legacy portrait override.</summary>
+        public Func<HRCharacterData> HrCharacterProvider;
+        readonly HashSet<HRCharacterData> warnedMissingHrPortraits = new HashSet<HRCharacterData>();
+        bool warnedMissingHrContext;
+
+        public Sprite ResolvePortrait(DialogueLine line)
+        {
+            if (line == null) return null;
+            if (line.speaker != Speakers.HR) return line.portrait;
+            var character = HrCharacterProvider?.Invoke();
+            if (character == null)
+            {
+                if (!warnedMissingHrContext)
+                {
+                    warnedMissingHrContext = true;
+                    Debug.LogWarning("[Dialogue] HR line has no active CompanyData.hr. Showing no portrait; legacy line portraits are ignored.", this);
+                }
+                return null;
+            }
+            var phase = AtmosphereManager.Instance != null ? AtmosphereManager.Instance.AppliedPhase : null;
+            var sprite = character.ResolveSprite(line.emotion, phase, out _);
+            if (sprite == null && warnedMissingHrPortraits.Add(character))
+                Debug.LogWarning("[Dialogue] HR '" + character.DisplayName + "' has no usable portrait. Assign Emotion Visuals / Default Portrait in HRCharacterData.", character);
+            return sprite;
+        }
 
         public event Action<DialogueLine> LineShown;
         public event Action<string> LineEvent;
@@ -177,7 +202,7 @@ namespace FirstJobber
                     string text = Format(LocalizationManager.Get(line.GetPageKey(p), line.GetPage(p)));
                     if (string.IsNullOrEmpty(text)) continue;
 
-                    int total = ui != null ? ui.SetLine(ResolveSpeaker(line.speaker), text, line.portrait) : 0;
+                    int total = ui != null ? ui.SetLine(ResolveSpeaker(line.speaker), text, ResolvePortrait(line)) : 0;
                     if (ui != null) ui.SetContinueIndicator(false);
 
                     // Typewriter. A click while typing only completes the text.

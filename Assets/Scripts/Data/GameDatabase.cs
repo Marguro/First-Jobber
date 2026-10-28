@@ -292,18 +292,10 @@ namespace FirstJobber
 
             // HR characters
             CheckIds(hrCharacters, h => h.id, "HR", problems);
-            var questionOwner = new Dictionary<InterviewQuestionData, HRCharacterData>();
             foreach (var hr in hrCharacters)
             {
                 if (hr == null) continue;
                 hr.Validate(problems);
-                foreach (var q in hr.fixedQuestions.Concat(hr.resumeLinkedQuestions).Append(hr.fallbackQuestion))
-                {
-                    if (q == null) continue;
-                    if (questionOwner.TryGetValue(q, out var other) && other != hr)
-                        problems.Add("Question '" + q.name + "' is used by two HR characters ('" + other.name + "' and '" + hr.name + "'). Give each HR its own question asset.");
-                    else questionOwner[q] = hr;
-                }
             }
             foreach (var co in companies)
             {

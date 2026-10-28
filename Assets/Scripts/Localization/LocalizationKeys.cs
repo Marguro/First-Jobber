@@ -122,9 +122,15 @@ namespace FirstJobber
                         for (int i = 0; i < h.choiceReactions.Count; i++)
                             if (h.choiceReactions[i] != null && h.choiceReactions[i].choice != null)
                                 LinesWithPrefix(Of(h, "choiceReactions/" + h.choiceReactions[i].choice.name), h.choiceReactions[i].lines, add);
+                    // Production questions live on HRs, not necessarily in database.questions.
+                    // Shared questions retain their own stable question/<id> keys.
+                    if (h.fixedQuestions != null) foreach (var question in h.fixedQuestions) VisitAsset(question, add);
+                    if (h.resumeLinkedQuestions != null) foreach (var question in h.resumeLinkedQuestions) VisitAsset(question, add);
+                    VisitAsset(h.fallbackQuestion, add);
                     break;
                 case InterviewQuestionData q:
                     Text(q, "questionText", q.questionText, add);
+                    Lines(q, "questionDialogue", q.questionDialogue, add);
                     if (q.answers == null) break;
                     for (int i = 0; i < q.answers.Count; i++)
                     {

@@ -43,6 +43,7 @@ namespace FirstJobber
         public float delayBefore;
         [Tooltip("Optional id raised through DialogueManager.LineEvent.")]
         public string eventId;
+        [Tooltip("Non-HR speakers only. HR portraits are resolved from the active company's HRCharacterData and this block's Emotion. Existing HR values are retained for compatibility but ignored.")]
         public Sprite portrait;
 
         [Header("Gender (optional)")]

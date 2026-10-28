@@ -308,27 +308,18 @@ namespace FirstJobber.EditorTools
         /// <summary>Adds the pool to ONE HR. Questions another HR already uses are copied (own id, Thai carried over).</summary>
         public static void AssignTo(HRCharacterData hr, List<InterviewQuestionData> pool)
         {
-            var users = FindQuestionUsers();
-            var table = LoadOrCreateTable();
             Undo.RecordObject(hr, "Assign production questions");
-            int assigned = 0, copied = 0, already = 0;
+            int assigned = 0, already = 0;
             foreach (var template in pool)
             {
                 if (hr.resumeLinkedQuestions.Exists(x => x != null && (x == template || x.id.StartsWith(template.id + "__", StringComparison.Ordinal)))) { already++; continue; }
 
-                InterviewQuestionData toAdd = template;
-                if (users.TryGetValue(template, out var owner) && owner != hr)
-                {
-                    toAdd = CopyForHr(template, hr, table);
-                    copied++;
-                }
-                else assigned++;
-                hr.resumeLinkedQuestions.Add(toAdd);
+                assigned++;
+                hr.resumeLinkedQuestions.Add(template); // shared content; the interviewing HR owns its portraits
             }
             EditorUtility.SetDirty(hr);
-            EditorUtility.SetDirty(table);
             AssetDatabase.SaveAssets();
-            Debug.Log("[Production] '" + hr.DisplayName + "': " + assigned + " assigned, " + copied + " copied (already used by another HR), " + already + " already present.", hr);
+            Debug.Log("[Production] '" + hr.DisplayName + "': " + assigned + " shared questions assigned, " + already + " already present.", hr);
         }
 
         static InterviewQuestionData CopyForHr(InterviewQuestionData template, HRCharacterData hr, LocalizationTable table)

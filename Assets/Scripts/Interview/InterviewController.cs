@@ -45,6 +45,8 @@ namespace FirstJobber
         {
             Cancel();
             ctx = context;
+            hr.StrangeMode = ctx.Session.HasFlag("hr_strange");
+            hr.SetCharacter(ctx.SelectedCompany != null ? ctx.SelectedCompany.hr : null);
             routine = StartCoroutine(Run());
         }
 
@@ -65,8 +67,6 @@ namespace FirstJobber
             if (hrData == null)
                 Debug.LogError("[Interview] Company '" + (company != null ? company.name : "?") + "' has no HR assigned. Running the old shared interview. Assign CompanyData.hr.", company);
 
-            hr.StrangeMode = ctx.Session.HasFlag("hr_strange");
-            hr.SetCharacter(hrData);
             if (questionText != null) questionText.text = "";
             answerList.Clear();
             answerList.SetInteractable(false);

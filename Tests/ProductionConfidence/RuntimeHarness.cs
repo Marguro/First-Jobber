@@ -126,6 +126,7 @@ namespace UnityEngine
     public class Object { public string name; }
     public class ScriptableObject : Object { }
     public class Sprite : Object { }
+    public struct Color { public static Color white => new Color(); }
     public class Coroutine { }
     public class MonoBehaviour : Object
     {
@@ -181,10 +182,14 @@ namespace FirstJobber
         public List<HRChoiceReaction> choiceReactions;
         public List<InterviewQuestionData> fixedQuestions = new List<InterviewQuestionData>(), resumeLinkedQuestions = new List<InterviewQuestionData>();
         public InterviewQuestionData fallbackQuestion;
+        public string DisplayName => hrName;
+        public Sprite ResolveSprite(HREmotion emotion, AtmospherePhaseData phase, out Color tint) { tint = Color.white; return null; }
         public void Validate(List<string> p) { }
     }
     public class InterviewQuestionData : ScriptableObject
-    { public string id, questionText; public List<InterviewAnswer> answers; public ResumeChoiceData linkedChoice; public ResumeCategoryData linkedCategory; }
+    { public string id, questionText; public DialogueLine[] questionDialogue; public List<InterviewAnswer> answers; public ResumeChoiceData linkedChoice; public ResumeCategoryData linkedCategory; }
+    public class AtmospherePhaseData { }
+    public class AtmosphereManager { public static AtmosphereManager Instance; public AtmospherePhaseData AppliedPhase; }
     public class InterviewAnswer { public string id, text; public DialogueLine[] playerReaction, hrResponse; }
     public class DailyEventOption { public string id, label; }
     public class DailyEventSegment { public string id; public DialogueLine[] lines; public DailyEventOption[] options; }

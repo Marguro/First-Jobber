@@ -98,6 +98,8 @@ namespace FirstJobber
             dialogue.PlayerNameProvider = () => session != null ? session.applicantName : null;
             dialogue.GenderIdProvider = () => session != null ? session.applicantGender : null;
             dialogue.HrNameProvider = () => { var h = ctx != null ? ctx.SelectedHr : null; return h != null ? LocalizationManager.Get(h, "hrName", h.hrName) : null; };
+            // Portrait identity is strict: a missing company HR must never borrow another HR's art.
+            dialogue.HrCharacterProvider = () => { var company = ctx != null ? ctx.SelectedCompany : null; return company != null ? company.hr : null; };
 
             session = new GameSession();
             ctx = new GameContext(database, session, dialogue);

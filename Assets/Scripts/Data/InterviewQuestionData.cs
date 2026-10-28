@@ -22,6 +22,7 @@ namespace FirstJobber
     {
         public string id;
         [TextArea] public string questionText;
+        [Tooltip("Emotion for Question Text when Question Dialogue is empty. With Question Dialogue, choose Emotion separately on each HR block. Portraits always come from the active company's HRCharacterData.")]
         public HREmotion hrEmotion = HREmotion.Neutral;
         [Tooltip("Optional. When filled, the HR says these blocks instead of Question Text (multi-line and gender variants allowed). Question Text is still shown on screen.")]
         public DialogueLine[] questionDialogue;

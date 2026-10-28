@@ -39,7 +39,7 @@ namespace FirstJobber
 
     /// <summary>
     /// One interviewer. Everything the interview says or asks comes from the HR assigned to the selected company.
-    /// Each HR must own its own question assets - do not share a question asset between two HR characters.
+    /// Question content may be shared. This character alone owns the portraits used to speak it.
     /// </summary>
     [CreateAssetMenu(menuName = "First Jobber/HR Character", fileName = "HR_New")]
     public class HRCharacterData : ScriptableObject
@@ -52,10 +52,11 @@ namespace FirstJobber
         public CompanyData company;
         [TextArea] public string description;
 
-        [Header("Visuals (placeholders are fine until art is ready)")]
-        [Tooltip("Used when an emotion has no sprite.")]
+        [Header("HR portraits (single source for all HR dialogue)")]
+        [Tooltip("Last visual fallback after requested emotion and Neutral. Never taken from a question.")]
         public Sprite defaultPortrait;
         public HREmotion defaultEmotion = HREmotion.Neutral;
+        [Tooltip("This HR's Neutral, Interested, Disappointed and Uncomfortable sprites. Missing entries fall back to this HR's Neutral, then Default Portrait.")]
         public List<HREmotionVisual> emotionVisuals = new List<HREmotionVisual>();
         [Tooltip("Per atmosphere phase sprites. A phase without an entry uses the normal emotion sprite.")]
         public List<HRAtmosphereVariant> atmosphereVariants = new List<HRAtmosphereVariant>();
@@ -112,7 +113,7 @@ namespace FirstJobber
         }
 
         /// <summary>
-        /// Sprite for an emotion in the given phase. Order: phase variant, normal emotion sprite, default portrait.
+        /// Sprite priority: this HR's phase/emotion variant, standard emotion, standard Neutral, default portrait.
         /// Returns null when nothing is configured (the controller then shows a text placeholder). Never throws.
         /// </summary>
         public Sprite ResolveSprite(HREmotion emotion, AtmospherePhaseData phase, out Color tint)
@@ -120,8 +121,13 @@ namespace FirstJobber
             tint = Color.white;
             Sprite sprite = null;
 
-            var visual = FindVisual(emotion) ?? (emotion != HREmotion.Neutral ? FindVisual(HREmotion.Neutral) : null);
+            var visual = FindVisual(emotion, true) ?? FindVisual(HREmotion.Neutral, true);
             if (visual != null) { sprite = visual.sprite; tint = visual.tint; }
+            else
+            {
+                var placeholder = FindVisual(emotion);
+                if (placeholder != null) tint = placeholder.tint;
+            }
 
             if (phase != null && atmosphereVariants != null)
             {
@@ -140,11 +146,11 @@ namespace FirstJobber
             return sprite != null ? sprite : defaultPortrait;
         }
 
-        HREmotionVisual FindVisual(HREmotion emotion)
+        HREmotionVisual FindVisual(HREmotion emotion, bool requireSprite = false)
         {
             if (emotionVisuals == null) return null;
             for (int i = 0; i < emotionVisuals.Count; i++)
-                if (emotionVisuals[i] != null && emotionVisuals[i].emotion == emotion) return emotionVisuals[i];
+                if (emotionVisuals[i] != null && emotionVisuals[i].emotion == emotion && (!requireSprite || emotionVisuals[i].sprite != null)) return emotionVisuals[i];
             return null;
         }
 

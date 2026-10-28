@@ -52,7 +52,10 @@ namespace FirstJobber
             {
                 var p = property.FindPropertyRelative(n);
                 float h = EditorGUI.GetPropertyHeight(p, true);
-                EditorGUI.PropertyField(new Rect(pos.x, y, pos.width, h), p, true);
+                bool automaticPortrait = n == "portrait" && property.FindPropertyRelative("speaker").stringValue == Speakers.HR;
+                using (new EditorGUI.DisabledScope(automaticPortrait))
+                    EditorGUI.PropertyField(new Rect(pos.x, y, pos.width, h), p,
+                        automaticPortrait ? new GUIContent("Portrait (automatic from active HR)", "Legacy value is preserved but ignored. Configure HRCharacterData Emotion Visuals / Atmosphere Variants.") : new GUIContent(p.displayName), true);
                 y += h + Gap;
             }
 

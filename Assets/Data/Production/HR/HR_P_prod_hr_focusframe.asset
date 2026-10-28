@@ -18,7 +18,19 @@ MonoBehaviour:
   description: Production HR of FocusFrame Interactive. Portrait / emotions not authored yet.
   defaultPortrait: {fileID: 0}
   defaultEmotion: 0
-  emotionVisuals: []
+  emotionVisuals:
+  - emotion: 0
+    sprite: {fileID: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - emotion: 1
+    sprite: {fileID: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - emotion: 2
+    sprite: {fileID: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
+  - emotion: 3
+    sprite: {fileID: 0}
+    tint: {r: 1, g: 1, b: 1, a: 1}
   atmosphereVariants: []
   animatorController: {fileID: 0}
   introMode: 0

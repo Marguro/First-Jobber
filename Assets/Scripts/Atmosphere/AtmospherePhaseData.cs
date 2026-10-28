@@ -17,7 +17,7 @@ namespace FirstJobber
     public class AtmosphereHrSpriteOverride
     {
         public HREmotion emotion;
-        [Tooltip("Empty = fall back to the sprite configured in HRReactionController.")]
+        [Tooltip("Empty = fall back to the current HRCharacterData's standard emotion / Neutral / Default Portrait.")]
         public Sprite sprite;
     }
 
@@ -56,7 +56,7 @@ namespace FirstJobber
         [Header("Sprite variants")]
         [Tooltip("Environment, UI decoration and prop sprites, matched by Target Id.")]
         public List<AtmosphereSpriteOverride> spriteOverrides = new List<AtmosphereSpriteOverride>();
-        [Tooltip("HR portrait per emotion for this phase.")]
+        [HideInInspector, Tooltip("Legacy shared HR portraits, retained for compatibility. Interviews use HRCharacterData.atmosphereVariants instead.")]
         public List<AtmosphereHrSpriteOverride> hrSprites = new List<AtmosphereHrSpriteOverride>();
 
         [Header("Audio (optional)")]
