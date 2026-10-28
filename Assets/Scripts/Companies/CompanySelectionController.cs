@@ -8,6 +8,7 @@ namespace FirstJobber
 {
     public class CompanySelectionController : MonoBehaviour
     {
+        [SerializeField] UIVisualMotion detailsFeedback;
         [SerializeField] ChoiceListUI companyList;
         [SerializeField] TMP_Text detailsText;
         [SerializeField] TMP_Text companyNameText;
@@ -175,6 +176,7 @@ namespace FirstJobber
             if (company == null || ctx.Choices.IsConsumed(company)) return;
             pendingId = id;
             Refresh();
+            if (detailsFeedback != null) detailsFeedback.Pulse();
             ctx.Dialogue.Play(company.playerReaction, null, reactionAutoAdvance);
         }
 

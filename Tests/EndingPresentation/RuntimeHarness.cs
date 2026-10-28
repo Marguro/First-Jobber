@@ -134,3 +134,6 @@ namespace FirstJobber
     public class GameContext {public DialogueManager Dialogue=new DialogueManager();}
     public static class LocalizationManager {public static string Get(EndingData e,string field,string english)=>english;}
 }
+
+// Music handoff is exercised separately in Tests/DayBgm; this harness isolates ending presentation.
+namespace FirstJobber { public class DayBgmController : UnityEngine.MonoBehaviour { public System.Collections.IEnumerator SilenceAndWait() { yield break; } } }

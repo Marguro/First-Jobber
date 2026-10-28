@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ namespace FirstJobber
     public class ResumeEditorController : MonoBehaviour
     {
         [SerializeField] ResumePreviewUI preview;
+        [SerializeField] UIVisualMotion previewFeedback;
+        [SerializeField] UIVisualMotion paperPresentation;
         [SerializeField] RectTransform previewRect;
         [SerializeField] CanvasGroup editorGroup;
         [SerializeField] TMP_Text dayText;
@@ -48,6 +51,8 @@ namespace FirstJobber
         bool confirmed;
         Vector2 restPosition;
         Vector3 restScale;
+        Tween introTween;
+        Coroutine introRoutine;
 
         readonly List<ResumeChoiceData> choiceBuffer = new List<ResumeChoiceData>();
         readonly List<ChoiceItem> itemBuffer = new List<ChoiceItem>();
@@ -69,9 +74,18 @@ namespace FirstJobber
 
         void OnDestroy()
         {
+            introTween?.Kill();
             if (confirmButton != null) confirmButton.onClick.RemoveListener(OnConfirmClicked);
             if (choiceList != null) choiceList.ItemChosen -= OnChoiceChosen;
             if (preview != null && preview.CategoryList != null) preview.CategoryList.ItemChosen -= OnCategoryChosen;
+        }
+
+        void OnDisable()
+        {
+            if (introRoutine != null) StopCoroutine(introRoutine);
+            introRoutine = null;
+            introTween?.Kill(); introTween = null;
+            ResetLayout();
         }
 
         /// <summary>Rebuilds all state from the session without animation (safe to call while another panel is visible).</summary>
@@ -118,10 +132,11 @@ namespace FirstJobber
         {
             StopAllCoroutines();
             Refresh(context);
-            if (playIntro) StartCoroutine(IntroRoutine(onReady));
+            if (playIntro) introRoutine = StartCoroutine(IntroRoutine(onReady));
             else
             {
                 ResetLayout();
+                if (paperPresentation != null) paperPresentation.Enter();
                 onReady?.Invoke();
             }
         }
@@ -173,14 +188,14 @@ namespace FirstJobber
 
             yield return new WaitForSecondsRealtime(hold);
 
-            for (float t = 0f; t < 1f; t += Time.unscaledDeltaTime / introDuration)
-            {
-                float e = Mathf.SmoothStep(0f, 1f, t);
-                previewRect.anchoredPosition = Vector2.Lerp(startPos, restPosition, e);
-                previewRect.localScale = Vector3.Lerp(startScale, restScale, e);
-                SetEditorAlpha(e);
-                yield return null;
-            }
+            introTween?.Kill();
+            introTween = DOTween.Sequence()
+                .Append(previewRect.DOAnchorPos(restPosition, introDuration).SetEase(Ease.InOutSine))
+                .Join(previewRect.DOScale(restScale, introDuration).SetEase(Ease.InOutSine))
+                .Join(DOVirtual.Float(0f, 1f, introDuration, SetEditorAlpha).SetEase(Ease.InOutSine))
+                .SetUpdate(true);
+            yield return introTween.WaitForCompletion();
+            introTween = null;
             ResetLayout();
 
             bool done = false;
@@ -309,6 +324,7 @@ namespace FirstJobber
             RefreshChoices(false);
             RefreshConfidence(true);
             UpdateConfirm();
+            if (previewFeedback != null) previewFeedback.Pulse();
             // Each choice reacts only once per playthrough (keyed by the stable choice id, saved in the session).
             // Marked before playing, so rapid clicks cannot queue it twice. Nothing is marked when there is nothing to say.
             if (ctx.Session.HasPlayedChoiceReaction(choice.id)) return;

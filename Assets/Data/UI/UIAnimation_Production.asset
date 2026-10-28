@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 7bfe95821dda457480a391bc83745f09
+    type: 3
+  m_Name: UIAnimation_Production
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIAnimationSettings
+  animationsEnabled: 1
+  entranceDuration: 0.36
+  exitDuration: 0.24
+  entranceOffset:
+    x: 0
+    y: -16
+  entranceEase: 9
+  exitEase: 5
+  fadePanels: 1
+  hoverScale: 1.018
+  hoverDuration: 0.14
+  pressScale: 0.982
+  pressDuration: 0.09
+  selectedScale: 1.02
+  feedbackDuration: 0.34
+  buttonEase: 6
+  staggerDelay: 0.05
+  maximumStagger: 0.25
+  itemEntranceDuration: 0.24
+  popupStartScale: 0.975
+  popupDuration: 0.24
+  dialogueFadeDuration: 0.2
+  phaseMotion:
+  - phase:
+      fileID: 11400000
+      guid: 1b09e75dbfa737f48ac43bd64d81b6d5
+      type: 2
+    amount: 1
+  - phase:
+      fileID: 11400000
+      guid: ef3a72f0e572aff47a49db8f334c5659
+      type: 2
+    amount: 0.65
+  - phase:
+      fileID: 11400000
+      guid: 7e3f538d0a60ad84e8c507ff9987917d
+      type: 2
+    amount: 0.35

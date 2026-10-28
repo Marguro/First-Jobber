@@ -14,6 +14,7 @@ namespace FirstJobber
     /// </summary>
     public class InterviewController : MonoBehaviour
     {
+        [SerializeField] UIVisualMotion questionPresentation;
         [SerializeField] TMP_Text questionText;
         [SerializeField] ChoiceListUI answerList;
         [SerializeField] HRReactionController hr;
@@ -116,6 +117,7 @@ namespace FirstJobber
                 PhaseRequested?.Invoke(GamePhase.InterviewQuestion);
                 string formatted = QuestionLabel(question);
                 if (questionText != null) questionText.text = formatted;
+                if (questionPresentation != null) questionPresentation.Enter();
                 ResetQuestionScroll();
                 if (HasLines(question.questionDialogue)) yield return PlayAndWait(question.questionDialogue);
                 else yield return PlayAndWait(new[] { new DialogueLine(Speakers.HR, formatted, question.hrEmotion) });

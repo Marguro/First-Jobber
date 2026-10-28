@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 2119000200}
   - component: {fileID: 2141000001}
   - component: {fileID: 2141000130}
+  - component: {fileID: 2189100012}
   m_Layer: 0
   m_Name: SubmitButton
   m_TagString: Untagged
@@ -1258,6 +1259,8 @@ GameObject:
   - component: {fileID: 59734877}
   - component: {fileID: 2141000007}
   - component: {fileID: 2141000132}
+  - component: {fileID: 2189100001}
+  - component: {fileID: 2189100011}
   m_Layer: 0
   m_Name: MenuPaper
   m_TagString: Untagged
@@ -1654,6 +1657,8 @@ MonoBehaviour:
   emptyState: {fileID: 1059134065}
   emptyText: {fileID: 1059134067}
   canvasGroup: {fileID: 103586514}
+  presentationSettings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  popupMotion: {fileID: 0}
 --- !u!114 &103586513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2285,6 +2290,9 @@ GameObject:
   - component: {fileID: 2189000002}
   - component: {fileID: 2189000003}
   - component: {fileID: 217966943}
+  - component: {fileID: 2189100019}
+  - component: {fileID: 2189100020}
+  - component: {fileID: 2189100021}
   m_Layer: 0
   m_Name: GameSystems
   m_TagString: Untagged
@@ -2360,6 +2368,39 @@ MonoBehaviour:
   overlayText: {fileID: 1515371938}
   fadeDuration: 0.35
   overlayFadeDuration: 0.7
+  animationSettings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  presentations:
+  - panel: {fileID: 498105463}
+    settingsOverride: {fileID: 0}
+    visuals:
+    - {fileID: 2189100001}
+  - panel: {fileID: 1290090877}
+    settingsOverride: {fileID: 0}
+    visuals: []
+  - panel: {fileID: 1381945726}
+    settingsOverride: {fileID: 0}
+    visuals:
+    - {fileID: 2189100002}
+    - {fileID: 2189100003}
+  - panel: {fileID: 445826511}
+    settingsOverride: {fileID: 0}
+    visuals:
+    - {fileID: 2189100004}
+    - {fileID: 2189100005}
+  - panel: {fileID: 1396686515}
+    settingsOverride: {fileID: 0}
+    visuals:
+    - {fileID: 2189100006}
+    - {fileID: 2189100007}
+  - panel: {fileID: 1939456820}
+    settingsOverride: {fileID: 0}
+    visuals: []
+  - panel: {fileID: 1172304821}
+    settingsOverride: {fileID: 0}
+    visuals: []
+  - panel: {fileID: 762817074}
+    settingsOverride: {fileID: 0}
+    visuals: []
 --- !u!114 &217966941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3686,6 +3727,8 @@ MonoBehaviour:
   emptyState: {fileID: 1398395779}
   emptyText: {fileID: 1398395781}
   canvasGroup: {fileID: 411229346}
+  presentationSettings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  popupMotion: {fileID: 0}
 --- !u!114 &411229345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4149,6 +4192,7 @@ MonoBehaviour:
   reactionAutoAdvance: 2.5
   detailsScroll: {fileID: 2119000107}
   detailsContent: {fileID: 2119000104}
+  detailsFeedback: {fileID: 2189100005}
 --- !u!1 &452948880
 GameObject:
   m_ObjectHideFlags: 0
@@ -6068,6 +6112,7 @@ GameObject:
   - component: {fileID: 595129642}
   - component: {fileID: 2119000205}
   - component: {fileID: 2141000038}
+  - component: {fileID: 2189100013}
   m_Layer: 0
   m_Name: MenuButton
   m_TagString: Untagged
@@ -6932,6 +6977,7 @@ GameObject:
   - component: {fileID: 796213111}
   - component: {fileID: 796213115}
   - component: {fileID: 2141000041}
+  - component: {fileID: 2189100007}
   m_Layer: 0
   m_Name: HRArea
   m_TagString: Untagged
@@ -7447,6 +7493,7 @@ GameObject:
   - component: {fileID: 880101469}
   - component: {fileID: 2119000203}
   - component: {fileID: 2141000043}
+  - component: {fileID: 2189100014}
   m_Layer: 0
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -8328,6 +8375,7 @@ MonoBehaviour:
   continueIndicator: {fileID: 1450052838}
   clickArea: {fileID: 470941363}
   portraitImage: {fileID: 0}
+  animationSettings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
 --- !u!225 &977193196
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9319,6 +9367,7 @@ GameObject:
   - component: {fileID: 1080630845}
   - component: {fileID: 2119000204}
   - component: {fileID: 2141000057}
+  - component: {fileID: 2189100015}
   m_Layer: 0
   m_Name: RestartButton
   m_TagString: Untagged
@@ -9714,6 +9763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1110652820}
   - component: {fileID: 1110652821}
+  - component: {fileID: 2189100002}
   m_Layer: 0
   m_Name: EditorGroup
   m_TagString: Untagged
@@ -10415,6 +10465,7 @@ GameObject:
   - component: {fileID: 1192156552}
   - component: {fileID: 1192156551}
   - component: {fileID: 2141000064}
+  - component: {fileID: 2189100010}
   m_Layer: 0
   m_Name: CategoryList
   m_TagString: Untagged
@@ -10462,6 +10513,8 @@ MonoBehaviour:
   emptyState: {fileID: 1160572782}
   emptyText: {fileID: 1160572784}
   canvasGroup: {fileID: 1192156553}
+  presentationSettings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  popupMotion: {fileID: 0}
 --- !u!114 &1192156552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11550,6 +11603,8 @@ MonoBehaviour:
   introDuration: 0.9
   introStartScale: 1.35
   reactionAutoAdvance: 2
+  previewFeedback: {fileID: 2189100010}
+  paperPresentation: {fileID: 2189100022}
 --- !u!1 &1385924646
 GameObject:
   m_ObjectHideFlags: 0
@@ -11612,6 +11667,8 @@ MonoBehaviour:
   emptyState: {fileID: 728753898}
   emptyText: {fileID: 728753900}
   canvasGroup: {fileID: 1385924650}
+  presentationSettings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  popupMotion: {fileID: 0}
 --- !u!114 &1385924649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11762,6 +11819,7 @@ MonoBehaviour:
   neutralDelay: 0.4
   questionScroll: {fileID: 2140000005}
   questionContent: {fileID: 2140000011}
+  questionPresentation: {fileID: 2189100008}
 --- !u!1 &1398395779
 GameObject:
   m_ObjectHideFlags: 0
@@ -13468,6 +13526,7 @@ GameObject:
   - component: {fileID: 1617775028}
   - component: {fileID: 2119000107}
   - component: {fileID: 2141000082}
+  - component: {fileID: 2189100005}
   m_Layer: 0
   m_Name: DetailsCard
   m_TagString: Untagged
@@ -13646,6 +13705,7 @@ GameObject:
   - component: {fileID: 1633187481}
   - component: {fileID: 2141000083}
   - component: {fileID: 2141000135}
+  - component: {fileID: 2189100006}
   m_Layer: 0
   m_Name: QuestionCard
   m_TagString: Untagged
@@ -13865,6 +13925,7 @@ GameObject:
   - component: {fileID: 1661852271}
   - component: {fileID: 1661852274}
   - component: {fileID: 2141000085}
+  - component: {fileID: 2189100022}
   m_Layer: 0
   m_Name: ResumePreview
   m_TagString: Untagged
@@ -14076,6 +14137,7 @@ GameObject:
   - component: {fileID: 2119000201}
   - component: {fileID: 2141000086}
   - component: {fileID: 2141000136}
+  - component: {fileID: 2189100016}
   m_Layer: 0
   m_Name: ApplyButton
   m_TagString: Untagged
@@ -15187,6 +15249,7 @@ GameObject:
   - component: {fileID: 1788145085}
   - component: {fileID: 1788145084}
   - component: {fileID: 2141000093}
+  - component: {fileID: 2189100017}
   m_Layer: 0
   m_Name: SubmitButton
   m_TagString: Untagged
@@ -15612,6 +15675,7 @@ GameObject:
   - component: {fileID: 2119000202}
   - component: {fileID: 2141000096}
   - component: {fileID: 2141000137}
+  - component: {fileID: 2189100018}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
@@ -17650,6 +17714,7 @@ GameObject:
   - component: {fileID: 2099952404}
   - component: {fileID: 2099952403}
   - component: {fileID: 2141000112}
+  - component: {fileID: 2189100003}
   m_Layer: 0
   m_Name: ConfidencePanel
   m_TagString: Untagged
@@ -17780,6 +17845,7 @@ GameObject:
   - component: {fileID: 2106000003}
   - component: {fileID: 2106000002}
   - component: {fileID: 2141000113}
+  - component: {fileID: 2189100009}
   m_Layer: 0
   m_Name: DailyEventChoices
   m_TagString: Untagged
@@ -17827,6 +17893,8 @@ MonoBehaviour:
   emptyState: {fileID: 2106000016}
   emptyText: {fileID: 2106000018}
   canvasGroup: {fileID: 2106000004}
+  presentationSettings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  popupMotion: {fileID: 2189100009}
 --- !u!114 &2106000003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18516,6 +18584,8 @@ MonoBehaviour:
   emptyState: {fileID: 366594515}
   emptyText: {fileID: 366594517}
   canvasGroup: {fileID: 2107588839}
+  presentationSettings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  popupMotion: {fileID: 0}
 --- !u!114 &2107588838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19013,6 +19083,7 @@ GameObject:
   - component: {fileID: 2120000003}
   - component: {fileID: 2141000119}
   - component: {fileID: 2141000139}
+  - component: {fileID: 2189100004}
   m_Layer: 0
   m_Name: LeftBoard
   m_TagString: Untagged
@@ -19826,6 +19897,7 @@ GameObject:
   - component: {fileID: 2140000004}
   - component: {fileID: 2140000005}
   - component: {fileID: 2141000128}
+  - component: {fileID: 2189100008}
   m_Layer: 0
   m_Name: QuestionTextArea
   m_TagString: Untagged
@@ -22634,3 +22706,418 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2189100001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59734875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 59734876}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 2189100011}
+--- !u!114 &2189100002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110652819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1110652820}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099952401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 2099952402}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 2120000001}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617775024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1617775025}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633187479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1633187480}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796213109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 796213110}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 2140000001}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 2106000001}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192156549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1192156550}
+  move: 0
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}
+--- !u!114 &2189100011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59734875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::DG.Tweening.DOTweenAnimation
+  targetIsSelf: 1
+  tweenTargetIsTargetGO: 1
+  duration: 0.36
+  delay: 0
+  easeType: 9
+  loopType: 0
+  loops: 1
+  isRelative: 0
+  isFrom: 1
+  isIndependentUpdate: 1
+  autoKill: 1
+  autoGenerate: 0
+  isActive: 1
+  isValid: 1
+  target: {fileID: 59734876}
+  animationType: 5
+  targetType: 0
+  forcedTargetType: 0
+  autoPlay: 0
+  useTargetAsV3: 0
+  endValueV3: {x: 1.606666793, y: 2.0886667915, z: 1.606666793}
+  optionalBool0: 0
+--- !u!114 &2189100012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23413899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf03f4b956484dc584b634b3da3e2484, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIButtonFeedback
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 23413900}
+  entranceGroup: {fileID: 0}
+--- !u!114 &2189100013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595129641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf03f4b956484dc584b634b3da3e2484, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIButtonFeedback
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 595129645}
+  entranceGroup: {fileID: 0}
+--- !u!114 &2189100014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880101464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf03f4b956484dc584b634b3da3e2484, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIButtonFeedback
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 880101465}
+  entranceGroup: {fileID: 0}
+--- !u!114 &2189100015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080630841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf03f4b956484dc584b634b3da3e2484, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIButtonFeedback
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1080630842}
+  entranceGroup: {fileID: 0}
+--- !u!114 &2189100016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673392686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf03f4b956484dc584b634b3da3e2484, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIButtonFeedback
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1673392687}
+  entranceGroup: {fileID: 0}
+--- !u!114 &2189100017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788145082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf03f4b956484dc584b634b3da3e2484, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIButtonFeedback
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1788145083}
+  entranceGroup: {fileID: 0}
+--- !u!114 &2189100018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863792825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf03f4b956484dc584b634b3da3e2484, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIButtonFeedback
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1863792826}
+  entranceGroup: {fileID: 0}
+--- !u!114 &2189100019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217966937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a260dc5d06ef485f9e9781db18ea3369, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UISfxPlayer
+  settings: {fileID: 11400000, guid: 74e2f3ce5db84495816ba8a8de0b4eed, type: 2}
+  source: {fileID: 2189100020}
+--- !u!82 &2189100020
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217966937}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.8
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - {serializedVersion: 3, time: 0, value: 1, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    - {serializedVersion: 3, time: 1, value: 0, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - {serializedVersion: 3, time: 0, value: 0, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - {serializedVersion: 3, time: 0, value: 0, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - {serializedVersion: 3, time: 0, value: 1, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2189100021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217966937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132b7fe1746543e08aecaf0d6c5e97c0, type: 3}
+  m_Name: null
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIPresentationAudio
+  ui: {fileID: 217966940}
+  resume: {fileID: 1381945727}
+  companies: {fileID: 445826512}
+  interview: {fileID: 1396686516}
+  sfx: {fileID: 2189100019}
+  completionFeedback: {fileID: 2189100003}
+--- !u!114 &2189100022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661852269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
+  settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
+  visual: {fileID: 1661852270}
+  move: 1
+  offsetMultiplier: {x: 1, y: 1}
+  proEntrance: {fileID: 0}

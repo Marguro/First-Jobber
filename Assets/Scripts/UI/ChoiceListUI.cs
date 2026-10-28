@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,11 @@ namespace FirstJobber
         [SerializeField] GameObject emptyState;
         [SerializeField] TMP_Text emptyText;
         [SerializeField] CanvasGroup canvasGroup;
+        [Header("Presentation")]
+        [SerializeField] UIAnimationSettings presentationSettings;
+        [SerializeField] UIVisualMotion popupMotion;
+        Tween popupTween;
+        float revealAfter;
 
         public event Action<string> ItemChosen;
 
@@ -46,6 +52,9 @@ namespace FirstJobber
             pool = nextPool;
 
             int count = items != null ? items.Count : 0;
+            bool changed = false;
+            for (int i = 0; i < count; i++)
+                if (i >= pool.Count || !pool[i].gameObject.activeSelf || pool[i].Id != items[i].id) { changed = true; break; }
             for (int i = 0; i < count; i++)
             {
                 if (i >= pool.Count) pool.Add(Instantiate(prefab, content));
@@ -53,6 +62,11 @@ namespace FirstJobber
                 entry.gameObject.SetActive(true);
                 entry.transform.SetSiblingIndex(i);
                 entry.Setup(items[i], HandleItem);
+                if (changed)
+                {
+                    var feedback = entry.GetComponent<UIButtonFeedback>();
+                    if (feedback != null) feedback.Reveal(i, Mathf.Max(0, revealAfter - Time.unscaledTime));
+                }
             }
             for (int i = count; i < pool.Count; i++) pool[i].gameObject.SetActive(false);
 
@@ -73,9 +87,23 @@ namespace FirstJobber
 
         public void Clear() { SetItems(null); }
 
+        /// <summary>Called by the owning section, not by category/language refresh. Aligns staggering with its entrance.</summary>
+        public void PreparePresentation(float delay)
+        {
+            revealAfter = Time.unscaledTime + Mathf.Max(0, delay);
+            if (pool == null) return;
+            for (int i = 0; i < pool.Count; i++)
+                if (pool[i].gameObject.activeSelf)
+                {
+                    var feedback = pool[i].GetComponent<UIButtonFeedback>();
+                    if (feedback != null) feedback.Reveal(i, delay);
+                }
+        }
+
         /// <summary>Modal list within its owning panel. Keep it above that panel's background/caption.</summary>
         public void ShowPopup(IList<ChoiceItem> items)
         {
+            popupTween?.Kill();
             transform.SetAsLastSibling();
             gameObject.SetActive(true);
             if (canvasGroup != null)
@@ -85,13 +113,27 @@ namespace FirstJobber
             }
             SetItems(items, resetScroll: true);
             SetInteractable(true);
+            if (popupMotion != null) popupMotion.Enter();
+            if (canvasGroup != null && presentationSettings != null && presentationSettings.animationsEnabled)
+            {
+                canvasGroup.alpha = 0f;
+                popupTween = canvasGroup.DOFade(1f, presentationSettings.popupDuration).SetEase(presentationSettings.entranceEase).SetUpdate(true);
+            }
         }
 
         public void HidePopup()
         {
+            popupTween?.Kill();
             SetInteractable(false);
-            gameObject.SetActive(false);
+            if (canvasGroup != null) canvasGroup.blocksRaycasts = false;
+            if (canvasGroup != null && presentationSettings != null && presentationSettings.animationsEnabled && gameObject.activeInHierarchy)
+                popupTween = canvasGroup.DOFade(0f, presentationSettings.popupDuration).SetEase(presentationSettings.exitEase).SetUpdate(true)
+                    .OnComplete(() => gameObject.SetActive(false));
+            else gameObject.SetActive(false);
         }
+
+        void OnDisable() { popupTween?.Kill(); }
+        void OnDestroy() { popupTween?.Kill(); }
 
         public void SetInteractable(bool value)
         {

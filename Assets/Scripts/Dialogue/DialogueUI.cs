@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ namespace FirstJobber
         [SerializeField] GameObject continueIndicator;
         [SerializeField] Button clickArea;
         [SerializeField] Image portraitImage;
+        [SerializeField] UIAnimationSettings animationSettings;
+        Tween visibilityTween;
 
         public event Action Clicked;
 
@@ -28,6 +31,7 @@ namespace FirstJobber
 
         void OnDestroy()
         {
+            visibilityTween?.Kill();
             if (clickArea != null) clickArea.onClick.RemoveListener(RaiseClicked);
         }
 
@@ -45,21 +49,37 @@ namespace FirstJobber
             // An artist may leave DialogueBox inactive in the scene. Activate BEFORE setting state:
             // its first Awake wires the click area and calls Hide().
             if (!gameObject.activeSelf) gameObject.SetActive(true);
+            bool alreadyVisible = visible;
             visible = true;
             if (group == null) return;
-            group.alpha = 1f;
+            if (!alreadyVisible)
+            {
+                visibilityTween?.Kill();
+                if (animationSettings != null && animationSettings.animationsEnabled)
+                    visibilityTween = group.DOFade(1f, animationSettings.dialogueFadeDuration).SetEase(animationSettings.entranceEase).SetUpdate(true);
+                else group.alpha = 1f;
+            }
             group.blocksRaycasts = true;
             group.interactable = true;
         }
 
         public void Hide()
         {
+            bool wasVisible = visible;
             visible = false;
             if (group == null) return;
-            group.alpha = 0f;
             group.blocksRaycasts = false;
             group.interactable = false;
+            // Empty blocks/cancel callbacks can request Hide again in the same chain.
+            // Do not turn an already-running exit into an abrupt alpha cut.
+            if (!wasVisible && visibilityTween != null) return;
+            visibilityTween?.Kill();
+            if (wasVisible && animationSettings != null && animationSettings.animationsEnabled)
+                visibilityTween = group.DOFade(0f, animationSettings.dialogueFadeDuration).SetEase(animationSettings.exitEase).SetUpdate(true);
+            else group.alpha = 0f;
         }
+
+        void OnDisable() { visibilityTween?.Kill(); visible = false; if (group != null) group.alpha = 0f; }
 
         /// <summary>Sets the line and returns how many characters it contains (for the typewriter).</summary>
         public int SetLine(string speaker, string text, Sprite portrait)

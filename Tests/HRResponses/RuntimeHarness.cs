@@ -109,3 +109,6 @@ namespace FirstJobber
     public class GameDatabase{public DialogueLine[] defaultHrIntro,hrReviewLines;public DialoguePlaybackMode defaultHrIntroMode,hrReviewMode;public int questionsPerInterview=4;}
     public class GameContext{public CompanyData SelectedCompany;public HRCharacterData SelectedHr=>SelectedCompany.hr;public DialogueManager Dialogue;public GameSession Session;public ChoiceManager Choices;public GameDatabase Database;}
 }
+
+// Presentation-only collaborator; gameplay harness deliberately runs without Unity/DOTween rendering.
+namespace FirstJobber { public class UIVisualMotion : UnityEngine.MonoBehaviour { public void Enter(float delay = 0) {} public void Pulse() {} } }

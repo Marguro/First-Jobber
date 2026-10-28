@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -74,7 +75,7 @@ namespace FirstJobber
 
         CanvasGroup group;
         Sprite originalBackground, originalFill, originalFrame, originalDecoration;
-        Coroutine animation;
+        Tween animation;
         Color displayedColor = Color.white;
         bool initialised;
         static Sprite fallbackSprite;
@@ -87,6 +88,9 @@ namespace FirstJobber
             ApplyAtmosphereSprites();
             ApplyValue(DisplayedPercent, displayedColor);
         }
+
+        void OnDisable() { animation?.Kill(); animation = null; }
+        void OnDestroy() { animation?.Kill(); }
 
         void Init()
         {
@@ -128,28 +132,23 @@ namespace FirstJobber
                     : UiText.Format(LocalizationManager.Get(UiText.ConfidenceCategories.key, categoriesFormat), categoriesFormat, selected, Mathf.Max(required, selected));
 
             Color targetColor = selected <= 0 ? ColorFor(0f) : ColorFor(TargetPercent);
-            if (animation != null) { StopCoroutine(animation); animation = null; }
+            animation?.Kill(); animation = null;
 
             if (!animate || animationDuration <= 0f || !isActiveAndEnabled)
             {
                 ApplyValue(TargetPercent, targetColor);
                 return;
             }
-            animation = StartCoroutine(Animate(TargetPercent, targetColor));
+            Animate(TargetPercent, targetColor);
         }
 
-        IEnumerator Animate(float toPercent, Color toColor)
+        void Animate(float toPercent, Color toColor)
         {
             float fromPercent = DisplayedPercent;
             Color fromColor = displayedColor;
-            for (float t = 0f; t < 1f; t += Time.unscaledDeltaTime / animationDuration)
-            {
-                float e = Mathf.SmoothStep(0f, 1f, t);
-                ApplyValue(Mathf.Lerp(fromPercent, toPercent, e), Color.Lerp(fromColor, toColor, e));
-                yield return null;
-            }
-            ApplyValue(toPercent, toColor);
-            animation = null;
+            animation = DOVirtual.Float(0f, 1f, animationDuration, t =>
+                ApplyValue(Mathf.Lerp(fromPercent, toPercent, t), Color.Lerp(fromColor, toColor, t)))
+                .SetEase(Ease.InOutSine).SetUpdate(true).OnComplete(() => { ApplyValue(toPercent, toColor); animation = null; });
         }
 
         void ApplyValue(float percent, Color color)

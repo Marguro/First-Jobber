@@ -70,3 +70,6 @@ namespace FirstJobber
         public static string Get(string key,string english)=>Thai?(key=="ui/company/salary_not_specified"?"ไม่ระบุเงินเดือน":"TH:"+english):english;
     }
 }
+
+// Presentation-only collaborator; gameplay harness deliberately runs without Unity/DOTween rendering.
+namespace FirstJobber { public class UIVisualMotion : UnityEngine.MonoBehaviour { public void Enter(float delay = 0) {} public void Pulse() {} } }
