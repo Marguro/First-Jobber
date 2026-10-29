@@ -3246,8 +3246,8 @@ MonoBehaviour:
     english: "Today is definitely going to be my day!"
     thai: "วันนี้ต้องเป็นวันของฉันแน่นอน!"
   - key: event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/0
-    english: "All right! Before I land my dream job, let us make this resume shine!"
-    thai: "เอาล่ะ! ก่อนจะไปคว้างานในฝัน เรามาจัด Resume ของเราให้ปังก่อนดีกว่า!"
+    english: "My first morning as a fresh graduate entering the workforce!"
+    thai: "เช้าวันแรกของการเป็นเฟิร์สจ๊อบแจ๊บ!"
   - key: event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/1
     english: "From my studies and university to my personal motto, everything helps a company see who I am!"
     thai: "ทั้งประวัติการเรียน มหาวิทยาลัย ไปจนถึงคติประจำใจ ทุกอย่างล้วนเป็นส่วนหนึ่งที่ทำให้บริษัทเห็นว่าเราเป็นคนแบบไหน!"

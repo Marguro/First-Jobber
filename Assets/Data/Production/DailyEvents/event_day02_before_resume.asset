@@ -22,7 +22,7 @@ MonoBehaviour:
   forbiddenFlag: 
   setFlags: []
   caption: 
-  background: {fileID: -4885828998536496839, guid: 8d516becb489dc4428a8d8f1c10f17e7, type: 3}
+  background: {fileID: 21300000, guid: 8d516becb489dc4428a8d8f1c10f17e7, type: 3}
   flickerSeconds: 0
   lines: []
   segments:

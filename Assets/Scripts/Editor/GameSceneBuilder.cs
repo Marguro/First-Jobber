@@ -105,6 +105,8 @@ namespace FirstJobber.EditorTools
             Set(ui, "ending", endingPanel);
             Set(ui, "overlay", overlay);
             Set(ui, "overlayText", overlayText);
+            Set(eventPanelUI, "panels", ui);
+            Set(eventPanelUI, "transitionOverlay", overlay);
 
             var events = systems.AddComponent<DailyEventManager>();
             Set(events, "database", db);
@@ -366,16 +368,20 @@ namespace FirstJobber.EditorTools
         static CanvasGroup BuildDailyEvent(RectTransform canvas, out DailyEventPanelUI ui, out ChoiceListUI choices)
         {
             var panel = NewPanel(canvas, "DailyEventPanel");
-            var bg = NewRect("EventBackground", panel);
+            var bg = NewRect("EventBackground", canvas);
+            bg.SetSiblingIndex(panel.GetSiblingIndex());
             Stretch(bg);
             var bgImg = bg.gameObject.AddComponent<Image>();
             bgImg.color = new Color(0.04f, 0.04f, 0.06f);
-            bgImg.raycastTarget = false;
-            var caption = NewText(panel, "Caption", "", 100, Color.white, TextAlignmentOptions.Center, FontStyles.Bold, 0.1f, 0.5f, 0.9f, 0.85f);
+            bgImg.raycastTarget = false; bgImg.preserveAspect = true;
+            var presentation = bg.gameObject.AddComponent<CanvasGroup>();
+            presentation.alpha = 0; presentation.interactable = presentation.blocksRaycasts = false;
+            var caption = NewText(bg, "Caption", "", 100, Color.white, TextAlignmentOptions.Center, FontStyles.Bold, 0.1f, 0.5f, 0.9f, 0.85f);
 
             ui = panel.gameObject.AddComponent<DailyEventPanelUI>();
             Set(ui, "background", bgImg);
             Set(ui, "captionText", caption);
+            Set(ui, "presentationGroup", presentation);
             choices = NewChoiceList(panel, "DailyEventChoices", SectionButton("EventChoiceButton"), Card, .2f, .28f, .8f, .83f);
             choices.gameObject.SetActive(false);
             return panel.GetComponent<CanvasGroup>();

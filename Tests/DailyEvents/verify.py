@@ -54,7 +54,10 @@ choice=scene[manager['choiceList']['fileID']]['MonoBehaviour'];assert choice['it
 go=scene[choice['m_GameObject']['fileID']]['GameObject'];rt=scene[go['m_Component'][0]['component']['fileID']]['RectTransform']
 assert rt['m_Father']['fileID']==1939456818
 siblings=scene[1939456818]['RectTransform']['m_Children']
-assert siblings.index({'fileID':2106000001}) > siblings.index({'fileID':1877831937}), 'Opaque EventBackground paints over the phone popup'
+canvas=scene[627569008]['RectTransform']['m_Children']
+assert scene[1877831937]['RectTransform']['m_Father']['fileID']==627569008
+assert canvas.index({'fileID':1877831937}) < canvas.index({'fileID':1939456818}), 'Event background must remain below phone choices'
+assert {'fileID':2106000001} in siblings
 viewport=scene[choice['scrollRect']['fileID']]['MonoBehaviour']['m_Viewport']['fileID']
 assert scene[viewport]['RectTransform']['m_AnchorMax']=={'x':1,'y':1}, 'Phone viewport must have visible area before layout rebuild'
 group=scene[choice['canvasGroup']['fileID']]['CanvasGroup']

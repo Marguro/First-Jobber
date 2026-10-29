@@ -26,6 +26,7 @@ namespace FirstJobber
         {
             LocalizationManager.LanguageChanged -= RefreshChoiceLanguage;
             CloseChoice();
+            ClearPanel();
         }
 
         void CloseChoice()
@@ -87,7 +88,9 @@ namespace FirstJobber
             if (ev.setFlags != null)
                 for (int i = 0; i < ev.setFlags.Length; i++) session.SetFlag(ev.setFlags[i]);
 
-            if (ev.trigger == EventTrigger.OnDayStart && eventPanel != null) eventPanel.Show(LocalizationManager.Get(ev, "caption", ev.caption), ev.background);
+            // Background is event data, not restricted to the OnDayStart trigger. Present before dialogue/choices.
+            if (eventPanel != null) eventPanel.Show(LocalizationManager.Get(ev, "caption", ev.caption), ev.background,
+                ev.trigger == EventTrigger.OnDayStart, ev);
             if (ev.flickerSeconds > 0f && AtmosphereManager.Instance != null) AtmosphereManager.Instance.PulseFlicker(ev.flickerSeconds);
             if (ev.segments != null && ev.segments.Length > 0)
                 RunSegment(ev, 0, session, () => CompleteEvent(queue, index, session, onDone));
@@ -98,6 +101,7 @@ namespace FirstJobber
         {
             Debug.Log("[DailyEvent] Dialogue completed: " + queue[index].id, this);
             session.Save();
+            ClearPanel(); // Complete before the next event/callback can install its own background.
             RunFrom(queue, index + 1, session, done);
         }
 
@@ -160,9 +164,11 @@ namespace FirstJobber
         // Preview uses the real segment player and UI, but never calls CompleteEvent / Save.
         public void EditorPreviewEvent(DailyEventData ev, GameSession previewSession, Action done)
         {
-            if (!Application.isPlaying || IsWaitingForChoice) return;
+            if (!Application.isPlaying || IsWaitingForChoice || ev == null) return;
             LocalizationKeys.VisitAsset(ev, null);
-            RunSegment(ev, 0, previewSession, done);
+            if (eventPanel != null) eventPanel.Show(LocalizationManager.Get(ev, "caption", ev.caption), ev.background,
+                ev.trigger == EventTrigger.OnDayStart, ev);
+            RunSegment(ev, 0, previewSession, () => { ClearPanel(); done?.Invoke(); });
         }
 #endif
     }

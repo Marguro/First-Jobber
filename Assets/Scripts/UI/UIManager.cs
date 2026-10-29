@@ -50,6 +50,7 @@ namespace FirstJobber
 
         CanvasGroup[] panels;
         CanvasGroup current;
+        public CanvasGroup CurrentPanel => current; // Read-only presentation query; navigation remains owned here.
 
         void Awake()
         {
