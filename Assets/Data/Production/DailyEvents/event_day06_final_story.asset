@@ -3,59 +3,50 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: 780d7809f66105a4ca9bbf36c63022bc
-    type: 3
+  m_Script: {fileID: 11500000, guid: 780d7809f66105a4ca9bbf36c63022bc, type: 3}
   m_Name: event_day06_final_story
-  m_EditorClassIdentifier: ''
+  m_EditorClassIdentifier: 
   id: event_day06_final_story
   trigger: 0
   exactDay: 6
   minDay: 0
   repeatable: 0
   priority: 0
-  requiredFlag: ''
-  forbiddenFlag: ''
+  requiredFlag: 
+  forbiddenFlag: 
   setFlags: []
-  caption: ''
-  background:
-    fileID: 0
+  caption: 
+  background: {fileID: -4731237386407208215, guid: 7729e07601bc53f45a8359cb04773cb4, type: 3}
   flickerSeconds: 0
   lines: []
   segments:
   - id: morning
     lines:
     - speaker: Player
-      text: ''
+      text: 
       dialogueLines:
-      - '...Morning already?'
+      - ...Morning already?
       - What did I do wrong...
       - All through school, I thought that if I studied hard and kept practicing, I would graduate, do work I loved, earn my own money and make something I could be proud of.
-      - '...I am tired.'
+      - ...I am tired.
       - Will pushing on really make anything better? Or am I wasting time on something that will never happen?
       - Quitting now would mean giving up on my dream... But if I keep going, I do not know how many more disappointments I can take.
       - What am I supposed to do now?
-      - '...'
-      - '...'
-      - '...'
-      - '...Maybe it really is time to think about what I want to do with my life.'
+      - ...
+      - ...
+      - ...
+      - ...Maybe it really is time to think about what I want to do with my life.
       emotion: 0
       autoAdvanceDelay: 0
       delayBefore: 0
-      eventId: ''
-      portrait:
-        fileID: 0
+      eventId: 
+      portrait: {fileID: 0}
       genderIds: []
-      variantGroup: ''
+      variantGroup: 
     options: []

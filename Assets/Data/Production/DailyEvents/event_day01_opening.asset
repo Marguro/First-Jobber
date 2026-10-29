@@ -3,41 +3,33 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: 780d7809f66105a4ca9bbf36c63022bc
-    type: 3
+  m_Script: {fileID: 11500000, guid: 780d7809f66105a4ca9bbf36c63022bc, type: 3}
   m_Name: event_day01_opening
-  m_EditorClassIdentifier: ''
+  m_EditorClassIdentifier: 
   id: event_day01_opening
   trigger: 1
   exactDay: 1
   minDay: 0
   repeatable: 0
   priority: 0
-  requiredFlag: ''
-  forbiddenFlag: ''
+  requiredFlag: 
+  forbiddenFlag: 
   setFlags: []
-  caption: ''
-  background:
-    fileID: 0
+  caption: 
+  background: {fileID: 5602581046975840290, guid: e6f472d5b816e894e9f7ec42f7af1018, type: 3}
   flickerSeconds: 0
   lines: []
   segments:
   - id: opening
     lines:
     - speaker: Player
-      text: ''
+      text: 
       dialogueLines:
       - The first morning of life as a fresh grad!
       - Finally graduated! Now it is my turn to get out there and work for real!
@@ -47,9 +39,8 @@ MonoBehaviour:
       emotion: 0
       autoAdvanceDelay: 0
       delayBefore: 0
-      eventId: ''
-      portrait:
-        fileID: 0
+      eventId: 
+      portrait: {fileID: 0}
       genderIds: []
-      variantGroup: ''
+      variantGroup: 
     options: []
