@@ -18,33 +18,61 @@ namespace FirstJobber
     {
         public static string Of(ScriptableObject asset, string field)
         {
-            return Prefix(asset) + "/" + field;
+            string prefix = Prefix(asset);
+            return string.IsNullOrEmpty(prefix) ? string.Empty : prefix + "/" + field;
         }
 
         public static string Prefix(ScriptableObject asset)
         {
+            // C# type patterns match a destroyed Unity wrapper. Validate BEFORE reading any fields.
+            if (asset == null) { ReportInvalid(asset, "Prefix"); return string.Empty; }
             switch (asset)
             {
-                case ResumeCategoryData a: return "category/" + IdOr(a.id, a);
-                case ResumeChoiceData a: return "choice/" + IdOr(a.id, a);
-                case CompanyData a: return "company/" + IdOr(a.id, a);
-                case HRCharacterData a: return "hr/" + IdOr(a.id, a);
-                case InterviewQuestionData a: return "question/" + IdOr(a.id, a);
-                case DailyEventData a: return "event/" + IdOr(a.id, a);
-                case EndingData a: return "ending/" + IdOr(a.id, a);
+                case ResumeCategoryData a: return Join("category", IdOr(a.id, a));
+                case ResumeChoiceData a: return Join("choice", IdOr(a.id, a));
+                case CompanyData a: return Join("company", IdOr(a.id, a));
+                case HRCharacterData a: return Join("hr", IdOr(a.id, a));
+                case InterviewQuestionData a: return Join("question", IdOr(a.id, a));
+                case DailyEventData a: return Join("event", IdOr(a.id, a));
+                case EndingData a: return Join("ending", IdOr(a.id, a));
                 case GameDatabase _: return "database";
                 case ConfidenceDialogueDatabase _: return "confidence/apply";
-                default: return "asset/" + asset.name;
+                default: return Join("asset", IdOr(null, asset));
             }
         }
 
-        static string IdOr(string id, ScriptableObject asset) { return string.IsNullOrEmpty(id) ? asset.name : id; }
+        static string Join(string type, string id) => string.IsNullOrEmpty(id) ? string.Empty : type + "/" + id;
+        static string IdOr(string id, ScriptableObject asset)
+        {
+            if (asset == null) { ReportInvalid(asset, "IdOr"); return string.Empty; }
+            if (!string.IsNullOrEmpty(id)) return id;
+            string fallback = asset.name;
+            if (string.IsNullOrEmpty(fallback)) Debug.LogWarning("[Localization] Refusing a key for an unnamed " + asset.GetType().Name + " with no stable ID.");
+            return fallback;
+        }
+        static void ReportInvalid(ScriptableObject asset, string location)
+        {
+            // ReferenceEquals is only used to describe the failure, never to validate a Unity object.
+            string state = ReferenceEquals(asset, null) ? "null/missing reference" : "destroyed Unity object (" + asset.GetType().Name + ")";
+            Debug.LogWarning("[Localization] " + location + ": " + state + "; no localization key was generated.");
+        }
+        static void VisitList<T>(System.Collections.Generic.List<T> list, string field, GameDatabase db, Action<string, string> add) where T : ScriptableObject
+        {
+            if (list == null) { Debug.LogWarning("[Localization] " + db.name + "." + field + " is null.", db); return; }
+            for (int i = 0; i < list.Count; i++)
+            {
+                var asset = list[i];
+                if (asset == null) { ReportInvalid(asset, db.name + "." + field + "[" + i + "]"); continue; }
+                VisitAsset(asset, add);
+            }
+        }
 
         /// <summary>Key of a field of an interview answer, e.g. Answer(q, a, 0, "text").</summary>
         public static string Answer(InterviewQuestionData q, InterviewAnswer a, int index, string field)
         {
             string id = a != null && !string.IsNullOrEmpty(a.id) ? a.id : index.ToString();
-            return Prefix(q) + "/answers/" + id + "/" + field;
+            string prefix = Prefix(q);
+            return string.IsNullOrEmpty(prefix) ? string.Empty : prefix + "/answers/" + id + "/" + field;
         }
 
         /// <summary>
@@ -56,18 +84,23 @@ namespace FirstJobber
             if (db == null) return;
             VisitAsset(db, add);
             VisitAsset(db.confidenceDialogue, add);
-            foreach (var a in db.categories) VisitAsset(a, add);
-            foreach (var a in db.choices) VisitAsset(a, add);
-            foreach (var a in db.companies) VisitAsset(a, add);
-            foreach (var a in db.hrCharacters) VisitAsset(a, add);
-            foreach (var a in db.questions) VisitAsset(a, add);
-            foreach (var a in db.events) VisitAsset(a, add);
-            foreach (var a in db.endings) VisitAsset(a, add);
+            VisitList(db.categories, "categories", db, add);
+            VisitList(db.choices, "choices", db, add);
+            VisitList(db.companies, "companies", db, add);
+            VisitList(db.hrCharacters, "hrCharacters", db, add);
+            VisitList(db.questions, "questions", db, add);
+            VisitList(db.events, "events", db, add);
+            VisitList(db.endings, "endings", db, add);
         }
 
         /// <summary>Same as Visit for one asset (also used by the exporter for assets that are not in the database).</summary>
         public static void VisitAsset(ScriptableObject asset, Action<string, string> add)
         {
+            if (asset == null)
+            {
+                if (!ReferenceEquals(asset, null)) ReportInvalid(asset, "VisitAsset");
+                return; // A true null is normal for optional fallback/configuration fields.
+            }
             switch (asset)
             {
                 case GameDatabase d:
@@ -146,9 +179,10 @@ namespace FirstJobber
                     Lines(e, "lines", e.lines, add);
                     if (e.segments != null) foreach (var segment in e.segments)
                     {
+                        if (segment == null) continue;
                         Lines(e, "segments/" + segment.id + "/lines", segment.lines, add);
                         if (segment.options != null) foreach (var option in segment.options)
-                            Text(e, "segments/" + segment.id + "/options/" + option.id + "/label", option.label, add);
+                            if (option != null) Text(e, "segments/" + segment.id + "/options/" + option.id + "/label", option.label, add);
                     }
                     break;
                 case EndingData e:
@@ -188,7 +222,7 @@ namespace FirstJobber
 
         static void LinesWithPrefix(string prefix, DialogueLine[] lines, Action<string, string> add)
         {
-            if (lines == null) return;
+            if (string.IsNullOrEmpty(prefix) || lines == null) return;
             for (int i = 0; i < lines.Length; i++)
             {
                 var line = lines[i];
@@ -205,7 +239,7 @@ namespace FirstJobber
 
         static void Emit(string key, string english, Action<string, string> add)
         {
-            if (add != null && !string.IsNullOrWhiteSpace(english)) add(key, english);
+            if (add != null && !string.IsNullOrEmpty(key) && !string.IsNullOrWhiteSpace(english)) add(key, english);
         }
     }
 }
