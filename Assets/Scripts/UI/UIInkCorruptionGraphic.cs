@@ -21,7 +21,7 @@ namespace FirstJobber
             vh.Clear();
             if (strength <= 0) return;
             Rect r = rectTransform.rect;
-            int count = (consumed || paper) && strength > .4f ? 4 : 2;
+            int count = (consumed || paper) && strength > .4f ? 6 : 2;
             for (int i = 0; i < count; i++)
             {
                 float u = UICorruptionSettings.Sample(seed, i * 5 + 1);
@@ -31,8 +31,8 @@ namespace FirstJobber
                 // Functional/decorative ink stays at the edge. Broad redactions are consumed-only.
                 float y = consumed ? region.y + region.height * (.15f + .7f * u)
                     : paper ? region.y + region.height * (i % 2 == 0 ? .06f : .92f) : region.y + .025f * u;
-                float height = consumed ? .012f + strength * .065f * v : paper ? .01f + strength * .022f * v : .006f + .006f * u;
-                float alpha = Mathf.Clamp01(strength * (consumed ? .85f : paper ? .3f + strength * .15f : .18f) + burst * .08f);
+                float height = consumed ? .018f + strength * .10f * v : paper ? .014f + strength * .045f * v : .006f + .006f * u;
+                float alpha = Mathf.Clamp01(strength * (consumed ? 1f : paper ? .55f + strength * .25f : .38f) + burst * .2f);
                 Color c = color; c.a *= alpha;
                 float left = r.xMin + x * r.width;
                 float bottom = r.yMin + y * r.height;

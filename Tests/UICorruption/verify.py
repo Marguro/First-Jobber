@@ -7,12 +7,12 @@ def docs(p):
  s=re.sub(r'^%.*\n','',s,flags=re.M);s=re.sub(r'^--- !u!\d+ &-?\d+.*$','---',s,flags=re.M)
  return dict(zip(map(int,ids),yaml.safe_load_all(s)))
 def guid(p):return re.search(r'^guid: (\w+)',Path(str(p)+'.meta').read_text(),re.M)[1]
-asset=R/'Assets/Data/UI/UICorruption_Production.asset';cfg=docs(asset)[11400000]['MonoBehaviour'];assert [p['intensity'] for p in cfg['phases']]==[0,.35,.85]
+asset=R/'Assets/Data/UI/UICorruption_Production.asset';cfg=docs(asset)[11400000]['MonoBehaviour'];assert [p['intensity'] for p in cfg['phases']]==[0,.55,.95]
 for p,name in zip(cfg['phases'],['Phase_01_Normal','Phase_02_Deterioration','Phase_03_Despair']):assert p['phase']['guid']==guid(R/f'Assets/Data/Atmosphere/{name}.asset')
 sguid=guid(R/'Assets/Scripts/UI/UICorruptionSurface.cs');binding=guid(R/'Assets/Scripts/Atmosphere/AtmosphereSpriteBinding.cs');coverage=guid(R/'Assets/Scripts/Atmosphere/AtmosphereOverlayMask.cs')
 rects=images=0
 for p in [R/'Assets/Scenes/Game.unity',*(R/'Assets/Prefabs/UI').glob('*.prefab')]:
- d=docs(p);backup=R/'Temp/UICorruptionBefore'/p.relative_to(R)
+ d=docs(p);backup=R/'Temp/VisibleCorruptionBefore'/p.relative_to(R)
  if backup.exists():
   before=docs(backup)
   for i,old in before.items():
@@ -34,6 +34,23 @@ for p in [R/'Assets/Scenes/Game.unity',*(R/'Assets/Prefabs/UI').glob('*.prefab')
   view=next(v['MonoBehaviour'] for v in d.values() if v.get('MonoBehaviour',{}).get('m_Script',{}).get('guid')==guid(R/'Assets/Scripts/UI/ChoiceButtonUI.cs'));assert view['corruption']['fileID']==fid and c['textSource']==view['titleText']
 scene=docs(R/'Assets/Scenes/Game.unity');assert len([v for v in scene.values() if v.get('MonoBehaviour',{}).get('m_Script',{}).get('guid')==sguid])==7
 assert scene[1381945727]['MonoBehaviour']['corruptionSettings']['guid']==guid(asset)
+# Verify serialized tear sources are existing UI artwork, including runtime prefab backgrounds.
+tear_targets=0
+for path in [R/'Assets/Scenes/Game.unity',*(R/'Assets/Prefabs/UI').glob('*.prefab')]:
+ objects=docs(path)
+ for value in objects.values():
+  surface=value.get('MonoBehaviour',{})
+  if surface.get('m_Script',{}).get('guid')!=sguid:continue
+  source=surface.get('tearSource',{}).get('fileID',0)
+  if not source:continue
+  graphic=objects[source]['MonoBehaviour']
+  assert graphic['m_Script']['guid']=='fe87c0e1cc204ed48ad3b37840f39efc'
+  assert graphic['m_Sprite']['fileID']!=0
+  linked=objects[surface['tearPhaseBinding']['fileID']]['MonoBehaviour']
+  assert linked['m_Script']['guid']==binding and linked['image']['fileID']==source
+  tear_targets+=1
+assert tear_targets==12
+
 for p in ['Assets/Scripts/Core/ChoiceManager.cs','Assets/Scripts/Core/GameFlowManager.cs','Assets/Scripts/Atmosphere/AtmosphereManager.cs','Assets/Scripts/UI/ScrollingBackground.cs','Assets/Scripts/Core/DayBgmController.cs','Assets/Scripts/UI/UISfxPlayer.cs','Assets/Scripts/UI/UISfxSettings.cs','Assets/Scripts/Endings/EndingController.cs']:
  assert subprocess.run(['git','diff','--quiet','--',p],cwd=R).returncode==0,'Out-of-scope system changed: '+p
 changed=subprocess.check_output(['git','diff','--name-only'],cwd=R,text=True).splitlines();assert not any(p.startswith(('Assets/Data/Production/','Assets/Sprites/','Assets/Resources/Localization/')) for p in changed)
@@ -75,6 +92,22 @@ namespace FirstJobber {
  public class GameSession{public List<string> consumedChoiceIds=new List<string>(),consumedCompanyIds=new List<string>(),interviewQuestionIds=new List<string>();public List<Selection> selections=new List<Selection>();public List<HistoryEntry> history=new List<HistoryEntry>();public int day=1,interviewIndex;public string selectedCompanyId;public float confirmedConfidence;public string GetSelectedChoiceId(string id){foreach(var x in selections)if(x.categoryId==id)return x.choiceId;return null;}public void SetSelection(string cat,string choice){selections.RemoveAll(s=>s.categoryId==cat);selections.Add(new Selection{categoryId=cat,choiceId=choice});}}
 }
 '''
+
+# Additional API doubles exercise actual tear clipping and current source-sprite copies.
+s=s.replace('public class CanvasRenderer:Component{}','public class CanvasRenderer:Component{public bool cull;}')
+s=s.replace('public Vector2 anchoredPosition,anchorMin,anchorMax,offsetMin,offsetMax;', 'public Vector2 anchoredPosition,anchorMin,anchorMax,offsetMin,offsetMax,pivot;')
+s=s.replace('public static class Mathf {','public static class Mathf {public static float Sqrt(float v)=>(float)Math.Sqrt(v);public static float Abs(float v)=>Math.Abs(v);public static int Clamp(int v,int a,int b)=>Math.Max(a,Math.Min(b,v));')
+s=s.replace('public struct Color{','public class HideInInspector:Attribute{}public struct Color{public static Color operator*(Color a,Color b)=>new Color(a.r*b.r,a.g*b.g,a.b*b.b,a.a*b.a);')
+s=s.replace('public static class Debug {','public static class Debug {public static void Log(string s,UnityEngine.Object o=null){}')
+s=s.replace('public class TMP_Text:MonoBehaviour{','public class TMP_Text:MonoBehaviour{public CanvasRenderer canvasRenderer=new CanvasRenderer();')
+s=s.replace('public class Image:MonoBehaviour {public Sprite sprite;}','''public class Image:MaskableGraphic {public Sprite sprite,overrideSprite;public int type,fillMethod,fillOrigin;public bool preserveAspect,fillCenter,fillClockwise,useSpriteMesh;public float fillAmount,pixelsPerUnitMultiplier;public object material;public CanvasRenderer canvasRenderer=new CanvasRenderer();protected override void OnPopulateMesh(VertexHelper v){v.Clear();var a=new UIVertex{position=new Vector3(-200,-40,0),uv0=new Vector4(0,0,0,0),color=new Color32(255,255,255,255)};var b=a;b.position=new Vector3(200,-40,0);b.uv0=new Vector4(1,0,0,0);var c=a;c.position=new Vector3(200,40,0);c.uv0=new Vector4(1,1,0,0);var d=a;d.position=new Vector3(-200,40,0);d.uv0=new Vector4(0,1,0,0);v.AddVert(a);v.AddVert(b);v.AddVert(c);v.AddVert(d);v.AddTriangle(0,1,2);v.AddTriangle(0,2,3);}}''')
+s=s.replace('public class VertexHelper{public List<Vector3> vertices=new List<Vector3>();public int currentVertCount=>vertices.Count;public void Clear(){vertices.Clear();}public void AddVert(Vector3 v,Color c,Vector2 uv){vertices.Add(v);}public void AddTriangle(int a,int b,int c){}}','''public class VertexHelper{public List<Vector3> vertices=new List<Vector3>();public List<UIVertex> data=new List<UIVertex>();public List<int> indices=new List<int>();public int currentVertCount=>vertices.Count;public void Clear(){vertices.Clear();data.Clear();indices.Clear();}public void AddVert(Vector3 v,Color c,Vector2 uv){vertices.Add(v);data.Add(new UIVertex{position=v});}public void AddVert(UIVertex v){vertices.Add(v.position);data.Add(v);}public void AddTriangle(int a,int b,int c){indices.Add(a);indices.Add(b);indices.Add(c);}public void GetUIVertexStream(List<UIVertex> stream){stream.Clear();foreach(int i in indices)stream.Add(data[i]);}}''')
+s=s.replace('public static Vector3 one=>','public static Vector3 LerpUnclamped(Vector3 a,Vector3 b,float t)=>new Vector3(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,a.z+(b.z-a.z)*t);public static Vector3 one=>')
+s+='''
+namespace UnityEngine {public struct Vector4{public float x,y,z,w;public Vector4(float a,float b,float c,float d){x=a;y=b;z=c;w=d;}public static Vector4 LerpUnclamped(Vector4 a,Vector4 b,float t)=>new Vector4(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,a.z+(b.z-a.z)*t,a.w+(b.w-a.w)*t);}public struct Color32{public byte r,g,b,a;public Color32(byte r,byte g,byte b,byte a){this.r=r;this.g=g;this.b=b;this.a=a;}public static Color32 Lerp(Color32 a,Color32 b,float t)=>a;}public struct UIVertex{public Vector3 position;public Vector4 uv0,uv1;public Color32 color;}}
+namespace FirstJobber {public class AtmosphereSpriteBinding:UnityEngine.MonoBehaviour{}public class AtmosphereOverlayMask:UnityEngine.MonoBehaviour{public AtmosphereSpriteBinding Binding;public void Configure(AtmosphereSpriteBinding b){Binding=b;}}}
+'''
+
 (T/'Support.cs').write_text(s,encoding='utf-8')
 # Compile the actual production remnant-filter method, with real ChoiceManager/depletion calculations.
 resume=(R/'Assets/Scripts/Resume/ResumeEditorController.cs').read_text();start=resume.index('        void ApplyRemnantPresentation()');end=resume.index('\n        /// <summary>',start);method=resume[start:end]
@@ -85,9 +118,9 @@ public static void Test(UICorruptionSettings settings){var db=new GameDatabase()
 fixture='using FirstJobber;using UnityEngine;static class AuthoredCorruption {public static UICorruptionSettings Create(){var s=new UICorruptionSettings();'
 for k in ['masterIntensity','maximumGlitchFrequency','availableMultiplier','selectedMultiplier','consumedMultiplier','disabledMultiplier','consumedRemnantOpacity']:fixture+=f's.{k}={float(cfg[k])}f;'
 for p in cfg['phases']:
- fixture+='s.phases.Add(new UICorruptionSettings.PhaseStyle{phase=new AtmospherePhaseData(),'+','.join(k+'='+str(float(p[k]))+'f' for k in ['intensity','burstDuration','textOffset','ghostOpacity','jitterPixels','redactionStrength'])+f",burstInterval=new Vector2({p['burstInterval']['x']}f,{p['burstInterval']['y']}f)"+'});'
+ fixture+='s.phases.Add(new UICorruptionSettings.PhaseStyle{phase=new AtmospherePhaseData(),'+','.join(k+'='+str(float(p[k]))+'f' for k in ['intensity','burstDuration','textOffset','ghostOpacity','jitterPixels','redactionStrength','horizontalTearStrength','horizontalTearFrequency'])+f",ghostLayers={p['ghostLayers']},burstComplexity={p['burstComplexity']},burstDurationRange=new Vector2({p['burstDurationRange']['x']}f,{p['burstDurationRange']['y']}f),burstInterval=new Vector2({p['burstInterval']['x']}f,{p['burstInterval']['y']}f)"+'});'
 fixture+='return s;}}';(T/'AuthoredCorruption.cs').write_text(fixture)
 D=Path('C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data');mono=D/'MonoBleedingEdge/bin/mono.exe';out=T/'RuntimeHarness.exe'
-files=['UI/UICorruptionSettings.cs','UI/UICorruptionSurface.cs','UI/UIInkCorruptionGraphic.cs','UI/UIVisualMotion.cs','UI/UIAnimationSettings.cs','Core/ChoiceManager.cs','Core/ResumeConfidenceCalculator.cs']
+files=['UI/UICorruptionSettings.cs','UI/UICorruptionSurface.cs','UI/UIInkCorruptionGraphic.cs','UI/UIHorizontalTearGraphic.cs','UI/UIVisualMotion.cs','UI/UIAnimationSettings.cs','Core/ChoiceManager.cs','Core/ResumeConfidenceCalculator.cs']
 subprocess.run([str(mono),str(D/'MonoBleedingEdge/lib/mono/4.5/csc.exe'),'/nologo','/langversion:9','/nowarn:0649,0067','/out:'+str(out),str(T/'Support.cs'),str(T/'RemnantsProbe.cs'),str(T/'AuthoredCorruption.cs'),str(Path(__file__).with_name('RuntimeHarness.cs')),*[str(R/'Assets/Scripts'/p) for p in files]],check=True)
 subprocess.run([str(mono),str(out)],check=True)

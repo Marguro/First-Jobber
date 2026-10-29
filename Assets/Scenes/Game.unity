@@ -23144,6 +23144,8 @@ MonoBehaviour:
   role: 1
   inkHost: {fileID: 1661852270}
   textSource: {fileID: 1270481811}
+  tearPhaseBinding: {fileID: 1661852274}
+  tearSource: {fileID: 1661852272}
   intensityMultiplier: 0.9
   stableId: production-ui/1661852270
   inkRegion: {x: 0.05, y: 0.08, width: 0.8, height: 0.78}
@@ -23164,6 +23166,8 @@ MonoBehaviour:
   role: 2
   inkHost: {fileID: 1420842803}
   textSource: {fileID: 0}
+  tearPhaseBinding: {fileID: 0}
+  tearSource: {fileID: 0}
   intensityMultiplier: 0.45
   stableId: production-ui/1420842803
   inkRegion: {x: 0.05, y: 0.06, width: 0.9, height: 0.05}
@@ -23184,6 +23188,8 @@ MonoBehaviour:
   role: 1
   inkHost: {fileID: 2120000001}
   textSource: {fileID: 1243443729}
+  tearPhaseBinding: {fileID: 2141000139}
+  tearSource: {fileID: 2120000003}
   intensityMultiplier: 0.75
   stableId: production-ui/2120000001
   inkRegion: {x: 0.07, y: 0.055, width: 0.82, height: 0.04}
@@ -23204,6 +23210,8 @@ MonoBehaviour:
   role: 1
   inkHost: {fileID: 1617775025}
   textSource: {fileID: 2120000033}
+  tearPhaseBinding: {fileID: 1617775028}
+  tearSource: {fileID: 1617775026}
   intensityMultiplier: 0.8
   stableId: production-ui/1617775025
   inkRegion: {x: 0.08, y: 0.06, width: 0.8, height: 0.04}
@@ -23224,6 +23232,8 @@ MonoBehaviour:
   role: 1
   inkHost: {fileID: 1633187480}
   textSource: {fileID: 0}
+  tearPhaseBinding: {fileID: 2141000135}
+  tearSource: {fileID: 1633187481}
   intensityMultiplier: 0.8
   stableId: production-ui/1633187480
   inkRegion: {x: 0.08, y: 0.05, width: 0.8, height: 0.05}
@@ -23244,6 +23254,8 @@ MonoBehaviour:
   role: 3
   inkHost: {fileID: 977193194}
   textSource: {fileID: 0}
+  tearPhaseBinding: {fileID: 977193199}
+  tearSource: {fileID: 977193197}
   intensityMultiplier: 1
   stableId: production-ui/977193194
   inkRegion: {x: 0.03, y: 0.04, width: 0.92, height: 0.02}
@@ -23264,6 +23276,8 @@ MonoBehaviour:
   role: 2
   inkHost: {fileID: 1007951756}
   textSource: {fileID: 1007951757}
+  tearPhaseBinding: {fileID: 0}
+  tearSource: {fileID: 0}
   intensityMultiplier: 0.8
   stableId: production-ui/1007951756
   inkRegion: {x: 0.08, y: 0.08, width: 0.8, height: 0.04}

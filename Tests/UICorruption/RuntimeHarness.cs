@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -15,6 +15,7 @@ class CorruptionTests {
  static T Make<T>()where T:Component,new()=>new GameObject().Add(new T());
  static UICorruptionSurface Surface(UICorruptionSettings s,string id,ChoiceState state,out TMP_Text label){
   var surface=Make<UICorruptionSurface>();label=surface.gameObject.Add(new TMP_Text());label.text="มหาวิทยาลัยกากินัง บ้านหนองขึ่ม";label.font=new object();label.fontSharedMaterial=new object();label.rectTransform.anchoredPosition=new Vector2(13,47);
+  var paper=Make<Image>();paper.transform.parent=surface.transform;paper.sprite=paper.overrideSprite=new Sprite();paper.color=new Color(1,1,1,1);Set(surface,"tearSource",paper);
   Set(surface,"settings",s);Set(surface,"inkHost",surface.transform);Set(surface,"textSource",label);Call(surface,"OnEnable");surface.BindChoice(id,state);return surface;
  }
  static void Main(){
@@ -39,7 +40,22 @@ class CorruptionTests {
   s.reduceMotion=false;s.enableTransientGlitches=false;s.RefreshPresentation();Check(Get(a,"schedule")==null,"transient enable flag works");
   s.masterIntensity=0;s.RefreshPresentation();Check(!ink.gameObject.activeSelf&&!ghost.gameObject.activeSelf,"master zero restores clean state");s.masterIntensity=1;s.enableTransientGlitches=true;s.RefreshPresentation();Check(ink.gameObject.activeSelf,"settings change reapplies cached layers");
   Call(a,"OnDisable");Call(b,"OnDisable");DOTween.CompleteAll();Check(!ink.gameObject.activeSelf&&Get(a,"schedule")==null,"disable cleanup no stale callbacks");
-  var drawing=Make<UIInkCorruptionGraphic>();var vh=new VertexHelper();drawing.Configure(stable,.15f,true,new Rect(.07f,.2f,.62f,.6f),s.inkColor);Draw(drawing,vh);int modest=vh.currentVertCount;drawing.Configure(stable,.8f,true,new Rect(.07f,.2f,.62f,.6f),s.inkColor);Draw(drawing,vh);Check(vh.currentVertCount>modest&&vh.currentVertCount<=16,"heavier ink uses bounded geometry");drawing.Configure(stable,0,true,new Rect(),s.inkColor);Draw(drawing,vh);Check(vh.currentVertCount==0,"no ink at zero strength");
+  var drawing=Make<UIInkCorruptionGraphic>();var vh=new VertexHelper();drawing.Configure(stable,.15f,true,new Rect(.07f,.2f,.62f,.6f),s.inkColor);Draw(drawing,vh);int modest=vh.currentVertCount;drawing.Configure(stable,.8f,true,new Rect(.07f,.2f,.62f,.6f),s.inkColor);Draw(drawing,vh);Check(vh.currentVertCount>modest&&vh.currentVertCount<=24,"heavier ink uses bounded geometry");drawing.Configure(stable,0,true,new Rect(),s.inkColor);Draw(drawing,vh);Check(vh.currentVertCount==0,"no ink at zero strength");
+  // Real clipping implementation, synthetic source mesh: check displacement, interpolated UVs and finite geometry.
+  var paper=Make<Image>();paper.overrideSprite=paper.sprite=new Sprite();paper.color=new Color(1,1,1,1);
+  var torn=Make<UIHorizontalTearGraphic>();torn.Configure(paper,32,2,.95f);var tearMesh=new VertexHelper();
+  typeof(UIHorizontalTearGraphic).GetMethod("OnPopulateMesh",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(torn,new object[]{tearMesh});
+  Check(tearMesh.currentVertCount>0&&tearMesh.currentVertCount<=80,"horizontal tear emits bounded clipped mesh");
+  foreach(var vertex in tearMesh.data){float y=vertex.position.y;bool band1=y>=-24.001f&&y<=-7.999f;bool band3=y>=7.999f&&y<=24.001f;Check(band1||band3,"tear escaped selected horizontal bands");float offset=band1?32:-32*.65f;Check(Near(vertex.uv0.x,(vertex.position.x-offset+200)/400)&&Near(vertex.uv0.y,(y+40)/80),"clipped tear UV interpolation wrong");}
+  var changedSprite=new Sprite();paper.overrideSprite=changedSprite;torn.Configure(paper,-20,2,.95f);Check(object.ReferenceEquals(torn.sprite,changedSprite)&&!torn.raycastTarget,"tear follows current phase sprite and never blocks clicks");
+  torn.Configure(paper,0,2,.95f);typeof(UIHorizontalTearGraphic).GetMethod("OnPopulateMesh",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(torn,new object[]{tearMesh});Check(tearMesh.currentVertCount==0,"zero offset produces no fragments");
+  // Phase3 has three reused ghosts and manual preview reliably renders a tear.
+  s.enableTransientGlitches=true;s.reduceMotion=false;AtmosphereManager.Instance.AppliedPhase=phase3.phase;TMP_Text live;var c=Surface(s,"preview",ChoiceState.Consumed,out live);
+  var echoes=(TextMeshProUGUI[])Get(c,"echoes");Check(echoes.Length==3&&echoes[2].gameObject.activeSelf&&echoes[0].color.a>.5f,"Phase3 echoes must be visibly opaque, not multiplied down to near zero");
+  c.PreviewBurst();var currentBurst=(Sequence)Get(c,"burst");Check(currentBurst!=null,"manual visible preview starts immediately");currentBurst.First();var tear=(UIHorizontalTearGraphic)Get(c,"tear");Check(tear.enabled&&tear.gameObject.activeSelf,"manual preview actually enables rendered tear layer");DOTween.CompleteAll();Check(!tear.enabled,"tear hidden after burst without moving source");
+  live.canvasRenderer.cull=true;c.PreviewBurst();Check(Get(c,"burst")==null,"offscreen masked labels cannot consume burst budget");live.canvasRenderer.cull=false;
+  var echoesPose=live.rectTransform.anchoredPosition;int beforeObjects=GameObject.created;for(int i=0;i<40;i++){c.PreviewBurst();DOTween.CompleteAll();}Check(GameObject.created==beforeObjects&&Near(live.rectTransform.anchoredPosition.x,echoesPose.x),"burst loops never grow objects or move source hitbox");
+  AtmosphereManager.Instance.AppliedPhase=normal.phase;AtmosphereManager.Raise(normal.phase);Check(!tear.gameObject.activeSelf&&!echoes[0].gameObject.activeSelf&&Get(c,"burst")==null,"Phase1 removes all transient and static layers");Call(c,"OnDisable");
   RemnantsProbe.Test(s);
   Console.WriteLine("PASS actual phase/state policy, stable pooled layers, localization/font/material echoes, global burst limit, reduced motion, interruption cleanup, fixed source RectTransforms, bounded ink mesh, remnant visibility vs real ChoiceManager availability/depletion (API doubles; not native Play Mode).");
  }

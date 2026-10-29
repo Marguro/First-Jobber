@@ -1077,6 +1077,8 @@ MonoBehaviour:
   role: 0
   inkHost: {fileID: 850000000000000001}
   textSource: {fileID: 5557010667304815370}
+  tearPhaseBinding: {fileID: 7783337574798386231}
+  tearSource: {fileID: 5205809760930852328}
   intensityMultiplier: 1
   stableId: EndingChoiceButton
   inkRegion: {x: 0.07, y: 0.2, width: 0.62, height: 0.6}

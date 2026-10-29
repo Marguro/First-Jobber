@@ -16,11 +16,13 @@ namespace FirstJobber
         public bool reduceMotion;
         [Tooltip("Shared upper limit across all surfaces, not per button. No fullscreen flashing.")]
         [Range(.05f, 1)] public float maximumGlitchFrequency = .65f;
+        public Color ghostRed = new Color(.32f, .055f, .04f, 1);
+        public Color ghostBlue = new Color(.04f, .075f, .18f, 1);
         public Color inkColor = new Color(.055f, .035f, .03f, 1);
         [Header("Choice presentation states")]
-        [Range(0, 2)] public float availableMultiplier = .28f;
-        [Range(0, 2)] public float selectedMultiplier = .5f;
-        [Range(0, 2)] public float consumedMultiplier = 1.35f;
+        [Range(0, 2)] public float availableMultiplier = .5f;
+        [Range(0, 2)] public float selectedMultiplier = .7f;
+        [Range(0, 2)] public float consumedMultiplier = 1.45f;
         [Range(0, 2)] public float disabledMultiplier = .55f;
         public bool showConsumedRemnants = true;
         [Tooltip("Opacity of the NEW ink/echo layers on consumed entries. Original sprite colors/alpha are never changed.")]
@@ -33,10 +35,18 @@ namespace FirstJobber
             [Range(0, 1)] public float intensity;
             [Tooltip("Random minimum/maximum seconds between attempts on each visible surface (minimum 1 second). Shared global frequency limit still applies.")]
             public Vector2 burstInterval = new Vector2(10, 18);
-            [Range(.08f, .6f)] public float burstDuration = .18f;
+            [HideInInspector] public float burstDuration = .18f; // Legacy assets: used when the range is unset.
+            [Tooltip("Minimum/maximum burst length in seconds. Zero uses the legacy duration.")]
+            public Vector2 burstDurationRange;
+            [Range(1, 3)] public int burstComplexity = 1;
+            [Min(0)] public float horizontalTearStrength = 10;
+            [Tooltip("Probability (0-1) of drawing displaced paper bands per burst; intervals above control timing.")]
+            [Range(0, 1)] public float horizontalTearFrequency = .6f;
+            [Range(0, 3)] public int ghostLayers = 1;
             [Min(0)] public float textOffset = 1.5f;
-            [Range(0, .5f)] public float ghostOpacity = .12f;
+            [Range(0, 1)] public float ghostOpacity = .12f;
             [Min(0)] public float jitterPixels = 1f;
+            [Tooltip("Ink corruption opacity and mark thickness. Broad redactions are limited to consumed choices.")]
             [Range(0, 1)] public float redactionStrength = .32f;
         }
         public PhaseStyle Resolve(AtmospherePhaseData phase)
@@ -54,6 +64,8 @@ namespace FirstJobber
                 : role == UICorruptionRole.DialogueFrame ? .2f : 1f;
             return Mathf.Clamp01(phase.intensity * masterIntensity * amount * Mathf.Max(0, localMultiplier));
         }
+        // Perceptual gain avoids multiplying tiny phase/state values into near-invisible offsets.
+        public static float VisualGain(float severity) => Mathf.Sqrt(Mathf.Clamp01(severity));
         // FNV-1a, not string.GetHashCode: repeatable through pooling, categories, locales and process restarts.
         public static uint StableSeed(string id)
         {

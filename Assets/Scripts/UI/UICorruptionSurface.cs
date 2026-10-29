@@ -16,6 +16,10 @@ namespace FirstJobber
         [SerializeField] RectTransform inkHost;
         [Tooltip("Optional nonessential label to echo. Do not assign dialogue body, speaker name, salary or HR portrait.")]
         [SerializeField] TMP_Text textSource;
+        [Tooltip("Decorative Image whose CURRENT sprite is copied for horizontal print tears. Never assign an HR portrait or video.")]
+        [SerializeField] Image tearSource;
+        [Tooltip("Existing binding controlling Tear Source; may live on the button root rather than its Background child.")]
+        [SerializeField] AtmosphereSpriteBinding tearPhaseBinding;
         [SerializeField, Range(0, 2)] float intensityMultiplier = 1;
         [SerializeField] string stableId = "paper";
         [SerializeField] Rect inkRegion = new Rect(.06f, .2f, .64f, .6f);
@@ -24,12 +28,17 @@ namespace FirstJobber
         ChoiceState state;
         UICorruptionSettings.PhaseStyle profile;
         UIInkCorruptionGraphic ink;
-        TextMeshProUGUI ghost;
+        TextMeshProUGUI ghost; // First echo retained for diagnostics.
+        readonly TextMeshProUGUI[] echoes = new TextMeshProUGUI[3];
+        readonly Vector2[] echoRest = new Vector2[3];
+        readonly Color[] echoColor = new Color[3];
+        readonly bool[] echoRegistered = new bool[3];
+        UIHorizontalTearGraphic tear;
+        bool tearing;
         CanvasGroup[] visibilityGroups;
         Vector2 restGhost;
         uint seed;
         float severity;
-        bool registeredGhost;
         Coroutine schedule;
         Sequence burst;
         Tween delayedEntrance;
@@ -64,7 +73,8 @@ namespace FirstJobber
             StopPresentation();
             // Only objects created/owned by this component; pooling and phase changes never destroy them.
             if (ink != null) Destroy(ink.gameObject);
-            if (ghost != null) Destroy(ghost.gameObject);
+            for (int i = 0; i < echoes.Length; i++) if (echoes[i] != null) Destroy(echoes[i].gameObject);
+            if (tear != null) Destroy(tear.gameObject);
         }
         public void BindChoice(string id, ChoiceState choiceState)
         {
@@ -106,6 +116,10 @@ namespace FirstJobber
                 schedule = StartCoroutine(Schedule());
             }
         }
+        // Functional options keep quieter permanent echoes; bursts reveal their full ink density.
+        // Consumed/decorative surfaces retain the severe permanent treatment.
+        float StaticEchoWeight => role == UICorruptionRole.Choice && state != ChoiceState.Consumed ? .35f : 1f;
+        static Color WithAlpha(Color color, float weight) { color.a *= weight; return color; }
         float LayerOpacity => state == ChoiceState.Consumed ? settings.consumedRemnantOpacity : 1;
         void EnsureLayers()
         {
@@ -119,11 +133,28 @@ namespace FirstJobber
             }
             if (textSource != null && ghost == null)
             {
-                var go = new GameObject("PrintEcho (visual only)", typeof(RectTransform), typeof(CanvasRenderer));
-                var rt = (RectTransform)go.transform; rt.SetParent(textSource.rectTransform, false); Stretch(rt);
-                go.layer = textSource.gameObject.layer;
+                // A bounded pool, allocated once. Phase/locale/category changes reuse these layers.
+                for (int i = 0; i < echoes.Length; i++)
+                {
+                    var go = new GameObject("PrintEcho_" + (i + 1) + " (visual only)", typeof(RectTransform), typeof(CanvasRenderer));
+                    var rt = (RectTransform)go.transform; rt.SetParent(textSource.rectTransform, false); Stretch(rt);
+                    go.layer = textSource.gameObject.layer;
+                    go.AddComponent<LayoutElement>().ignoreLayout = true;
+                    echoes[i] = go.AddComponent<TextMeshProUGUI>(); echoes[i].raycastTarget = false; echoes[i].maskable = true;
+                }
+                ghost = echoes[0];
+            }
+            if (tearSource != null && tear == null)
+            {
+                var go = new GameObject("HorizontalPrintTear (visual only)", typeof(RectTransform), typeof(CanvasRenderer));
+                var rt = (RectTransform)go.transform; rt.SetParent(tearSource.rectTransform, false);
+                rt.pivot = tearSource.rectTransform.pivot; Stretch(rt); // Same local geometry, including non-centered author pivots.
+                go.layer = tearSource.gameObject.layer;
                 go.AddComponent<LayoutElement>().ignoreLayout = true;
-                ghost = go.AddComponent<TextMeshProUGUI>(); ghost.raycastTarget = false; ghost.maskable = true; registeredGhost = false;
+                tear = go.AddComponent<UIHorizontalTearGraphic>(); tear.raycastTarget = false;
+                // Use exactly the existing current-phase exemption policy on the new copy, too.
+                go.AddComponent<AtmosphereOverlayMask>().Configure(tearPhaseBinding != null ? tearPhaseBinding : tearSource.GetComponent<AtmosphereSpriteBinding>());
+                go.SetActive(false);
             }
         }
         static void Stretch(RectTransform rt)
@@ -134,36 +165,45 @@ namespace FirstJobber
         void SyncGhost()
         {
             if (ghost == null || textSource == null || profile == null) return;
-            ghost.gameObject.SetActive(textSource.gameObject.activeInHierarchy && profile.ghostOpacity > 0);
-            // Assign only differing content/properties. No Update/string corruption/TMP rebuilding loop.
-            if (ghost.text != textSource.text) ghost.text = textSource.text;
-            if (ghost.font != textSource.font) ghost.font = textSource.font;
-            if (ghost.fontSharedMaterial != textSource.fontSharedMaterial) ghost.fontSharedMaterial = textSource.fontSharedMaterial;
-            if (ghost.fontSize != textSource.fontSize) ghost.fontSize = textSource.fontSize;
-            ghost.fontStyle = textSource.fontStyle;
-            ghost.enableAutoSizing = textSource.enableAutoSizing;
-            ghost.fontSizeMin = textSource.fontSizeMin; ghost.fontSizeMax = textSource.fontSizeMax;
-            ghost.alignment = textSource.alignment; ghost.textWrappingMode = textSource.textWrappingMode;
-            ghost.overflowMode = textSource.overflowMode; ghost.margin = textSource.margin;
-            ghost.richText = textSource.richText; ghost.isRightToLeftText = textSource.isRightToLeftText;
-            ghost.characterSpacing = textSource.characterSpacing; ghost.wordSpacing = textSource.wordSpacing;
-            ghost.lineSpacing = textSource.lineSpacing; ghost.paragraphSpacing = textSource.paragraphSpacing;
-            ghost.spriteAsset = textSource.spriteAsset;
-            ghost.maxVisibleCharacters = textSource.maxVisibleCharacters;
-            Color c = settings.inkColor; c.a *= profile.ghostOpacity * severity * LayerOpacity; ghost.color = c;
-            float direction = UICorruptionSettings.Sample(seed, 19) > .5f ? 1 : -1;
-            restGhost = new Vector2(direction * profile.textOffset * severity, profile.textOffset * severity * (UICorruptionSettings.Sample(seed, 20) - .5f) * .25f);
-            ghost.rectTransform.anchoredPosition = restGhost;
-            if (!registeredGhost)
+            int count = Mathf.Clamp(profile.ghostLayers, 0, echoes.Length);
+            float gain = UICorruptionSettings.VisualGain(severity);
+            for (int i = 0; i < echoes.Length; i++)
             {
-                registeredGhost = true;
-                // Reuse the same immediate Thai font/glyph/word-break path as dynamic choice labels.
-                ThaiTextApplier.Register(ghost);
+                var echo = echoes[i];
+                bool active = i < count && textSource.gameObject.activeInHierarchy && profile.ghostOpacity > 0;
+                echo.gameObject.SetActive(active);
+                if (!active) continue;
+                if (echo.text != textSource.text) echo.text = textSource.text;
+                if (echo.font != textSource.font) echo.font = textSource.font;
+                if (echo.fontSharedMaterial != textSource.fontSharedMaterial) echo.fontSharedMaterial = textSource.fontSharedMaterial;
+                if (echo.fontSize != textSource.fontSize) echo.fontSize = textSource.fontSize;
+                echo.fontStyle = textSource.fontStyle;
+                echo.enableAutoSizing = textSource.enableAutoSizing;
+                echo.fontSizeMin = textSource.fontSizeMin; echo.fontSizeMax = textSource.fontSizeMax;
+                echo.alignment = textSource.alignment; echo.textWrappingMode = textSource.textWrappingMode;
+                echo.overflowMode = textSource.overflowMode; echo.margin = textSource.margin;
+                echo.richText = textSource.richText; echo.isRightToLeftText = textSource.isRightToLeftText;
+                echo.characterSpacing = textSource.characterSpacing; echo.wordSpacing = textSource.wordSpacing;
+                echo.lineSpacing = textSource.lineSpacing; echo.paragraphSpacing = textSource.paragraphSpacing;
+                echo.spriteAsset = textSource.spriteAsset; echo.maxVisibleCharacters = textSource.maxVisibleCharacters;
+                Color c = i == 1 ? settings.ghostRed : i == 2 ? settings.ghostBlue : settings.inkColor;
+                c.a *= profile.ghostOpacity * gain * LayerOpacity / (1f + i * .25f);
+                echoColor[i] = c; echo.color = WithAlpha(c, StaticEchoWeight);
+                float direction = (UICorruptionSettings.Sample(seed, 19) > .5f ? 1 : -1) * (i == 1 ? -1 : 1);
+                echoRest[i] = new Vector2(direction * profile.textOffset * gain * (1f + i * .35f),
+                    profile.textOffset * gain * (UICorruptionSettings.Sample(seed, 20 + i) - .5f) * .25f);
+                echoRest[i] *= StaticEchoWeight;
+                echo.rectTransform.anchoredPosition = echoRest[i];
+                if (!echoRegistered[i]) { echoRegistered[i] = true; ThaiTextApplier.Register(echo); }
             }
+            restGhost = echoRest[0];
         }
         bool Visible()
         {
-            if (!gameObject.activeInHierarchy) return false;
+            if (!gameObject.activeInHierarchy || inkHost == null || !inkHost.gameObject.activeInHierarchy) return false;
+            // RectMask2D culls scrolled-out labels. Hidden list items must not consume the shared burst budget.
+            if (textSource != null && (!textSource.isActiveAndEnabled || textSource.canvasRenderer.cull)) return false;
+            if (textSource == null && tearSource != null && (!tearSource.isActiveAndEnabled || tearSource.canvasRenderer.cull)) return false;
             if (visibilityGroups != null) for (int i = 0; i < visibilityGroups.Length; i++)
                 if (visibilityGroups[i] != null && visibilityGroups[i].alpha < .05f) return false;
             return true;
@@ -180,32 +220,72 @@ namespace FirstJobber
             }
         }
         [ContextMenu("Preview one burst (Play Mode, current phase only)")]
-        public void TryBurst()
+        public void TryBurst() { StartBurst(false); }
+        [ContextMenu("Force visible preview burst (Play Mode, ignores cooldown only)")]
+        public void PreviewBurst() { StartBurst(true); }
+        public bool CanPreview => Application.isPlaying && isActiveAndEnabled && severity > 0 && settings != null
+            && settings.enableTransientGlitches && !settings.reduceMotion && burst == null && Visible();
+        [ContextMenu("Log corruption target and current severity")]
+        void LogTarget() { Debug.Log("[UI Corruption] " + name + " id=" + stableId + " severity=" + severity + " visible=" + Visible() + " tear=" + (tearSource != null), this); }
+        bool StartBurst(bool manual)
         {
             if (!Application.isPlaying || !isActiveAndEnabled || severity <= 0 || profile == null || settings == null
-                || !settings.enableTransientGlitches || settings.reduceMotion || burst != null || !Visible()) return;
+                || !settings.enableTransientGlitches || settings.reduceMotion || burst != null || !Visible()) return false;
             float now = Time.unscaledTime;
-            if (now < nextGlobalBurst || lastBurst == this && now < nextGlobalBurst + 1f) return;
+            if (!manual && (now < nextGlobalBurst || lastBurst == this && now < nextGlobalBurst + 1f)) return false;
             nextGlobalBurst = now + 1f / Mathf.Clamp(settings.maximumGlitchFrequency, .05f, 1f); lastBurst = this;
-            float amount = profile.jitterPixels * severity;
+            float gain = UICorruptionSettings.VisualGain(severity);
+            float amount = profile.jitterPixels * gain;
             float shift = ((float)Random.NextDouble() > .5f ? 1 : -1) * amount;
-            float seconds = Mathf.Clamp(profile.burstDuration, .08f, .6f);
-            burst = DOTween.Sequence().SetUpdate(true)
-                .AppendCallback(() => BurstFrame(shift, severity))
-                .AppendInterval(seconds * .45f)
-                .AppendCallback(() => BurstFrame(-shift * .4f, severity * .45f))
-                .AppendInterval(seconds * .55f)
-                .OnComplete(() => { burst = null; ResetBurst(); });
+            float low = profile.burstDurationRange.x > 0 ? profile.burstDurationRange.x : profile.burstDuration;
+            float high = Mathf.Max(low, profile.burstDurationRange.y);
+            float seconds = Mathf.Clamp(Mathf.Lerp(low, high, (float)Random.NextDouble()), .08f, .6f);
+            int stages = Mathf.Clamp(profile.burstComplexity, 1, 3);
+            tearing = tear != null && profile.horizontalTearFrequency > 0 && (manual || Random.NextDouble() < profile.horizontalTearFrequency);
+            float firstWeight = .7f + .6f * (float)Random.NextDouble();
+            float secondWeight = .7f + .6f * (float)Random.NextDouble();
+            float thirdWeight = .7f + .6f * (float)Random.NextDouble();
+            float totalWeight = firstWeight + (stages > 1 ? secondWeight : 0) + (stages > 2 ? thirdWeight : 0);
+            burst = DOTween.Sequence().SetUpdate(true);
+            for (int i = 0; i < stages; i++)
+            {
+                float offset = shift * (i == 0 ? .7f : i == 1 ? -.35f : 1.2f);
+                float stageTime = seconds * (i == 0 ? firstWeight : i == 1 ? secondWeight : thirdWeight) / totalWeight;
+                float hold = .6f + .2f * (float)Random.NextDouble();
+                burst.AppendCallback(() => BurstFrame(offset, severity));
+                burst.AppendInterval(stageTime * hold);
+                burst.AppendCallback(ResetBurst);
+                burst.AppendInterval(stageTime * (1f - hold));
+            }
+            burst.OnComplete(() => { burst = null; ResetBurst(); });
+            return true;
         }
         void BurstFrame(float offset, float inkAmount)
         {
-            if (ghost != null) ghost.rectTransform.anchoredPosition = restGhost + new Vector2(offset, 0);
+            if (!Visible()) { ResetBurst(); return; }
+            for (int i = 0; i < echoes.Length; i++)
+                if (echoes[i] != null)
+                {
+                    echoes[i].color = echoColor[i];
+                    echoes[i].rectTransform.anchoredPosition = echoRest[i] + new Vector2(offset * (i == 1 ? -.8f : 1f), 0);
+                }
             if (ink != null) { ink.rectTransform.anchoredPosition = new Vector2(offset, 0); ink.SetBurst(inkAmount); }
+            if (tearing && tear != null && tearSource != null)
+            {
+                float direction = offset < 0 ? -1f : 1f;
+                tear.gameObject.SetActive(true); tear.enabled = true;
+                tear.Configure(tearSource, direction * profile.horizontalTearStrength * UICorruptionSettings.VisualGain(severity), seed, .95f);
+            }
         }
         void ResetBurst()
         {
-            if (ghost != null) ghost.rectTransform.anchoredPosition = restGhost;
+            for (int i = 0; i < echoes.Length; i++) if (echoes[i] != null)
+            {
+                echoes[i].rectTransform.anchoredPosition = echoRest[i];
+                echoes[i].color = WithAlpha(echoColor[i], StaticEchoWeight);
+            }
             if (ink != null) { ink.rectTransform.anchoredPosition = Vector2.zero; ink.SetBurst(0); }
+            if (tear != null) tear.enabled = false; // Keep the stencil material cached between burst stages.
         }
         void StopPresentation()
         {
@@ -216,7 +296,8 @@ namespace FirstJobber
         void HideLayers()
         {
             if (ink != null) ink.gameObject.SetActive(false);
-            if (ghost != null) ghost.gameObject.SetActive(false);
+            for (int i = 0; i < echoes.Length; i++) if (echoes[i] != null) echoes[i].gameObject.SetActive(false);
+            if (tear != null) tear.gameObject.SetActive(false);
         }
     }
 }
