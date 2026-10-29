@@ -47,6 +47,6 @@ MonoBehaviour:
     sprite: {fileID: 0}
   - emotion: 3
     sprite: {fileID: 0}
-  ambientClip: {fileID: 0}
-  ambientVolume: 0.5
+  ambientClip: {fileID: 8300000, guid: 8efaea5c9f1adfa4d88b1b2a7f77d161, type: 3}
+  ambientVolume: 0.31
   audioCrossfade: 2

@@ -37,15 +37,15 @@ MonoBehaviour:
   - day: 4
     enabled: 1
     audioClip: {fileID: 8300000, guid: 90467ebc3fde1194d967c3b8f0fd0e6f, type: 3}
-    volumeMultiplier: 1
+    volumeMultiplier: 0.5
     loop: 1
   - day: 5
     enabled: 1
-    audioClip: {fileID: 8300000, guid: 90467ebc3fde1194d967c3b8f0fd0e6f, type: 3}
-    volumeMultiplier: 1
+    audioClip: {fileID: 8300000, guid: 06777413a9ce7974f86322aca97e7129, type: 3}
+    volumeMultiplier: 0.5
     loop: 1
   - day: 6
     enabled: 1
-    audioClip: {fileID: 8300000, guid: 06777413a9ce7974f86322aca97e7129, type: 3}
+    audioClip: {fileID: 8300000, guid: d378321c5f84d4042b465ec636d634f4, type: 3}
     volumeMultiplier: 1
     loop: 1
