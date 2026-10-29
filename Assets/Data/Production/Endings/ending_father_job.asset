@@ -36,6 +36,7 @@ MonoBehaviour:
   sound: {fileID: 0}
   presentationMode: 1
   videoClip: {fileID: 32900000, guid: 6edee5e481ae8c64f8868bf97c7290d3, type: 3}
+  webVideoFileName: Ending2Noc-1.mp4
   fadeInDuration: 0.25
   fadeOutDuration: 0.25
   actionAfterCutscene: 0

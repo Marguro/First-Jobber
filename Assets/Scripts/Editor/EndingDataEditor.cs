@@ -10,7 +10,7 @@ namespace FirstJobber.EditorTools
         {
             serializedObject.Update();
             using (new EditorGUI.DisabledScope(true)) EditorGUILayout.PropertyField(serializedObject.FindProperty("m_Script"));
-            DrawPropertiesExcluding(serializedObject, "m_Script", "presentationMode", "videoClip", "timeline", "cutscenePrefab",
+            DrawPropertiesExcluding(serializedObject, "m_Script", "presentationMode", "videoClip", "webVideoFileName", "timeline", "cutscenePrefab",
                 "allowSkip", "fadeInDuration", "fadeOutDuration", "actionAfterCutscene", "resetCycle", "timelineMode", "timelineSkippable");
             EditorGUILayout.Space(); EditorGUILayout.LabelField("Presentation after Confirm", EditorStyles.boldLabel);
             var mode = serializedObject.FindProperty("presentationMode");
@@ -18,6 +18,8 @@ namespace FirstJobber.EditorTools
             if ((EndingPresentationMode)mode.enumValueIndex == EndingPresentationMode.Video)
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("videoClip"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("webVideoFileName"));
+                EditorGUILayout.HelpBox("Web: StreamingAssets/EndingVideos/<Web Video File Name>. Use Tools > First Jobber > Ending Videos > Package Production Videos before building. Editor/Windows keep using Video Clip.", MessageType.Info);
                 if (serializedObject.FindProperty("videoClip").objectReferenceValue == null)
                     EditorGUILayout.HelpBox("Assign an imported VideoClip. Missing/failed media safely continues to the ending action.", MessageType.Warning);
             }

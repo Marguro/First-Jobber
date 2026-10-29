@@ -37,6 +37,15 @@ namespace FirstJobber
         [Header("Presentation after confirmation")]
         public EndingPresentationMode presentationMode = EndingPresentationMode.Timeline;
         public VideoClip videoClip;
+        [Tooltip("Exact MP4 filename under Assets/StreamingAssets/EndingVideos (not a path or URL). Web builds use this; Editor/desktop use Video Clip.")]
+        public string webVideoFileName;
+        public static bool IsValidWebVideoFileName(string value)
+        {
+            return !string.IsNullOrWhiteSpace(value) && value == value.Trim()
+                && value.IndexOfAny(new[] { '/', '\\', ':', '?', '#', '%' }) < 0
+                && value.EndsWith(".mp4", System.StringComparison.OrdinalIgnoreCase)
+                && value != ".mp4";
+        }
         // Reuse the existing serialized skip flag so older endings keep their authored setting.
         public bool allowSkip { get => timelineSkippable; set => timelineSkippable = value; }
         [Min(0)] public float fadeInDuration = .25f;

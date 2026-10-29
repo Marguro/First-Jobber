@@ -20,8 +20,13 @@ class Harness
     static EndingController New(out GameContext ctx,out VideoPlayer video,out PlayableDirector director,out AspectRatioFitter aspect)
     {
         var c=new EndingController();ctx=new GameContext();video=new VideoPlayer();director=new PlayableDirector();aspect=new AspectRatioFitter();
-        Set(c,"atmosphere",new AtmosphereManager());Set(c,"videoPlayer",video);Set(c,"director",director);Set(c,"videoRoot",new GameObject());Set(c,"videoImage",new RawImage());Set(c,"videoAspect",aspect);Set(c,"fadeOverlay",new CanvasGroup());Set(c,"buttonsRoot",new GameObject());Set(c,"audioSource",new AudioSource());Set(c,"prepareTimeout",1f);Set(c,"playbackGrace",1f);Call(c,"Awake");return c;
+        Set(c,"atmosphere",new AtmosphereManager());Set(c,"videoPlayer",video);Set(c,"director",director);Set(c,"videoRoot",new GameObject());Set(c,"videoImage",new RawImage());Set(c,"videoAspect",aspect);Set(c,"fadeOverlay",new CanvasGroup());Set(c,"buttonsRoot",new GameObject());Set(c,"audioSource",new AudioSource());Set(c,"prepareTimeout",1f);Set(c,"webPrepareTimeout",1f);Set(c,"playbackGrace",1f);Call(c,"Awake");return c;
     }
+#if UNITY_WEBGL && !UNITY_EDITOR
+    const int ExpectedAudioTracks=1;
+#else
+    const int ExpectedAudioTracks=2;
+#endif
     static EndingData Data(EndingPresentationMode mode)=>new EndingData{id="ending",presentationMode=mode,fadeInDuration=0,fadeOutDuration=0,lines=new DialogueLine[0]};
     static void Main()
     {
@@ -34,9 +39,18 @@ class Harness
         Check(!Prompt(c).activeSelf,"Legacy prompt must be disabled during Awake");
         var e=Data(EndingPresentationMode.None);c.Show(ctx,e);c.Show(ctx,e);Tick(5);Check(done==1,"None/duplicate Show completion wrong");
         var noVideo=Data(EndingPresentationMode.Video);c.Show(ctx,noVideo);Tick(5);Check(done==2,"Missing video softlocked");
-        var v=Data(EndingPresentationMode.Video);v.videoClip=new VideoClip{width=640,height=480,audioTrackCount=2};c.Show(ctx,v);Tick(6);
+        var v=Data(EndingPresentationMode.Video);v.videoClip=new VideoClip{width=640,height=480,audioTrackCount=2};v.webVideoFileName="EndingNoC-1.mp4";
+#if UNITY_WEBGL && !UNITY_EDITOR
+        v.videoClip=null; // Web must work even when embedded clips are unavailable.
+#endif
+        c.Show(ctx,v);Tick(6);
         Check(((AtmosphereManager)Get(c,"atmosphere")).IsOverlaySuppressed&&!((AtmosphereManager)Get(c,"atmosphere")).overlay.enabled,"Atmosphere must remain hidden for the whole video");
-        Check(video.isPlaying && !video.isLooping && !video.playOnAwake && video.AudioEnabled==2,"Video/audio configuration wrong");
+        Check(video.isPlaying && !video.isLooping && !video.playOnAwake && video.AudioEnabled==ExpectedAudioTracks,"Video/audio configuration wrong");
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        Check(video.source==VideoSource.Url && video.clip==null && video.url=="https://example.itch.zone/game/StreamingAssets/EndingVideos/EndingNoC-1.mp4","Web URL source invalid");
+#else
+        Check(video.source==VideoSource.VideoClip && video.clip==v.videoClip,"Desktop clip source changed");
+#endif
         Check(Math.Abs(aspect.aspectRatio-4f/3)<.001f,"Video aspect ratio wrong");
         var raw=(RawImage)c.GetType().GetField("videoImage",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(c);
         Check(raw.texture==video.targetTexture && raw.texture!=null,"RawImage and VideoPlayer must share the live target");
@@ -67,6 +81,15 @@ class Harness
         Tick(3);Check(!video.isPlaying&&ambient.audioSourceA.volume>0&&ambient.audioSourceA.volume<.8f,"Ambient fade must be gradual and precede video playback");
         Tick(8);Check(video.isPlaying&&!ambient.audioSourceA.isPlaying&&!ambient.audioSourceB.isPlaying,"Video started with ambient interference");
         video.End();Tick(5);Check(!ambient.IsAmbientSuppressed&&!ambient.audioSourceA.isPlaying,"Video completion leaked suppression or restarted menu ambience");
+        Check(EndingData.IsValidWebVideoFileName("ending with spaces.mp4") && !EndingData.IsValidWebVideoFileName("../video.mp4") && !EndingData.IsValidWebVideoFileName("https://example.com/a.mp4") && !EndingData.IsValidWebVideoFileName("a.mp4?x=1"),"Web filename validation invalid");
+#if UNITY_WEBGL && !UNITY_EDITOR
+        var blocked=New(out ctx,out video,out director,out aspect);int blockedDone=0;blocked.PresentationCompleted+=ending=>blockedDone++;
+        v.allowSkip=true;video.BlockPlay=true;blocked.Show(ctx,v);Tick(6);Check(!video.isPlaying && blockedDone==0,"Blocked autoplay completed prematurely");
+        video.BlockPlay=false;UnityEngine.InputSystem.Mouse.current=new UnityEngine.InputSystem.Mouse{leftButton=new UnityEngine.InputSystem.Key{wasPressedThisFrame=true}};
+        Tick();UnityEngine.InputSystem.Mouse.current=null;Tick();Check(video.isPlaying && blockedDone==0,"Gesture unblocking playback also skipped the video");
+        video.End();Tick(5);Check(blockedDone==1,"Unblocked video completion incorrect");
+        Console.WriteLine("PASS Web URL without VideoClip; browser gesture retry does not also skip; HTTP-safe filename validation");
+#endif
         AtmosphereManager.CheckAmbient();
         AtmosphereManager.CheckSuppression();
         FlowProbe.CheckRestart();
@@ -75,6 +98,7 @@ class Harness
 }
 namespace UnityEngine
 {
+    public static class Application {public static string streamingAssetsPath="https://example.itch.zone/game/StreamingAssets";public static string platform="TestDouble";}
     public class Object {public string name;}
     public class ScriptableObject:Object {}
     public class GameObject:Object
@@ -141,15 +165,15 @@ namespace UnityEngine.Timeline {public class AudioTrack:UnityEngine.Object {}}
 namespace UnityEngine.Video
 {
     public class VideoClip:UnityEngine.Object {public uint width,height;public ushort audioTrackCount;}
-    public enum VideoSource{VideoClip}public enum VideoRenderMode{RenderTexture}public enum VideoAudioOutputMode{Direct}public enum VideoTimeUpdateMode{UnscaledGameTime}
+    public enum VideoSource{VideoClip,Url}public enum VideoRenderMode{RenderTexture}public enum VideoAudioOutputMode{Direct}public enum VideoTimeUpdateMode{UnscaledGameTime}
     public class VideoPlayer:Component
     {
-        public bool AutoPrepare=true,isPrepared,isPlaying,playOnAwake,isLooping,waitForFirstFrame;public VideoClip clip;public uint width=>clip.width;public uint height=>clip.height;public double length=1;
+        public bool AutoPrepare=true,isPrepared,isPlaying,playOnAwake,isLooping,waitForFirstFrame;public VideoClip clip;public string url;public uint width=>clip!=null?clip.width:640;public uint height=>clip!=null?clip.height:480;public double length=1;public double time=>isPlaying?.25:0;
         public VideoSource source;public VideoRenderMode renderMode;public VideoAudioOutputMode audioOutputMode;public VideoTimeUpdateMode timeUpdateMode;public ushort controlledAudioTrackCount;public int AudioEnabled;public RenderTexture targetTexture;
         Action<VideoPlayer> end;Action<VideoPlayer,string> error;public int EndListeners=>end?.GetInvocationList().Length??0;public int ErrorListeners=>error?.GetInvocationList().Length??0;
         public event Action<VideoPlayer> prepareCompleted;
         public event Action<VideoPlayer> loopPointReached {add{end+=value;}remove{end-=value;}}public event Action<VideoPlayer,string> errorReceived {add{error+=value;}remove{error-=value;}}
-        public void Prepare(){isPrepared=AutoPrepare;AudioEnabled=controlledAudioTrackCount;if(isPrepared)prepareCompleted?.Invoke(this);}public void Play(){isPlaying=true;}public void Stop(){isPlaying=false;isPrepared=false;}public void End()=>end?.Invoke(this);public void Error()=>error?.Invoke(this,"test decoder error");public void EnableAudioTrack(ushort i,bool v){}public void SetDirectAudioMute(ushort i,bool v){}public void SetDirectAudioVolume(ushort i,float v){}
+        public void Prepare(){isPrepared=AutoPrepare;AudioEnabled=controlledAudioTrackCount;if(isPrepared)prepareCompleted?.Invoke(this);}public bool BlockPlay;public void Play(){isPlaying=!BlockPlay;}public void Stop(){isPlaying=false;isPrepared=false;}public void End()=>end?.Invoke(this);public void Error()=>error?.Invoke(this,"test decoder error");public void EnableAudioTrack(ushort i,bool v){}public void SetDirectAudioMute(ushort i,bool v){}public void SetDirectAudioVolume(ushort i,float v){}
     }
 }
 namespace FirstJobber

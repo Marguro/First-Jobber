@@ -33,6 +33,8 @@ namespace FirstJobber
         [Tooltip("Existing Production atmosphere manager. Only fullscreen Video suspends its overlay rendering.")]
         [SerializeField] AtmosphereManager atmosphere;
         [Min(1), SerializeField] float prepareTimeout = 20f;
+        [Tooltip("Browser downloads may take longer than local clip preparation.")]
+        [Min(1), SerializeField] float webPrepareTimeout = 60f;
         [Min(1), SerializeField] float playbackGrace = 30f;
 
         [Serializable]
@@ -146,8 +148,18 @@ namespace FirstJobber
         }
         IEnumerator PlayVideo(EndingData ending)
         {
-            if (ending.videoClip == null || videoRoot == null || videoImage == null || videoAspect == null)
-            { Debug.LogWarning("[Ending] '" + ending.id + "': Video clip/fullscreen UI missing; continuing to ending action.", this); yield break; }
+#if UNITY_WEBGL && !UNITY_EDITOR
+            bool sourceMissing = !EndingData.IsValidWebVideoFileName(ending.webVideoFileName);
+#else
+            bool sourceMissing = ending.videoClip == null;
+#endif
+            if (sourceMissing || videoRoot == null || videoImage == null || videoAspect == null)
+            {
+                Debug.LogWarning("[EndingVideo] Configuration FAILED: ending=" + ending.id + "; platform=" + Application.platform
+                    + "; webFilename=" + ending.webVideoFileName + "; validSource=" + !sourceMissing
+                    + ". Check media/fullscreen UI. Recovering to the configured ending destination.", this);
+                yield break;
+            }
             if (videoAtmosphereSuppression == null && atmosphere != null)
                 videoAtmosphereSuppression = atmosphere.SuppressOverlayRendering();
             if (atmosphere != null)
@@ -161,10 +173,24 @@ namespace FirstJobber
             if (videoPlayer == null) videoPlayer = GetComponent<VideoPlayer>();
             if (videoPlayer == null) videoPlayer = gameObject.AddComponent<VideoPlayer>();
             videoPlayer.playOnAwake = false; videoPlayer.isLooping = false; videoPlayer.waitForFirstFrame = true;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            videoPlayer.clip = null;
+            videoPlayer.source = VideoSource.Url;
+            videoPlayer.url = Application.streamingAssetsPath.TrimEnd('/') + "/EndingVideos/" + Uri.EscapeDataString(ending.webVideoFileName);
+            float sourcePrepareTimeout = webPrepareTimeout;
+#else
+            videoPlayer.url = "";
             videoPlayer.source = VideoSource.VideoClip; videoPlayer.clip = ending.videoClip;
+            float sourcePrepareTimeout = prepareTimeout;
+#endif
             videoPlayer.renderMode = VideoRenderMode.RenderTexture;
             videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // URL metadata is not available before Prepare; Web supports Direct output.
+            videoPlayer.controlledAudioTrackCount = 1;
+#else
             videoPlayer.controlledAudioTrackCount = ending.videoClip.audioTrackCount;
+#endif
             for (ushort track = 0; track < videoPlayer.controlledAudioTrackCount; track++)
             {
                 videoPlayer.EnableAudioTrack(track, true);
@@ -177,20 +203,22 @@ namespace FirstJobber
             videoPlayer.prepareCompleted += OnVideoPrepared;
             videoPlayer.loopPointReached += OnVideoEnd; videoPlayer.errorReceived += OnVideoError;
             videoDone = videoFailed = videoPrepared = false;
+            Debug.Log("[EndingVideo] Preparing " + VideoDiagnostic(), this);
             videoPlayer.Prepare();
             float started = Time.realtimeSinceStartup;
             while (!videoPrepared && !videoPlayer.isPrepared && !videoFailed)
             {
                 if (WantsSkip()) yield break;
-                if (Time.realtimeSinceStartup - started > Mathf.Max(1, prepareTimeout)) { Debug.LogWarning("[Ending] Video preparation timed out: " + ending.id, this); yield break; }
+                if (Time.realtimeSinceStartup - started > Mathf.Max(1, sourcePrepareTimeout)) { OnVideoError(videoPlayer, "Preparation timed out; recovering to the configured ending destination."); yield break; }
                 yield return null;
             }
             if (videoFailed) yield break;
-            int width = Mathf.Max(1, (int)videoPlayer.width), height = Mathf.Max(1, (int)videoPlayer.height);
+            int width = (int)videoPlayer.width, height = (int)videoPlayer.height;
+            if (width <= 0 || height <= 0) { OnVideoError(videoPlayer, "Prepared video has no valid picture dimensions."); yield break; }
             float ratio = width / (float)height;
             float scale = Mathf.Min(1f, 4096f / Mathf.Max(width, height));
             videoTexture = new RenderTexture(Mathf.Max(1, Mathf.RoundToInt(width * scale)), Mathf.Max(1, Mathf.RoundToInt(height * scale)), 0, RenderTextureFormat.ARGB32);
-            if (!videoTexture.Create()) { Debug.LogWarning("[Ending] Unable to allocate video render texture.", this); yield break; }
+            if (!videoTexture.Create()) { OnVideoError(videoPlayer, "Unable to allocate video render texture."); yield break; }
             videoPlayer.targetTexture = videoTexture; videoImage.texture = videoTexture;
             videoAspect.aspectMode = AspectRatioFitter.AspectMode.FitInParent; videoAspect.aspectRatio = ratio;
             // Both consumers share the same live target; reveal only after preparation succeeds.
@@ -200,18 +228,50 @@ namespace FirstJobber
             double length = videoPlayer.length;
             double budget = length > 0 && !double.IsInfinity(length) && !double.IsNaN(length) ? length + Mathf.Max(1, playbackGrace) : 300;
             started = Time.realtimeSinceStartup;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            bool webPlaybackObserved = false;
+#endif
             while (!videoDone && !videoFailed)
             {
+    #if UNITY_WEBGL && !UNITY_EDITOR
+                // A browser may block autoplay with audio after asynchronous preparation.
+                // A fresh player gesture retries the same prepared source, never a new ending.
+                // That gesture must not also skip the presentation.
+                if (!webPlaybackObserved)
+                {
+                    var keyboard = Keyboard.current;
+                    if (current.allowSkip && (skipRequested || (keyboard != null && keyboard.escapeKey.wasPressedThisFrame))) break;
+                    if (SkipPressed()) videoPlayer.Play();
+                    // The DOM click can unblock native playback before Unity sees that same click.
+                    // Consume it until playback has actually advanced, rather than immediately skipping.
+                    webPlaybackObserved = videoPlayer.time > 0;
+                }
+                else if (WantsSkip()) break;
+#else
                 if (WantsSkip()) break;
-                if (Time.realtimeSinceStartup - started > budget) { Debug.LogWarning("[Ending] Video playback stalled: " + ending.id, this); break; }
+#endif
+                if (Time.realtimeSinceStartup - started > budget) { OnVideoError(videoPlayer, "Playback stalled or browser denied playback; recovering to the configured ending destination."); break; }
                 yield return null;
             }
             yield return Fade(0f, 1f, ending.fadeOutDuration);
         }
-        void OnVideoPrepared(VideoPlayer player) { if (player == videoPlayer) videoPrepared = true; }
+        void OnVideoPrepared(VideoPlayer player)
+        {
+            if (player != videoPlayer) return;
+            videoPrepared = true;
+            Debug.Log("[EndingVideo] Prepared " + VideoDiagnostic(), this);
+        }
         void OnVideoEnd(VideoPlayer player) { if (player == videoPlayer) videoDone = true; }
         void OnVideoError(VideoPlayer player, string error)
-        { if (player != videoPlayer) return; videoFailed = true; Debug.LogWarning("[Ending] Video failed: " + error, this); }
+        { if (player != videoPlayer) return; videoFailed = true; Debug.LogWarning("[EndingVideo] Playback FAILED (not natural completion). " + VideoDiagnostic() + "; error=" + error, this); }
+
+        string VideoDiagnostic()
+        {
+            return "ending=" + (current != null ? current.id : "<none>")
+                + "; platform=" + Application.platform + "; source=" + videoPlayer.source
+                + "; media=" + (videoPlayer.source == VideoSource.Url ? videoPlayer.url : (videoPlayer.clip != null ? videoPlayer.clip.name : "<none>"))
+                + "; prepared=" + videoPlayer.isPrepared;
+        }
 
         bool StartTimeline(EndingData ending)
         {
@@ -307,7 +367,7 @@ namespace FirstJobber
             {
                 videoPlayer.prepareCompleted -= OnVideoPrepared;
                 videoPlayer.loopPointReached -= OnVideoEnd; videoPlayer.errorReceived -= OnVideoError;
-                videoPlayer.Stop(); videoPlayer.targetTexture = null; videoPlayer.clip = null;
+                videoPlayer.Stop(); videoPlayer.targetTexture = null; videoPlayer.clip = null; videoPlayer.url = "";
             }
             if (videoImage != null) videoImage.texture = null;
             if (videoTexture != null) { videoTexture.Release(); Destroy(videoTexture); videoTexture = null; }

@@ -136,4 +136,7 @@ namespace FirstJobber {
 data=Path('C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data');temp=R/'Temp/EndingPresentationTests';temp.mkdir(parents=True,exist_ok=True);f=temp/'FlowProbe.cs';f.write_text(fixture,encoding='utf-8');exe=temp/'RuntimeHarness.exe';mono=data/'MonoBleedingEdge/bin/mono.exe'
 subprocess.run([str(mono),str(data/'MonoBleedingEdge/lib/mono/4.5/csc.exe'),'/nologo','/langversion:9','/nowarn:0649','/out:'+str(exe),str(Path(__file__).with_name('RuntimeHarness.cs')),str(f),str(R/'Assets/Scripts/Endings/EndingController.cs'),str(R/'Assets/Scripts/Data/EndingData.cs')],check=True)
 subprocess.run([str(mono),str(exe)],check=True)
+web=temp/'WebRuntimeHarness.exe'
+subprocess.run([str(mono),str(data/'MonoBleedingEdge/lib/mono/4.5/csc.exe'),'/nologo','/langversion:9','/nowarn:0649','/define:UNITY_WEBGL','/out:'+str(web),str(Path(__file__).with_name('RuntimeHarness.cs')),str(f),str(R/'Assets/Scripts/Endings/EndingController.cs'),str(R/'Assets/Scripts/Data/EndingData.cs')],check=True)
+subprocess.run([str(mono),str(web)],check=True)
 print('UNVERIFIED: native video/audio decoding, Timeline graphs/bindings, real UI transitions, phase sprite/corruption rendering and Save/Continue round-trip in Unity Play Mode.')
