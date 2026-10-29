@@ -11,6 +11,11 @@ assert c['director']['fileID']==762817075 and scene[762817075]['PlayableDirector
 for field in ['cutsceneRoot','videoRoot','videoImage','videoAspect','fadeOverlay']:assert c[field]['fileID'] in scene
 assert scene[c['videoRoot']['fileID']]['GameObject']['m_IsActive']==0
 assert scene[c['fadeOverlay']['fileID']]['CanvasGroup']['m_Alpha']==0
+assert scene[c['buttonsRoot']['fileID']]['GameObject']['m_IsActive']==0
+assert 'restartButton' not in c and 'menuButton' not in c
+presenter=(R/'Assets/Scripts/Endings/EndingController.cs').read_text(encoding='utf-8-sig')
+assert 'buttonsRoot.SetActive(true)' not in presenter and 'RestartRequested' not in presenter and 'MenuRequested' not in presenter
+
 raw=scene[c['videoImage']['fileID']]['MonoBehaviour'];assert raw['m_Script']['guid']=='1344c3c82d62a2a41a3576d8abb8e3ea'
 assert scene[c['videoAspect']['fileID']]['MonoBehaviour']['m_AspectMode']==3
 # Presentation mode/media are artist-authored; validate destination actions without

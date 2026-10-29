@@ -72,7 +72,7 @@ namespace FirstJobber
             if (companySelection != null) { companySelection.CompanyConfirmed += OnCompanyConfirmed; companySelection.BackRequested += OnCompanyBack; }
             if (interview != null) { interview.PhaseRequested += OnInterviewPhase; interview.Finished += OnInterviewFinished; }
             if (finalDecision != null) finalDecision.EndingChosen += OnEndingChosen;
-            if (ending != null) { ending.RestartRequested += OnEndingMenu; ending.MenuRequested += OnEndingMenu; ending.PresentationCompleted += OnEndingPresentationCompleted; }
+            if (ending != null) { ending.PresentationCompleted += OnEndingPresentationCompleted; }
             LocalizationManager.LanguageChanged += OnLanguageChanged;
         }
 
@@ -85,7 +85,7 @@ namespace FirstJobber
             if (companySelection != null) { companySelection.CompanyConfirmed -= OnCompanyConfirmed; companySelection.BackRequested -= OnCompanyBack; }
             if (interview != null) { interview.PhaseRequested -= OnInterviewPhase; interview.Finished -= OnInterviewFinished; }
             if (finalDecision != null) finalDecision.EndingChosen -= OnEndingChosen;
-            if (ending != null) { ending.RestartRequested -= OnEndingMenu; ending.MenuRequested -= OnEndingMenu; ending.PresentationCompleted -= OnEndingPresentationCompleted; }
+            if (ending != null) { ending.PresentationCompleted -= OnEndingPresentationCompleted; }
         }
 
         void Start()
@@ -522,10 +522,5 @@ namespace FirstJobber
             return true;
         }
 
-        void OnEndingMenu()
-        {
-            if (!ChangePhase(GamePhase.MainMenu)) return;
-            mainMenu.Open(database);
-        }
     }
 }

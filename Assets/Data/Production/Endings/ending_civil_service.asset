@@ -35,7 +35,7 @@ MonoBehaviour:
   finalText: 
   sound: {fileID: 0}
   presentationMode: 1
-  videoClip: {fileID: 32900000, guid: 251b908389c337d4d906041868860451, type: 3}
+  videoClip: {fileID: 32900000, guid: f305faaec6c3f3b44a9286e523a27f69, type: 3}
   fadeInDuration: 0.25
   fadeOutDuration: 0.25
   actionAfterCutscene: 0

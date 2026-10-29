@@ -405,11 +405,6 @@ namespace FirstJobber.EditorTools
             var title = NewText(panel, "Title", "", 84, Accent, TextAlignmentOptions.Center, FontStyles.Bold, 0.1f, 0.78f, 0.9f, 0.96f);
             var final = NewText(panel, "FinalText", "", 44, Color.white, TextAlignmentOptions.Center, FontStyles.Normal, 0.1f, 0.45f, 0.9f, 0.76f);
 
-            var buttons = NewRect("Buttons", panel);
-            Anchor(buttons, 0.25f, 0.28f, 0.75f, 0.4f);
-            var restart = NewButton(buttons, "RestartButton", "Restart", ButtonGreen, 0f, 0f, 0.48f, 1f);
-            var menu = NewButton(buttons, "MenuButton", "Main Menu", ButtonGrey, 0.52f, 0f, 1f, 1f);
-
             controller = panel.gameObject.AddComponent<EndingController>();
             var director = panel.gameObject.AddComponent<UnityEngine.Playables.PlayableDirector>();
             director.playOnAwake = false;
@@ -419,9 +414,6 @@ namespace FirstJobber.EditorTools
             Set(controller, "background", bgImg);
             Set(controller, "titleText", title);
             Set(controller, "finalText", final);
-            Set(controller, "buttonsRoot", buttons.gameObject);
-            Set(controller, "restartButton", restart);
-            Set(controller, "menuButton", menu);
             Set(controller, "audioSource", audio);
             var cutsceneRoot = NewRect("CutsceneRoot", panel);
             Stretch(cutsceneRoot); cutsceneRoot.SetSiblingIndex(1); cutsceneRoot.gameObject.SetActive(false);

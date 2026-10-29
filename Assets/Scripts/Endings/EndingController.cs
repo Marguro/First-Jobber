@@ -16,9 +16,8 @@ namespace FirstJobber
         [SerializeField] Image background;
         [SerializeField] TMP_Text titleText;
         [SerializeField] TMP_Text finalText;
+        // Retained only to keep legacy scene UI disabled; completion never waits for a button.
         [SerializeField] GameObject buttonsRoot;
-        [SerializeField] Button restartButton;
-        [SerializeField] Button menuButton;
         [SerializeField] AudioSource audioSource;
         [SerializeField] DayBgmController dayMusic;
         [Header("Timeline scene bindings")]
@@ -42,12 +41,9 @@ namespace FirstJobber
             public string trackName;
             public UnityEngine.Object target;
         }
-        public event Action RestartRequested;
-        public event Action MenuRequested;
         public event Action<EndingData> PresentationCompleted;
-        bool clicked, presenting, completed, skipRequested, videoDone, videoFailed, videoPrepared, timelineDone;
+        bool presenting, completed, skipRequested, videoDone, videoFailed, videoPrepared, timelineDone;
         EndingData current;
-        bool previewOnly;
         Coroutine runner;
         PlayableDirector active;
         GameObject spawned;
@@ -59,26 +55,15 @@ namespace FirstJobber
             if (director == null) director = GetComponent<PlayableDirector>();
             if (director == null) director = gameObject.AddComponent<PlayableDirector>();
             director.playOnAwake = false;
-            if (restartButton != null) restartButton.onClick.AddListener(OnRestart);
-            if (menuButton != null) menuButton.onClick.AddListener(OnMenu);
+            if (buttonsRoot != null) buttonsRoot.SetActive(false);
             HidePresentation();
-        }
-        void OnRestart() { Press(RestartRequested); }
-        void OnMenu() { Press(MenuRequested); }
-        void Press(Action action)
-        {
-            if (clicked || presenting || !completed) return;
-            clicked = true;
-            CleanupPlayback();
-            action?.Invoke();
         }
         public void Show(GameContext ctx, EndingData ending, bool previewOnly = false)
         {
             if (presenting) { Debug.LogWarning("[Ending] A presentation is already running; duplicate request ignored.", this); return; }
             if (ending == null || ctx == null) { Debug.LogError("[Ending] Missing ending/context.", this); return; }
             CleanupPlayback();
-            this.previewOnly = previewOnly;
-            current = ending; clicked = completed = skipRequested = false; presenting = true;
+            current = ending; completed = skipRequested = false; presenting = true;
             if (background != null) { background.sprite = ending.background; background.color = ending.background != null ? Color.white : ending.backgroundColor; }
             if (titleText != null) { titleText.text = LocalizationManager.Get(ending, "title", ending.title); titleText.gameObject.SetActive(false); }
             if (finalText != null) { finalText.text = ""; finalText.gameObject.SetActive(false); }
@@ -132,7 +117,8 @@ namespace FirstJobber
             }
             if (titleText != null) titleText.gameObject.SetActive(true);
             if (finalText != null) { finalText.text = LocalizationManager.Get(ending, "finalText", ending.finalText); finalText.gameObject.SetActive(true); }
-            if (buttonsRoot != null) buttonsRoot.SetActive(previewOnly || !ending.RestartsCycle);
+            // GameFlow determines the destination via PresentationCompleted for every mode.
+            if (buttonsRoot != null) buttonsRoot.SetActive(false);
             presenting = false;
             runner = null;
             if (!completed)
@@ -323,11 +309,6 @@ namespace FirstJobber
         {
             if (runner != null) { StopCoroutine(runner); runner = null; }
             CleanupPlayback(); presenting = false; HidePresentation();
-        }
-        void OnDestroy()
-        {
-            if (restartButton != null) restartButton.onClick.RemoveListener(OnRestart);
-            if (menuButton != null) menuButton.onClick.RemoveListener(OnMenu);
         }
     }
 }

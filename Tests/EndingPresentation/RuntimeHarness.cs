@@ -14,6 +14,7 @@ class Harness
     static void Check(bool v,string message){if(!v)throw new Exception(message);}
     static void Set(object o,string f,object v)=>o.GetType().GetField(f,BindingFlags.Instance|BindingFlags.NonPublic).SetValue(o,v);
     static void Call(object o,string m)=>o.GetType().GetMethod(m,BindingFlags.Instance|BindingFlags.NonPublic).Invoke(o,null);
+    static GameObject Prompt(EndingController c)=>(GameObject)c.GetType().GetField("buttonsRoot",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(c);
     static void Tick(int count=1){for(int i=0;i<count;i++){Time.realtimeSinceStartup+=.1f;Scheduler.Tick();}}
     static EndingController New(out GameContext ctx,out VideoPlayer video,out PlayableDirector director,out AspectRatioFitter aspect)
     {
@@ -24,7 +25,8 @@ class Harness
     static void Main()
     {
         GameContext ctx;VideoPlayer video;PlayableDirector director;AspectRatioFitter aspect;
-        var c=New(out ctx,out video,out director,out aspect);int done=0;c.PresentationCompleted+=e=>done++;
+        var c=New(out ctx,out video,out director,out aspect);int done=0;c.PresentationCompleted+=e=>{Check(!Prompt(c).activeSelf,"Post-ending prompt became visible before automatic completion");done++;};
+        Check(!Prompt(c).activeSelf,"Legacy prompt must be disabled during Awake");
         var e=Data(EndingPresentationMode.None);c.Show(ctx,e);c.Show(ctx,e);Tick(5);Check(done==1,"None/duplicate Show completion wrong");
         var noVideo=Data(EndingPresentationMode.Video);c.Show(ctx,noVideo);Tick(5);Check(done==2,"Missing video softlocked");
         var v=Data(EndingPresentationMode.Video);v.videoClip=new VideoClip{width=640,height=480,audioTrackCount=2};c.Show(ctx,v);Tick(3);
@@ -50,6 +52,9 @@ class Harness
         c.Show(ctx,t);Tick(3);Check(director.GetGenericBinding(key)==specific,"Ending-specific binding did not win");director.Stop();Tick(5);Check(director.GetGenericBinding(key)==original,"Timeline binding was not restored");
         c.Show(ctx,v);Tick(3);Call(c,"OnDisable");Tick(5);Check(done==14 && RenderTexture.Alive==0 && video.EndListeners==0 && video.ErrorListeners==0,"Disable completed a cancelled ending or leaked listeners/resources");
         var restart=Data(EndingPresentationMode.None);restart.actionAfterCutscene=EndingAfterCutsceneAction.RestartDay1;Check(restart.RestartsCycle,"Restart action ignored");restart.actionAfterCutscene=EndingAfterCutsceneAction.CompleteEnding;Check(!restart.RestartsCycle,"Complete action ignored");restart.resetCycle=true;Check(restart.RestartsCycle,"Legacy restart flag lost");
+        var preview=New(out ctx,out video,out director,out aspect);int previewDone=0;
+        preview.PresentationCompleted+=ending=>{Check(!Prompt(preview).activeSelf,"Preview must not restore post-ending decisions");previewDone++;};
+        preview.Show(ctx,Data(EndingPresentationMode.None),true);Tick(5);Check(previewDone==1,"Preview completion must not wait for a hidden button");
         FlowProbe.CheckRestart();
         Console.WriteLine("PASS actual ending presenter: None, Video natural/skip/error/timeouts/audio/aspect, Timeline stop/pause/skip/bindings/invalid duration, duplicate guards, cancellation, resource/subscription cleanup and restart action");
     }

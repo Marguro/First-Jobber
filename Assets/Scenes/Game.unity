@@ -6766,8 +6766,6 @@ MonoBehaviour:
   titleText: {fileID: 2053180005}
   finalText: {fileID: 2089037331}
   buttonsRoot: {fileID: 840039036}
-  restartButton: {fileID: 1080630845}
-  menuButton: {fileID: 595129642}
   audioSource: {fileID: 762817072}
   dayMusic: {fileID: 2189000001}
   director: {fileID: 762817075}
@@ -7182,7 +7180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &840039037
 RectTransform:
   m_ObjectHideFlags: 0
