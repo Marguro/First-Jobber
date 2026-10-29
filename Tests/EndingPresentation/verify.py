@@ -13,12 +13,12 @@ assert scene[c['videoRoot']['fileID']]['GameObject']['m_IsActive']==0
 assert scene[c['fadeOverlay']['fileID']]['CanvasGroup']['m_Alpha']==0
 raw=scene[c['videoImage']['fileID']]['MonoBehaviour'];assert raw['m_Script']['guid']=='1344c3c82d62a2a41a3576d8abb8e3ea'
 assert scene[c['videoAspect']['fileID']]['MonoBehaviour']['m_AspectMode']==3
-backup=R/'.utmp/ending-presentation-before'
-for name,mode,action in [('ending_civil_service',0,0),('ending_father_job',2,0),('ending_continue_applying',0,1)]:
- path=R/f'Assets/Data/Production/Endings/{name}.asset';e=docs(path)[11400000]['MonoBehaviour']
- assert e['presentationMode']==mode and e['actionAfterCutscene']==action and e['videoClip']['fileID']==0
- if (backup/path.name).exists():
-  old=docs(backup/path.name)[11400000]['MonoBehaviour'];assert all(e[k]==v for k,v in old.items()),'Authored ending data changed'
+# Presentation mode/media are artist-authored; validate destination actions without
+# asserting obsolete placeholder clips or historical presentation defaults.
+for name,action in [('ending_civil_service',0),('ending_father_job',0),('ending_continue_applying',1)]:
+ e=docs(R/f'Assets/Data/Production/Endings/{name}.asset')[11400000]['MonoBehaviour']
+ assert e['id']==name and e['actionAfterCutscene']==action
+ assert e['presentationMode'] in (0,1,2)
 flow=(R/'Assets/Scripts/Core/GameFlowManager.cs').read_text(encoding='utf-8-sig')
 assert 'PresentationCompleted += OnEndingPresentationCompleted' in flow and 'PresentationCompleted -= OnEndingPresentationCompleted' in flow
 assert '{ GamePhase.Ending, new[] { GamePhase.MainMenu, GamePhase.CreateApplicant, GamePhase.ResumeEditor } }' in flow
@@ -33,21 +33,48 @@ while depth:
  elif flow[end]=='}':depth-=1
  end+=1
 method=flow[start:end]
+def extract(signature):
+ start=flow.index(signature);brace=flow.index('{',start);depth=1;end=brace+1
+ while depth:
+  if flow[end]=='{':depth+=1
+  elif flow[end]=='}':depth-=1
+  end+=1
+ return flow[start:end]
 fixture='''using System;using System.Collections.Generic;using FirstJobber;
 class FlowProbe {
+ static class Debug {public static void Log(string s,object context=null){}}
  enum GamePhase {Ending,ResumeEditor,MainMenu}
- class State {public int day=6,interviewIndex=3;public string endingId="ending",applicantName="Original",applicantGender="female";public float confirmedConfidence=80;
- public List<string> consumedChoiceIds=new List<string>{"choice"},consumedCompanyIds=new List<string>{"company"},askedQuestionIds=new List<string>{"question"},interviewQuestionIds=new List<string>{"question"},flags=new List<string>{"event_choice/a","resume_distorted","hr_strange","tutorial_complete"},triggeredEvents=new List<string>{"event_day01_opening","event_day04_phone"};}
- State session=new State();GamePhase Phase=GamePhase.Ending;int opened;bool resetAtmosphere,debugEndingPreview;
- void ApplyAtmosphere(bool reset){resetAtmosphere=reset;}bool ChangePhase(GamePhase next){Phase=next;return true;}void BeginDay(bool intro){if(intro)throw new Exception("Unexpected intro");opened++;}
- '''+method+'''
- public static void CheckRestart(){var p=new FlowProbe();var e=new EndingData{id="ending",actionAfterCutscene=EndingAfterCutsceneAction.RestartDay1};p.OnEndingPresentationCompleted(e);p.OnEndingPresentationCompleted(e);
- if(p.Phase!=GamePhase.ResumeEditor||p.opened!=1||p.session.day!=1||!p.resetAtmosphere||p.session.endingId!=null||p.session.confirmedConfidence!=0||p.session.consumedChoiceIds.Count!=0||p.session.consumedCompanyIds.Count!=0||p.session.askedQuestionIds.Count!=0||p.session.interviewQuestionIds.Count!=0||p.session.interviewIndex!=0||p.session.flags.Count!=1||p.session.flags[0]!="tutorial_complete"||p.session.triggeredEvents.Count!=1||p.session.triggeredEvents[0]!="event_day01_opening"||p.session.applicantName!="Original"||p.session.applicantGender!="female")throw new Exception("Actual restart callback did not preserve/reset the expected state");
- var debug=new FlowProbe{debugEndingPreview=true};debug.OnEndingPresentationCompleted(e);if(debug.session.day!=6||debug.opened!=0)throw new Exception("Debug preview executed a production restart");
- Console.WriteLine("PASS actual GameFlow completion callback: restart once, Day1 Resume phase, identity preserved, depletion/questions/atmosphere reset, established event/tutorial rules retained; debug preview does not reset");}
+ class GameSession {
+ public static int deleted;public static void DeleteSave(){deleted++;}
+ public int day=1,interviewIndex;public string endingId,applicantName,applicantGender,selectedCompanyId;public float confirmedConfidence;public bool applicationOpen;public GamePhase phase;
+ public List<string> selections=new List<string>(),consumedChoiceIds=new List<string>(),consumedCompanyIds=new List<string>(),askedQuestionIds=new List<string>(),interviewQuestionIds=new List<string>(),flags=new List<string>(),triggeredEvents=new List<string>(),history=new List<string>(),playedChoiceReactions=new List<string>();
+ public int saved;public void Save(){saved++;if(day!=1||phase!=GamePhase.ResumeEditor||selections.Count!=0||selectedCompanyId!=null||applicationOpen||endingId!=null||consumedChoiceIds.Count!=0)throw new Exception("Dirty loop saved");}
+ }
+ class GameContext {public GameContext(object db,GameSession s,object d){}}
+ class Events {public int cleared;public void ClearPanel(){cleared++;}}
+ class Menu {public int opened;public void Open(object db){opened++;}}
+ class Music {public int day,calls;public void PlayDay(int d){day=d;calls++;}}
+ class Editor {public void Refresh(GameContext c){}}
+ GameSession session=new GameSession();GamePhase Phase=GamePhase.Ending;int opened;bool resetAtmosphere,debugEndingPreview;
+ Events dailyEvents=new Events();Menu mainMenu=new Menu();Music dayMusic=new Music();Editor resumeEditor=new Editor();GameContext ctx;object database=new object(),dialogue=new object();
+ void ApplyAtmosphere(bool reset){resetAtmosphere=reset;if(session.day!=1)throw new Exception("Atmosphere not reset from Day1");}
+ bool ChangePhase(GamePhase next){Phase=next;session.phase=next;if(next==GamePhase.MainMenu)dayMusic.PlayDay(1);return true;}
+ void OpenResumeEditor(bool intro,bool events){if(intro||events)throw new Exception("First-launch intro/events replayed");opened++;}
+ static FlowProbe Dirty(){var p=new FlowProbe();var s=p.session;s.day=6;s.endingId="ending";s.applicantName="Original";s.applicantGender="female";s.confirmedConfidence=80;s.interviewIndex=3;s.selections.Add("choice");s.selectedCompanyId="company";s.applicationOpen=true;s.consumedChoiceIds.Add("choice");s.consumedCompanyIds.Add("company");s.askedQuestionIds.Add("question");s.interviewQuestionIds.Add("question");s.flags.AddRange(new[]{"event_choice/a","resume_distorted","hr_strange","tutorial_complete"});s.triggeredEvents.AddRange(new[]{"event_day01_opening","event_day04_phone"});s.history.Add("history");s.playedChoiceReactions.Add("choice");return p;}
+ '''+method+'\n'+extract('void BeginDay(')+'''
+ public static void CheckRestart(){
+ var p=Dirty();var e=new EndingData{id="ending",actionAfterCutscene=EndingAfterCutsceneAction.RestartDay1};int deleted=GameSession.deleted;
+ p.OnEndingPresentationCompleted(e);p.OnEndingPresentationCompleted(e);
+ if(p.Phase!=GamePhase.ResumeEditor||p.opened!=1||p.mainMenu.opened!=0||p.session.day!=1||!p.resetAtmosphere||p.session.endingId!=null||p.session.confirmedConfidence!=0||p.session.consumedChoiceIds.Count!=0||p.session.consumedCompanyIds.Count!=0||p.session.askedQuestionIds.Count!=0||p.session.interviewQuestionIds.Count!=0||p.session.interviewIndex!=0||p.session.flags.Count!=1||p.session.flags[0]!="tutorial_complete"||p.session.triggeredEvents.Count!=1||p.session.triggeredEvents[0]!="event_day01_opening"||p.session.applicantName!="Original"||p.session.applicantGender!="female"||p.session.saved!=1||p.dayMusic.day!=1||p.dayMusic.calls!=1||p.session.history.Count!=1||p.session.playedChoiceReactions.Count!=1||GameSession.deleted!=deleted)throw new Exception("Restart/reset/preservation/save/BGM incorrect");
+ foreach(var id in new[]{"ending_civil_service","ending_father_job"}){var q=Dirty();q.session.endingId=id;var original=q.session;var ending=new EndingData{id=id,actionAfterCutscene=EndingAfterCutsceneAction.CompleteEnding};q.OnEndingPresentationCompleted(ending);q.OnEndingPresentationCompleted(ending);if(q.Phase!=GamePhase.MainMenu||q.mainMenu.opened!=1||!q.resetAtmosphere||q.session==original||q.session.applicantName!=null||q.opened!=0||q.session.history.Count!=0||q.dayMusic.day!=1)throw new Exception("Completed ending did not reset and return to Main Menu once");}
+ if(GameSession.deleted!=deleted+2)throw new Exception("Save deletion duplicated");
+ var debug=Dirty();debug.debugEndingPreview=true;debug.OnEndingPresentationCompleted(e);if(debug.session.day!=6||debug.opened!=0)throw new Exception("Debug preview reset production state");
+ var wrong=Dirty();wrong.OnEndingPresentationCompleted(new EndingData{id="other"});if(wrong.resetAtmosphere||wrong.mainMenu.opened!=0)throw new Exception("Wrong ending completed");
+ Console.WriteLine("PASS actual completion + BeginDay: endings1/2 reset and return MainMenu once; ending3 direct ResumeEditor, identity/history/reaction preservation, selections/depletion reset, autosave, Day1 BGM, no intro or BeforeResume replay, no MainMenu, duplicate/wrong-ID/preview guards");}
 }
 '''
+
 data=Path('C:/Program Files/Unity/Hub/Editor/6000.6.7f1/Editor/Data');temp=R/'Temp/EndingPresentationTests';temp.mkdir(parents=True,exist_ok=True);f=temp/'FlowProbe.cs';f.write_text(fixture,encoding='utf-8');exe=temp/'RuntimeHarness.exe';mono=data/'MonoBleedingEdge/bin/mono.exe'
 subprocess.run([str(mono),str(data/'MonoBleedingEdge/lib/mono/4.5/csc.exe'),'/nologo','/langversion:9','/nowarn:0649','/out:'+str(exe),str(Path(__file__).with_name('RuntimeHarness.cs')),str(f),str(R/'Assets/Scripts/Endings/EndingController.cs'),str(R/'Assets/Scripts/Data/EndingData.cs')],check=True)
 subprocess.run([str(mono),str(exe)],check=True)
-print('UNVERIFIED: native Unity VideoPlayer decoding/audio/frames, Timeline graph/bindings, fullscreen fades/raycast layering and complete Day6 confirmation → presentation → action in Play Mode.')
+print('UNVERIFIED: native video/audio decoding, Timeline graphs/bindings, real UI transitions, phase sprite/corruption rendering and Save/Continue round-trip in Unity Play Mode.')

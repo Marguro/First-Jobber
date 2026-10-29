@@ -210,7 +210,7 @@ namespace FirstJobber
         // ------------------------------------------------------------ a day
 
         /// <summary>Phase is already ResumeEditor. Clears temporary state, autosaves, opens the editor.</summary>
-        void BeginDay(bool playIntro)
+        void BeginDay(bool playIntro, bool runBeforeResume = true)
         {
             if (dayMusic != null) dayMusic.PlayDay(session.day);
             session.selections.Clear();
@@ -219,7 +219,7 @@ namespace FirstJobber
             session.Save();
             if (session.day == 1) Debug.Log("[Applicant] Day 1 profile save requested before opening story. Save failures are reported by GameSession.", this);
             resumeEditor.Refresh(ctx);
-            OpenResumeEditor(playIntro, true);
+            OpenResumeEditor(playIntro, runBeforeResume);
         }
 
         void OpenResumeEditor(bool playIntro, bool runBeforeResume)
@@ -393,7 +393,6 @@ namespace FirstJobber
             }
             if (!ChangePhase(GamePhase.Ending)) return;
             session.endingId = endingId;
-            if (!data.RestartsCycle) GameSession.DeleteSave();
             ending.Show(ctx, data);
         }
 
@@ -426,9 +425,21 @@ namespace FirstJobber
                 session.confirmedConfidence = 0;
                 session.endingId = null;
                 ApplyAtmosphere(true);
-                if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(false);
+                // Skip first-launch story as well as its paper intro. BeginDay clears selections,
+                // company/application state, saves the new loop and initializes Day 1 music.
+                dailyEvents.ClearPanel();
+                if (ChangePhase(GamePhase.ResumeEditor)) BeginDay(false, false);
                 return;
             }
+
+            // CompleteEnding: finalize only after media/dialogue have actually completed.
+            // A fresh session also drops the old company, interview, event and ending context.
+            GameSession.DeleteSave();
+            session = new GameSession();
+            ctx = new GameContext(database, session, dialogue);
+            ApplyAtmosphere(true);
+            dailyEvents.ClearPanel();
+            if (ChangePhase(GamePhase.MainMenu)) mainMenu.Open(database);
         }
 
         public GameDatabase Database => database;
