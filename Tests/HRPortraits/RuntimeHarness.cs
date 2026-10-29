@@ -129,7 +129,7 @@ namespace UnityEngine.UI{public class Image {public Sprite sprite;public Color c
 namespace TMPro{public class TMP_Text{public string text;}}
 namespace FirstJobber
 {
-    public class DialogueUI {public event Action Clicked;public List<Sprite> Portraits=new List<Sprite>();public void Show(){}public void Hide(){}public int SetLine(string s,string t,Sprite p){Portraits.Add(p);return 0;}public void SetContinueIndicator(bool b){}public void SetVisibleCharacters(int n){}}
+    public class DialogueUI {public event Action Clicked;public List<Sprite> Portraits=new List<Sprite>();public void Show(){}public void Hide(){}public int RevealCharacterCount=>0;public int SetLine(string s,string t,Sprite p,string key=null){Portraits.Add(p);return 0;}public void SetContinueIndicator(bool b){}public void SetVisibleCharacters(int n){}}
     public static class LocalizationManager {public static string Get(string k,string en)=>en;}
     public static class LocalizationKeys {public static string SpeakerKey(string s)=>"speaker/"+s;}
     public class ResumeCategoryData:ScriptableObject{}

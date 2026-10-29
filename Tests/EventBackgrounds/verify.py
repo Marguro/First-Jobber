@@ -18,7 +18,10 @@ database=asset(R/'Assets/Data/Production/GameDatabase_Production.asset')
 for event,art in expected.items():
  p=R/f'Assets/Data/Production/DailyEvents/{event}.asset';e=asset(p);sprite=R/'Assets/Sprites/UI/Background'/art
  assert e['id']==event and e['background']['guid']==guid(sprite)
- assert str(e['background']['fileID']) in Path(str(sprite)+'.meta').read_text(),event+' subasset ID'
+ metadata=Path(str(sprite)+'.meta').read_text()
+ importer=yaml.safe_load(metadata)['TextureImporter']
+ if importer['spriteMode']==1:assert e['background']['fileID']==21300000,event+' single-sprite reference'
+ else:assert str(e['background']['fileID']) in metadata,event+' multiple-sprite subasset ID'
  assert {'fileID':11400000,'guid':guid(p),'type':2} in database['events']
 # Only one requested translation changed; all other entries stay intact when a current-task backup exists.
 key='event/event_day01_resume_intro/segments/resume_intro/lines/0/lines/0'

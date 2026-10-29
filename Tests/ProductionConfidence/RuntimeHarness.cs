@@ -165,7 +165,8 @@ namespace FirstJobber
         public List<string> Pages = new List<string>();
         public void Hide() { }
         public void Show() { }
-        public int SetLine(string speaker, string text, Sprite portrait) { Pages.Add(text); return 0; }
+        public int RevealCharacterCount=>0;
+        public int SetLine(string speaker, string text, Sprite portrait, string localizationKey=null) { Pages.Add(text); return 0; }
         public void SetContinueIndicator(bool value) { }
         public void SetVisibleCharacters(int n) { }
     }

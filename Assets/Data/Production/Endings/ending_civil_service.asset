@@ -19,7 +19,7 @@ MonoBehaviour:
   - speaker: Player
     text: 
     dialogueLines:
-    - At least... Dad probably will not reject me like those companies.
+    - Maybe I should choose a stable job... Even if it is not what I dreamed of, it would be nice not to worry about work every day.
     emotion: 0
     autoAdvanceDelay: 0
     delayBefore: 0

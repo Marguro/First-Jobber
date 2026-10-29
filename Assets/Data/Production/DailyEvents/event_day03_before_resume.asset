@@ -3,50 +3,41 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: 780d7809f66105a4ca9bbf36c63022bc
-    type: 3
+  m_Script: {fileID: 11500000, guid: 780d7809f66105a4ca9bbf36c63022bc, type: 3}
   m_Name: event_day03_before_resume
-  m_EditorClassIdentifier: ''
+  m_EditorClassIdentifier: 
   id: event_day03_before_resume
   trigger: 1
   exactDay: 3
   minDay: 0
   repeatable: 0
   priority: 0
-  requiredFlag: ''
-  forbiddenFlag: ''
+  requiredFlag: 
+  forbiddenFlag: 
   setFlags: []
-  caption: ''
-  background:
-    fileID: 0
+  caption: 
+  background: {fileID: 21300000, guid: 36504cd82d9e7844abf34bfb2dd2c33f, type: 3}
   flickerSeconds: 0
   lines: []
   segments:
   - id: morning
     lines:
     - speaker: Player
-      text: ''
+      text: 
       dialogueLines:
       - Good morning, me! Day three already...
       - Which company gets to see what I can do today? Or maybe all they will see is the reject button again.
       emotion: 0
       autoAdvanceDelay: 0
       delayBefore: 0
-      eventId: ''
-      portrait:
-        fileID: 0
+      eventId: 
+      portrait: {fileID: 0}
       genderIds: []
-      variantGroup: ''
+      variantGroup: 
     options: []

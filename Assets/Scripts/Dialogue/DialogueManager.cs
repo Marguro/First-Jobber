@@ -202,19 +202,25 @@ namespace FirstJobber
                     string text = Format(LocalizationManager.Get(line.GetPageKey(p), line.GetPage(p)));
                     if (string.IsNullOrEmpty(text)) continue;
 
-                    int total = ui != null ? ui.SetLine(ResolveSpeaker(line.speaker), text, ResolvePortrait(line)) : 0;
+                    int total = ui != null ? ui.SetLine(ResolveSpeaker(line.speaker), text, ResolvePortrait(line), line.GetPageKey(p)) : 0;
                     if (ui != null) ui.SetContinueIndicator(false);
 
                     // Typewriter. A click while typing only completes the text.
                     clicked = false;
                     float shown = 0f;
-                    while (shown < total && !clicked)
+                    while (!clicked)
                     {
+                        // TMP may reparse after a late font/preprocessor refresh. Read the current
+                        // parsed count without forcing a second mesh rebuild on every reveal frame.
+                        if (ui != null) total = ui.RevealCharacterCount;
+                        if (shown >= total) break;
                         shown += charactersPerSecond * Time.unscaledDeltaTime;
                         if (ui != null) ui.SetVisibleCharacters(Mathf.Min(total, Mathf.FloorToInt(shown)));
                         yield return null;
                     }
-                    if (ui != null) ui.SetVisibleCharacters(total);
+                    // Completed/skip state has no character cap: later Thai preprocessing must
+                    // never hide the tail of a fully revealed page. The next SetLine resets to zero.
+                    if (ui != null) ui.SetVisibleCharacters(int.MaxValue);
 
                     float auto = line.autoAdvanceDelay > 0f ? line.autoAdvanceDelay : defaultAuto;
                     if (ui != null) ui.SetContinueIndicator(auto <= 0f);

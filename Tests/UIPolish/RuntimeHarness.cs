@@ -30,7 +30,7 @@ namespace UnityEngine {
  public static class Time {public static int frameCount=1;public static float unscaledDeltaTime=.1f,unscaledTime;}
  public static class Mathf {public static float Clamp01(float v)=>Math.Max(0,Math.Min(1,v));public static float Min(float a,float b)=>Math.Min(a,b);public static float Max(float a,float b)=>Math.Max(a,b);public static float MoveTowards(float a,float b,float c)=>Math.Abs(b-a)<=c?b:a+Math.Sign(b-a)*c;public static bool Approximately(float a,float b)=>Math.Abs(a-b)<.00001f;}
  public static class RectTransformUtility {public static bool RectangleContainsScreenPoint(RectTransform r,Vector2 p,object cam)=>p.x>=0;}
- public static class Debug {public static void LogWarning(string s,Object o=null){} }
+ public static class Debug {public static void Log(string s,Object o=null){}public static void LogWarning(string s,Object o=null){} }
  public class WaitForSecondsRealtime {public WaitForSecondsRealtime(float f){}}
  public class SerializeField:Attribute{}public class HeaderAttribute:Attribute{public HeaderAttribute(string s){}} public class TooltipAttribute:Attribute{public TooltipAttribute(string s){}}public class RangeAttribute:Attribute{public RangeAttribute(float a,float b){}}public class MinAttribute:Attribute{public MinAttribute(float a){}}public class CreateAssetMenuAttribute:Attribute{public string menuName;}public class DisallowMultipleComponent:Attribute{}public class RequireComponent:Attribute{public RequireComponent(Type t){}}public class RuntimeInitializeOnLoadMethodAttribute:Attribute{public RuntimeInitializeOnLoadMethodAttribute(RuntimeInitializeLoadType t){}}public enum RuntimeInitializeLoadType {SubsystemRegistration}
 }
@@ -48,7 +48,7 @@ namespace UnityEngine.EventSystems {
  public class BaseEventData {}public class PointerEventData:BaseEventData {public enum InputButton{Left,Right}public InputButton button;public Vector2 position=new Vector2(1,1);public object pressEventCamera;}
  public interface IPointerEnterHandler{void OnPointerEnter(PointerEventData d);}public interface IPointerExitHandler{void OnPointerExit(PointerEventData d);}public interface IPointerDownHandler{void OnPointerDown(PointerEventData d);}public interface IPointerUpHandler{void OnPointerUp(PointerEventData d);}public interface ISubmitHandler{void OnSubmit(BaseEventData d);}
 }
-namespace TMPro {public class TMP_Text:MonoBehaviour{public string text;public int maxVisibleCharacters;public TMP_Info textInfo=new TMP_Info();public void ForceMeshUpdate(){textInfo.characterCount=text==null?0:text.Length;}}public class TMP_Info {public int characterCount;}}
+namespace TMPro {public interface ITextPreprocessor{string PreprocessText(string t);}public class TMP_Text:MonoBehaviour{public string text;public int maxVisibleCharacters,maxVisibleWords,maxVisibleLines,firstVisibleCharacter;public ITextPreprocessor textPreprocessor;public TMP_Info textInfo=new TMP_Info();public void ForceMeshUpdate(bool ignoreActiveState=false,bool forceTextReparsing=false){textInfo.characterCount=text==null?0:text.Length;}}public class TMP_Info {public int characterCount;}}
 namespace UnityEngine.InputSystem {public class Keyboard {public static Keyboard current;public Key spaceKey=new Key(),enterKey=new Key();}public class Key {public bool wasPressedThisFrame;}}
 namespace DG.Tweening {
  public enum Ease {OutCubic,InQuad,OutQuad}
@@ -106,3 +106,7 @@ class Tests {
  }
 }
 
+
+namespace FirstJobber {public static class ThaiTextApplier {public static void Register(TMPro.TMP_Text t){}}}
+
+namespace UnityEngine {public class ContextMenu:Attribute{public ContextMenu(string s){}}}

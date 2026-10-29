@@ -18,6 +18,9 @@ namespace FirstJobber
         [SerializeField] Image portraitImage;
         [SerializeField] UIAnimationSettings animationSettings;
         Tween visibilityTween;
+        [SerializeField] bool logTextRevealDiagnostics;
+        string diagnosticKey, assignedText;
+        public int RevealCharacterCount => bodyText != null ? bodyText.textInfo.characterCount : 0;
 
         public event Action Clicked;
 
@@ -82,10 +85,13 @@ namespace FirstJobber
         void OnDisable() { visibilityTween?.Kill(); visible = false; if (group != null) group.alpha = 0f; }
 
         /// <summary>Sets the line and returns how many characters it contains (for the typewriter).</summary>
-        public int SetLine(string speaker, string text, Sprite portrait)
+        public int SetLine(string speaker, string text, Sprite portrait, string localizationKey = null)
         {
             if (speakerText != null)
             {
+                ThaiTextApplier.Register(speakerText);
+                speakerText.maxVisibleCharacters = speakerText.maxVisibleWords = speakerText.maxVisibleLines = int.MaxValue;
+                speakerText.firstVisibleCharacter = 0;
                 speakerText.text = speaker;
                 speakerText.gameObject.SetActive(!string.IsNullOrEmpty(speaker));
             }
@@ -95,15 +101,46 @@ namespace FirstJobber
                 portraitImage.gameObject.SetActive(portrait != null);
             }
             if (bodyText == null) return 0;
+            diagnosticKey = localizationKey; assignedText = text;
+            // Install the existing locale/font/preprocessor BEFORE counting. Its normal safety scan
+            // may otherwise add Thai word-break characters after the typewriter cached its length.
+            ThaiTextApplier.Register(bodyText);
+            bodyText.maxVisibleCharacters = bodyText.maxVisibleWords = bodyText.maxVisibleLines = int.MaxValue;
+            bodyText.firstVisibleCharacter = 0;
             bodyText.text = text;
-            bodyText.maxVisibleCharacters = 0;
-            bodyText.ForceMeshUpdate();
-            return bodyText.textInfo.characterCount;
+            bodyText.ForceMeshUpdate(true, true);
+            int count = bodyText.textInfo.characterCount; // Parsed TMP elements, not UTF-16 or markup length.
+            bodyText.maxVisibleCharacters = 0; // No frame is yielded with the complete mesh visible.
+            LogReveal(false, false);
+            return count;
         }
 
         public void SetVisibleCharacters(int count)
         {
-            if (bodyText != null) bodyText.maxVisibleCharacters = count;
+            if (bodyText != null)
+            {
+                bodyText.maxVisibleCharacters = count;
+                if (count == int.MaxValue) LogReveal(true, false);
+            }
+        }
+
+        [ContextMenu("Debug/Log current dialogue reveal")]
+        void LogCurrentReveal() { LogReveal(bodyText != null && bodyText.maxVisibleCharacters == int.MaxValue, true); }
+
+        [System.Diagnostics.Conditional("UNITY_EDITOR"), System.Diagnostics.Conditional("DEVELOPMENT_BUILD")]
+        void LogReveal(bool completed, bool force)
+        {
+            if ((!force && !logTextRevealDiagnostics) || bodyText == null) return;
+            string processed = bodyText.textPreprocessor != null ? bodyText.textPreprocessor.PreprocessText(bodyText.text ?? "") : bodyText.text;
+            Debug.Log("[DialogueReveal] key=" + diagnosticKey + " (event/block/page encoded in key)"
+                + " localized=" + assignedText + " localizedLength=" + (assignedText != null ? assignedText.Length : 0)
+                + " TMP.textLength=" + (bodyText.text != null ? bodyText.text.Length : 0)
+                + " processedLength=" + (processed != null ? processed.Length : 0)
+                + " processedDiffers=" + (processed != bodyText.text)
+                + " assignedStringChanged=" + (assignedText != bodyText.text)
+                + " TMP.characters=" + bodyText.textInfo.characterCount
+                + " maxCharacters=" + bodyText.maxVisibleCharacters + " maxWords=" + bodyText.maxVisibleWords
+                + " maxLines=" + bodyText.maxVisibleLines + " completed=" + completed, this);
         }
 
         public void SetContinueIndicator(bool on)
