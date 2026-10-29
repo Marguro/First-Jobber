@@ -105,6 +105,7 @@ namespace FirstJobber
 
             session = new GameSession();
             ctx = new GameContext(database, session, dialogue);
+            if (atmosphere != null) atmosphere.SetAmbientGameplayActive(false);
             ApplyAtmosphere(true);
             Phase = GamePhase.MainMenu;
             ui.ShowPanelFor(GamePhase.MainMenu, true);
@@ -164,6 +165,7 @@ namespace FirstJobber
             }
             dialogue.Stop(); // drops any pending dialogue callbacks from the old phase
             Phase = next;
+            if (atmosphere != null) atmosphere.SetAmbientGameplayActive(next != GamePhase.MainMenu && next != GamePhase.CreateApplicant);
             if (next == GamePhase.MainMenu && dayMusic != null) dayMusic.PlayDay(1);
             session.phase = next;
             ui.ShowPanelFor(next, instantPanel);
@@ -411,6 +413,8 @@ namespace FirstJobber
                 return;
             }
 #endif
+            // Keep the reset silent until the destination is known (also for missing/None media).
+            if (atmosphere != null) atmosphere.SetAmbientGameplayActive(false);
             if (data.RestartsCycle)
             {
                 // Preserve identity, history and once-per-playthrough choice reactions/tutorials.

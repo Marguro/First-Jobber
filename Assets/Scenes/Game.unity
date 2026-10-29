@@ -2450,6 +2450,7 @@ MonoBehaviour:
   audioSourceA: {fileID: 22137142}
   audioSourceB: {fileID: 22137140}
   logPhaseChanges: 1
+  cinematicAmbientFadeDuration: 0.75
 --- !u!1 &220750169
 GameObject:
   m_ObjectHideFlags: 0
@@ -4177,6 +4178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0147ed1ea9e2a4dbf5a9f26cd9f3d9, type: 3}
   m_Name: null
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.CompanySelectionController
+  detailsFeedback: {fileID: 2189100005}
   companyList: {fileID: 103586512}
   detailsText: {fileID: 1817045655}
   companyNameText: {fileID: 2120000033}
@@ -4192,7 +4194,6 @@ MonoBehaviour:
   reactionAutoAdvance: 2.5
   detailsScroll: {fileID: 2119000107}
   detailsContent: {fileID: 2119000104}
-  detailsFeedback: {fileID: 2189100005}
 --- !u!1 &452948880
 GameObject:
   m_ObjectHideFlags: 0
@@ -6737,8 +6738,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2130000040}
   - component: {fileID: 762817073}
+  - component: {fileID: 2130000040}
   - component: {fileID: 762817074}
   - component: {fileID: 762817071}
   - component: {fileID: 762817072}
@@ -6779,6 +6780,7 @@ MonoBehaviour:
   videoAspect: {fileID: 2130000024}
   fadeOverlay: {fileID: 2130000034}
   videoPlayer: {fileID: 2130000040}
+  atmosphere: {fileID: 217966943}
   prepareTimeout: 20
   playbackGrace: 30
 --- !u!82 &762817072
@@ -8823,7 +8825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15, y: 0.85}
   m_AnchorMax: {x: 0.85, y: 0.97}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007951757
@@ -8856,7 +8858,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0.98, g: 0.82, b: 0.35, a: 1}
+  m_fontColor: {r: 0, g: 0.31209758, b: 0.5377358, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11588,6 +11590,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.ResumeEditorController
   preview: {fileID: 1661852271}
+  previewFeedback: {fileID: 2189100010}
+  paperPresentation: {fileID: 2189100022}
+  corruptionSettings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
   previewRect: {fileID: 1661852270}
   editorGroup: {fileID: 1110652821}
   dayText: {fileID: 1088541045}
@@ -11604,9 +11609,6 @@ MonoBehaviour:
   introDuration: 0.9
   introStartScale: 1.35
   reactionAutoAdvance: 2
-  previewFeedback: {fileID: 2189100010}
-  paperPresentation: {fileID: 2189100022}
-  corruptionSettings: {fileID: 11400000, guid: 032370578ae94567b2bc31983b528388, type: 2}
 --- !u!1 &1385924646
 GameObject:
   m_ObjectHideFlags: 0
@@ -11815,13 +11817,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1b1161cd0c566488aa4b47543d83fe, type: 3}
   m_Name: null
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.InterviewController
+  questionPresentation: {fileID: 2189100008}
   questionText: {fileID: 466925470}
   answerList: {fileID: 1385924648}
   hr: {fileID: 796213111}
   neutralDelay: 0.4
   questionScroll: {fileID: 2140000005}
   questionContent: {fileID: 2140000011}
-  questionPresentation: {fileID: 2189100008}
 --- !u!1 &1398395779
 GameObject:
   m_ObjectHideFlags: 0
@@ -19647,7 +19649,6 @@ GameObject:
   - component: {fileID: 2130000011}
   - component: {fileID: 2130000012}
   - component: {fileID: 2130000013}
-  - component: {fileID: 2141000125}
   m_Layer: 0
   m_Name: FullscreenVideo
   m_TagString: Untagged
@@ -19725,7 +19726,6 @@ GameObject:
   - component: {fileID: 2130000022}
   - component: {fileID: 2130000023}
   - component: {fileID: 2130000024}
-  - component: {fileID: 2141000126}
   m_Layer: 0
   m_Name: VideoImage
   m_TagString: Untagged
@@ -19813,7 +19813,6 @@ GameObject:
   - component: {fileID: 2130000032}
   - component: {fileID: 2130000033}
   - component: {fileID: 2130000034}
-  - component: {fileID: 2141000127}
   m_Layer: 0
   m_Name: PresentationFade
   m_TagString: Untagged
@@ -19890,6 +19889,40 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!328 &2130000040
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762817070}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 0
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
+  m_Url: 
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1 &2140000000
 GameObject:
   m_ObjectHideFlags: 0
@@ -22204,48 +22237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   binding: {fileID: 0}
   syncAnimatedMaterial: 0
---- !u!114 &2141000125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130000010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbae4c045a914b74b4e40ec219abca86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  binding: {fileID: 0}
-  syncAnimatedMaterial: 0
---- !u!114 &2141000126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130000020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbae4c045a914b74b4e40ec219abca86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  binding: {fileID: 0}
-  syncAnimatedMaterial: 0
---- !u!114 &2141000127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130000030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbae4c045a914b74b4e40ec219abca86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  binding: {fileID: 0}
-  syncAnimatedMaterial: 0
 --- !u!114 &2141000128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22494,15 +22485,6 @@ MonoBehaviour:
   uiSprites: {fileID: 11400000, guid: 00b0fd17c60746e793d1d217ac9a2a69, type: 2}
   baseSprite: {fileID: 5296390209611786723, guid: 0c8e29ad1461c544998f811c4ce704fe, type: 3}
   overlayMask: {fileID: 2141000120}
---- !u!1660057539 &9223372036854775807
-SceneRoots:
-  m_ObjectHideFlags: 0
-  m_Roots:
-  - {fileID: 1664623490}
-  - {fileID: 1590157508}
-  - {fileID: 627569008}
-  - {fileID: 217966942}
-
 --- !u!114 &2189000001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22513,8 +22495,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 603b803ddcee4d2ba2826bc30a82289f, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   configuration: {fileID: 11400000, guid: 29494fe5bc72415d85753ea29f6cbcf8, type: 2}
   sourceA: {fileID: 2189000002}
   sourceB: {fileID: 2189000003}
@@ -22730,6 +22712,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 2189100011}
+  proEntranceScale: 0.985
 --- !u!114 &2189100002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22747,6 +22730,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22764,6 +22748,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22781,6 +22766,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22798,6 +22784,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22815,6 +22802,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22832,6 +22820,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22849,6 +22838,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22866,6 +22856,7 @@ MonoBehaviour:
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22883,6 +22874,7 @@ MonoBehaviour:
   move: 0
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189100011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22895,13 +22887,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
   m_Name: null
   m_EditorClassIdentifier: Assembly-CSharp::DG.Tweening.DOTweenAnimation
+  updateType: 0
+  isSpeedBased: 0
+  hasOnStart: 0
+  hasOnPlay: 0
+  hasOnUpdate: 0
+  hasOnStepComplete: 0
+  hasOnComplete: 0
+  hasOnTweenCreated: 0
+  hasOnRewind: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  onStepComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onTweenCreated:
+    m_PersistentCalls:
+      m_Calls: []
+  onRewind:
+    m_PersistentCalls:
+      m_Calls: []
   targetIsSelf: 1
+  targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
-  duration: 0.36
   delay: 0
+  duration: 0.36
   easeType: 9
+  easeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   loopType: 0
   loops: 1
+  id: 
   isRelative: 0
   isFrom: 1
   isIndependentUpdate: 1
@@ -22915,8 +22963,26 @@ MonoBehaviour:
   forcedTargetType: 0
   autoPlay: 0
   useTargetAsV3: 0
-  endValueV3: {x: 1.606666793, y: 2.0886667915, z: 1.606666793}
+  endValueFloat: 0
+  endValueV3: {x: 1.6066668, y: 2.0886667, z: 1.6066668}
+  endValueV2: {x: 0, y: 0}
+  endValueColor: {r: 1, g: 1, b: 1, a: 1}
+  endValueString: 
+  endValueRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  endValueTransform: {fileID: 0}
   optionalBool0: 0
+  optionalBool1: 0
+  optionalFloat0: 0
+  optionalInt0: 0
+  optionalRotationMode: 0
+  optionalScrambleMode: 0
+  optionalShakeRandomnessMode: 0
+  optionalString: 
 --- !u!114 &2189100012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23067,29 +23133,69 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - {serializedVersion: 3, time: 0, value: 1, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
-    - {serializedVersion: 3, time: 1, value: 0, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - {serializedVersion: 3, time: 0, value: 0, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - {serializedVersion: 3, time: 0, value: 0, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - {serializedVersion: 3, time: 0, value: 1, inSlope: 0, outSlope: 0, tangentMode: 0, weightedMode: 0, inWeight: 0.33333334, outWeight: 0.33333334}
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -23121,13 +23227,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac2b527f0c3845f8b8b63305f8a51bd5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstJobber.UIVisualMotion
   settings: {fileID: 11400000, guid: f562e750f9ff47c09a2b89557be7f4d4, type: 2}
   visual: {fileID: 1661852270}
   move: 1
   offsetMultiplier: {x: 1, y: 1}
   proEntrance: {fileID: 0}
+  proEntranceScale: 0.985
 --- !u!114 &2189200001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23144,11 +23251,16 @@ MonoBehaviour:
   role: 1
   inkHost: {fileID: 1661852270}
   textSource: {fileID: 1270481811}
-  tearPhaseBinding: {fileID: 1661852274}
   tearSource: {fileID: 1661852272}
+  tearPhaseBinding: {fileID: 1661852274}
   intensityMultiplier: 0.9
   stableId: production-ui/1661852270
-  inkRegion: {x: 0.05, y: 0.08, width: 0.8, height: 0.78}
+  inkRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   motionSource: {fileID: 2189100022}
 --- !u!114 &2189200002
 MonoBehaviour:
@@ -23166,11 +23278,16 @@ MonoBehaviour:
   role: 2
   inkHost: {fileID: 1420842803}
   textSource: {fileID: 0}
-  tearPhaseBinding: {fileID: 0}
   tearSource: {fileID: 0}
+  tearPhaseBinding: {fileID: 0}
   intensityMultiplier: 0.45
   stableId: production-ui/1420842803
-  inkRegion: {x: 0.05, y: 0.06, width: 0.9, height: 0.05}
+  inkRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   motionSource: {fileID: 0}
 --- !u!114 &2189200003
 MonoBehaviour:
@@ -23188,11 +23305,16 @@ MonoBehaviour:
   role: 1
   inkHost: {fileID: 2120000001}
   textSource: {fileID: 1243443729}
-  tearPhaseBinding: {fileID: 2141000139}
   tearSource: {fileID: 2120000003}
+  tearPhaseBinding: {fileID: 2141000139}
   intensityMultiplier: 0.75
   stableId: production-ui/2120000001
-  inkRegion: {x: 0.07, y: 0.055, width: 0.82, height: 0.04}
+  inkRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   motionSource: {fileID: 2189100004}
 --- !u!114 &2189200004
 MonoBehaviour:
@@ -23210,11 +23332,16 @@ MonoBehaviour:
   role: 1
   inkHost: {fileID: 1617775025}
   textSource: {fileID: 2120000033}
-  tearPhaseBinding: {fileID: 1617775028}
   tearSource: {fileID: 1617775026}
+  tearPhaseBinding: {fileID: 1617775028}
   intensityMultiplier: 0.8
   stableId: production-ui/1617775025
-  inkRegion: {x: 0.08, y: 0.06, width: 0.8, height: 0.04}
+  inkRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   motionSource: {fileID: 2189100005}
 --- !u!114 &2189200005
 MonoBehaviour:
@@ -23232,11 +23359,16 @@ MonoBehaviour:
   role: 1
   inkHost: {fileID: 1633187480}
   textSource: {fileID: 0}
-  tearPhaseBinding: {fileID: 2141000135}
   tearSource: {fileID: 1633187481}
+  tearPhaseBinding: {fileID: 2141000135}
   intensityMultiplier: 0.8
   stableId: production-ui/1633187480
-  inkRegion: {x: 0.08, y: 0.05, width: 0.8, height: 0.05}
+  inkRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   motionSource: {fileID: 2189100008}
 --- !u!114 &2189200006
 MonoBehaviour:
@@ -23254,11 +23386,16 @@ MonoBehaviour:
   role: 3
   inkHost: {fileID: 977193194}
   textSource: {fileID: 0}
-  tearPhaseBinding: {fileID: 977193199}
   tearSource: {fileID: 977193197}
+  tearPhaseBinding: {fileID: 977193199}
   intensityMultiplier: 1
   stableId: production-ui/977193194
-  inkRegion: {x: 0.03, y: 0.04, width: 0.92, height: 0.02}
+  inkRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   motionSource: {fileID: 0}
 --- !u!114 &2189200007
 MonoBehaviour:
@@ -23276,35 +23413,22 @@ MonoBehaviour:
   role: 2
   inkHost: {fileID: 1007951756}
   textSource: {fileID: 1007951757}
-  tearPhaseBinding: {fileID: 0}
   tearSource: {fileID: 0}
+  tearPhaseBinding: {fileID: 0}
   intensityMultiplier: 0.8
   stableId: production-ui/1007951756
-  inkRegion: {x: 0.08, y: 0.08, width: 0.8, height: 0.04}
+  inkRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   motionSource: {fileID: 0}
---- !u!328 &2130000040
-VideoPlayer:
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762817070}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 0}
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: _MainTex
-  m_RenderMode: 2
-  m_AspectRatio: 2
-  m_DataSource: 0
-  m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 0
-  m_Loop: 0
-  m_PlayOnAwake: 0
-  m_SkipOnDrop: 1
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
+  m_Roots:
+  - {fileID: 1664623490}
+  - {fileID: 1590157508}
+  - {fileID: 627569008}
+  - {fileID: 217966942}

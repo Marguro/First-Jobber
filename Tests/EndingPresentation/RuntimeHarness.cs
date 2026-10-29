@@ -14,47 +14,61 @@ class Harness
     static void Check(bool v,string message){if(!v)throw new Exception(message);}
     static void Set(object o,string f,object v)=>o.GetType().GetField(f,BindingFlags.Instance|BindingFlags.NonPublic).SetValue(o,v);
     static void Call(object o,string m)=>o.GetType().GetMethod(m,BindingFlags.Instance|BindingFlags.NonPublic).Invoke(o,null);
+    static object Get(object o,string field)=>o.GetType().GetField(field,BindingFlags.Instance|BindingFlags.NonPublic).GetValue(o);
     static GameObject Prompt(EndingController c)=>(GameObject)c.GetType().GetField("buttonsRoot",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(c);
     static void Tick(int count=1){for(int i=0;i<count;i++){Time.realtimeSinceStartup+=.1f;Scheduler.Tick();}}
     static EndingController New(out GameContext ctx,out VideoPlayer video,out PlayableDirector director,out AspectRatioFitter aspect)
     {
         var c=new EndingController();ctx=new GameContext();video=new VideoPlayer();director=new PlayableDirector();aspect=new AspectRatioFitter();
-        Set(c,"videoPlayer",video);Set(c,"director",director);Set(c,"videoRoot",new GameObject());Set(c,"videoImage",new RawImage());Set(c,"videoAspect",aspect);Set(c,"fadeOverlay",new CanvasGroup());Set(c,"buttonsRoot",new GameObject());Set(c,"audioSource",new AudioSource());Set(c,"prepareTimeout",1f);Set(c,"playbackGrace",1f);Call(c,"Awake");return c;
+        Set(c,"atmosphere",new AtmosphereManager());Set(c,"videoPlayer",video);Set(c,"director",director);Set(c,"videoRoot",new GameObject());Set(c,"videoImage",new RawImage());Set(c,"videoAspect",aspect);Set(c,"fadeOverlay",new CanvasGroup());Set(c,"buttonsRoot",new GameObject());Set(c,"audioSource",new AudioSource());Set(c,"prepareTimeout",1f);Set(c,"playbackGrace",1f);Call(c,"Awake");return c;
     }
     static EndingData Data(EndingPresentationMode mode)=>new EndingData{id="ending",presentationMode=mode,fadeInDuration=0,fadeOutDuration=0,lines=new DialogueLine[0]};
     static void Main()
     {
         GameContext ctx;VideoPlayer video;PlayableDirector director;AspectRatioFitter aspect;
-        var c=New(out ctx,out video,out director,out aspect);int done=0;c.PresentationCompleted+=e=>{Check(!Prompt(c).activeSelf,"Post-ending prompt became visible before automatic completion");done++;};
+        var c=New(out ctx,out video,out director,out aspect);int done=0;c.PresentationCompleted+=e=>{
+            var manager=(AtmosphereManager)Get(c,"atmosphere");
+            if(e.presentationMode!=EndingPresentationMode.Video)Check(!manager.IsOverlaySuppressed,"Timeline/None must retain ordinary atmosphere presentation");
+            if(manager.IsOverlaySuppressed){manager.ResetPhaseOne();Check(!manager.overlay.enabled&&manager.overlay.color.a==0,"Phase reset must update the hidden overlay before restoration");}
+            Check(!Prompt(c).activeSelf,"Post-ending prompt became visible before automatic completion");done++;};
         Check(!Prompt(c).activeSelf,"Legacy prompt must be disabled during Awake");
         var e=Data(EndingPresentationMode.None);c.Show(ctx,e);c.Show(ctx,e);Tick(5);Check(done==1,"None/duplicate Show completion wrong");
         var noVideo=Data(EndingPresentationMode.Video);c.Show(ctx,noVideo);Tick(5);Check(done==2,"Missing video softlocked");
-        var v=Data(EndingPresentationMode.Video);v.videoClip=new VideoClip{width=640,height=480,audioTrackCount=2};c.Show(ctx,v);Tick(3);
+        var v=Data(EndingPresentationMode.Video);v.videoClip=new VideoClip{width=640,height=480,audioTrackCount=2};c.Show(ctx,v);Tick(6);
+        Check(((AtmosphereManager)Get(c,"atmosphere")).IsOverlaySuppressed&&!((AtmosphereManager)Get(c,"atmosphere")).overlay.enabled,"Atmosphere must remain hidden for the whole video");
         Check(video.isPlaying && !video.isLooping && !video.playOnAwake && video.AudioEnabled==2,"Video/audio configuration wrong");
         Check(Math.Abs(aspect.aspectRatio-4f/3)<.001f,"Video aspect ratio wrong");
         var raw=(RawImage)c.GetType().GetField("videoImage",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(c);
         Check(raw.texture==video.targetTexture && raw.texture!=null,"RawImage and VideoPlayer must share the live target");
         Check(raw.uvRect.width==1 && raw.uvRect.height==1,"Video UVs must sample the whole frame");
-        video.End();video.End();Tick(5);Check(done==3 && video.targetTexture==null && RenderTexture.Alive==0,"Video natural completion/cleanup duplicated or leaked");
-        c.Show(ctx,v);Tick(3);c.RequestSkip();c.RequestSkip();Tick(5);Check(done==4 && !video.isPlaying,"Skip completion duplicated");
-        v.allowSkip=false;c.Show(ctx,v);Tick(3);c.RequestSkip();Tick(3);Check(done==4 && video.isPlaying,"Allow Skip=false ignored");video.Error();Tick(5);Check(done==5,"Video error softlocked");
+        video.End();video.End();Tick(5);Check(!((AtmosphereManager)Get(c,"atmosphere")).IsOverlaySuppressed&&((AtmosphereManager)Get(c,"atmosphere")).overlay.enabled,"Completed video leaked atmosphere suppression");Check(done==3 && video.targetTexture==null && RenderTexture.Alive==0,"Video natural completion/cleanup duplicated or leaked");
+        c.Show(ctx,v);Tick(6);c.RequestSkip();c.RequestSkip();Tick(5);Check(done==4 && !video.isPlaying,"Skip completion duplicated");
+        v.allowSkip=false;c.Show(ctx,v);Tick(6);c.RequestSkip();Tick(6);Check(done==4 && video.isPlaying,"Allow Skip=false ignored");video.Error();Tick(5);Check(done==5,"Video error softlocked");
         video.AutoPrepare=false;c.Show(ctx,v);Tick(30);Check(done==6,"Prepare timeout softlocked");video.AutoPrepare=true;
-        c.Show(ctx,v);Tick(3);Tick(40);Check(done==7,"Playback watchdog did not recover");
-        var t=Data(EndingPresentationMode.Timeline);t.timeline=new PlayableAsset{duration=2};c.Show(ctx,t);Tick(3);director.Stop();Tick(5);Check(done==8,"Timeline stopped event completion wrong");
-        c.Show(ctx,t);Tick(3);director.state=PlayState.Paused;Tick(2);Check(done==8,"A paused director was incorrectly treated as completion");director.Stop();Tick(5);Check(done==9,"Paused Timeline cannot complete");
-        t.allowSkip=false;c.Show(ctx,t);Tick(3);c.RequestSkip();Tick(2);Check(done==9,"Timeline skip restriction ignored");director.Stop();Tick(5);
-        t.allowSkip=true;c.Show(ctx,t);Tick(3);c.RequestSkip();Tick(5);Check(done==11,"Timeline skip failed");
+        c.Show(ctx,v);Tick(6);Tick(40);Check(done==7,"Playback watchdog did not recover");
+        var t=Data(EndingPresentationMode.Timeline);t.timeline=new PlayableAsset{duration=2};c.Show(ctx,t);Tick(6);director.Stop();Tick(5);Check(done==8,"Timeline stopped event completion wrong");
+        c.Show(ctx,t);Tick(6);director.state=PlayState.Paused;Tick(2);Check(done==8,"A paused director was incorrectly treated as completion");director.Stop();Tick(5);Check(done==9,"Paused Timeline cannot complete");
+        t.allowSkip=false;c.Show(ctx,t);Tick(6);c.RequestSkip();Tick(2);Check(done==9,"Timeline skip restriction ignored");director.Stop();Tick(5);
+        t.allowSkip=true;c.Show(ctx,t);Tick(6);c.RequestSkip();Tick(5);Check(done==11,"Timeline skip failed");
         var missing=Data(EndingPresentationMode.Timeline);c.Show(ctx,missing);Tick(5);Check(done==12,"Missing Timeline softlocked");
         t.timeline.duration=double.PositiveInfinity;c.Show(ctx,t);Tick(5);Check(done==13,"Infinite Timeline softlocked");t.timeline.duration=2;
         var key=new UnityEngine.Timeline.AudioTrack{name="Audio"};var original=new AudioSource();var general=new AudioSource();var specific=new AudioSource();
         t.timeline.outputs=new[]{new PlayableBinding{sourceObject=key,outputTargetType=typeof(AudioSource)}};director.SetGenericBinding(key,original);
         Set(c,"timelineBindings",new[]{new EndingController.TimelineBinding{trackName="Audio",target=general},new EndingController.TimelineBinding{endingId="ending",trackName="Audio",target=specific}});
-        c.Show(ctx,t);Tick(3);Check(director.GetGenericBinding(key)==specific,"Ending-specific binding did not win");director.Stop();Tick(5);Check(director.GetGenericBinding(key)==original,"Timeline binding was not restored");
-        c.Show(ctx,v);Tick(3);Call(c,"OnDisable");Tick(5);Check(done==14 && RenderTexture.Alive==0 && video.EndListeners==0 && video.ErrorListeners==0,"Disable completed a cancelled ending or leaked listeners/resources");
+        c.Show(ctx,t);Tick(6);Check(director.GetGenericBinding(key)==specific,"Ending-specific binding did not win");director.Stop();Tick(5);Check(director.GetGenericBinding(key)==original,"Timeline binding was not restored");
+        c.Show(ctx,v);Tick(6);Call(c,"OnDisable");Tick(5);Check(!((AtmosphereManager)Get(c,"atmosphere")).IsOverlaySuppressed,"Cancelled video leaked atmosphere suppression");Check(done==14 && RenderTexture.Alive==0 && video.EndListeners==0 && video.ErrorListeners==0,"Disable completed a cancelled ending or leaked listeners/resources");
         var restart=Data(EndingPresentationMode.None);restart.actionAfterCutscene=EndingAfterCutsceneAction.RestartDay1;Check(restart.RestartsCycle,"Restart action ignored");restart.actionAfterCutscene=EndingAfterCutsceneAction.CompleteEnding;Check(!restart.RestartsCycle,"Complete action ignored");restart.resetCycle=true;Check(restart.RestartsCycle,"Legacy restart flag lost");
         var preview=New(out ctx,out video,out director,out aspect);int previewDone=0;
         preview.PresentationCompleted+=ending=>{Check(!Prompt(preview).activeSelf,"Preview must not restore post-ending decisions");previewDone++;};
         preview.Show(ctx,Data(EndingPresentationMode.None),true);Tick(5);Check(previewDone==1,"Preview completion must not wait for a hidden button");
+        var cinematic=New(out ctx,out video,out director,out aspect);var ambient=(AtmosphereManager)Get(cinematic,"atmosphere");
+        Set(ambient,"cinematicAmbientFadeDuration",.75f);ambient.audioSourceA.volume=.8f;ambient.audioSourceA.Play();
+        cinematic.Show(ctx,v);Tick(3);Check(ambient.IsAmbientSuppressed&&!video.isPlaying,"Video must wait for the ambient fade before Play/Prepare");
+        Tick(3);Check(!video.isPlaying&&ambient.audioSourceA.volume>0&&ambient.audioSourceA.volume<.8f,"Ambient fade must be gradual and precede video playback");
+        Tick(8);Check(video.isPlaying&&!ambient.audioSourceA.isPlaying&&!ambient.audioSourceB.isPlaying,"Video started with ambient interference");
+        video.End();Tick(5);Check(!ambient.IsAmbientSuppressed&&!ambient.audioSourceA.isPlaying,"Video completion leaked suppression or restarted menu ambience");
+        AtmosphereManager.CheckAmbient();
+        AtmosphereManager.CheckSuppression();
         FlowProbe.CheckRestart();
         Console.WriteLine("PASS actual ending presenter: None, Video natural/skip/error/timeouts/audio/aspect, Timeline stop/pause/skip/bindings/invalid duration, duplicate guards, cancellation, resource/subscription cleanup and restart action");
     }
@@ -85,20 +99,20 @@ namespace UnityEngine
     {
         public static List<Coroutine> All=new List<Coroutine>();public static void Tick(){foreach(var c in All.ToArray()){if(c.Stopped)continue;while(c.Stack.Count>0){var e=c.Stack.Peek();if(!e.MoveNext()){c.Stack.Pop();continue;}if(e.Current is IEnumerator nested){c.Stack.Push(nested);continue;}break;}}All.RemoveAll(c=>c.Stopped||c.Stack.Count==0);}
     }
-    public class Sprite:Object {}public class AudioClip:Object {}public class AudioSource:Component {public void PlayOneShot(AudioClip clip){}}
+    public class Sprite:Object {}public class AudioClip:Object {}public class AudioSource:Component {public float volume;public bool loop,isPlaying;public AudioClip clip;public int plays;public void Play(){isPlaying=true;plays++;}public void Stop(){isPlaying=false;}public void PlayOneShot(AudioClip clip){}}
     public class CanvasGroup:Component {public float alpha;public bool blocksRaycasts;}
     public class Texture:Object {}public enum RenderTextureFormat{ARGB32}
     public class RenderTexture:Texture {public static int Alive;bool released;public RenderTexture(int w,int h,int d,RenderTextureFormat f){Alive++;}public bool Create()=>true;public void Release(){if(!released){Alive--;released=true;}}}
-    public struct Color {public static Color black=>new Color();public static Color white=>new Color();}
+    public struct Color {public float r,g,b,a;public Color(float r,float g,float b,float a){this.r=r;this.g=g;this.b=b;this.a=a;}public static Color black=>new Color(0,0,0,1);public static Color white=>new Color(1,1,1,1);public static Color Lerp(Color a,Color b,float t)=>new Color(Mathf.Lerp(a.r,b.r,t),Mathf.Lerp(a.g,b.g,t),Mathf.Lerp(a.b,b.b,t),Mathf.Lerp(a.a,b.a,t));}public class Camera{public Color backgroundColor;}
     public static class Time {public static float realtimeSinceStartup;public static float unscaledDeltaTime=.1f;}
-    public static class Mathf {public static int Max(int a,int b)=>Math.Max(a,b);public static float Max(float a,float b)=>Math.Max(a,b);public static float Min(float a,float b)=>Math.Min(a,b);public static int RoundToInt(float v)=>(int)Math.Round(v);public static float Lerp(float a,float b,float t)=>a+(b-a)*t;}
+    public static class Mathf {public static float Clamp01(float v)=>Math.Max(0,Math.Min(1,v));public static int Max(int a,int b)=>Math.Max(a,b);public static float Max(float a,float b)=>Math.Max(a,b);public static float Min(float a,float b)=>Math.Min(a,b);public static int RoundToInt(float v)=>(int)Math.Round(v);public static float Lerp(float a,float b,float t)=>a+(b-a)*t;}
     public static class Debug {public static void Log(string s,Object o){}public static void LogWarning(string s,Object o){}public static void LogError(string s,Object o){throw new Exception(s);}}
     public class SerializeField:Attribute {}public class HeaderAttribute:Attribute {public HeaderAttribute(string s){}}public class TooltipAttribute:Attribute {public TooltipAttribute(string s){}}public class MinAttribute:Attribute {public MinAttribute(float n){}}public class TextAreaAttribute:Attribute {}public class HideInInspector:Attribute {}public class CreateAssetMenuAttribute:Attribute {public string menuName,fileName;}
 }
 namespace TMPro {public class TMP_Text:Component {public string text;}}
 namespace UnityEngine.UI
 {
-    public class Image:Component {public Sprite sprite;public Color color;}
+    public class Image:Component {public bool enabled=true;public Sprite sprite;public Color color;}
     public struct Rect {public float x,y,width,height;public Rect(float x,float y,float w,float h){this.x=x;this.y=y;width=w;height=h;}}
     public class RawImage:Component {public Texture texture;public Rect uvRect;}
     public class AspectRatioFitter:Component {public enum AspectMode{FitInParent}public AspectMode aspectMode;public float aspectRatio;}

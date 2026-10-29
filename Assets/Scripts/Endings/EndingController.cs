@@ -30,6 +30,8 @@ namespace FirstJobber
         [SerializeField] AspectRatioFitter videoAspect;
         [SerializeField] CanvasGroup fadeOverlay;
         [SerializeField] VideoPlayer videoPlayer;
+        [Tooltip("Existing Production atmosphere manager. Only fullscreen Video suspends its overlay rendering.")]
+        [SerializeField] AtmosphereManager atmosphere;
         [Min(1), SerializeField] float prepareTimeout = 20f;
         [Min(1), SerializeField] float playbackGrace = 30f;
 
@@ -48,6 +50,7 @@ namespace FirstJobber
         PlayableDirector active;
         GameObject spawned;
         RenderTexture videoTexture;
+        IDisposable videoAtmosphereSuppression, videoAmbientSuppression;
         readonly Dictionary<UnityEngine.Object, UnityEngine.Object> originalBindings = new Dictionary<UnityEngine.Object, UnityEngine.Object>();
 
         void Awake()
@@ -63,6 +66,7 @@ namespace FirstJobber
             if (presenting) { Debug.LogWarning("[Ending] A presentation is already running; duplicate request ignored.", this); return; }
             if (ending == null || ctx == null) { Debug.LogError("[Ending] Missing ending/context.", this); return; }
             CleanupPlayback();
+            RestoreVideoAtmosphere();
             current = ending; completed = skipRequested = false; presenting = true;
             if (background != null) { background.sprite = ending.background; background.color = ending.background != null ? Color.white : ending.backgroundColor; }
             if (titleText != null) { titleText.text = LocalizationManager.Get(ending, "title", ending.title); titleText.gameObject.SetActive(false); }
@@ -124,7 +128,9 @@ namespace FirstJobber
             if (!completed)
             {
                 completed = true;
-                PresentationCompleted?.Invoke(ending); // listeners may switch phase and disable this panel
+                // GameFlow resets the phase/destination before the original overlay is revealed.
+                try { PresentationCompleted?.Invoke(ending); }
+                finally { RestoreVideoAtmosphere(); }
             }
         }
         public void RequestSkip()
@@ -142,6 +148,16 @@ namespace FirstJobber
         {
             if (ending.videoClip == null || videoRoot == null || videoImage == null || videoAspect == null)
             { Debug.LogWarning("[Ending] '" + ending.id + "': Video clip/fullscreen UI missing; continuing to ending action.", this); yield break; }
+            if (videoAtmosphereSuppression == null && atmosphere != null)
+                videoAtmosphereSuppression = atmosphere.SuppressOverlayRendering();
+            if (atmosphere != null)
+            {
+                videoAmbientSuppression = atmosphere.SuppressAmbientAudio();
+                // Resume only after GameFlow selects an actual gameplay destination.
+                atmosphere.SetAmbientGameplayActive(false);
+                yield return atmosphere.WaitForAmbientSilence();
+                if (WantsSkip()) yield break;
+            }
             if (videoPlayer == null) videoPlayer = GetComponent<VideoPlayer>();
             if (videoPlayer == null) videoPlayer = gameObject.AddComponent<VideoPlayer>();
             videoPlayer.playOnAwake = false; videoPlayer.isLooping = false; videoPlayer.waitForFirstFrame = true;
@@ -305,10 +321,15 @@ namespace FirstJobber
             if (spawned != null) Destroy(spawned); spawned = null;
             if (cutsceneRoot != null) cutsceneRoot.gameObject.SetActive(false);
         }
+        void RestoreVideoAtmosphere()
+        {
+            videoAmbientSuppression?.Dispose(); videoAmbientSuppression = null;
+            videoAtmosphereSuppression?.Dispose(); videoAtmosphereSuppression = null;
+        }
         void OnDisable()
         {
             if (runner != null) { StopCoroutine(runner); runner = null; }
-            CleanupPlayback(); presenting = false; HidePresentation();
+            CleanupPlayback(); presenting = false; HidePresentation(); RestoreVideoAtmosphere();
         }
     }
 }

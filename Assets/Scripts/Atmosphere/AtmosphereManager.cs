@@ -26,11 +26,21 @@ namespace FirstJobber
         [SerializeField] AudioSource audioSourceA;
         [SerializeField] AudioSource audioSourceB;
         [SerializeField] bool logPhaseChanges = true;
+        [Tooltip("Unscaled fade-out before an ending video can prepare/play. Only the two atmosphere ambient sources are affected.")]
+        [Min(0), SerializeField] float cinematicAmbientFadeDuration = .75f;
+        bool ambientGameplayActive = true;
+        int ambientSuppressionCount;
+        bool ambientFading;
+        Coroutine ambientSilenceRoutine;
+        public bool IsAmbientSuppressed => ambientSuppressionCount > 0;
 
         public AtmospherePhaseData AppliedPhase { get; private set; }
         public bool IsPreviewing { get; private set; }
         public Color HrTint => AppliedPhase != null ? AppliedPhase.hrTint : Color.white;
 
+        int overlaySuppressionCount;
+        bool overlayWasEnabled;
+        public bool IsOverlaySuppressed => overlaySuppressionCount > 0;
         bool hasApplied;
         int lastDay = 1;
         Color baseCameraColor;
@@ -92,6 +102,33 @@ namespace FirstJobber
 
         // ------------------------------------------------------------ public API
 
+        /// <summary>Temporarily hide only the atmosphere graphic. Phase updates, bindings and
+        /// audio remain live. Dispose after the ending reset, or on cancellation/error cleanup.</summary>
+        public IDisposable SuppressOverlayRendering()
+        {
+            if (overlaySuppressionCount++ == 0 && overlay != null)
+            {
+                overlayWasEnabled = overlay.enabled;
+                overlay.enabled = false;
+            }
+            return new OverlaySuppression(this);
+        }
+        sealed class OverlaySuppression : IDisposable
+        {
+            AtmosphereManager owner;
+            public OverlaySuppression(AtmosphereManager value) { owner = value; }
+            public void Dispose()
+            {
+                var previous = owner; owner = null;
+                if (previous != null) previous.RestoreOverlayRendering();
+            }
+        }
+        void RestoreOverlayRendering()
+        {
+            if (overlaySuppressionCount == 0) return;
+            if (--overlaySuppressionCount == 0 && overlay != null) overlay.enabled = overlayWasEnabled;
+        }
+
         /// <summary>Applies the phase for this day. Does nothing if that phase is already active.</summary>
         public void Apply(int day, bool instant = false)
         {
@@ -138,6 +175,7 @@ namespace FirstJobber
 
             foreach (var b in Bindings) if (b != null) b.Apply(phase, fade);
 
+            if (instant && pulseRoutine != null) { StopCoroutine(pulseRoutine); pulseRoutine = null; flickerOffset = 0f; }
             if (transitionRoutine != null) StopCoroutine(transitionRoutine);
             transitionRoutine = StartCoroutine(TransitionRoutine(phase, fade));
 
@@ -159,7 +197,10 @@ namespace FirstJobber
             float alphaFrom = overlayAlpha;
             float alphaTo = phase != null ? phase.overlayOpacity : 0f;
 
-            for (float t = 0f; t < 1f; t += duration > 0f ? Time.unscaledDeltaTime / duration : 1f)
+            // An instant ending reset must reach Phase 1 before cinematic suppression is released.
+            // Yielding Step(0) for a frame would briefly restore the previous Phase 3 overlay.
+            if (duration <= 0f) { Step(1f); transitionRoutine = null; yield break; }
+            for (float t = 0f; t < 1f; t += Time.unscaledDeltaTime / duration)
             {
                 Step(t);
                 yield return null;
@@ -180,6 +221,7 @@ namespace FirstJobber
         {
             if (overlay == null) return;
             overlay.color = new Color(overlayRgb.r, overlayRgb.g, overlayRgb.b, Mathf.Clamp01(baseAlpha + flickerOffset));
+            if (IsOverlaySuppressed) overlay.enabled = false; // Flicker/phase updates cannot reveal it during video.
         }
 
         IEnumerator FlickerRoutine(AtmospherePhaseData phase)
@@ -213,8 +255,73 @@ namespace FirstJobber
 
         // ------------------------------------------------------------ audio
 
+        /// <summary>GameFlow owns eligibility. Menus and a cancelled cinematic never resume gameplay ambience.</summary>
+        public void SetAmbientGameplayActive(bool value)
+        {
+            if (ambientGameplayActive == value) return;
+            ambientGameplayActive = value;
+            if (IsAmbientSuppressed) return; // Let the cinematic fade finish; never restart a loop here.
+            if (value) ApplyAudio(AppliedPhase, false);
+            else StopAmbientAudio();
+        }
+        public IDisposable SuppressAmbientAudio()
+        {
+            if (ambientSuppressionCount++ == 0)
+            {
+                if (audioRoutine != null) StopCoroutine(audioRoutine);
+                audioRoutine = null;
+                ambientFading = true;
+                ambientSilenceRoutine = StartCoroutine(FadeAmbientToSilence());
+            }
+            return new AmbientSuppression(this);
+        }
+        sealed class AmbientSuppression : IDisposable
+        {
+            AtmosphereManager owner;
+            public AmbientSuppression(AtmosphereManager value) { owner = value; }
+            public void Dispose()
+            {
+                var previous = owner; owner = null;
+                if (previous != null) previous.RestoreAmbientAudio();
+            }
+        }
+        public IEnumerator WaitForAmbientSilence()
+        {
+            while (IsAmbientSuppressed && ambientFading) yield return null;
+        }
+        IEnumerator FadeAmbientToSilence()
+        {
+            float fromA = audioSourceA != null ? audioSourceA.volume : 0;
+            float fromB = audioSourceB != null ? audioSourceB.volume : 0;
+            float duration = Mathf.Max(0, cinematicAmbientFadeDuration);
+            for (float elapsed = 0; elapsed < duration; elapsed += Time.unscaledDeltaTime)
+            {
+                float gain = 1f - elapsed / duration;
+                if (audioSourceA != null) audioSourceA.volume = fromA * gain;
+                if (audioSourceB != null) audioSourceB.volume = fromB * gain;
+                yield return null;
+            }
+            StopAmbientAudio(); ambientFading = false; ambientSilenceRoutine = null;
+        }
+        void StopAmbientAudio()
+        {
+            if (audioRoutine != null) StopCoroutine(audioRoutine);
+            audioRoutine = null;
+            if (audioSourceA != null) { audioSourceA.Stop(); audioSourceA.volume = 0; }
+            if (audioSourceB != null) { audioSourceB.Stop(); audioSourceB.volume = 0; }
+            activeSource = null; activeClip = null;
+        }
+        void RestoreAmbientAudio()
+        {
+            if (ambientSuppressionCount == 0 || --ambientSuppressionCount != 0) return;
+            if (ambientSilenceRoutine != null) StopCoroutine(ambientSilenceRoutine);
+            ambientSilenceRoutine = null; ambientFading = false;
+            StopAmbientAudio();
+            if (ambientGameplayActive) ApplyAudio(AppliedPhase, false);
+        }
         void ApplyAudio(AtmospherePhaseData phase, bool instant)
         {
+            if (IsAmbientSuppressed || !ambientGameplayActive) return;
             if (audioSourceA == null && audioSourceB == null) return;
             AudioClip clip = phase != null ? phase.ambientClip : null;
             float volume = phase != null ? phase.ambientVolume : 0f;
@@ -226,6 +333,7 @@ namespace FirstJobber
 
         IEnumerator AudioRoutine(AudioClip clip, float volume, float fade)
         {
+            if (IsAmbientSuppressed || !ambientGameplayActive) yield break;
             var prev = activeSource;
             AudioSource to = null;
 

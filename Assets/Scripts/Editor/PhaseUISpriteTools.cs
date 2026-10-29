@@ -79,6 +79,7 @@ namespace FirstJobber.EditorTools
                 var prefab=new SerializedObject(final).FindProperty("actionButtonPrefab").objectReferenceValue;
                 if (prefab!=null) prefabs.Add(AssetDatabase.GetAssetPath(prefab));
             }
+            foreach (var ending in canvas.GetComponentsInChildren<EndingController>(true)) Set(ending,"atmosphere",managers[0]);
             ConfigureRoot(canvas.gameObject,library,beforeOverlay,report);
             EditorSceneManager.MarkSceneDirty(canvas.gameObject.scene);
             foreach (var path in prefabs)
@@ -104,6 +105,15 @@ namespace FirstJobber.EditorTools
         }
         static void ConfigureRoot(GameObject root,PhaseUISpriteLibrary library,HashSet<Graphic> coverage,StringBuilder report)
         {
+            var cinematicGraphics=new HashSet<Graphic>();
+            foreach (var ending in root.GetComponentsInChildren<EndingController>(true))
+            {
+                var serialized=new SerializedObject(ending);
+                var video=serialized.FindProperty("videoRoot").objectReferenceValue as GameObject;
+                var fade=serialized.FindProperty("fadeOverlay").objectReferenceValue as CanvasGroup;
+                if (video!=null) foreach (var graphic in video.GetComponentsInChildren<Graphic>(true)) cinematicGraphics.Add(graphic);
+                if (fade!=null) foreach (var graphic in fade.GetComponentsInChildren<Graphic>(true)) cinematicGraphics.Add(graphic);
+            }
             var excluded=new HashSet<Image>();
             foreach (var hr in root.GetComponentsInChildren<HRReactionController>(true))
             { var image=new SerializedObject(hr).FindProperty("portrait").objectReferenceValue as Image; if (image!=null) excluded.Add(image); }
@@ -119,7 +129,7 @@ namespace FirstJobber.EditorTools
             }
             foreach (var image in root.GetComponentsInChildren<Image>(true))
             {
-                if (excluded.Contains(image)) continue;
+                if (excluded.Contains(image) || cinematicGraphics.Contains(image)) continue;
                 bindings.TryGetValue(image,out var binding);
                 var original=binding!=null ? new SerializedObject(binding).FindProperty("baseSprite").objectReferenceValue as Sprite : null;
                 if (original==null) original=image.sprite;
@@ -136,6 +146,13 @@ namespace FirstJobber.EditorTools
             // Coverage only: no portrait/video/wallpaper sprite mappings are introduced here.
             foreach (var graphic in coverage)
             {
+                if (cinematicGraphics.Contains(graphic))
+                {
+                    var obsolete=graphic.GetComponent<AtmosphereOverlayMask>();
+                    if (obsolete!=null) Undo.DestroyObjectImmediate(obsolete);
+                    report.AppendLine("Excluded fullscreen ending video/fade: "+graphic.name);
+                    continue;
+                }
                 if (graphic.material!=null && !graphic.material.HasProperty("_Stencil")) report.AppendLine("Shader needs manual overlay-mask support: "+graphic.name+" / "+graphic.material.shader.name);
                 AtmosphereSpriteBinding binding=null; if (graphic is Image image) bindings.TryGetValue(image,out binding); Mask(graphic,binding);
             }
